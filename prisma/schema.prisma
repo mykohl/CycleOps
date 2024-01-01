@@ -10,6 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Cyclist {
+  id Int @id @default(autoincrement())
+  Owns Ownership[]
+}
+
+model Ownership {
+    id Int @id @default(autoincrement())
+    owner Cyclist? @relation(fields: [ownerId], references: [id])
+    ownerId Int?
+}
+
 model Maker {
   id Int @id @default(autoincrement())
   name String?
@@ -27,22 +38,47 @@ model Part {
 }
 
 model PartHub {
-    id Int @id @default(autoincrement())
-    part Part? @relation(fields: [partId], references: [id])
-    partId Int? @unique
-    specOLD Float?
-    specFlangeDiameterLeft Float?
-    specFlangeDiameterRight Float?
-    specFlangeLeftToCenter Float?
-    specFlangeRightToCenter Float?
-    specFlangeLeftToOLN Float?
-    specFlangeRightToOLN Float?
-    specSpokeHoleDiameter Float?
+  id Int @id @default(autoincrement())
+  part Part? @relation(fields: [partId], references: [id])
+  partId Int? @unique
+  specOLD Float?
+  specFlangeDiameterLeft Float?
+  specFlangeDiameterRight Float?
+  specFlangeLeftToCenter Float?
+  specFlangeRightToCenter Float?
+  specFlangeLeftToOLN Float?
+  specFlangeRightToOLN Float?
+  specSpokeHoleDiameter Float?
+  wheels Wheel[]
 }
 
 model PartRim {
-    id Int @id @default(autoincrement())
-    part Part? @relation(fields: [partId], references: [id])
-    partId Int? @unique
-    specEffectiveDiameter Float?
+  id Int @id @default(autoincrement())
+  part Part? @relation(fields: [partId], references: [id])
+  partId Int? @unique
+  specEffectiveDiameter Float?
+  specWidthInternal Float?
+  specWidthExternal Float?
+  specSectionHeight Float?
+  wheels Wheel[]
+}
+
+model Wheel {
+  id Int @id @default(autoincrement())
+  name String?
+  hub PartHub? @relation(fields: [hubId], references: [id])
+  hubId Int?
+  rim PartRim? @relation(fields: [rimId], references: [id])
+  rimId Int?
+  WheelsFoward Wheelset[] @relation("wheelFoward")
+  WheelsBack Wheelset[] @relation("wheelBack")
+}
+
+model Wheelset {
+  id Int @id @default(autoincrement())
+  name String?
+  wheelFoward Wheel? @relation("wheelFoward", fields: [wheelFowardId], references: [id])
+  wheelFowardId Int?
+  wheelBack Wheel? @relation("wheelBack", fields: [WheelBackId], references: [id])
+  WheelBackId Int?
 }
