@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Maker {
+  id Int @id @default(autoincrement())
+  name String?
+  parts Part[]
+}
+
+model Part {
+  id Int @id @default(autoincrement())
+  type String?
+  name String?
+  maker Maker? @relation(fields: [makerId], references: [id])
+  makerId Int?
+  hub PartHub?
+  rim PartRim?
+}
+
+model PartHub {
+    id Int @id @default(autoincrement())
+    part Part? @relation(fields: [partId], references: [id])
+    partId Int? @unique
+    specOLD Float?
+    specFlangeDiameterLeft Float?
+    specFlangeDiameterRight Float?
+    specFlangeLeftToCenter Float?
+    specFlangeRightToCenter Float?
+    specFlangeLeftToOLN Float?
+    specFlangeRightToOLN Float?
+    specSpokeHoleDiameter Float?
+}
+
+model PartRim {
+    id Int @id @default(autoincrement())
+    part Part? @relation(fields: [partId], references: [id])
+    partId Int? @unique
+    specEffectiveDiameter Float?
+}
