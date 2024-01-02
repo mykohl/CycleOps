@@ -12,13 +12,30 @@ datasource db {
 
 model Cyclist {
   id Int @id @default(autoincrement())
-  Owns Ownership[]
+  Owns PartOwned[]
 }
 
-model Ownership {
-    id Int @id @default(autoincrement())
-    owner Cyclist? @relation(fields: [ownerId], references: [id])
-    ownerId Int?
+model PartOwned {
+  id Int @id @default(autoincrement())
+  acquired DateTime?
+  condition String?
+  owner Cyclist? @relation(fields: [ownerId], references: [id])
+  ownerId Int?
+  part Part? @relation(fields: [partId], references: [id])
+  partId Int?
+}
+
+model Bicycle {
+  id Int @id @default(autoincrement())
+  parts BicyclePart[]
+}
+
+model BicyclePart {
+  id Int @id @default(autoincrement())
+  bicycle Bicycle? @relation(fields: [bicycleId], references: [id])
+  bicycleId Int?
+  part Part? @relation(fields: [partId], references: [id])
+  partId Int?
 }
 
 model Maker {
@@ -33,6 +50,8 @@ model Part {
   name String?
   maker Maker? @relation(fields: [makerId], references: [id])
   makerId Int?
+  owners PartOwned[]
+  bicycles BicyclePart[]
   hub PartHub?
   rim PartRim?
 }
