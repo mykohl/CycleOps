@@ -11,7 +11,7 @@ async function main() {
   app.use(express.json());
 
   // Register API routes
-  app.use("/api/v1/post", PartsRouter);
+  app.use("/api/v1", PartsRouter);
 
   // Catch unregistered routes
   app.all("*", (req: Request, res: Response) => {
