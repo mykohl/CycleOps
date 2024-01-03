@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import PostRouter from "./routes/post.route";
+import PartsRouter from "./routes/parts.route";
 
 export const prisma = new PrismaClient();
 
@@ -11,7 +11,7 @@ async function main() {
   app.use(express.json());
 
   // Register API routes
-  app.use("/api/v1/post", PostRouter);
+  app.use("/api/v1/post", PartsRouter);
 
   // Catch unregistered routes
   app.all("*", (req: Request, res: Response) => {
