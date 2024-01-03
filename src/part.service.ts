@@ -1,7 +1,15 @@
-import {PrismaClient, Prisma} from '@prisma/client';
+import { Prisma, PrismaClient } from "@prisma/client";
+import { prisma } from "./server";
 
-class PartService {
-    static prisma = new PrismaClient();
+class partService {
 
+    async createMaker(name: string, notes?: string) {
+        const newMaker = prisma.maker.create({
+            data: { name, notes }
+        });
+    }
+}
 
+export default {
+    partService
 }

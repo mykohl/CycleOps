@@ -12,38 +12,38 @@ datasource db {
 
 model Cyclist {
   id Int @id @default(autoincrement())
-  Owns PartOwned[]
+  name String?
+  owns Ownership[]
 }
 
-model BicycleOwned {
+model Ownership {
   id Int @id @default(autoincrement())
   acquired DateTime?
   condition String?
+  notes String?
   owner Cyclist? @relation(fields: [ownerId], references: [id])
   ownerId Int?
   bicycle Bicycle? @relation(fields: [bicycleId], references: [id])
-  bicycleId Int?  
-}
-
-model PartOwned {
-  id Int @id @default(autoincrement())
-  acquired DateTime?
-  condition String?
-  owner Cyclist? @relation(fields: [ownerId], references: [id])
-  ownerId Int?
+  bicycleId Int?
+  wheel Wheel? @relation(fields: [wheelId], references: [id])
+  wheelId Int?
+  wheelSet Wheelset? @relation(fields: [wheelSetId], references: [id])
+  wheelSetId Int?
   part Part? @relation(fields: [partId], references: [id])
   partId Int?
 }
 
 model Bicycle {
   id Int @id @default(autoincrement())
+  notes String?
   parts BicyclePart[]
-  owners BicycleOwned[]
+  owners Ownership[]
 }
 
 model BicyclePart {
   id Int @id @default(autoincrement())
   quantity Int?
+  notes String?
   bicycle Bicycle? @relation(fields: [bicycleId], references: [id])
   bicycleId Int?
   part Part? @relation(fields: [partId], references: [id])
@@ -53,26 +53,31 @@ model BicyclePart {
 model Maker {
   id Int @id @default(autoincrement())
   name String?
+  notes String?
   parts Part[]
 }
 
 model Part {
   id Int @id @default(autoincrement())
+  categories String?
   type String?
   designationCode String?
   name String?
+  notes String?
   maker Maker? @relation(fields: [makerId], references: [id])
   makerId Int?
-  owners PartOwned[]
+  owners Ownership[]
   bicycles BicyclePart[]
   hub PartHub?
   rim PartRim?
+  cogset PartCogset?
 }
 
 model PartHub {
   id Int @id @default(autoincrement())
   part Part? @relation(fields: [partId], references: [id])
   partId Int? @unique
+  specSpokeCount Int?
   specOLD Float?
   specFlangeDiameterLeft Float?
   specFlangeDiameterRight Float?
@@ -95,22 +100,35 @@ model PartRim {
   wheels Wheel[]
 }
 
+model PartCogset{
+  id Int @id @default(autoincrement())
+  type String?
+  cogs String?
+  notes String?
+  part Part? @relation(fields: [partId], references: [id])
+  partId Int? @unique
+}
+
 model Wheel {
   id Int @id @default(autoincrement())
   name String?
+  notes String?
   hub PartHub? @relation(fields: [hubId], references: [id])
   hubId Int?
   rim PartRim? @relation(fields: [rimId], references: [id])
   rimId Int?
-  WheelsFoward Wheelset[] @relation("wheelFoward")
-  WheelsBack Wheelset[] @relation("wheelBack")
+  wheelsFoward Wheelset[] @relation("wheelFoward")
+  wheelsBack Wheelset[] @relation("wheelBack")
+  owners Ownership[]
 }
 
 model Wheelset {
   id Int @id @default(autoincrement())
   name String?
+  notes String?
   wheelFoward Wheel? @relation("wheelFoward", fields: [wheelFowardId], references: [id])
   wheelFowardId Int?
-  wheelBack Wheel? @relation("wheelBack", fields: [WheelBackId], references: [id])
-  WheelBackId Int?
+  wheelBack Wheel? @relation("wheelBack", fields: [wheelBackId], references: [id])
+  wheelBackId Int?
+  owners Ownership[]
 }
