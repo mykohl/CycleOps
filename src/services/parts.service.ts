@@ -1,6 +1,6 @@
 import { prisma } from "..";
 import { Maker, Part, Hub } from "@prisma/client";
-import { MakerUpsertModel, PartUpsertModel, HubUpsertModel } from "../models/part.model" 
+import { MakerUpsertModel, PartUpsertModel, HubUpsertModel } from "../models/parts.model" 
 
 async function CreateMaker(maker: MakerUpsertModel): Promise<Maker> {
     const newMaker: Maker = await prisma.maker.create({ data: maker });

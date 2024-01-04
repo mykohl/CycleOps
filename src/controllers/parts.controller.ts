@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import PartsService from '../services/parts.service';
-import { MakerUpsertModel, PartUpsertModel, HubUpsertModel } from "../models/part.model" 
+import { MakerUpsertModel, PartUpsertModel, HubUpsertModel } from "../models/parts.model" 
 
 async function AddMaker(req: Request, res: Response) {
     try {
