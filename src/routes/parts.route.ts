@@ -3,8 +3,8 @@ import PartsController from "../controllers/parts.controller";
 
 const router = express.Router();
 
-router.post("/parts/create", PartsController.addPart);
-router.post("/parts/create/hub", PartsController.addHub);
-router.post("/parts/create/maker", PartsController.addMaker);
+router.post("/parts/create", PartsController.AddPart);
+router.post("/parts/create/hub", PartsController.AddHub);
+router.post("/parts/create/maker", PartsController.AddMaker);
 
 export default router;

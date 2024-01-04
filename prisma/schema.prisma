@@ -68,28 +68,29 @@ model Part {
   makerId Int?
   owners Ownership[]
   bicycles BicyclePart[]
-  hub PartHub?
-  rim PartRim?
-  cogset PartCogset?
+  hub Hub?
+  rim Rim?
+  cogset Cogset?
 }
 
-model PartHub {
+model Hub {
   id Int @id @default(autoincrement())
   part Part? @relation(fields: [partId], references: [id])
   partId Int? @unique
-  specSpokeCount Int?
-  specOLD Float?
-  specFlangeDiameterLeft Float?
-  specFlangeDiameterRight Float?
-  specFlangeLeftToCenter Float?
-  specFlangeRightToCenter Float?
-  specFlangeLeftToOLN Float?
-  specFlangeRightToOLN Float?
-  specSpokeHoleDiameter Float?
+  position String?
+  spokeCount Int?
+  overLocknutDistance Float?
+  flangeDiameterLeft Float?
+  flangeDiameterRight Float?
+  flangeLeftToCenter Float?
+  flangeRightToCenter Float?
+  sflangeLeftToOLN Float?
+  flangeRightToOLN Float?
+  spokeHoleDiameter Float?
   wheels Wheel[]
 }
 
-model PartRim {
+model Rim {
   id Int @id @default(autoincrement())
   part Part? @relation(fields: [partId], references: [id])
   partId Int? @unique
@@ -100,7 +101,7 @@ model PartRim {
   wheels Wheel[]
 }
 
-model PartCogset{
+model Cogset {
   id Int @id @default(autoincrement())
   type String?
   cogs String?
@@ -113,9 +114,9 @@ model Wheel {
   id Int @id @default(autoincrement())
   name String?
   notes String?
-  hub PartHub? @relation(fields: [hubId], references: [id])
+  hub Hub? @relation(fields: [hubId], references: [id])
   hubId Int?
-  rim PartRim? @relation(fields: [rimId], references: [id])
+  rim Rim? @relation(fields: [rimId], references: [id])
   rimId Int?
   wheelsFoward Wheelset[] @relation("wheelFoward")
   wheelsBack Wheelset[] @relation("wheelBack")

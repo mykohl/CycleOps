@@ -1,28 +1,37 @@
 import { prisma } from "..";
-import { Maker, Part, PartHub } from "@prisma/client";
+import { Maker, Part, Hub } from "@prisma/client";
+import { MakerUpsertModel, PartUpsertModel, HubUpsertModel } from "../models/part.model" 
 
-export const svcAddMaker = async(maker: Maker) => 
-{
-    const newMaker = await prisma.maker.create({ data: maker });
+async function CreateMaker(maker: MakerUpsertModel): Promise<Maker> {
+    const newMaker: Maker = await prisma.maker.create({ data: maker });
     return newMaker;
 }
 
-export const svcAddPart = async(part: Part, makerName?: string | null) => 
-{
-    if (makerName != undefined && makerName != null && part.makerId == null) {
-        const makerLookup = await prisma.maker.findFirst({ where: { name: makerName } })
+async function CreatePart(part: PartUpsertModel): Promise<Part> {
+    if (part.makerName != undefined && part.makerName != null && part.makerId == null) {
+        const makerLookup = await FindOneMaker(part.makerName);
         if (makerLookup != null) part.makerId = makerLookup.id;
     }
-    
-    const newPart = await prisma.part.create({ data: part });
+
+    const newPart: Part = await prisma.part.create({ data: part });
     return newPart;
 }
 
-export const svcAddHub =async (hub: PartHub) => 
-{
+async function CreateHub(hub: HubUpsertModel): Promise<Hub> {
+    const newPart: Part = await CreatePart(hub.partUpsertModel);
+    hub.partId = newPart.id;
+    const newHub: Hub = await prisma.hub.create({ data: hub });
+    return newHub;
+}
 
-    const newHub = await prisma.partHub.create({ data: hub })
+async function FindOneMaker(makerName: string) {
+    const makerLookup = await prisma.maker.findFirst({ where: { name: makerName } });
+    return makerLookup;
+}
 
-
-
+export default {
+    CreateMaker,
+    CreatePart,
+    CreateHub,
+    FindOneMaker
 }

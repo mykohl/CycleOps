@@ -1,31 +1,31 @@
 import { Request, Response } from "express";
-import { Maker, Part, PartHub } from "@prisma/client";
-import { svcAddMaker, svcAddPart, svcAddHub } from '../services/parts.service';
+import PartsService from '../services/parts.service';
+import { MakerUpsertModel, PartUpsertModel, HubUpsertModel } from "../models/part.model" 
 
-async function addMaker(req: Request, res: Response) {
+async function AddMaker(req: Request, res: Response) {
     try {
-        const modelNewMaker: Maker = req.body;
-        const newMaker = await svcAddMaker(modelNewMaker);
+        const modelNewMaker: MakerUpsertModel = req.body;
+        const newMaker = await PartsService.CreateMaker(modelNewMaker);
         res.status(200).json(newMaker);
     } catch (e) {
         res.status(500).json({ error: e });
     }
 }
 
-async function addPart(req: Request, res: Response) {
+async function AddPart(req: Request, res: Response) {
     try {
-        const modelNewPart: Part = req.body;
-        const newPart = await svcAddPart (modelNewPart);
+        const modelNewPart: PartUpsertModel = req.body;
+        const newPart = await PartsService.CreatePart(modelNewPart);
         res.status(200).json (newPart);
     } catch (e) {
         res.status(500).json ( { error: e } );
     }
 }
 
-async function addHub(req: Request, res: Response) {
+async function AddHub(req: Request, res: Response) {
     try {
-        const modelNewHub: PartHub = req.body;
-        const newHub = await svcAddHub (modelNewHub);
+        const modelNewHub: HubUpsertModel = req.body;
+        const newHub = await PartsService.CreateHub(modelNewHub);
         res.status(200).json (newHub);
     } catch (e) {
         res.status(500).json ( { error: e } );
@@ -33,7 +33,7 @@ async function addHub(req: Request, res: Response) {
 }
 
 export default {
-    addMaker,
-    addPart,
-    addHub
+    AddMaker,
+    AddPart,
+    AddHub
 };
