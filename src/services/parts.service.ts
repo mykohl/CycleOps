@@ -8,8 +8,8 @@ async function CreateMaker(maker: MakerUpsertModel): Promise<Maker> {
 }
 
 async function CreatePart(part: PartUpsertModel): Promise<Part> {
-    if (part.makerName != undefined && part.makerName != null && part.makerId == null) {
-        const makerLookup = await FindOneMaker(part.makerName);
+    if (part.makerUpsertModel?.name != undefined && part.makerUpsertModel?.name != null && part.makerId == null) {
+        const makerLookup = await FindOneMaker(part.makerUpsertModel?.name);
         if (makerLookup != null) part.makerId = makerLookup.id;
     }
 
