@@ -4,8 +4,6 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon --config nodemon.json src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build:server": "tsc -p tsconfig.server.json"
   },
   "keywords": [],
