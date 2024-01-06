@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "build:server": "tsc -p tsconfig.server.json && copyfiles --f \"src/api/prisma/*.db\" dist && copyfiles --f \".env\" dist"
+    "build:server": "tsc -p tsconfig.server.json && copyfiles -u 1 \"src/**/*.db\" \"src/api/prisma/client/**/*\" \"dist/\""
   },
   "keywords": [],
   "author": "",

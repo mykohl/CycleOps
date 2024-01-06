@@ -1,4 +1,4 @@
-import PrismaClient from "@prisma/client";
+import PrismaClient from "../prisma/client";
 import { MakerUpsertModel } from "./maker.model";
 
 export type PartUpsertModel = Omit<PrismaClient.Part, "id"> & { makerUpsertModel?: MakerUpsertModel };
