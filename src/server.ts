@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "./api/prisma/@prisma/client";
 import PartsRouter from "./api/routes/parts.route";
 import MakerRouter from "./api/routes/maker.route";
 
