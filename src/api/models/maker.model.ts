@@ -1,3 +1,3 @@
-import PrismaClient from "../prisma/client";
+import { Maker } from "../prisma/client";
 
-export type MakerUpsertModel = Omit<PrismaClient.Maker, "id">;
+export type MakerUpsertModel = Omit<Maker, "id">;

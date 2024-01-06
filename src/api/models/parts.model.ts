@@ -1,6 +1,6 @@
-import PrismaClient from "../prisma/client";
+import { Part, Hub, Rim } from "../prisma/client";
 import { MakerUpsertModel } from "./maker.model";
 
-export type PartUpsertModel = Omit<PrismaClient.Part, "id"> & { makerUpsertModel?: MakerUpsertModel };
-export type HubUpsertModel = Omit<PrismaClient.Hub, "id"> & { partUpsertModel: PartUpsertModel };
-export type RimUpsertModel = Omit<PrismaClient.Rim, "id"> & { partUpsertModel: PartUpsertModel };
+export type PartUpsertModel = Omit<Part, "id"> & { makerUpsertModel?: MakerUpsertModel };
+export type HubUpsertModel = Omit<Hub, "id"> & { partUpsertModel: PartUpsertModel };
+export type RimUpsertModel = Omit<Rim, "id"> & { partUpsertModel: PartUpsertModel };
