@@ -4,7 +4,11 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "build:server": "tsc -p tsconfig.server.json && copyfiles -u 1 \"src/**/*.db\" \"src/api/prisma/client/**/*\" \"dist/\""
+    "build:dev": "tsc -p tsconfig.server.json && cross-env NODE_ENV=dev npm run copy-env && npm run copy-prisma-assets",
+    "build:prod": "tsc -p tsconfig.server.json && cross-env NODE_ENV=prod npm run copy-env && run npm copy-db && npm run copy-prisma-assets",
+    "copy-env": "cp .build-${NODE_ENV}.env dist/.env",
+    "copy-db": "copyfiles -u 1 \"src/**/*.db\" \"dist/\"",
+    "copy-prisma-assets": "copyfiles -u 1 \"src/api/prisma/client/**/*\" \"dist/\""
   },
   "keywords": [],
   "author": "",
@@ -23,6 +27,7 @@
     "@types/pino": "^7.0.5",
     "copyfile": "^0.1.2",
     "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
     "prisma": "^5.7.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"

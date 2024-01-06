@@ -6,5 +6,4 @@ const partsRouter = express.Router();
 partsRouter.post("/create", AddPart);
 partsRouter.post("/create/hub", AddHub);
 
-
 export default partsRouter;
