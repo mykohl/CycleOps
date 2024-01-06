@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "build:server": "tsc -p tsconfig.server.json"
+    "build:server": "tsc -p tsconfig.server.json && copyfiles --f \"prisma/*.db\" dist"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,8 @@
     "@types/nanoid": "^3.0.0",
     "@types/node": "^20.10.6",
     "@types/pino": "^7.0.5",
+    "copyfile": "^0.1.2",
+    "copyfiles": "^2.4.1",
     "prisma": "^5.7.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
