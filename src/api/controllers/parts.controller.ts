@@ -1,39 +1,23 @@
 import { Request, Response } from "express";
-import PartsService from '../services/parts.service';
-import { MakerUpsertModel, PartUpsertModel, HubUpsertModel } from "../models/parts.model" 
+import { CreatePart, CreateHub } from '../services/parts.service';
+import { PartUpsertModel, HubUpsertModel } from "../models/parts.model" 
 
-async function AddMaker(req: Request, res: Response) {
-    try {
-        const modelNewMaker: MakerUpsertModel = req.body;
-        const newMaker = await PartsService.CreateMaker(modelNewMaker);
-        res.status(200).json(newMaker);
-    } catch (e) {
-        res.status(500).json({ error: e });
-    }
-}
-
-async function AddPart(req: Request, res: Response) {
+export async function AddPart(req: Request, res: Response) {
     try {
         const modelNewPart: PartUpsertModel = req.body;
-        const newPart = await PartsService.CreatePart(modelNewPart);
+        const newPart = await CreatePart(modelNewPart);
         res.status(200).json (newPart);
     } catch (e) {
         res.status(500).json ( { error: e } );
     }
 }
 
-async function AddHub(req: Request, res: Response) {
+export async function AddHub(req: Request, res: Response) {
     try {
         const modelNewHub: HubUpsertModel = req.body;
-        const newHub = await PartsService.CreateHub(modelNewHub);
+        const newHub = await CreateHub(modelNewHub);
         res.status(200).json (newHub);
     } catch (e) {
         res.status(500).json ( { error: e } );
     }
 }
-
-export default {
-    AddMaker,
-    AddPart,
-    AddHub
-};

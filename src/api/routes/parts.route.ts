@@ -1,10 +1,10 @@
 import express from "express";
-import PartsController from "../controllers/parts.controller";
+import { AddPart, AddHub } from "../controllers/parts.controller";
 
-const router = express.Router();
+const partsRouter = express.Router();
 
-router.post("/parts/create", PartsController.AddPart);
-router.post("/parts/create/hub", PartsController.AddHub);
-router.post("/parts/create/maker", PartsController.AddMaker);
+partsRouter.post("/create", AddPart);
+partsRouter.post("/create/hub", AddHub);
 
-export default router;
+
+export default partsRouter;
