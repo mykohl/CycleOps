@@ -1,4 +1,4 @@
-import { prisma } from "..";
+import { prisma } from "../../server";
 import { Maker, Part, Hub } from "@prisma/client";
 import { MakerUpsertModel, PartUpsertModel, HubUpsertModel } from "../models/parts.model" 
 

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.prisma = void 0;
 const express_1 = __importDefault(require("express"));
 const client_1 = require("@prisma/client");
-const parts_route_1 = __importDefault(require("./routes/parts.route"));
+const parts_route_1 = __importDefault(require("./api/routes/parts.route"));
 exports.prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
 const port = 8080;

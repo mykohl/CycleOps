@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const __1 = require("..");
+const server_1 = require("../../server");
 function CreateMaker(maker) {
     return __awaiter(this, void 0, void 0, function* () {
-        const newMaker = yield __1.prisma.maker.create({ data: maker });
+        const newMaker = yield server_1.prisma.maker.create({ data: maker });
         return newMaker;
     });
 }
@@ -24,7 +24,7 @@ function CreatePart(part) {
             if (makerLookup != null)
                 part.makerId = makerLookup.id;
         }
-        const newPart = yield __1.prisma.part.create({ data: part });
+        const newPart = yield server_1.prisma.part.create({ data: part });
         return newPart;
     });
 }
@@ -32,13 +32,13 @@ function CreateHub(hub) {
     return __awaiter(this, void 0, void 0, function* () {
         const newPart = yield CreatePart(hub.partUpsertModel);
         hub.partId = newPart.id;
-        const newHub = yield __1.prisma.hub.create({ data: hub });
+        const newHub = yield server_1.prisma.hub.create({ data: hub });
         return newHub;
     });
 }
 function FindOneMaker(makerName) {
     return __awaiter(this, void 0, void 0, function* () {
-        const makerLookup = yield __1.prisma.maker.findFirst({ where: { name: makerName } });
+        const makerLookup = yield server_1.prisma.maker.findFirst({ where: { name: makerName } });
         return makerLookup;
     });
 }
