@@ -2,8 +2,8 @@ import { prisma } from "../../server";
 import { Maker } from "@prisma/client";
 import { MakerUpsertModel } from "../models/maker.model" 
 
-export async function CreateMaker(maker: MakerUpsertModel): Promise<Maker> {
-    const newMaker: Maker = await prisma.maker.create({ data: maker });
+export async function CreateMaker(makerUpsertModel: MakerUpsertModel): Promise<Maker> {
+    const newMaker = await prisma.maker.create({ data: makerUpsertModel });
     return newMaker;
 }
 
