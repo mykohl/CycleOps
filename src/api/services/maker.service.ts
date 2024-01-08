@@ -8,6 +8,6 @@ export async function CreateMaker(makerUpsertModel: MakerUpsertModel): Promise<M
 }
 
 export async function FindOneMaker(makerName: string) {
-    const makerLookup = await prisma.maker.findFirst({ where: { name: makerName } });
+    const makerLookup = await prisma.maker.findFirst({ where: { name: makerName! } });
     return makerLookup;
 }

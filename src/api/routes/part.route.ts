@@ -1,5 +1,5 @@
 import express from "express";
-import { AddPart, AddHub } from "../controllers/parts.controller";
+import { AddPart, AddHub } from "../controllers/part.controller";
 
 const partsRouter = express.Router();
 
