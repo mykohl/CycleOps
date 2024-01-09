@@ -1,3 +1,4 @@
 import { Maker } from "../prisma/client";
+import { NullableMap } from "../mapper";
 
-export type MakerUpsertModel = Omit<Maker, "id">;
+export type MakerUpsertModel = NullableMap<Maker, "id">;

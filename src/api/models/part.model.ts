@@ -1,6 +1,14 @@
 import { Part, Hub, Rim } from "../prisma/client";
-import { MakerUpsertModel } from "./maker.model";
+import { NullableMap } from "../mapper";
 
-export type PartUpsertModel = Omit<Part, "id"> & { makerUpsertModel?: MakerUpsertModel };
-export type HubUpsertModel = Omit<Hub, "id"> & { partUpsertModel: PartUpsertModel };
-export type RimUpsertModel = Omit<Rim, "id"> & { partUpsertModel: PartUpsertModel };
+type nullableKeysPart = "id" | "makerId"
+type nullableKeysSubpart = "id" | "partId"
+
+export type PartUpsertModel = NullableMap<Part, nullableKeysPart> & { makerName?: string };
+export type HubUpsertModel = NullableMap<Hub, nullableKeysSubpart> & Omit<PartUpsertModel, "id">
+export type RimUpsertModel = NullableMap<Rim, nullableKeysSubpart> & Omit<PartUpsertModel, "id">
+
+
+export interface testPart extends NullableMap<Part, nullableKeysPart> {
+    makerName?: string;
+}

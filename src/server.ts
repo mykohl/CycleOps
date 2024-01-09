@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { PrismaClient } from "./api/prisma/client";
-import PartsRouter from "./api/routes/part.route";
+import PartRouter from "./api/routes/part.route";
 import MakerRouter from "./api/routes/maker.route";
 
 export const prisma = new PrismaClient();
@@ -13,7 +13,7 @@ async function main() {
 
   // Register API routes
   app.use("/api/makers", MakerRouter);
-  app.use("/api/parts", PartsRouter);
+  app.use("/api/parts", PartRouter);
 
   // Catch unregistered routes
   app.all("*", (req: Request, res: Response) => {
