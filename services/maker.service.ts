@@ -1,6 +1,6 @@
-import { prisma } from "../../server";
+import { prisma } from "../server";
 import { Maker } from "@prisma/client";
-import { MakerDto } from "../../data/models/maker.model"
+import { MakerDto } from "../data/models/maker.model"
 
 export class MakerService {
 

@@ -1,6 +1,6 @@
-import { prisma } from "../../server";
-import { Part, Hub } from "../../data/prisma/client";
-import { PartDto, HubDto, RimDto } from "../../data/models/part.model" 
+import { prisma } from "../server";
+import { Part, Hub } from "../data/prisma/client";
+import { PartDto, HubDto, RimDto } from "../data/models/part.model" 
 import { MakerService } from "./maker.service";
 
 export class PartService {
