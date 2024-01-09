@@ -1,9 +1,9 @@
 import express from "express";
-import { AddMaker, GetOneMaker } from "../controllers/maker.controller";
+import { UpdateMaker, GetOneMaker } from "../controllers/maker.controller";
 
 const makerRouter = express.Router();
 
-makerRouter.post("/create", AddMaker);
-makerRouter.get("/:name", GetOneMaker);
+makerRouter.post("/update", UpdateMaker);
+makerRouter.get("/:key", GetOneMaker);
 
 export default makerRouter;

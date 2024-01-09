@@ -1,9 +1,9 @@
 import express from "express";
-import { AddPart, AddHub } from "../controllers/part.controller";
+import { UpdatePart, UpdateHub } from "../controllers/part.controller";
 
 const partsRouter = express.Router();
 
-partsRouter.post("/create", AddPart);
-partsRouter.post("/create/hub", AddHub);
+partsRouter.post("/create", UpdatePart);
+partsRouter.post("/create/hub", UpdateHub);
 
 export default partsRouter;
