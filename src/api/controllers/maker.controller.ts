@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { MakerUpsertModel } from "../../data/models/maker.model";
+import { MakerDto } from "../../data/models/maker.model";
 import { CreateMaker, FindOneMaker } from "../services/maker.service";
 
 export async function AddMaker(req: Request, res: Response) {
     try {
-        const modelNewMaker: MakerUpsertModel = req.body;
+        const modelNewMaker: MakerDto = req.body;
         const newMaker = await CreateMaker(modelNewMaker);
         res.status(200).json(newMaker);
     } catch (e) {

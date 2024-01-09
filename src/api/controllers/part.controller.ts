@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { CreatePart, CreateHub } from '../services/part.service';
-import { PartUpsertModel, HubUpsertModel } from "../../data/models/part.model" 
+import { PartDto, HubDto } from "../../data/models/part.model" 
 
 export async function AddPart(req: Request, res: Response) {
     try {
-        const modelNewPart: PartUpsertModel = req.body;
+        const modelNewPart: PartDto = req.body;
         const newPart = await CreatePart(modelNewPart);
         res.status(200).json (newPart);
     } catch (e) {
@@ -14,7 +14,7 @@ export async function AddPart(req: Request, res: Response) {
 
 export async function AddHub(req: Request, res: Response) {
     try {
-        const modelNewHub: HubUpsertModel = req.body;
+        const modelNewHub: HubDto = req.body;
         const newHub = await CreateHub(modelNewHub);
         res.status(200).json (newHub);
     } catch (e) {
