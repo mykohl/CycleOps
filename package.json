@@ -7,7 +7,7 @@
     "build-serve": "npm run build:server && npm run run:server",
     "build:server": "rm -rf ./dist && tsc -p tsconfig.json && npm run copy-prisma-assets",
     "run:server": "node ./dist/server.js",
-    "copy-prisma-assets": "copyfiles -u 1 \"src/data/prisma/client/**/*\" \"dist/\""
+    "copy-prisma-assets": "copyfiles -u 1 \"data/prisma/client/**/*\" \"dist/\""
   },
   "keywords": [],
   "author": "",
