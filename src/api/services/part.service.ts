@@ -1,9 +1,9 @@
 import { prisma } from "../../server";
-import { Part, Hub } from "@prisma/client";
-import { PartUpsertModel, HubUpsertModel, RimUpsertModel, testPart } from "../models/part.model" 
+import { Part, Hub } from "../prisma/client";
+import { PartUpsertModel, HubUpsertModel, RimUpsertModel } from "../models/part.model" 
 import { FindOneMaker } from "./maker.service";
 
-export async function CreatePart(part: testPart ): Promise<Part> {
+export async function CreatePart(part: PartUpsertModel ): Promise<Part> {
     if (part.makerName !== undefined && part.makerId === null) {
         const makerLookup = await FindOneMaker(part.makerName!);
         if (makerLookup != null) part.makerId = makerLookup.id;
