@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CreatePart, CreateHub } from '../services/part.service';
-import { PartUpsertModel, HubUpsertModel } from "../models/part.model" 
+import { PartUpsertModel, HubUpsertModel } from "../../data/models/part.model" 
 
 export async function AddPart(req: Request, res: Response) {
     try {

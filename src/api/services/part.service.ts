@@ -1,6 +1,6 @@
 import { prisma } from "../../server";
-import { Part, Hub } from "../prisma/client";
-import { PartUpsertModel, HubUpsertModel, RimUpsertModel } from "../models/part.model" 
+import { Part, Hub } from "../../data/prisma/client";
+import { PartUpsertModel, HubUpsertModel, RimUpsertModel } from "../../data/models/part.model" 
 import { FindOneMaker } from "./maker.service";
 
 export async function CreatePart(part: PartUpsertModel ): Promise<Part> {

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { MakerUpsertModel } from "../models/maker.model";
+import { MakerUpsertModel } from "../../data/models/maker.model";
 import { CreateMaker, FindOneMaker } from "../services/maker.service";
 
 export async function AddMaker(req: Request, res: Response) {

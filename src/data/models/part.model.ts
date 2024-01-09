@@ -1,5 +1,5 @@
 import { Part, Hub, Rim } from "../prisma/client";
-import { NullableMap } from "../mapper";
+import { NullableMap } from "../../api/mapper";
 
 type nullableKeysPart = "id" | "makerId"
 type nullableKeysSubpart = "id" | "partId"
