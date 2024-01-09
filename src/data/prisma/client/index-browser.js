@@ -137,6 +137,8 @@ exports.Prisma.BicyclePartScalarFieldEnum = {
 exports.Prisma.MakerScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  nameShort: 'nameShort',
+  nameAbbreviation: 'nameAbbreviation',
   notes: 'notes'
 };
 

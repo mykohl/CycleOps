@@ -5881,18 +5881,24 @@ export namespace Prisma {
   export type MakerMinAggregateOutputType = {
     id: number | null
     name: string | null
+    nameShort: string | null
+    nameAbbreviation: string | null
     notes: string | null
   }
 
   export type MakerMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    nameShort: string | null
+    nameAbbreviation: string | null
     notes: string | null
   }
 
   export type MakerCountAggregateOutputType = {
     id: number
     name: number
+    nameShort: number
+    nameAbbreviation: number
     notes: number
     _all: number
   }
@@ -5909,18 +5915,24 @@ export namespace Prisma {
   export type MakerMinAggregateInputType = {
     id?: true
     name?: true
+    nameShort?: true
+    nameAbbreviation?: true
     notes?: true
   }
 
   export type MakerMaxAggregateInputType = {
     id?: true
     name?: true
+    nameShort?: true
+    nameAbbreviation?: true
     notes?: true
   }
 
   export type MakerCountAggregateInputType = {
     id?: true
     name?: true
+    nameShort?: true
+    nameAbbreviation?: true
     notes?: true
     _all?: true
   }
@@ -6014,6 +6026,8 @@ export namespace Prisma {
   export type MakerGroupByOutputType = {
     id: number
     name: string | null
+    nameShort: string | null
+    nameAbbreviation: string | null
     notes: string | null
     _count: MakerCountAggregateOutputType | null
     _avg: MakerAvgAggregateOutputType | null
@@ -6039,6 +6053,8 @@ export namespace Prisma {
   export type MakerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    nameShort?: boolean
+    nameAbbreviation?: boolean
     notes?: boolean
     parts?: boolean | Maker$partsArgs<ExtArgs>
     _count?: boolean | MakerCountOutputTypeDefaultArgs<ExtArgs>
@@ -6047,6 +6063,8 @@ export namespace Prisma {
   export type MakerSelectScalar = {
     id?: boolean
     name?: boolean
+    nameShort?: boolean
+    nameAbbreviation?: boolean
     notes?: boolean
   }
 
@@ -6064,6 +6082,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string | null
+      nameShort: string | null
+      nameAbbreviation: string | null
       notes: string | null
     }, ExtArgs["result"]["maker"]>
     composites: {}
@@ -6446,6 +6466,8 @@ export namespace Prisma {
   interface MakerFieldRefs {
     readonly id: FieldRef<"Maker", 'Int'>
     readonly name: FieldRef<"Maker", 'String'>
+    readonly nameShort: FieldRef<"Maker", 'String'>
+    readonly nameAbbreviation: FieldRef<"Maker", 'String'>
     readonly notes: FieldRef<"Maker", 'String'>
   }
     
@@ -12996,6 +13018,8 @@ export namespace Prisma {
   export const MakerScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    nameShort: 'nameShort',
+    nameAbbreviation: 'nameAbbreviation',
     notes: 'notes'
   };
 
@@ -13372,6 +13396,8 @@ export namespace Prisma {
     NOT?: MakerWhereInput | MakerWhereInput[]
     id?: IntFilter<"Maker"> | number
     name?: StringNullableFilter<"Maker"> | string | null
+    nameShort?: StringNullableFilter<"Maker"> | string | null
+    nameAbbreviation?: StringNullableFilter<"Maker"> | string | null
     notes?: StringNullableFilter<"Maker"> | string | null
     parts?: PartListRelationFilter
   }
@@ -13379,6 +13405,8 @@ export namespace Prisma {
   export type MakerOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
+    nameShort?: SortOrderInput | SortOrder
+    nameAbbreviation?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     parts?: PartOrderByRelationAggregateInput
   }
@@ -13389,6 +13417,8 @@ export namespace Prisma {
     OR?: MakerWhereInput[]
     NOT?: MakerWhereInput | MakerWhereInput[]
     name?: StringNullableFilter<"Maker"> | string | null
+    nameShort?: StringNullableFilter<"Maker"> | string | null
+    nameAbbreviation?: StringNullableFilter<"Maker"> | string | null
     notes?: StringNullableFilter<"Maker"> | string | null
     parts?: PartListRelationFilter
   }, "id">
@@ -13396,6 +13426,8 @@ export namespace Prisma {
   export type MakerOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
+    nameShort?: SortOrderInput | SortOrder
+    nameAbbreviation?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     _count?: MakerCountOrderByAggregateInput
     _avg?: MakerAvgOrderByAggregateInput
@@ -13410,6 +13442,8 @@ export namespace Prisma {
     NOT?: MakerScalarWhereWithAggregatesInput | MakerScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Maker"> | number
     name?: StringNullableWithAggregatesFilter<"Maker"> | string | null
+    nameShort?: StringNullableWithAggregatesFilter<"Maker"> | string | null
+    nameAbbreviation?: StringNullableWithAggregatesFilter<"Maker"> | string | null
     notes?: StringNullableWithAggregatesFilter<"Maker"> | string | null
   }
 
@@ -14019,6 +14053,8 @@ export namespace Prisma {
 
   export type MakerCreateInput = {
     name?: string | null
+    nameShort?: string | null
+    nameAbbreviation?: string | null
     notes?: string | null
     parts?: PartCreateNestedManyWithoutMakerInput
   }
@@ -14026,12 +14062,16 @@ export namespace Prisma {
   export type MakerUncheckedCreateInput = {
     id?: number
     name?: string | null
+    nameShort?: string | null
+    nameAbbreviation?: string | null
     notes?: string | null
     parts?: PartUncheckedCreateNestedManyWithoutMakerInput
   }
 
   export type MakerUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameShort?: NullableStringFieldUpdateOperationsInput | string | null
+    nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     parts?: PartUpdateManyWithoutMakerNestedInput
   }
@@ -14039,18 +14079,24 @@ export namespace Prisma {
   export type MakerUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameShort?: NullableStringFieldUpdateOperationsInput | string | null
+    nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     parts?: PartUncheckedUpdateManyWithoutMakerNestedInput
   }
 
   export type MakerUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameShort?: NullableStringFieldUpdateOperationsInput | string | null
+    nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MakerUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameShort?: NullableStringFieldUpdateOperationsInput | string | null
+    nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -14731,6 +14777,8 @@ export namespace Prisma {
   export type MakerCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    nameShort?: SortOrder
+    nameAbbreviation?: SortOrder
     notes?: SortOrder
   }
 
@@ -14741,12 +14789,16 @@ export namespace Prisma {
   export type MakerMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    nameShort?: SortOrder
+    nameAbbreviation?: SortOrder
     notes?: SortOrder
   }
 
   export type MakerMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    nameShort?: SortOrder
+    nameAbbreviation?: SortOrder
     notes?: SortOrder
   }
 
@@ -16614,12 +16666,16 @@ export namespace Prisma {
 
   export type MakerCreateWithoutPartsInput = {
     name?: string | null
+    nameShort?: string | null
+    nameAbbreviation?: string | null
     notes?: string | null
   }
 
   export type MakerUncheckedCreateWithoutPartsInput = {
     id?: number
     name?: string | null
+    nameShort?: string | null
+    nameAbbreviation?: string | null
     notes?: string | null
   }
 
@@ -16759,12 +16815,16 @@ export namespace Prisma {
 
   export type MakerUpdateWithoutPartsInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameShort?: NullableStringFieldUpdateOperationsInput | string | null
+    nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type MakerUncheckedUpdateWithoutPartsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameShort?: NullableStringFieldUpdateOperationsInput | string | null
+    nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
