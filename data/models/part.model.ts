@@ -1,6 +1,6 @@
 import { Part, Hub, Rim } from "../prisma/client";
 import { MakerDto } from "./maker.model";
-import { MakeNullable, PrefixProperties } from "./mapper";
+import { MakeNullable } from "./mapper";
 
 type nullableKeysPart = "id" | "makerId"
 type nullableKeysSubpart = "id" | "partId"

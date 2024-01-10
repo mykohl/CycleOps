@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PartService } from '../services/part.service';
+import { PartService } from '../../services/part.service';
 import { PartDto, HubDto } from "../../data/models/part.model" 
 
 export async function UpdatePart(req: Request, res: Response) {
