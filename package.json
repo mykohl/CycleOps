@@ -4,10 +4,12 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "build-serve": "npm run build:server && npm run run:server",
-    "build:server": "rm -rf ./dist && tsc -p tsconfig.json && npm run copy-prisma-assets",
-    "run:server": "node ./dist/server.js",
-    "copy-prisma-assets": "copyfiles \"data/prisma/client/**/*\" \"dist/\""
+    "build-serve": "npm run clean-dist && npm run build:app && npm run build:server && npm run run:server",
+    "build:server": "tsc -p tsconfig.json && npm run copy-prisma-assets",
+    "build:app": "cd cycle-ops-app && ng build",
+    "run:server": "cd dist && node server.js",
+    "copy-prisma-assets": "copyfiles \"data/prisma/client/**/*\" \"dist/\"",
+    "clean-dist": "rm -rf ./dist"
   },
   "keywords": [],
   "author": "",
