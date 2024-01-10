@@ -9,7 +9,7 @@ export class PartService {
 
 
         if (partDto.maker.name !== undefined && partDto.makerId === null) {
-            const makerLookup = await MakerService.FindMaker(partDto.maker.name!);
+            const makerLookup = await MakerService.findMaker(partDto.maker.name!);
             if (makerLookup != null) partDto.makerId = makerLookup.id;
         }
 
