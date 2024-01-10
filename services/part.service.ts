@@ -5,9 +5,11 @@ import { MakerService } from "./maker.service";
 
 export class PartService {
     
-    public static async UpdatePart(partDto: PartDto): Promise<Part> {
+    public static async UpdatePart(partDto: PartDto): Promise<Part | null> {
+
+
         if (partDto.maker.name !== undefined && partDto.makerId === null) {
-            const makerLookup = await MakerService.GetOneMaker(partDto.maker.name!);
+            const makerLookup = await MakerService.FindMaker(partDto.maker.name!);
             if (makerLookup != null) partDto.makerId = makerLookup.id;
         }
 
@@ -18,10 +20,11 @@ export class PartService {
         return newPart;
     }
 
-    public static async UpdateHub(hubDto: HubDto): Promise<Hub> {
+    public static async UpdateHub(hubDto: HubDto): Promise<Hub | null> {
         hubDto.type = (hubDto.position ?? "") + "hub";
-        const newPart: Part = await this.UpdatePart(hubDto);
-        hubDto.partId = newPart.id;
+        const newPart: Part | null = await this.UpdatePart(hubDto);
+        
+        hubDto.partId = newPart?.id;
         const newHub: Hub = await prisma.hub.create({ data: hubDto });
         return newHub;
     }

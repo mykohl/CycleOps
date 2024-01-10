@@ -15,7 +15,7 @@ export async function UpdateMaker(req: Request, res: Response) {
 export async function GetOneMaker(req: Request, res: Response) {
     try {
         const makerKey = req.params.key;
-        const maker = await MakerService.GetOneMaker(makerKey);
+        const maker = await MakerService.FindMaker(makerKey);
         res.status(200).json(maker);
     } catch (e) {
         res.status(500).json({ error: e });

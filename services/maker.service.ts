@@ -14,13 +14,33 @@ export class MakerService {
         return maker;
     }
 
-    public static async GetOneMaker(makerKey: string): Promise<Maker | null> {
-        const makerId = parseInt(makerKey);
-        const conditions = !isNaN(makerId)
-            ? { id: makerId }
-            : { OR: [{ name: makerKey }, { nameShort: makerKey }, { nameAbbreviation: makerKey }] };
-        const makerLookup = await prisma.maker.findFirst({ where: conditions });
-
+    public static async FindMaker(makerKey: string | number | MakerDto): Promise<Maker | null> {
+        if (typeof makerKey === "number" || typeof makerKey === "string") {
+            const makerId = typeof makerKey === "number" ? makerKey : parseInt(makerKey);
+            const conditions = !isNaN(makerId)
+                ? { id: makerId }
+                : { OR: [
+                    { name: makerKey as string }, 
+                    { nameShort: makerKey as string }, 
+                    { nameAbbreviation: makerKey as string }
+                ]};
+    
+            const makerLookup = await prisma.maker.findFirst({ where: conditions });
+            return makerLookup;
+        }
+    
+        const makerLookup = await prisma.maker.findFirst({
+            where: { 
+                OR: [
+                    { id: makerKey.id },
+                    { name: makerKey.name },
+                    { nameShort: makerKey.nameShort },
+                    { nameAbbreviation: makerKey.nameAbbreviation }
+                ]
+            }
+        });
+    
         return makerLookup;
     }
+    
 }
