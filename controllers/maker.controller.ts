@@ -21,3 +21,12 @@ export async function GetOneMaker(req: Request, res: Response) {
         res.status(500).json({ error: e });
     }
 }
+
+export async function GetAllMakers(req: Request, res: Response) {
+    try {
+        const makers = await MakerService.getAllMakers();
+        res.status(200).json(makers);
+    } catch(e) {
+        res.status(500).json({ error: e });
+    }
+}

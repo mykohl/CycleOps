@@ -8,6 +8,10 @@ import {
   GoogleLoginProvider,
 } from "@abacritt/angularx-social-login";
 import { GoogleSigninComponent } from './google-signin/google-signin.component';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth-interceptor.service';
+import { ApiReqMakerService } from './services/api-req-maker.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,8 @@ import { GoogleSigninComponent } from './google-signin/google-signin.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocialLoginModule
+    SocialLoginModule,
+    HttpClientModule
   ],
   providers: [
     {
@@ -37,7 +42,16 @@ import { GoogleSigninComponent } from './google-signin/google-signin.component';
           console.error(err);
         },
       } as SocialAuthServiceConfig,
-    }    
+    },
+    ApiReqMakerService,
+    AuthService,
+    AppRoutingModule,
+    AuthInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,     
+    }
   ],
   bootstrap: [AppComponent]
 })

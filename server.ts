@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import path from "path";
 import { PrismaClient } from './data/prisma/client';
+import { authenticate } from './middleware/authenticate';
 import PartRouter from './routes/part.route';
 import MakerRouter from './routes/maker.route';
 
@@ -10,14 +11,16 @@ const app = express();
 const port = 8080;
 
 async function main() {
+  app.use(express.json());
+
   app.use(express.static('cycle-ops-app/browser'));
   app.get('/', function(req, res) {
     res.sendFile(path.resolve('cycle-ops-app/browser/index.html'));
   });
-  
-  app.use(express.json());
+
   app.use('/api/makers', MakerRouter);
   app.use('/api/parts', PartRouter);
+
   app.all("*", (req: Request, res: Response) => {
     res.status(404).json({ error: `Route ${req.originalUrl} not found` });
   });

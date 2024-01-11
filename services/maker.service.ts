@@ -1,6 +1,7 @@
 import { prisma } from "../server";
 import { Maker } from "@prisma/client";
 import { MakerDto } from "../data/models/maker.model"
+import { List } from "lodash";
 
 export class MakerService {
 
@@ -12,6 +13,11 @@ export class MakerService {
         });
 
         return maker;
+    }
+
+    public static async getAllMakers(): Promise<Maker[] | null> {
+        const makersResult = await prisma.maker.findMany();
+        return makersResult;
     }
 
     public static async findMaker(makerKey: number | string | MakerDto): Promise<Maker | null> {
