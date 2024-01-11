@@ -27,8 +27,9 @@ import { GoogleSigninComponent } from './google-signin/google-signin.component';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('google client_id', {
-              scopes: 'openid profile email',
+            provider: new GoogleLoginProvider(
+              '995643129207-dqa7t4sgvj1suppr2vrfk48kbhrouspf.apps.googleusercontent.com', {
+                scopes: 'openid profile email',
             }),
           },
         ],

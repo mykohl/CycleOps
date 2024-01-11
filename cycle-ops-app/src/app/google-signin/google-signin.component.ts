@@ -35,4 +35,7 @@ export class GoogleSigninComponent {
     };
   };
 
+  handleGoogleLogin() {
+    this.loginWithGoogle.emit(this.createFakeGoogleWrapper());
+  }
 }
