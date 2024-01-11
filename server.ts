@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import path from "path";
 import { PrismaClient } from './data/prisma/client';
-import PartRouter from './api/routes/part.route';
-import MakerRouter from './api/routes/maker.route';
+import PartRouter from './routes/part.route';
+import MakerRouter from './routes/maker.route';
 
 export const prisma = new PrismaClient();
 
