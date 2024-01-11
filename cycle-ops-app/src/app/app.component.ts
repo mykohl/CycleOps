@@ -1,6 +1,7 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AppLoginService } from './services/auth/app-login.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   authSubscription!: Subscription;
 
-  constructor(private authService: SocialAuthService) {}
+  constructor(
+    private authService: SocialAuthService, 
+    public appLoginService: AppLoginService) {}
+
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
@@ -21,6 +25,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.authSubscription = this.authService.authState.subscribe((user) => {
       console.log('user', user);
     });
+  }
+
+  logInOnClick() {
+    this.appLoginService.logIn();
   }
 
   googleSignin(googleWrapper: any) {
