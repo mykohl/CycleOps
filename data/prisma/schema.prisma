@@ -13,7 +13,7 @@ model Cyclist {
   name String?
   nameLast String?
   nameFirst String?
-  providerId String?
+  providerId String @unique
   provider String?
   roles String?
   registered DateTime?

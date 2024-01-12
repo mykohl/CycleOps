@@ -11,6 +11,13 @@ datasource db {
 model Cyclist {
   id Int @id @default(autoincrement())
   name String?
+  nameLast String?
+  nameFirst String?
+  providerId String @unique
+  provider String?
+  roles String?
+  registered DateTime?
+  lastLogIn DateTime?
   owns Ownership[]
 }
 

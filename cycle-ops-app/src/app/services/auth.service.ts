@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  //private isAuthenticated: boolean = false;
   private _user: SocialUser | null = null;
   private _authToken: string | null = null;
 
   constructor(
-    private authService: SocialAuthService,
-    private http: HttpClient
+    private authService: SocialAuthService
   ) {}
 
   authenticateWithGoogle(): void {

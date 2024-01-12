@@ -106,7 +106,14 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.CyclistScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  name: 'name',
+  nameLast: 'nameLast',
+  nameFirst: 'nameFirst',
+  providerId: 'providerId',
+  provider: 'provider',
+  roles: 'roles',
+  registered: 'registered',
+  lastLogIn: 'lastLogIn'
 };
 
 exports.Prisma.OwnershipScalarFieldEnum = {

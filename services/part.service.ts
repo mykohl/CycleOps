@@ -6,8 +6,6 @@ import { MakerService } from "./maker.service";
 export class PartService {
     
     public static async UpdatePart(partDto: PartDto): Promise<Part | null> {
-
-
         if (partDto.maker.name !== undefined && partDto.makerId === null) {
             const makerLookup = await MakerService.findMaker(partDto.maker.name!);
             if (makerLookup != null) partDto.makerId = makerLookup.id;

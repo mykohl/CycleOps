@@ -6,15 +6,15 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiReqMakerService {
-  private apiUrl = 'http://localhost:8080/api'; // Adjust this URL based on your Express server configuration
+  private apiUrl = 'https://localhost/api/makers';
 
   constructor(private http: HttpClient) {}
 
   getAllMakers(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/makers`);
+    return this.http.get(`${this.apiUrl}`);
   }
 
   updateMaker(makerData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/makers/update`, makerData);
+    return this.http.post(`${this.apiUrl}/update`, makerData);
   }
 }

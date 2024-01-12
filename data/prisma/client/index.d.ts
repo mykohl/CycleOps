@@ -1966,16 +1966,37 @@ export namespace Prisma {
   export type CyclistMinAggregateOutputType = {
     id: number | null
     name: string | null
+    nameLast: string | null
+    nameFirst: string | null
+    providerId: string | null
+    provider: string | null
+    roles: string | null
+    registered: Date | null
+    lastLogIn: Date | null
   }
 
   export type CyclistMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    nameLast: string | null
+    nameFirst: string | null
+    providerId: string | null
+    provider: string | null
+    roles: string | null
+    registered: Date | null
+    lastLogIn: Date | null
   }
 
   export type CyclistCountAggregateOutputType = {
     id: number
     name: number
+    nameLast: number
+    nameFirst: number
+    providerId: number
+    provider: number
+    roles: number
+    registered: number
+    lastLogIn: number
     _all: number
   }
 
@@ -1991,16 +2012,37 @@ export namespace Prisma {
   export type CyclistMinAggregateInputType = {
     id?: true
     name?: true
+    nameLast?: true
+    nameFirst?: true
+    providerId?: true
+    provider?: true
+    roles?: true
+    registered?: true
+    lastLogIn?: true
   }
 
   export type CyclistMaxAggregateInputType = {
     id?: true
     name?: true
+    nameLast?: true
+    nameFirst?: true
+    providerId?: true
+    provider?: true
+    roles?: true
+    registered?: true
+    lastLogIn?: true
   }
 
   export type CyclistCountAggregateInputType = {
     id?: true
     name?: true
+    nameLast?: true
+    nameFirst?: true
+    providerId?: true
+    provider?: true
+    roles?: true
+    registered?: true
+    lastLogIn?: true
     _all?: true
   }
 
@@ -2093,6 +2135,13 @@ export namespace Prisma {
   export type CyclistGroupByOutputType = {
     id: number
     name: string | null
+    nameLast: string | null
+    nameFirst: string | null
+    providerId: string
+    provider: string | null
+    roles: string | null
+    registered: Date | null
+    lastLogIn: Date | null
     _count: CyclistCountAggregateOutputType | null
     _avg: CyclistAvgAggregateOutputType | null
     _sum: CyclistSumAggregateOutputType | null
@@ -2117,6 +2166,13 @@ export namespace Prisma {
   export type CyclistSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    nameLast?: boolean
+    nameFirst?: boolean
+    providerId?: boolean
+    provider?: boolean
+    roles?: boolean
+    registered?: boolean
+    lastLogIn?: boolean
     owns?: boolean | Cyclist$ownsArgs<ExtArgs>
     _count?: boolean | CyclistCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cyclist"]>
@@ -2124,6 +2180,13 @@ export namespace Prisma {
   export type CyclistSelectScalar = {
     id?: boolean
     name?: boolean
+    nameLast?: boolean
+    nameFirst?: boolean
+    providerId?: boolean
+    provider?: boolean
+    roles?: boolean
+    registered?: boolean
+    lastLogIn?: boolean
   }
 
   export type CyclistInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2140,6 +2203,13 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string | null
+      nameLast: string | null
+      nameFirst: string | null
+      providerId: string
+      provider: string | null
+      roles: string | null
+      registered: Date | null
+      lastLogIn: Date | null
     }, ExtArgs["result"]["cyclist"]>
     composites: {}
   }
@@ -2521,6 +2591,13 @@ export namespace Prisma {
   interface CyclistFieldRefs {
     readonly id: FieldRef<"Cyclist", 'Int'>
     readonly name: FieldRef<"Cyclist", 'String'>
+    readonly nameLast: FieldRef<"Cyclist", 'String'>
+    readonly nameFirst: FieldRef<"Cyclist", 'String'>
+    readonly providerId: FieldRef<"Cyclist", 'String'>
+    readonly provider: FieldRef<"Cyclist", 'String'>
+    readonly roles: FieldRef<"Cyclist", 'String'>
+    readonly registered: FieldRef<"Cyclist", 'DateTime'>
+    readonly lastLogIn: FieldRef<"Cyclist", 'DateTime'>
   }
     
 
@@ -2721,7 +2798,7 @@ export namespace Prisma {
     /**
      * The data needed to create a Cyclist.
      */
-    data?: XOR<CyclistCreateInput, CyclistUncheckedCreateInput>
+    data: XOR<CyclistCreateInput, CyclistUncheckedCreateInput>
   }
 
 
@@ -12975,7 +13052,14 @@ export namespace Prisma {
 
   export const CyclistScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    nameLast: 'nameLast',
+    nameFirst: 'nameFirst',
+    providerId: 'providerId',
+    provider: 'provider',
+    roles: 'roles',
+    registered: 'registered',
+    lastLogIn: 'lastLogIn'
   };
 
   export type CyclistScalarFieldEnum = (typeof CyclistScalarFieldEnum)[keyof typeof CyclistScalarFieldEnum]
@@ -13160,27 +13244,55 @@ export namespace Prisma {
     NOT?: CyclistWhereInput | CyclistWhereInput[]
     id?: IntFilter<"Cyclist"> | number
     name?: StringNullableFilter<"Cyclist"> | string | null
+    nameLast?: StringNullableFilter<"Cyclist"> | string | null
+    nameFirst?: StringNullableFilter<"Cyclist"> | string | null
+    providerId?: StringFilter<"Cyclist"> | string
+    provider?: StringNullableFilter<"Cyclist"> | string | null
+    roles?: StringNullableFilter<"Cyclist"> | string | null
+    registered?: DateTimeNullableFilter<"Cyclist"> | Date | string | null
+    lastLogIn?: DateTimeNullableFilter<"Cyclist"> | Date | string | null
     owns?: OwnershipListRelationFilter
   }
 
   export type CyclistOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
+    nameLast?: SortOrderInput | SortOrder
+    nameFirst?: SortOrderInput | SortOrder
+    providerId?: SortOrder
+    provider?: SortOrderInput | SortOrder
+    roles?: SortOrderInput | SortOrder
+    registered?: SortOrderInput | SortOrder
+    lastLogIn?: SortOrderInput | SortOrder
     owns?: OwnershipOrderByRelationAggregateInput
   }
 
   export type CyclistWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    providerId?: string
     AND?: CyclistWhereInput | CyclistWhereInput[]
     OR?: CyclistWhereInput[]
     NOT?: CyclistWhereInput | CyclistWhereInput[]
     name?: StringNullableFilter<"Cyclist"> | string | null
+    nameLast?: StringNullableFilter<"Cyclist"> | string | null
+    nameFirst?: StringNullableFilter<"Cyclist"> | string | null
+    provider?: StringNullableFilter<"Cyclist"> | string | null
+    roles?: StringNullableFilter<"Cyclist"> | string | null
+    registered?: DateTimeNullableFilter<"Cyclist"> | Date | string | null
+    lastLogIn?: DateTimeNullableFilter<"Cyclist"> | Date | string | null
     owns?: OwnershipListRelationFilter
-  }, "id">
+  }, "id" | "providerId">
 
   export type CyclistOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrderInput | SortOrder
+    nameLast?: SortOrderInput | SortOrder
+    nameFirst?: SortOrderInput | SortOrder
+    providerId?: SortOrder
+    provider?: SortOrderInput | SortOrder
+    roles?: SortOrderInput | SortOrder
+    registered?: SortOrderInput | SortOrder
+    lastLogIn?: SortOrderInput | SortOrder
     _count?: CyclistCountOrderByAggregateInput
     _avg?: CyclistAvgOrderByAggregateInput
     _max?: CyclistMaxOrderByAggregateInput
@@ -13194,6 +13306,13 @@ export namespace Prisma {
     NOT?: CyclistScalarWhereWithAggregatesInput | CyclistScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Cyclist"> | number
     name?: StringNullableWithAggregatesFilter<"Cyclist"> | string | null
+    nameLast?: StringNullableWithAggregatesFilter<"Cyclist"> | string | null
+    nameFirst?: StringNullableWithAggregatesFilter<"Cyclist"> | string | null
+    providerId?: StringWithAggregatesFilter<"Cyclist"> | string
+    provider?: StringNullableWithAggregatesFilter<"Cyclist"> | string | null
+    roles?: StringNullableWithAggregatesFilter<"Cyclist"> | string | null
+    registered?: DateTimeNullableWithAggregatesFilter<"Cyclist"> | Date | string | null
+    lastLogIn?: DateTimeNullableWithAggregatesFilter<"Cyclist"> | Date | string | null
   }
 
   export type OwnershipWhereInput = {
@@ -13880,33 +13999,75 @@ export namespace Prisma {
 
   export type CyclistCreateInput = {
     name?: string | null
+    nameLast?: string | null
+    nameFirst?: string | null
+    providerId: string
+    provider?: string | null
+    roles?: string | null
+    registered?: Date | string | null
+    lastLogIn?: Date | string | null
     owns?: OwnershipCreateNestedManyWithoutOwnerInput
   }
 
   export type CyclistUncheckedCreateInput = {
     id?: number
     name?: string | null
+    nameLast?: string | null
+    nameFirst?: string | null
+    providerId: string
+    provider?: string | null
+    roles?: string | null
+    registered?: Date | string | null
+    lastLogIn?: Date | string | null
     owns?: OwnershipUncheckedCreateNestedManyWithoutOwnerInput
   }
 
   export type CyclistUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameLast?: NullableStringFieldUpdateOperationsInput | string | null
+    nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: StringFieldUpdateOperationsInput | string
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: NullableStringFieldUpdateOperationsInput | string | null
+    registered?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLogIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owns?: OwnershipUpdateManyWithoutOwnerNestedInput
   }
 
   export type CyclistUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameLast?: NullableStringFieldUpdateOperationsInput | string | null
+    nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: StringFieldUpdateOperationsInput | string
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: NullableStringFieldUpdateOperationsInput | string | null
+    registered?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLogIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     owns?: OwnershipUncheckedUpdateManyWithoutOwnerNestedInput
   }
 
   export type CyclistUpdateManyMutationInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameLast?: NullableStringFieldUpdateOperationsInput | string | null
+    nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: StringFieldUpdateOperationsInput | string
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: NullableStringFieldUpdateOperationsInput | string | null
+    registered?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLogIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type CyclistUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameLast?: NullableStringFieldUpdateOperationsInput | string | null
+    nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: StringFieldUpdateOperationsInput | string
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: NullableStringFieldUpdateOperationsInput | string | null
+    registered?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLogIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type OwnershipCreateInput = {
@@ -14491,6 +14652,31 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type OwnershipListRelationFilter = {
     every?: OwnershipWhereInput
     some?: OwnershipWhereInput
@@ -14509,6 +14695,13 @@ export namespace Prisma {
   export type CyclistCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    nameLast?: SortOrder
+    nameFirst?: SortOrder
+    providerId?: SortOrder
+    provider?: SortOrder
+    roles?: SortOrder
+    registered?: SortOrder
+    lastLogIn?: SortOrder
   }
 
   export type CyclistAvgOrderByAggregateInput = {
@@ -14518,11 +14711,25 @@ export namespace Prisma {
   export type CyclistMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    nameLast?: SortOrder
+    nameFirst?: SortOrder
+    providerId?: SortOrder
+    provider?: SortOrder
+    roles?: SortOrder
+    registered?: SortOrder
+    lastLogIn?: SortOrder
   }
 
   export type CyclistMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    nameLast?: SortOrder
+    nameFirst?: SortOrder
+    providerId?: SortOrder
+    provider?: SortOrder
+    roles?: SortOrder
+    registered?: SortOrder
+    lastLogIn?: SortOrder
   }
 
   export type CyclistSumOrderByAggregateInput = {
@@ -14562,7 +14769,24 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
     notIn?: Date[] | string[] | null
@@ -14570,7 +14794,10 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -14661,20 +14888,6 @@ export namespace Prisma {
     wheelId?: SortOrder
     wheelSetId?: SortOrder
     partId?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -15153,6 +15366,14 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type OwnershipUpdateManyWithoutOwnerNestedInput = {
     create?: XOR<OwnershipCreateWithoutOwnerInput, OwnershipUncheckedCreateWithoutOwnerInput> | OwnershipCreateWithoutOwnerInput[] | OwnershipUncheckedCreateWithoutOwnerInput[]
     connectOrCreate?: OwnershipCreateOrConnectWithoutOwnerInput | OwnershipCreateOrConnectWithoutOwnerInput[]
@@ -15215,10 +15436,6 @@ export namespace Prisma {
     create?: XOR<PartCreateWithoutOwnersInput, PartUncheckedCreateWithoutOwnersInput>
     connectOrCreate?: PartCreateOrConnectWithoutOwnersInput
     connect?: PartWhereUniqueInput
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type CyclistUpdateOneWithoutOwnsNestedInput = {
@@ -15986,6 +16203,31 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -16041,15 +16283,21 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -16168,11 +16416,25 @@ export namespace Prisma {
 
   export type CyclistCreateWithoutOwnsInput = {
     name?: string | null
+    nameLast?: string | null
+    nameFirst?: string | null
+    providerId: string
+    provider?: string | null
+    roles?: string | null
+    registered?: Date | string | null
+    lastLogIn?: Date | string | null
   }
 
   export type CyclistUncheckedCreateWithoutOwnsInput = {
     id?: number
     name?: string | null
+    nameLast?: string | null
+    nameFirst?: string | null
+    providerId: string
+    provider?: string | null
+    roles?: string | null
+    registered?: Date | string | null
+    lastLogIn?: Date | string | null
   }
 
   export type CyclistCreateOrConnectWithoutOwnsInput = {
@@ -16285,11 +16547,25 @@ export namespace Prisma {
 
   export type CyclistUpdateWithoutOwnsInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameLast?: NullableStringFieldUpdateOperationsInput | string | null
+    nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: StringFieldUpdateOperationsInput | string
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: NullableStringFieldUpdateOperationsInput | string | null
+    registered?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLogIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type CyclistUncheckedUpdateWithoutOwnsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
+    nameLast?: NullableStringFieldUpdateOperationsInput | string | null
+    nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    providerId?: StringFieldUpdateOperationsInput | string
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    roles?: NullableStringFieldUpdateOperationsInput | string | null
+    registered?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLogIn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type BicycleUpsertWithoutOwnersInput = {

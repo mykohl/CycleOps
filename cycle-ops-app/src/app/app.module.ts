@@ -5,12 +5,13 @@ import { AppComponent } from './app.component';
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
-  GoogleLoginProvider,
+  GoogleLoginProvider
 } from "@abacritt/angularx-social-login";
 import { GoogleSigninComponent } from './google-signin/google-signin.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { ApiReqMakerService } from './services/api-req-maker.service';
+import { ApiReqUserService } from './services/api-req-user.service';
 import { AuthService } from './services/auth.service';
 
 @NgModule({
@@ -44,6 +45,7 @@ import { AuthService } from './services/auth.service';
       } as SocialAuthServiceConfig,
     },
     ApiReqMakerService,
+    ApiReqUserService,
     AuthService,
     AppRoutingModule,
     AuthInterceptor,
@@ -55,5 +57,4 @@ import { AuthService } from './services/auth.service';
   ],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { }
