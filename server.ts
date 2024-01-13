@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express, { Request, Response, NextFunction } from 'express';
 import path from "path";
 import fs from 'fs';
@@ -5,25 +6,37 @@ import https from 'https';
 import { PrismaClient } from './data/prisma/client';
 import PartRouter from './routes/part.route';
 import MakerRouter from './routes/maker.route';
+import UserRouter from './routes/user.route';
 
-export const prisma = new PrismaClient();
+
+const envPath = path.join(__dirname, '.env');
+const env = process.env.NODE_ENV || 'development';
+const configFile = path.join(__dirname, 'config.json');
+const config = JSON.parse(fs.readFileSync(configFile, 'utf8'))[env];
+dotenv.config({path: envPath});
+
+export const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: config.DATABASE_URL
+    }
+  }
+});
 
 const app = express();
-const httpPort = 80;
 const httpsPort = 443;
 const privateKey = fs.readFileSync('../certificates/localhost-key.pem', 'utf8');
 const certificate = fs.readFileSync('../certificates/localhost.pem', 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
 const setSecureCookies = (req: Request, res: Response, next: NextFunction) => {
-  res.cookie('yourCookieName', 'cookieValue', { sameSite: 'none', secure: true });
-  // Add more cookies if needed
+  res.cookie('yourCookieName', config.JWT_SECRET, { sameSite: 'none', secure: true });
   next();
 };
 
 async function main() {
+  app.use(setSecureCookies);
   app.use(express.json());
-
   app.use(express.static('cycle-ops-app/browser'));
   app.get('/', function(req, res) {
     res.sendFile(path.resolve('cycle-ops-app/browser/index.html'));
@@ -31,6 +44,7 @@ async function main() {
 
   app.use('/api/makers', MakerRouter);
   app.use('/api/parts', PartRouter);
+  app.use('/api/users', UserRouter);
 
   app.use((req, res, next) => {
     if(req.secure) {
@@ -56,12 +70,6 @@ async function main() {
   httpsServer.listen(httpsPort, () => {
     console.log(`HTTPS server listening on port ${httpsPort}`);
   });
-
-  /*
-  app.listen(httpPort, () => {
-    console.log(`Server is listening on port ${httpPort}`);
-  });
-  */
 }
 
 main().catch(async (e) => {

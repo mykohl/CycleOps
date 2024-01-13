@@ -4,6 +4,7 @@ import { UserDto } from "../data/models/user.model";
 
 export async function UpdateUser(req: Request, res: Response) {
     try {
+        console.log(req);
         const modelUpdateUser: UserDto = req.body;
         const updateUser = await UserService.UpdateUser(modelUpdateUser);
         res.status(200).json(updateUser);
