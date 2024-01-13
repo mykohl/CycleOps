@@ -16,7 +16,10 @@ export class AuthInterceptor implements HttpInterceptor {
         console.log(authToken);
         if (authToken) {
           const authReq = req.clone({
-            setHeaders: { Authorization: `Bearer ${authToken}` }
+            setHeaders: { 
+              Authorization: `Bearer ${authToken}`,
+              'X-Auth-Provider': socialUser.provider
+            }
           });
           return next.handle(authReq);
         }
