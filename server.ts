@@ -8,11 +8,10 @@ import PartRouter from './routes/part.route';
 import MakerRouter from './routes/maker.route';
 import UserRouter from './routes/user.route';
 
-
 const envPath = path.join(__dirname, '.env');
 const env = process.env.NODE_ENV || 'development';
 const configFile = path.join(__dirname, 'config.json');
-const config = JSON.parse(fs.readFileSync(configFile, 'utf8'))[env];
+export const config = JSON.parse(fs.readFileSync(configFile, 'utf8'))[env];
 dotenv.config({path: envPath});
 
 export const prisma = new PrismaClient({
@@ -30,7 +29,7 @@ const certificate = fs.readFileSync('../certificates/localhost.pem', 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
 const setSecureCookies = (req: Request, res: Response, next: NextFunction) => {
-  res.cookie('yourCookieName', config.JWT_SECRET, { sameSite: 'none', secure: true });
+  res.cookie('cycle-ops-app-cookie', config.JWT_SECRET, { sameSite: 'none', secure: true });
   next();
 };
 

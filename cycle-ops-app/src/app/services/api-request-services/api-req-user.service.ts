@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { SocialUser } from '@abacritt/angularx-social-login';
 import { UserDto } from '../../../../../data/models/user.model';
 
@@ -13,6 +13,6 @@ export class ApiReqUserService {
   constructor(private http: HttpClient) {}
 
   updateUser(userData: UserDto | SocialUser): Observable<any> {
-    return this.http.post(`${this.apiUrl}/update`, userData);
+    return from(this.http.post<any>(`${this.apiUrl}/update`, userData));
   }
 }

@@ -4,6 +4,6 @@ import { UpdateUser } from "../controllers/user.controller";
 
 const userRouter = express.Router();
 
-userRouter.post("/update", UpdateUser);
+userRouter.post("/update", authenticate, UpdateUser);
 
 export default userRouter;

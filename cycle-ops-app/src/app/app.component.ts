@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { UserService} from './services/user.service';
+import { UserService } from './services/user.service';
 import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
+import { ApiReqMakerService } from './services/api-request-services/api-req-maker.service';
 
 @Component({
   selector: 'app-root',
@@ -16,20 +17,23 @@ export class AppComponent {
   constructor(
     private _socialAuthService: SocialAuthService,
     private _userService: UserService,
-    private _apiReqUserService: ApiReqUserService
+    private _apiReqUserService: ApiReqUserService,
+    private _zone: NgZone
   ) {}
 
   ngOnInit() {
     this._socialAuthService.authState.subscribe((socialUser) => {
-      this._socialUser = socialUser;
-
-      const userDto = this._userService.map(socialUser);
-
-      console.log(userDto);
-
-      this._apiReqUserService.updateUser(this._userService.map(socialUser));
-      //console.log(socialUser);
-    })
+      if (socialUser) {
+        this._socialUser = socialUser;
+        const userDto = this._userService.map(socialUser);
+        this._zone.run(() => {
+          this._apiReqUserService.updateUser(userDto).subscribe(
+            (response) => console.log('Update response: ', response),
+            (error) => console.error('Update error:', error)
+          );
+        });
+      }
+    });
   }
 
   refreshGoogleToken(): void {
