@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import jwkToPem from 'jwk-to-pem';
-import { config } from '../server';
 import { error } from 'console';
 
 export function authenticate(req: Request, res: Response, next: NextFunction) {
@@ -14,8 +13,6 @@ export function authenticate(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    const jwtSecret = config.JWT_SECRET || 'default-jwt-secret';
-
     axios.get('https://www.googleapis.com/oauth2/v3/certs')
       .then(response => {
         const publicKeys = response.data;
@@ -28,7 +25,6 @@ export function authenticate(req: Request, res: Response, next: NextFunction) {
 
         jwt.verify(token, publicKey, { algorithms: ['RS256'] }, (err, decode) => {
           if (err) throw err;
-          console.log(decode);
         });
       });
 

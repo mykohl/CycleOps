@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { ApiReqMakerService } from './services/api-request-services/api-req-maker.service';
 import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ApiReqUserService } from './services/api-request-services/api-req-user.
     AppRoutingModule,
     SocialLoginModule,
     HttpClientModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {
