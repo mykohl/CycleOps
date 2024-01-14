@@ -9,11 +9,15 @@ import {
   GoogleSigninButtonModule
 } from "@abacritt/angularx-social-login";
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatExpansionModule } from "@angular/material/expansion";
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { ApiReqMakerService } from './services/api-request-services/api-req-maker.service';
 import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { UserService } from './services/user.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -24,9 +28,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SocialLoginModule,
     HttpClientModule,
     GoogleSigninButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatExpansionModule
   ],
   providers: [
+    ApiReqMakerService,
+    ApiReqUserService,
+    AppRoutingModule,
+    AuthInterceptor,
+    UserService,    
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -45,10 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         },
       } as SocialAuthServiceConfig,
     },
-    ApiReqMakerService,
-    ApiReqUserService,
-    AppRoutingModule,
-    AuthInterceptor,
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
