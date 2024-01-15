@@ -5,14 +5,7 @@ import { UserDto } from "../../../data/models/user.model";
 import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { UserService } from './services/user.service';
 import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
-import {
-  MatDialog,
-  MatDialogRef,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogTitle,
-  MatDialogContent
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -72,19 +65,26 @@ export class AppComponent {
     if(this._dialogRef) this._dialogRef.close();
   }
 
+  get userDisplayName(): string{
+    return "";
+  }
+
   get userStatus(): { 
-    title: string,
-    showLoginOptions: boolean 
+    actionTitle: string,
+    actionColor: string,
+    actionIcon: string
   } {
     if(this._socialUser) {
       return { 
-        title: this._siteUser?.nameFirst ?? "",
-        showLoginOptions: false 
+        actionTitle: this._siteUser?.nameFirst ?? "",
+        actionColor: "primary",
+        actionIcon: "how_to_reg"
       };
     }
     return {
-      title: "Log-in | Register", 
-      showLoginOptions: true
+      actionTitle: "Log-in | Register",
+      actionColor: "accent",
+      actionIcon: "account_circle"
     };
   };
 

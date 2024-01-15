@@ -1,8 +1,18 @@
-<h3>CycleOps</h3>
-<button mat-fab extended (click)="userSignAction()"><mat-icon>account_circle</mat-icon> {{userStatus.title}}</button>
+<div id="header">
+  <div id="title">
+    <h1>Cyclist's Workbench</h1>
+  </div>
+  <div id="userAction">
+    <button mat-fab extended color={{userStatus.actionColor}} (click)="userSignAction()">
+      <mat-icon>{{userStatus.actionIcon}}</mat-icon>{{userStatus.actionTitle}}
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>
 <ng-template #loginDialogTemplate>
-  <h1>Sign-in or Register</h1>
-  <mat-dialog-content>
-    <asl-google-signin-button [hidden]="!userStatus.showLoginOptions" type='standard' size='medium'></asl-google-signin-button>
-  </mat-dialog-content>
+    <h1 mat-dialog-title>Sign-in or Register</h1>
+    <mat-dialog-content>
+      <p>Select your provider to sign-in (you'll be automatically registered if you haven't signed-in before).</p>
+      <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
+    </mat-dialog-content>
 </ng-template>

@@ -10,16 +10,16 @@ import {
 } from "@abacritt/angularx-social-login";
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MaterialModule } from './material.module';
-
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { ApiReqMakerService } from './services/api-request-services/api-req-maker.service';
 import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
 import { UserService } from './services/user.service';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +54,6 @@ import { UserService } from './services/user.service';
         },
       } as SocialAuthServiceConfig,
     },
-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
