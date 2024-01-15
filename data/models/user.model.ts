@@ -1,4 +1,4 @@
 import { Cyclist } from "../prisma/client";
-import { MakeNullable } from "./mapper";
+import { MakeNullable, MakeOptional } from "./mapper";
 
-export type UserDto = MakeNullable<Cyclist, 'id'>;
+export type UserDto = MakeOptional<Cyclist, 'id' | 'lastLogIn' | 'registered' | 'roles'>;

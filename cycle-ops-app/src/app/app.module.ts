@@ -10,10 +10,9 @@ import {
 } from "@abacritt/angularx-social-login";
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from "@angular/material/button";
-import { MatDialogModule } from "@angular/material/dialog";
-import { MatTooltipModule } from "@angular/material/tooltip";
-import { MatExpansionModule } from "@angular/material/expansion";
+
+import { MaterialModule } from './material.module';
+
 import { AuthInterceptor } from './services/auth-interceptor.service';
 import { ApiReqMakerService } from './services/api-request-services/api-req-maker.service';
 import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
@@ -29,9 +28,7 @@ import { UserService } from './services/user.service';
     HttpClientModule,
     GoogleSigninButtonModule,
     BrowserAnimationsModule,
-    MatDialogModule,
-    MatTooltipModule,
-    MatExpansionModule
+    MaterialModule
   ],
   providers: [
     ApiReqMakerService,

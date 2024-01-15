@@ -1,8 +1,8 @@
-
-  <mat-expansion-panel #userStatusPanel hideToggle>
-    <mat-expansion-panel-header>
-      {{userStatus.panelTitle}}
-    </mat-expansion-panel-header>
+<h3>CycleOps</h3>
+<button mat-fab extended (click)="userSignAction()"><mat-icon>account_circle</mat-icon> {{userStatus.title}}</button>
+<ng-template #loginDialogTemplate>
+  <h1>Sign-in or Register</h1>
+  <mat-dialog-content>
     <asl-google-signin-button [hidden]="!userStatus.showLoginOptions" type='standard' size='medium'></asl-google-signin-button>
-  </mat-expansion-panel>
-
+  </mat-dialog-content>
+</ng-template>

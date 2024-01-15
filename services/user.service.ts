@@ -9,16 +9,19 @@ export class UserService {
           providerId: user.providerId,
           lastLogIn: new Date(),
         };
-      
+
         const cyclist = prisma.cyclist.upsert({
           where: { providerId: user.providerId },
-          update: { ...commonProperties, ...user, lastLogIn: new Date(), roles: user.roles },
+          update: { 
+            ...commonProperties, 
+            ...user, 
+            lastLogIn: new Date(),
+            roles: user.roles 
+          },
           create: {
             ...commonProperties,
+            ...user,
             registered: new Date(),
-            name: user.name,
-            nameFirst: user.nameFirst,
-            nameLast: user.nameLast,
             roles: "standard"
           },
         });

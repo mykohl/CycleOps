@@ -8,17 +8,13 @@ import { UserDto } from "../../../../data/models/user.model";
 export class UserService {
   constructor() { }
 
-  static map(socialUser: SocialUser): UserDto {
+  static getDto(socialUser: SocialUser): UserDto {
       return {
         providerId: socialUser.id,
         provider: socialUser.provider,
         name: socialUser.name,
         nameLast: socialUser.lastName,
-        nameFirst: socialUser.firstName,
-        id: undefined,
-        roles: null,
-        registered: null,
-        lastLogIn: null
+        nameFirst: socialUser.firstName
       };
     }
 }

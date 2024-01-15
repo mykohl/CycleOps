@@ -1,11 +1,18 @@
-import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { switchMap, map, take } from 'rxjs/operators';
-import { Subscription, Observable, of } from 'rxjs';
+import { Component, ViewChild, ChangeDetectorRef, TemplateRef } from '@angular/core';
+import { switchMap, take } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { UserDto } from "../../../data/models/user.model";
 import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { UserService } from './services/user.service';
 import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
-import { MatExpansionPanel } from "@angular/material/expansion";
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogTitle,
+  MatDialogContent
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +20,17 @@ import { MatExpansionPanel } from "@angular/material/expansion";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('userStatusPanel', { static: false }) userStatusPanel: MatExpansionPanel | undefined;
+  @ViewChild('loginDialogTemplate') _loginDialogTemplateRef!: TemplateRef<any>;
 
   private _socialUser: SocialUser | null = null;
   private _siteUser: UserDto | null = null;
+  private _dialogRef: MatDialogRef<any> | undefined;
 
   constructor(
     private _socialAuthService: SocialAuthService,
     private _apiReqUserService: ApiReqUserService,
-    private _userService: UserService,
-    private _cdr: ChangeDetectorRef
-  ) {
-  }
+    private _dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this._socialAuthService.authState
@@ -33,7 +39,7 @@ export class AppComponent {
         switchMap((socialUser) => {
           if (socialUser) {
             this._socialUser = socialUser;
-            this._siteUser = UserService.map(socialUser);
+            this._siteUser = UserService.getDto(socialUser);
             return this._apiReqUserService.updateUser(this._siteUser);
           }
           // If no social user, return an observable with some default value or null
@@ -42,31 +48,42 @@ export class AppComponent {
       )
       .subscribe({
         next: (response) => {
-          console.log('Update response: ', response);
           this.completeLogIn();
         },
         error: (error) => console.error('Update error:', error),
       });
   }
 
-  completeLogIn(): void {
-    if(this.userStatusPanel) { 
-      this.userStatusPanel.close();
+  userSignAction(): void {
+    if(!this._socialUser) {
+      this.openDialog(this._loginDialogTemplateRef);
     }
   }
 
+  completeLogIn(): void {
+    this.closeDialog();
+  }
+
+  openDialog(templateRef: TemplateRef<any>): void {
+    this._dialogRef = this._dialog.open(templateRef);
+  }
+
+  closeDialog() {
+    if(this._dialogRef) this._dialogRef.close();
+  }
+
   get userStatus(): { 
-    panelTitle: string,
+    title: string,
     showLoginOptions: boolean 
   } {
     if(this._socialUser) {
       return { 
-        panelTitle: this._siteUser?.nameFirst ?? "",
+        title: this._siteUser?.nameFirst ?? "",
         showLoginOptions: false 
       };
     }
     return {
-      panelTitle: "Log-in | Register", 
+      title: "Log-in | Register", 
       showLoginOptions: true
     };
   };
