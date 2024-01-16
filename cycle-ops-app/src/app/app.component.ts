@@ -16,12 +16,12 @@ export class AppComponent {
   @ViewChild('loginDialogTemplate') _loginDialogTemplateRef!: TemplateRef<any>;
 
   private _socialUser: SocialUser | null = null;
-  private _siteUser: UserDto | null = null;
   private _dialogRef: MatDialogRef<any> | undefined;
   private _isLoginComplete: boolean = false;
 
   constructor(
     private _socialAuthService: SocialAuthService,
+    private _userService: UserService,
     private _apiReqUserService: ApiReqUserService,
     private _dialog: MatDialog,
     private _cdr: ChangeDetectorRef
@@ -33,9 +33,8 @@ export class AppComponent {
         take(1),
         switchMap((socialUser) => {
           if (socialUser) {
-            this._socialUser = socialUser;
-            this._siteUser = UserService.getDto(socialUser);
-            return this._apiReqUserService.updateUser(this._siteUser);
+            this._userService.socialUser = socialUser;
+            return this._apiReqUserService.updateUser(UserService.getDto(socialUser));
           }
           return of(null);
         })
@@ -56,6 +55,7 @@ export class AppComponent {
 
   completeLogIn(): void {
     this.closeDialog();
+    this._isLoginComplete = true;
   }
 
   openDialog(templateRef: TemplateRef<any>): void {
@@ -66,28 +66,9 @@ export class AppComponent {
     if(this._dialogRef) this._dialogRef.close();
   }
 
-  get userDisplayName(): string{
-    return "";
+  get userService(): UserService {
+    return this._userService;
   }
-
-  get userStatus(): { 
-    actionTitle: string,
-    actionColor: string,
-    actionIcon: string
-  } {
-    if(this._socialUser) {
-      return { 
-        actionTitle: this._siteUser?.nameFirst ?? "",
-        actionColor: "primary",
-        actionIcon: "how_to_reg"
-      };
-    }
-    return {
-      actionTitle: "Log-in | Register",
-      actionColor: "accent",
-      actionIcon: "account_circle"
-    };
-  };
 
   refreshGoogleToken(): void {
     this._socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
