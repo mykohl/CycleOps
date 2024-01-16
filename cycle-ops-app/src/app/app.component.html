@@ -1,0 +1,19 @@
+<div id="header">
+  <div id="title">
+    <div id="titleMain"><h1>CycleOps Central</h1></div>
+    <p>A free DIY workshop assistant for homebrew bike hacking &mdash; organize your parts &amp; bikes; spec &amp; plan your builds; learn; share; etc.</p>
+  </div>
+  <div id="userAction">
+    <button mat-fab extended color={{userService.userStatus.actionColor}} (click)="userSignAction()">
+      <mat-icon>{{userService.userStatus.actionIcon}}</mat-icon>{{userService.userStatus.actionTitle}}
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>
+<ng-template #loginDialogTemplate>
+    <h1 mat-dialog-title>Sign-in or Register</h1>
+    <mat-dialog-content>
+      <p>Select your provider to sign-in (you'll be automatically registered if you haven't signed-in before).</p>
+      <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
+    </mat-dialog-content>
+</ng-template>

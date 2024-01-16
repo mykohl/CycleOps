@@ -1,0 +1,15 @@
+#itemsContainer {
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    align-items: flex-start;
+    row-gap: 2em;
+    column-gap: 2em;
+}
+.itemCard {
+    max-width: 350px;
+}
+.itemCard img {
+    margin: 0;
+}
