@@ -18,24 +18,25 @@ export class AppComponent {
   private _socialUser: SocialUser | null = null;
   private _siteUser: UserDto | null = null;
   private _dialogRef: MatDialogRef<any> | undefined;
+  private _isLoginComplete: boolean = false;
 
   constructor(
     private _socialAuthService: SocialAuthService,
     private _apiReqUserService: ApiReqUserService,
-    private _dialog: MatDialog
+    private _dialog: MatDialog,
+    private _cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this._socialAuthService.authState
       .pipe(
-        take(1), // Take only the first emission
+        take(1),
         switchMap((socialUser) => {
           if (socialUser) {
             this._socialUser = socialUser;
             this._siteUser = UserService.getDto(socialUser);
             return this._apiReqUserService.updateUser(this._siteUser);
           }
-          // If no social user, return an observable with some default value or null
           return of(null);
         })
       )

@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body { 
     height: 100%;
     margin: 0;
@@ -18,11 +16,14 @@ body {
     align-items: flex-start;
 }
 #title {
-    border-bottom: 1px dotted #333;
     flex-grow: 2;
     margin-left: 1em;
     padding: 0.5em
 }
+#titleMain {
+    border-bottom: 1px dotted #333;
+}
+
 #title h1 {
     border: 0;
     margin: 0;
@@ -40,4 +41,9 @@ body {
 }
 #userAction {
     padding: 1em;
+}
+.zero-spacing {
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
