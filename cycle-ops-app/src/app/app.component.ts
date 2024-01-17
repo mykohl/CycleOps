@@ -3,8 +3,8 @@ import { switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UserDto } from "../../../data/models/user.model";
 import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { UserService } from './services/user.service';
-import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
+import { UserService } from './services/user-service/user.service';
+import { ApiReqUserService } from './services/api-request-services/user-request-service/api-req-user.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({

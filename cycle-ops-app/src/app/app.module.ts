@@ -11,10 +11,10 @@ import {
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { AuthInterceptor } from './services/auth-interceptor.service';
-import { ApiReqMakerService } from './services/api-request-services/api-req-maker.service';
-import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
-import { UserService } from './services/user.service';
+import { AuthInterceptor } from './services/auth-interceptor-service/auth-interceptor.service';
+import { ApiReqMakerService } from './services/api-request-services/maker-request-service/api-req-maker.service';
+import { ApiReqUserService } from './services/api-request-services/user-request-service/api-req-user.service';
+import { UserService } from './services/user-service/user.service';
 import { HomeComponent } from './home/home.component';
 import { WheelWorkshopComponent } from './wheel-workshop/wheel-workshop.component';
 @NgModule({
