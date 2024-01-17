@@ -1,15 +1,19 @@
-#itemsContainer {
+#items-container {
+    align-items: flex-start;
+    background-color: #292929;
+    border-radius: 0.5em;
+    column-gap: 2em;
     display: flex; 
     flex-direction: row; 
     flex-wrap: wrap; 
     justify-content: center; 
-    align-items: flex-start;
+    margin: 0 2em;
+    padding: 2em;
     row-gap: 2em;
-    column-gap: 2em;
 }
-.itemCard {
+.item-card {
     max-width: 350px;
 }
-.itemCard img {
+.item-card img {
     margin: 0;
 }

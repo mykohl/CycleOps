@@ -6,6 +6,7 @@ import {
   MatCardTitle,
   MatCardAvatar
 } from '@angular/material/card';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,5 +14,9 @@ import {
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  router: Router;
 
+  constructor(router: Router) {
+    this.router = router;
+  }
 }

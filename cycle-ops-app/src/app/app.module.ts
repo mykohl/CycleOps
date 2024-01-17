@@ -16,10 +16,12 @@ import { ApiReqMakerService } from './services/api-request-services/api-req-make
 import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
 import { UserService } from './services/user.service';
 import { HomeComponent } from './home/home.component';
+import { WheelWorkshopComponent } from './wheel-workshop/wheel-workshop.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    WheelWorkshopComponent
   ],
   imports: [
     BrowserModule,

@@ -37,8 +37,13 @@ async function main() {
   app.use(setSecureCookies);
   app.use(express.json());
   app.use(express.static('cycle-ops-app/browser'));
-  app.get('/', function(req, res) {
-    res.sendFile(path.resolve('cycle-ops-app/browser/index.html'));
+
+  app.use((req, res, next) => {
+    if(req.url.startsWith('/api')) {
+      next();
+    } else {
+      res.sendFile(path.resolve('cycle-ops-app/browser/index.html'));
+    }
   });
 
   app.use('/api/makers', MakerRouter);
