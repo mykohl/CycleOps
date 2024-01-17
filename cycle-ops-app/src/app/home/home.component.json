@@ -1,0 +1,50 @@
+{
+    "items": 
+    [
+        {
+            "order": 1,
+            "title": "Library",
+            "description": "How-to guides, information, other resources, etc.",
+            "image": "learn_bw.jpeg",
+            "imageAlt": "picture of books and ephemera related to bicycles",
+            "action": "",
+            "hoverBg" : ""
+        },
+        {
+            "order": 2,
+            "title": "Wheel Workshop",
+            "description": "Calculate spoke lengths, specify your wheel builds, catalog your wheels, take notes.",
+            "image": "wheel_workshop_bw.jpeg",
+            "imageAlt": "picture of a bicycle wheel on a truing stand, with tools",
+            "action": "",
+            "hoverBg" : ""
+        },
+        {
+            "order": 3,
+            "title": "Gearing Workshop",
+            "description": "Find your optimal gearing combinations by calculating ratios and checking compatibility.",
+            "image": "gearing_workshop_bw.jpeg",
+            "imageAlt": "picture of bicycle freewheel, cassettes, crank, single speed cog with lock ring, and chain",
+            "action": "",
+            "hoverBg" : ""
+        },
+        {
+            "order": 4,
+            "title": "Bike Build Workshop",
+            "description": "Spec a complete bike build by selecting parts and configuration.",
+            "image": "bike_build_workshop_bw.jpeg",
+            "imageAlt": "picture of bicycle being held in a repair stand",
+            "action": "",
+            "hoverBg" : ""
+        },
+        {
+            "order": 5,
+            "title": "Inventory",
+            "description": "Organize your collection of bikes and parts by keeping an inventory.",
+            "image": "inventory_1_bw.jpeg",
+            "imageAlt": "picture of containers of bicycle parts",
+            "action": "",
+            "hoverBg" : ""
+        }        
+    ]
+}
