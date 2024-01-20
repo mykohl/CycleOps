@@ -1,3 +1,7 @@
+export type appBranding = {
+    title: string,
+    tagline: string
+}
 export type appMenu = {
     order: number,
     title: string,

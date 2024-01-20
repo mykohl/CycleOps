@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ApiReqGoogleService } from '../services/api-request-services/google-request-service/api-req-google.service';
 import { ApiReqMakerService } from '../services/api-request-services/maker-request-service/api-req-maker.service';
 import * as appModel from '../../../../data/models/app.model';
-import * as appData from '../app.data.json';
+import { AppService } from '../services/app-service/app.service';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +13,13 @@ import * as appData from '../app.data.json';
 export class HomeComponent {
   router: Router;
 
-  private _appSections: appModel.appSection[] = appData.sections as appModel.appSection[];
+  private _appSections: appModel.appSection[] = this._appService.sections as appModel.appSection[];
   currentIndex = 0;
 
   constructor(router: Router,
     private _apiReqGoogleService: ApiReqGoogleService,
-    private _apiReqMakerService: ApiReqMakerService
+    private _apiReqMakerService: ApiReqMakerService,
+    private _appService: AppService
   ) {
     this.router = router;
   }
@@ -38,6 +39,14 @@ export class HomeComponent {
   }
 
   get carouselItems(): appModel.appSection[] {
-    return this._appSections;
+    return this._appService.sections;
+  }
+
+  get title(): string {
+    return this._appService.branding.title;
+  }
+
+  get tagline(): string {
+    return this._appService.branding.tagline;
   }
 }

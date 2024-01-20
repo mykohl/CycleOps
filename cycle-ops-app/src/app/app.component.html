@@ -1,6 +1,6 @@
 <div id="header">
   <mat-toolbar id="toolbar">
-    <div id="site-title">Cog<span class="variant">Native</span></div>
+    <div id="site-title">{{title}}</div>
     <div>
       <ng-container *ngFor="let navItem of menu">
         <button mat-button *ngIf="navItem.sections.length === 1; else navMenuTemplate">{{findSection(navItem.sections[0])?.title}}</button>
@@ -27,6 +27,7 @@
   <p>admin-cognative&#64;gmail.com | Help &amp; Support | No copyright</p>
   <p>Donate</p>
 </div>
+<!-- modal elements -->
 <ng-template #loginDialogTemplate>
     <h1 mat-dialog-title>Sign-in or Register</h1>
     <mat-dialog-content>

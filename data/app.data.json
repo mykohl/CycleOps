@@ -1,4 +1,8 @@
 {
+    "branding": {
+        "title": "CogNative",
+        "tagline": "A free, simple workshop assistant for DIY bicycle projects."
+    },
     "menu":
     [
         {

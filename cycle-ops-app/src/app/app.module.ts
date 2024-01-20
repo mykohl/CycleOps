@@ -15,6 +15,7 @@ import { AuthInterceptor } from './services/auth-interceptor-service/auth-interc
 import { ApiReqMakerService } from './services/api-request-services/maker-request-service/api-req-maker.service';
 import { ApiReqUserService } from './services/api-request-services/user-request-service/api-req-user.service';
 import { ApiReqGoogleService } from './services/api-request-services/google-request-service/api-req-google.service';
+import { AppService } from './services/app-service/app.service';
 import { UserService } from './services/user-service/user.service';
 import { HomeComponent } from './home/home.component';
 import { WheelWorkshopComponent } from './wheel-workshop/wheel-workshop.component';
@@ -39,7 +40,8 @@ import { WheelWorkshopComponent } from './wheel-workshop/wheel-workshop.componen
     ApiReqGoogleService,
     AppRoutingModule,
     AuthInterceptor,
-    UserService,    
+    UserService,
+    AppService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
