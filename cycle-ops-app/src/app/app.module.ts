@@ -14,7 +14,7 @@ import { MaterialModule } from './material.module';
 import { AuthInterceptor } from './services/auth-interceptor-service/auth-interceptor.service';
 import { ApiReqMakerService } from './services/api-request-services/maker-request-service/api-req-maker.service';
 import { ApiReqUserService } from './services/api-request-services/user-request-service/api-req-user.service';
-import { ApiReqGdriveService } from './services/api-request-services/gdrive-request-service/api-req-gdrive.service';
+import { ApiReqGoogleService } from './services/api-request-services/google-request-service/api-req-google.service';
 import { UserService } from './services/user-service/user.service';
 import { HomeComponent } from './home/home.component';
 import { WheelWorkshopComponent } from './wheel-workshop/wheel-workshop.component';
@@ -36,7 +36,7 @@ import { WheelWorkshopComponent } from './wheel-workshop/wheel-workshop.componen
   providers: [
     ApiReqMakerService,
     ApiReqUserService,
-    ApiReqGdriveService,
+    ApiReqGoogleService,
     AppRoutingModule,
     AuthInterceptor,
     UserService,    

@@ -1,27 +1,9 @@
-<div class="items-container">
-    <div class="item-card">
-        <h1>Library</h1>
-        <img mat-card-image src="./assets/learn_bw.jpeg" alt="picture of books and ephemera related to bicycles">
-        <p>How-to guides, information, other resources, etc.</p>
-    </div>
-    <div class="item-card">
-        <h1>Wheel Workshop</h1>
-        <img mat-card-image src="./assets/wheel_workshop_bw.jpeg" alt="picture of a bicycle wheel on a truing stand, with tools">
-        <p>Calculate spoke lengths, specify your wheel builds, catalog your wheels, take notes.</p>
-    </div>
-    <div class="item-card">
-        <h1>Gearing Workshop</h1>
-        <img mat-card-image src="./assets/gearing_workshop_bw.jpeg" alt="picture of bicycle freewheel, cassettes, crank, single speed cog with lock ring, and chain">
-        <p>Find your optimal gearing combinations by calculating ratios and checking compatibility.</p>
-    </div>
-    <div class="item-card">
-        <h1 class="zero-spacing">Bike Build Workshop</h1>
-        <img mat-card-image src="./assets/bike_build_workshop_bw.jpeg" alt="picture of bicycle being held in a repair stand">
-        <p>Spec a complete bike build by selecting parts and configuration.</p>
-    </div>
-    <div class="item-card">
-        <h1 class="zero-spacing">Inventory</h1>
-        <img mat-card-image src="./assets/inventory_1_bw.jpeg" alt="picture of containers of bicycle parts">
-        <p>Organize your collection of bikes and parts by keeping an inventory.</p>
-    </div>       
+<div id="tagline">A free, simple workshop assistant for DIY bicycle projects.</div>
+<div class="carousel">
+    <ng-container *ngFor="let slide of carouselItems; let i = index">
+        <div class="slide" *ngIf="i === currentIndex">
+            <img class="slide" [src]="imgSrc('../assets', slide.image)" [alt]="slide.imageAlt" />
+            <p>{{slide.description}}</p>
+        </div>
+    </ng-container>
 </div>

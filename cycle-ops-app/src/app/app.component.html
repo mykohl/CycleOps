@@ -1,19 +1,37 @@
 <div id="header">
-  <div id="title">
-    <div id="title-main"><h1>Cyclist's Workshop</h1></div>
-    <p>A workshop assistant for DIY bike tinkering: organize your parts &amp; bikes, plan your builds, learn, and share (and go ride).</p>
-  </div>
-  <div id="user-action">
-    <button mat-fab extended color={{userService.userStatus.actionColor}} (click)="userSignAction()">
-      <mat-icon>{{userService.userStatus.actionIcon}}</mat-icon>{{userService.userStatus.actionTitle}}
-    </button>
-  </div>
+  <mat-toolbar id="toolbar">
+    <div id="site-title">Cog<span class="variant">Native</span></div>
+    <div>
+      <ng-container *ngFor="let navItem of menu">
+        <button mat-button *ngIf="navItem.sections.length === 1; else navMenuTemplate">{{findSection(navItem.sections[0])?.title}}</button>
+        <ng-template #navMenuTemplate>
+          <button mat-button [matMenuTriggerFor]="menu">{{navItem.title}}</button>
+          <mat-menu #menu="matMenu">
+            <button *ngFor="let menuItem of navItem.sections" mat-menu-item>{{findSection(menuItem)?.title}}</button>
+          </mat-menu>
+        </ng-template>
+      </ng-container>
+    </div>
+    <div>
+      <button mat-fab extended color={{userService.userStatus.actionColor}} (click)="userSignAction()">
+        <mat-icon>{{userService.userStatus.actionIcon}}</mat-icon>{{userService.userStatus.actionTitle}}
+      </button>    
+    </div>
+  </mat-toolbar>
 </div>
-<router-outlet></router-outlet>
+<div id="content">
+  <router-outlet></router-outlet>
+</div>
+<div id="footer">
+  <p>CogNative is a free, simple workshop assistant for DIY bicycle projects.</p>
+  <p>admin-cognative&#64;gmail.com | Help &amp; Support | No copyright</p>
+  <p>Donate</p>
+</div>
 <ng-template #loginDialogTemplate>
     <h1 mat-dialog-title>Sign-in or Register</h1>
     <mat-dialog-content>
       <p>Select your provider to sign-in (you'll be automatically registered if you haven't signed-in before).</p>
+      <p>You need to register and sign-in if you want to save your inventory or any of your workshop projects; you don't have to in order to use the site, however.</p>
       <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
     </mat-dialog-content>
 </ng-template>

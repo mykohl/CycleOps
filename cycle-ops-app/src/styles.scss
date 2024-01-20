@@ -2,10 +2,11 @@
 @use '@angular/material/prebuilt-themes/deeppurple-amber.css' as mat-theme;
 @include mat.core();
 
-html, body { 
+html, body {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     margin: 0;
-    padding: 0;
     width: 100%;
 }
 body { 

@@ -1,4 +1,5 @@
-import { Component, ViewChild, ChangeDetectorRef, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 import { switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { UserDto } from "../../../data/models/user.model";
@@ -6,6 +7,8 @@ import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/an
 import { UserService } from './services/user-service/user.service';
 import { ApiReqUserService } from './services/api-request-services/user-request-service/api-req-user.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import * as appModel from '../../../data/models/app.model';
+import * as appData from './app.data.json';
 
 @Component({
   selector: 'app-root',
@@ -18,14 +21,16 @@ export class AppComponent {
   private _socialUser: SocialUser | null = null;
   private _dialogRef: MatDialogRef<any> | undefined;
   private _isLoginComplete: boolean = false;
+  private _appMenus: appModel.appMenu[] = appData.menu as appModel.appMenu[];
+  private _appSections: appModel.appSection[] = appData.sections as appModel.appSection[];
 
   constructor(
     private _socialAuthService: SocialAuthService,
     private _userService: UserService,
     private _apiReqUserService: ApiReqUserService,
-    private _dialog: MatDialog,
-    private _cdr: ChangeDetectorRef
-  ) {}
+    private _dialog: MatDialog
+  ) {
+  }
 
   ngOnInit() {
     this._socialAuthService.authState
@@ -72,5 +77,17 @@ export class AppComponent {
 
   refreshGoogleToken(): void {
     this._socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  findSection(id: string): appModel.appSection | undefined {
+    return (appData.sections as unknown as appModel.appSection[]).find(s => s.id === id);
+  }
+
+  get menu(): appModel.appMenu[] {
+    return (this._appMenus).sort((a, b) => a.order - b.order);
+  }
+
+  get sections(): any[] {
+    return this._appSections.sort((a, b) => a.order - b.order);
   }
 }
