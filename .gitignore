@@ -3,3 +3,4 @@ dist
 certificates
 # Keep environment variables out of version control
 .env
+config.json

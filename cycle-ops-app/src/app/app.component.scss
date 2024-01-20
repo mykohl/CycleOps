@@ -5,6 +5,16 @@
     display: flex;
     flex: 1;
     overflow: auto;
+    width: 100%;
+}
+#footer {
+    flex: 0 0 auto;
+    border-top: 1px solid black;
+    width: 100%;
+    text-align: center;   
+}
+#footer p {
+    font-size: 10pt;
 }
 #toolbar {
     background-color: #eee;
@@ -20,16 +30,4 @@
 }
 #site-title .variant {
     color: #666;
-}
-#footer {
-    flex: 0 0 auto;
-    border-top: 1px solid black;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    text-align: center;   
-}
-#footer p {
-    font-size: 10pt;
 }
