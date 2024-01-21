@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../user-service/user.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private _userService: UserService) {
+  constructor(
+    private _userService: UserService,
+    private _router: Router) {
   }
 
-  canActivate(rolesAllowed?: string[] | string): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const rolesAllowed: string[] | string | undefined = route.data['rolesAllowed'];
     if(rolesAllowed === '*') return true;
     const isLoggedIn = this._userService?.siteUser ?? false;
     if(isLoggedIn && !rolesAllowed) return true;

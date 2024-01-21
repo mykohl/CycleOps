@@ -21,7 +21,7 @@
                     "titleIcon": "",
                     "image": "inventory_3_bw.jpeg",
                     "imageAlt": "picture of containers of bicycle parts",
-                    "route": "/inventory",
+                    "route": "inventory",
                     "rolesAllowed": "*"
                 } 
             ],
@@ -43,7 +43,7 @@
                     "titleIcon": "",
                     "image": "wheel_workshop_bw.jpeg",
                     "imageAlt": "picture of a bicycle wheel on a truing stand, with tools",
-                    "route": "/workshops/wheels",
+                    "route": "workshops/wheels",
                     "rolesAllowed": "*"
                 },
                 {
@@ -55,7 +55,7 @@
                     "titleIcon": "",
                     "image": "gearing_workshop_bw.jpeg",
                     "imageAlt": "picture of bicycle freewheel, cassettes, crank, single speed cog with lock ring, and chain",
-                    "route": "/workshops/gearing",
+                    "route": "workshops/gearing",
                     "rolesAllowed": "*"
                 },
                 {
@@ -67,7 +67,7 @@
                     "titleIcon": "",
                     "image": "bike_build_workshop_bw.jpeg",
                     "imageAlt": "picture of bicycle being held in a repair stand",
-                    "route": "/workshops/build",
+                    "route": "workshops/build",
                     "rolesAllowed": "*"
                 }
             ],
@@ -89,7 +89,7 @@
                     "titleIcon": "",
                     "image": "learn_bw.jpeg",
                     "imageAlt": "picture of books and ephemera related to bicycles",
-                    "route": "/library",
+                    "route": "library",
                     "rolesAllowed": "*"
                 }
             ],
@@ -111,7 +111,7 @@
                     "titleIcon": "",
                     "image": "",
                     "imageAlt": "",
-                    "route": "/admin/users",
+                    "route": "admin/users",
                     "rolesAllowed": ["admin"]
                 },
                 {
@@ -123,7 +123,7 @@
                     "titleIcon": "",
                     "image": "",
                     "imageAlt": "",
-                    "route": "/admin/lookups/makers",
+                    "route": "admin/lookups/makers",
                     "rolesAllowed": ["admin"]                   
                 }
             ],

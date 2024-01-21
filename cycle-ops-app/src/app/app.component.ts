@@ -106,10 +106,7 @@ export class AppComponent {
   }
 
   navigate(id: string) {
-    console.log(id);
     const route = this._appService.findComponent(id)?.route;
-    console.log(route);
-
     this._router.navigate([route]);
   }
 }

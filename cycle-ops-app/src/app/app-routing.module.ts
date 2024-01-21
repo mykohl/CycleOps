@@ -7,34 +7,6 @@ import { MakersComponent } from './features/admin/makers/makers.component';
 import * as appModel from '../../../data/models/app.model';
 import * as appData from '../../../data/app.data.json';
 
-const routes: Routes = [
-  { 
-    path: '',
-    component: HomeComponent 
-  },
-  { 
-    path: 'admin/lookups/makers',
-    loadChildren: () => import('./features/workshops/workshops.module').then((m) => m.WorkshopsModule),
-    canActivate: [AuthService],
-    data: { rolesAllowed: ["admin"] },
-    component: MakersComponent
-  },
-  /*
-  {
-    path: 'wheels',
-    loadChildren: () => import('./features/workshops/workshops.module').then((m) => m.WorkshopsModule),
-    component: WheelsComponent 
-  },
-  */
-  //...AppRoutingHelper.componentRoutes
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-
 @Injectable({
   providedIn: 'root'
 })
@@ -86,3 +58,16 @@ export class AppRoutingHelper {
     }
   }
 }
+
+@NgModule({
+  imports: [RouterModule.forRoot([
+      { 
+        path: '',
+        component: HomeComponent 
+      },
+      ...AppRoutingHelper.componentRoutes
+    ])
+  ],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
