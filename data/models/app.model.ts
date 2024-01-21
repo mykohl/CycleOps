@@ -1,20 +1,23 @@
-export type appBranding = {
+export type branding = {
     title: string,
     tagline: string
 }
-export type appMenu = {
+export type feature = {
     order: number,
     title: string,
     titleIcon: string,
-    sections: string[]
+    components: component[],
+    rolesAllowed: string[] | string
 };
-export type appSection = {
+export type component = {
     id: string,
     order: number,
+    isHighlight: boolean,
     title: string,
     description: string,
     titleIcon: string,
     image: string,
     imageAlt: string,
-    action: string  
+    route: string,
+    rolesAllowed: string[] | string
 };

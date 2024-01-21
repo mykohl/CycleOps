@@ -1,40 +1,81 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+import { Route } from '@angular/router';
 import * as appModel from '../../../../../../data/models/app.model';
 import * as appData from '../../../../../../data/app.data.json';
+import { AuthService } from '../auth-service/auth.service';
+import { AdminComponent } from '../../../features/admin/admin.component';
+import { HomeComponent } from '../../../features/home/home.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-  private _appBranding: appModel.appBranding = appData.branding as appModel.appBranding;
-  private _appMenus: appModel.appMenu[] = appData.menu as appModel.appMenu[];
-  private _appSections: appModel.appSection[] = appData.sections as appModel.appSection[];
-
   constructor() { }
 
-  findSection(id: string): appModel.appSection | undefined {
-    return appData.sections.find(s => s.id === id);
+  findComponent(id: string): appModel.component | undefined {
+    return this.components.find(s => s.id === id);
   }
 
-  get branding(): appModel.appBranding {
-    return this._appBranding;
+  get branding(): appModel.branding {
+    return appData.branding;
   }
 
-  get menu(): appModel.appMenu[] {
-    return this._appMenus.sort((a, b) => a.order - b.order);
+  get features(): appModel.feature[] {
+    const features = appData.features.sort((a, b) => a.order - b.order);
+    features.forEach(f => {
+      f.components = f.components.sort((a, b) => a.order - b.order);
+    });
+    return features;
   }
 
-  get sections(): appModel.appSection[] {
-    return this._appSections.sort((a, b) => a.order - b.order);
+  get components(): appModel.component[] {
+    return appData.features.flatMap(
+      (f: appModel.feature) => f.components
+    ).sort((a, b) => a.order - b.order);
   }
 
-  getSectionPath(id: string): string | undefined {
-    const section = this.findSection(id);
-    const menu = this._appMenus.find(m => m.sections.includes(id));
-    if(menu) {
-      if(menu.sections.length === 1) return menu.title;
-      return `${menu.title} >> ${section?.title}`;
+  get highlightComponents(): appModel.component[] {
+    return this.components.filter(c => c.isHighlight);
+  }
+
+  getRoleFeatures(role: string): appModel.feature[] {
+    let roleFeatures = appData.features.filter(f => 
+      f.rolesAllowed === '*' || f.rolesAllowed.includes(role)
+    );
+    roleFeatures.forEach((f: appModel.feature) => 
+      f.components = f.components.filter(c => 
+        c.rolesAllowed === '*' || c.rolesAllowed.includes(role)
+      )
+    );
+    return roleFeatures;
+  }
+
+/*
+  get featureRoutes(): Route[] {
+    let featureRoutes: Route[] = [];
+    this._features.forEach(f => {
+      let addRoute: Route = {};
+      addRoute.path = f.route;
+      addRoute.component = this._mapFeatureComponents(f.id);
+      if(f.rolesAllowed === '*') {
+        addRoute
+      }
+
+
+      const fr: Route = {
+        path: f.route,
+        canActivate: [AuthService]
+      };
+    });
+  }
+  */
+
+  private _mapFeatureComponents(id: string): any {
+    switch(id) {
+      case 'admin':
+        return AdminComponent;
+      default:
+        return HomeComponent;
     }
-    return undefined;
   }
 }

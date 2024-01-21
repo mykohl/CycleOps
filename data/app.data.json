@@ -3,78 +3,127 @@
         "title": "CogNative",
         "tagline": "A free, simple workshop assistant for DIY bicycle tinkering."
     },
-    "menu":
+    "features":
     [
         {
             "order": 1,
             "title": "Inventory",
             "titleIcon": "inventory",
-            "sections": ["inv"]
+            "components": 
+            [
+                {
+                    "id": "inv",
+                    "order": 1,
+                    "isHighlight": true,
+                    "title": "Inventory",
+                    "description": "Organize and track your collection of bikes, parts, and tools.",
+                    "titleIcon": "",
+                    "image": "inventory_3_bw.jpeg",
+                    "imageAlt": "picture of containers of bicycle parts",
+                    "route": "inventory",
+                    "rolesAllowed": "*"
+                } 
+            ],
+            "rolesAllowed": "*"
         },
         {
             "order": 2,
             "title": "Workshops",
             "titleIcon": "construction",
-            "sections": ["wheels", "gears", "build"]
+            "components":
+            [
+                {
+                    "id": "wheels",
+                    "order": 3,
+                    "isHighlight": true,
+                    "title": "Wheel Workshop",
+                    "description": "Calculate spoke lengths, specify your wheel builds, catalog your wheels.",
+                    "titleIcon": "",
+                    "image": "wheel_workshop_bw.jpeg",
+                    "imageAlt": "picture of a bicycle wheel on a truing stand, with tools",
+                    "route": "workshops/wheels",
+                    "rolesAllowed": "*"
+                },
+                {
+                    "id": "gears",
+                    "order": 4,
+                    "isHighlight": true,
+                    "title": "Gearing Workshop",
+                    "description": "Find your optimal gearing combinations by calculating ratios and checking compatibility.",
+                    "titleIcon": "",
+                    "image": "gearing_workshop_bw.jpeg",
+                    "imageAlt": "picture of bicycle freewheel, cassettes, crank, single speed cog with lock ring, and chain",
+                    "route": "workshops/gearing",
+                    "rolesAllowed": "*"
+                },
+                {
+                    "id": "build",
+                    "order": 5,
+                    "isHighlight": true,
+                    "title": "Bike Build Workshop",
+                    "description": "Spec-out a complete bike build by selecting parts and configuration details.",
+                    "titleIcon": "",
+                    "image": "bike_build_workshop_bw.jpeg",
+                    "imageAlt": "picture of bicycle being held in a repair stand",
+                    "route": "workshops/build",
+                    "rolesAllowed": "*"
+                }
+            ],
+            "rolesAllowed": "*"
         },
         {
             "order": 3,
             "title": "Library",
             "titleIcon": "menu_book",
-            "sections": ["lib"]
-        }
-    ],
-    "sections": 
-    [
-        {
-            "id": "lib",
-            "order": 2,
-            "title": "Library",
-            "description": "How-to guides, opinions, information, other resources, etc.",
-            "titleIcon": "",
-            "image": "learn_bw.jpeg",
-            "imageAlt": "picture of books and ephemera related to bicycles",
-            "action": "library"
+            "components":
+            [
+                {
+                    "id": "lib",
+                    "order": 2,
+                    "isHighlight": true,
+                    "title": "Library",
+                    "description": "How-to guides, opinions, information, other resources, etc.",
+                    "titleIcon": "",
+                    "image": "learn_bw.jpeg",
+                    "imageAlt": "picture of books and ephemera related to bicycles",
+                    "route": "library",
+                    "rolesAllowed": "*"
+                }
+            ],
+            "rolesAllowed": "*"
         },
         {
-            "id": "wheels",
-            "order": 3,
-            "title": "Wheel Workshop",
-            "description": "Calculate spoke lengths, specify your wheel builds, catalog your wheels.",
-            "titleIcon": "",
-            "image": "wheel_workshop_bw.jpeg",
-            "imageAlt": "picture of a bicycle wheel on a truing stand, with tools",
-            "action": "wheels"
-        },
-        {
-            "id": "gears",
             "order": 4,
-            "title": "Gearing Workshop",
-            "description": "Find your optimal gearing combinations by calculating ratios and checking compatibility.",
+            "title": "Admin",
             "titleIcon": "",
-            "image": "gearing_workshop_bw.jpeg",
-            "imageAlt": "picture of bicycle freewheel, cassettes, crank, single speed cog with lock ring, and chain",
-            "action": "gearing"
-        },
-        {
-            "id": "build",
-            "order": 5,
-            "title": "Bike Build Workshop",
-            "description": "Spec-out a complete bike build by selecting parts and configuration details.",
-            "titleIcon": "",
-            "image": "bike_build_workshop_bw.jpeg",
-            "imageAlt": "picture of bicycle being held in a repair stand",
-            "action": "build"
-        },
-        {
-            "id": "inv",
-            "order": 1,
-            "title": "Inventory",
-            "description": "Organize and track your collection of bikes, parts, and tools.",
-            "titleIcon": "",
-            "image": "inventory_3_bw.jpeg",
-            "imageAlt": "picture of containers of bicycle parts",
-            "action": "inventory"
-        } 
+            "components":
+            [
+                {
+                    "id": "users",
+                    "order": 1,
+                    "isHighlight": false,
+                    "title": "Users",
+                    "description": "Manage users.",
+                    "titleIcon": "",
+                    "image": "",
+                    "imageAlt": "",
+                    "route": "/admin/users",
+                    "rolesAllowed": ["admin"]
+                },
+                {
+                    "id": "makers",
+                    "order": 2,
+                    "isHighlight": false,
+                    "title": "Makers/Brands",
+                    "description": "Manage parts and tool makers.",
+                    "titleIcon": "",
+                    "image": "",
+                    "imageAlt": "",
+                    "route": "/admin/lookups/makers",
+                    "rolesAllowed": ["admin"]                   
+                }
+            ],
+            "rolesAllowed": ["admin"]
+        }        
     ]
 }

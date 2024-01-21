@@ -9,7 +9,8 @@ export class AuthService {
   constructor(private _userService: UserService) {
   }
 
-  canActivate(rolesAllowed?: string[]): boolean {
+  canActivate(rolesAllowed?: string[] | string): boolean {
+    if(rolesAllowed === '*') return true;
     const isLoggedIn = this._userService?.siteUser ?? false;
     if(isLoggedIn && !rolesAllowed) return true;
     if(!this._userService.siteUser?.roles) return false;

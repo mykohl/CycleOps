@@ -36,6 +36,11 @@ export class UserService {
     };
   };
 
+  get role(): string {
+    if(this._siteUser?.roles) return this._siteUser.roles;
+    return '*';
+  }
+
   get socialUser(): SocialUser | null {
     return this._socialUser;
   }

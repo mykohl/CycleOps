@@ -54,16 +54,12 @@ export class AppComponent {
     return this._userService.userStatus;
   }
 
-  get userRole(): string | undefined | null {
-    return this._userService.siteUser?.roles;
+  get features(): appModel.feature[] {
+    return this._appService.features;
   }
 
-  get menu(): appModel.appMenu[] {
-    return this._appService.menu;
-  }
-
-  get sections(): any[] {
-    return this._appService.sections;
+  get highlightComponents(): any[] {
+    return this._appService.highlightComponents;
   }
 
   get title(): string {
@@ -72,6 +68,14 @@ export class AppComponent {
 
   get router(): Router {
     return this._router;
+  }
+
+  get userRole(): string {
+    return this._userService.role;
+  }
+
+  get roleFeatures(): appModel.feature[] {
+    return this._appService.getRoleFeatures(this.userRole);
   }
 
   userSignAction(): void {
@@ -97,7 +101,7 @@ export class AppComponent {
     this._socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  findSection(id: string): appModel.appSection | undefined {
-    return this._appService.findSection(id);
+  findComponent(id: string): appModel.component | undefined {
+    return this._appService.findComponent(id);
   }
 }

@@ -1,7 +1,5 @@
 import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiReqGoogleService } from '../../shared/services/api-request-services/google-request-service/api-req-google.service';
-import { ApiReqMakerService } from '../../shared/services/api-request-services/maker-request-service/api-req-maker.service';
 import * as appModel from '../../../../../data/models/app.model';
 import { AppService } from '../../shared/services/app-service/app.service';
 import {
@@ -26,13 +24,10 @@ export const fade = trigger('fade', [
 })
 export class HomeComponent {
   router: Router;
-  private _appSections: appModel.appSection[] = this._appService.sections as appModel.appSection[];
   currentIndex = 0;
   animationState = 'in';
 
   constructor(router: Router,
-    private _apiReqGoogleService: ApiReqGoogleService,
-    private _apiReqMakerService: ApiReqMakerService,
     private _appService: AppService,
     private _zone: NgZone
   ) {
@@ -44,11 +39,11 @@ export class HomeComponent {
       this._zone.run(() => {
         this.animationState = 'void';
         setTimeout(() => {
-          this.currentIndex = (this.currentIndex + 1) % this._appSections.length;
+          this.currentIndex = (this.currentIndex + 1) % this.highlightComponents.length;
           this.animationState = 'in';
         }, 300)
       });
-    }, 5000);
+    }, 6500);
     /*
     fetch('https://www.googleapis.com/drive/v3/files/1TFmmMvjnOlxteZfbgnOSpFmsvjIZQMXIOuVlZUyaaiE/export?mimeType=text/plain&key=AIzaSyAwd11uAvXdf8qkUNEef-HUGLl1NYLV6Qc')
     .then(response => response.text())
@@ -57,20 +52,20 @@ export class HomeComponent {
     */
   }
 
-  getSectionPath(id: string): string | undefined {
-    return this._appService.getSectionPath(id);
-  }
-
   imgSrc(src: string, img: string): string {
     return `${src}\/${img}`;
   }
 
-  get activeSlide(): appModel.appSection {
-    return this._appSections[this.currentIndex];
+  get highlightComponents(): appModel.component[] {
+    return this._appService.highlightComponents;
   }
 
-  get carouselItems(): appModel.appSection[] {
-    return this._appService.sections;
+  get activeSlide(): appModel.component {
+    return this.highlightComponents[this.currentIndex];
+  }
+
+  get carouselItems(): appModel.component[] {
+    return this._appService.components;
   }
 
   get title(): string {
