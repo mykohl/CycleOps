@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { SocialUser } from '@abacritt/angularx-social-login';
-import { UserDto } from '../../../../../../data/models/user.model';
+import { UserDto } from '../../../../../../../data/models/user.model';
 
 @Injectable({
   providedIn: 'root',

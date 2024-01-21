@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { WheelWorkshopComponent } from './components/wheel-workshop/wheel-workshop.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { AuthService } from './services/auth-service/auth.service';
+import { HomeComponent } from './features/home/home.component';
+import { WheelWorkshopComponent } from './features/workshops/wheel-workshop/wheel-workshop.component';
+import { AdminComponent } from './features/admin/admin.component';
+import { AuthService } from './shared/services/auth-service/auth.service';
 
 const routes: Routes = [
   { 
@@ -11,6 +11,7 @@ const routes: Routes = [
     component: HomeComponent },
   { 
     path: 'admin',
+    loadChildren: () => import('./features/admin/admin.module').then((m) => m.AdminModule),
     canActivate: [AuthService],
     data: { rolesAllowed: ["admin"] },
     component: AdminComponent

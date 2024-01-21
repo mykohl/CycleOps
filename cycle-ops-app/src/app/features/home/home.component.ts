@@ -1,9 +1,9 @@
 import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiReqGoogleService } from '../../services/api-request-services/google-request-service/api-req-google.service';
-import { ApiReqMakerService } from '../../services/api-request-services/maker-request-service/api-req-maker.service';
+import { ApiReqGoogleService } from '../../shared/services/api-request-services/google-request-service/api-req-google.service';
+import { ApiReqMakerService } from '../../shared/services/api-request-services/maker-request-service/api-req-maker.service';
 import * as appModel from '../../../../../data/models/app.model';
-import { AppService } from '../../services/app-service/app.service';
+import { AppService } from '../../shared/services/app-service/app.service';
 import {
   trigger,
   transition,

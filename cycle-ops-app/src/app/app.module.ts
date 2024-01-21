@@ -8,18 +8,15 @@ import {
   GoogleLoginProvider,
   GoogleSigninButtonModule
 } from "@abacritt/angularx-social-login";
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
-import { AuthInterceptor } from './services/auth-interceptor-service/auth-interceptor.service';
-import { ApiReqMakerService } from './services/api-request-services/maker-request-service/api-req-maker.service';
-import { ApiReqUserService } from './services/api-request-services/user-request-service/api-req-user.service';
-import { ApiReqGoogleService } from './services/api-request-services/google-request-service/api-req-google.service';
-import { AppService } from './services/app-service/app.service';
-import { UserService } from './services/user-service/user.service';
-import { HomeComponent } from './components/home/home.component';
-import { WheelWorkshopComponent } from './components/wheel-workshop/wheel-workshop.component';
-import { AdminModule } from './components/admin/admin.module';
+import { MaterialModule } from './shared/modules/material.module';
+import { AuthInterceptor } from './shared/services/auth-interceptor-service/auth-interceptor.service';
+import { HomeComponent } from './features/home/home.component';
+import { WheelWorkshopComponent } from './features/workshops/wheel-workshop/wheel-workshop.component';
+import { ServicesModule } from './shared/modules/services.module';
+import { AdminModule } from './features/admin/admin.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,16 +31,12 @@ import { AdminModule } from './components/admin/admin.module';
     GoogleSigninButtonModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ServicesModule,
     AdminModule
   ],
   providers: [
-    ApiReqMakerService,
-    ApiReqUserService,
-    ApiReqGoogleService,
     AppRoutingModule,
     AuthInterceptor,
-    UserService,
-    AppService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

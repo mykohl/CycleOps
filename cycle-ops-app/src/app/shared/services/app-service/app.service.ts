@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as appModel from '../../../../../data/models/app.model';
-import * as appData from '../../../../../data/app.data.json';
+import * as appModel from '../../../../../../data/models/app.model';
+import * as appData from '../../../../../../data/app.data.json';
 
 @Injectable({
   providedIn: 'root'

@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { UserService } from './services/user-service/user.service';
-import { ApiReqUserService } from './services/api-request-services/user-request-service/api-req-user.service';
+import { UserService } from './shared/services/user-service/user.service';
+import { ApiReqUserService } from './shared/services/api-request-services/user-request-service/api-req-user.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { AppService } from './services/app-service/app.service';
+import { AppService } from './shared/services/app-service/app.service';
 import { UserStatus, UserDto } from '../../../data/models/user.model';
 import * as appModel from '../../../data/models/app.model';
 
