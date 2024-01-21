@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WheelWorkshopComponent } from './wheel-workshop.component';
+import { WheelWorkshopComponent } from './wheels.component';
 
 describe('WheelWorkshopComponent', () => {
   let component: WheelWorkshopComponent;

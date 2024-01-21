@@ -13,15 +13,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/modules/material.module';
 import { AuthInterceptor } from './shared/services/auth-interceptor-service/auth-interceptor.service';
 import { HomeComponent } from './features/home/home.component';
-import { WheelWorkshopComponent } from './features/workshops/wheel-workshop/wheel-workshop.component';
 import { ServicesModule } from './shared/modules/services.module';
 import { AdminModule } from './features/admin/admin.module';
+import { WorkshopsModule } from './features/workshops/workshops.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    WheelWorkshopComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +31,8 @@ import { AdminModule } from './features/admin/admin.module';
     BrowserAnimationsModule,
     MaterialModule,
     ServicesModule,
-    AdminModule
+    AdminModule,
+    WorkshopsModule
   ],
   providers: [
     AppRoutingModule,

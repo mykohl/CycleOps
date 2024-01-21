@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
-import { WheelWorkshopComponent } from './features/workshops/wheel-workshop/wheel-workshop.component';
+import { WheelsComponent } from './features/workshops/wheels/wheels.component';
 import { AdminComponent } from './features/admin/admin.component';
 import { AuthService } from './shared/services/auth-service/auth.service';
 
@@ -18,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'wheels',
-    component: WheelWorkshopComponent 
+    loadChildren: () => import('./features/workshops/workshops.module').then((m) => m.WorkshopsModule),
+    component: WheelsComponent 
   }
 ];
 
