@@ -1,0 +1,9 @@
+<div id="tagline">{{tagline}}</div>
+<div class="active-slide" [@fade]="animationState" >
+    <a [routerLink]="activeSlide.action">
+        <div class="slide-box">
+            <img [src]="imgSrc('../assets', activeSlide.image)" [alt]="activeSlide.imageAlt" />
+        </div>
+        <p class="overlay-text"><span style="font-weight: bold;">{{activeSlide.title}}:</span> {{activeSlide.description}}</p>
+    </a>
+</div>

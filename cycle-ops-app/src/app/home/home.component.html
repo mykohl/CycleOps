@@ -1,9 +1,0 @@
-<div id="tagline">{{tagline}}</div>
-<div class="carousel">
-    <ng-container *ngFor="let slide of carouselItems; let i = index">
-        <div class="slide" *ngIf="i === currentIndex">
-            <img class="slide" [src]="imgSrc('../assets', slide.image)" [alt]="slide.imageAlt" />
-            <p>{{slide.description}}</p>
-        </div>
-    </ng-container>
-</div>

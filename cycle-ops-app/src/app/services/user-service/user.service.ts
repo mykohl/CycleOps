@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SocialUser } from '@abacritt/angularx-social-login';
-import { UserDto } from "../../../../../data/models/user.model";
+import { UserDto, UserStatus } from "../../../../../data/models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +21,7 @@ export class UserService {
     };
   }
 
-  get userStatus(): { 
-    actionTitle: string,
-    actionColor: string,
-    actionIcon: string
-  } {
+  get userStatus(): UserStatus {
     if(this._socialUser) {
       return { 
         actionTitle: this._siteUser?.nameFirst ?? "",

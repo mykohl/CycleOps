@@ -11,10 +11,11 @@
           </mat-menu>
         </ng-template>
       </ng-container>
+      <button *ngIf="userRole === 'admin'" mat-button color="primary" (click)="router.navigate(['/admin'])">Admin</button>
     </div>
     <div>
-      <button mat-fab extended color={{userService.userStatus.actionColor}} (click)="userSignAction()">
-        <mat-icon>{{userService.userStatus.actionIcon}}</mat-icon>{{userService.userStatus.actionTitle}}
+      <button mat-fab extended color={{userStatus.actionColor}} (click)="userSignAction()">
+        <mat-icon>{{userStatus.actionIcon}}</mat-icon>{{userStatus.actionTitle}}
       </button>    
     </div>
   </mat-toolbar>
@@ -29,10 +30,12 @@
 </div>
 <!-- modal elements -->
 <ng-template #loginDialogTemplate>
+  <div class="dialog">
     <h1 mat-dialog-title>Sign-in or Register</h1>
     <mat-dialog-content>
       <p>Select your provider to sign-in (you'll be automatically registered if you haven't signed-in before).</p>
       <p>You need to register and sign-in if you want to save your inventory or any of your workshop projects; you don't have to in order to use the site, however.</p>
       <asl-google-signin-button type='standard' size='medium'></asl-google-signin-button>
     </mat-dialog-content>
+  </div>
 </ng-template>

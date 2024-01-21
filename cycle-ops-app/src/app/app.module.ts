@@ -17,8 +17,9 @@ import { ApiReqUserService } from './services/api-request-services/user-request-
 import { ApiReqGoogleService } from './services/api-request-services/google-request-service/api-req-google.service';
 import { AppService } from './services/app-service/app.service';
 import { UserService } from './services/user-service/user.service';
-import { HomeComponent } from './home/home.component';
-import { WheelWorkshopComponent } from './wheel-workshop/wheel-workshop.component';
+import { HomeComponent } from './components/home/home.component';
+import { WheelWorkshopComponent } from './components/wheel-workshop/wheel-workshop.component';
+import { AdminModule } from './components/admin/admin.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { WheelWorkshopComponent } from './wheel-workshop/wheel-workshop.componen
     HttpClientModule,
     GoogleSigninButtonModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    AdminModule
   ],
   providers: [
     ApiReqMakerService,

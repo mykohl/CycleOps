@@ -13,7 +13,7 @@ export class AppService {
   constructor() { }
 
   findSection(id: string): appModel.appSection | undefined {
-    return (appData.sections as unknown as appModel.appSection[]).find(s => s.id === id);
+    return appData.sections.find(s => s.id === id);
   }
 
   get branding(): appModel.appBranding {
@@ -24,7 +24,17 @@ export class AppService {
     return this._appMenus.sort((a, b) => a.order - b.order);
   }
 
-  get sections(): any[] {
+  get sections(): appModel.appSection[] {
     return this._appSections.sort((a, b) => a.order - b.order);
+  }
+
+  getSectionPath(id: string): string | undefined {
+    const section = this.findSection(id);
+    const menu = this._appMenus.find(m => m.sections.includes(id));
+    if(menu) {
+      if(menu.sections.length === 1) return menu.title;
+      return `${menu.title} >> ${section?.title}`;
+    }
+    return undefined;
   }
 }

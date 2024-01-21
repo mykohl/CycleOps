@@ -1,7 +1,7 @@
 {
     "branding": {
         "title": "CogNative",
-        "tagline": "A free, simple workshop assistant for DIY bicycle projects."
+        "tagline": "A free, simple workshop assistant for DIY bicycle tinkering."
     },
     "menu":
     [
@@ -30,21 +30,21 @@
             "id": "lib",
             "order": 2,
             "title": "Library",
-            "description": "How-to guides, information, other resources, etc.",
+            "description": "How-to guides, opinions, information, other resources, etc.",
             "titleIcon": "",
             "image": "learn_bw.jpeg",
             "imageAlt": "picture of books and ephemera related to bicycles",
-            "action": ""
+            "action": "library"
         },
         {
             "id": "wheels",
             "order": 3,
             "title": "Wheel Workshop",
-            "description": "Calculate spoke lengths, specify your wheel builds, catalog your wheels, take notes.",
+            "description": "Calculate spoke lengths, specify your wheel builds, catalog your wheels.",
             "titleIcon": "",
             "image": "wheel_workshop_bw.jpeg",
             "imageAlt": "picture of a bicycle wheel on a truing stand, with tools",
-            "action": ""
+            "action": "wheels"
         },
         {
             "id": "gears",
@@ -54,27 +54,27 @@
             "titleIcon": "",
             "image": "gearing_workshop_bw.jpeg",
             "imageAlt": "picture of bicycle freewheel, cassettes, crank, single speed cog with lock ring, and chain",
-            "action": ""
+            "action": "gearing"
         },
         {
             "id": "build",
             "order": 5,
             "title": "Bike Build Workshop",
-            "description": "Spec a complete bike build by selecting parts and configuration.",
+            "description": "Spec-out a complete bike build by selecting parts and configuration details.",
             "titleIcon": "",
             "image": "bike_build_workshop_bw.jpeg",
             "imageAlt": "picture of bicycle being held in a repair stand",
-            "action": ""
+            "action": "build"
         },
         {
             "id": "inv",
             "order": 1,
             "title": "Inventory",
-            "description": "Organize your collection of bikes and parts by keeping an inventory.",
+            "description": "Organize and track your collection of bikes, parts, and tools.",
             "titleIcon": "",
-            "image": "inventory_1_bw.jpeg",
+            "image": "inventory_3_bw.jpeg",
             "imageAlt": "picture of containers of bicycle parts",
-            "action": ""
-        }        
+            "action": "inventory"
+        } 
     ]
 }
