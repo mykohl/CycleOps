@@ -1,20 +1,12 @@
-import { Component, Injectable } from '@angular/core';
-import { Route } from '@angular/router';
+import { Injectable } from '@angular/core';
 import * as appModel from '../../../../../../data/models/app.model';
 import * as appData from '../../../../../../data/app.data.json';
-import { AuthService } from '../auth-service/auth.service';
-import { AdminComponent } from '../../../features/admin/admin.component';
-import { HomeComponent } from '../../../features/home/home.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
   constructor() { }
-
-  findComponent(id: string): appModel.component | undefined {
-    return this.components.find(s => s.id === id);
-  }
 
   get branding(): appModel.branding {
     return appData.branding;
@@ -38,6 +30,10 @@ export class AppService {
     return this.components.filter(c => c.isHighlight);
   }
 
+  findComponent(id: string): appModel.component | undefined {
+    return this.components.find(s => s.id === id);
+  }
+
   getRoleFeatures(role: string): appModel.feature[] {
     let roleFeatures = appData.features.filter(f => 
       f.rolesAllowed === '*' || f.rolesAllowed.includes(role)
@@ -48,34 +44,5 @@ export class AppService {
       )
     );
     return roleFeatures;
-  }
-
-/*
-  get featureRoutes(): Route[] {
-    let featureRoutes: Route[] = [];
-    this._features.forEach(f => {
-      let addRoute: Route = {};
-      addRoute.path = f.route;
-      addRoute.component = this._mapFeatureComponents(f.id);
-      if(f.rolesAllowed === '*') {
-        addRoute
-      }
-
-
-      const fr: Route = {
-        path: f.route,
-        canActivate: [AuthService]
-      };
-    });
-  }
-  */
-
-  private _mapFeatureComponents(id: string): any {
-    switch(id) {
-      case 'admin':
-        return AdminComponent;
-      default:
-        return HomeComponent;
-    }
   }
 }

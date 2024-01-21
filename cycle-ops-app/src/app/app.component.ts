@@ -104,4 +104,12 @@ export class AppComponent {
   findComponent(id: string): appModel.component | undefined {
     return this._appService.findComponent(id);
   }
+
+  navigate(id: string) {
+    console.log(id);
+    const route = this._appService.findComponent(id)?.route;
+    console.log(route);
+
+    this._router.navigate([route]);
+  }
 }

@@ -7,7 +7,7 @@
         <ng-template #navMenuTemplate>
           <button mat-button [matMenuTriggerFor]="menu">{{feature.title}}</button>
           <mat-menu #menu="matMenu">
-            <button *ngFor="let component of feature.components" mat-menu-item>{{component.title}}</button>
+            <button *ngFor="let component of feature.components" mat-menu-item (click)="navigate(component.id)">{{component.title}}</button>
           </mat-menu>
         </ng-template>
       </ng-container>

@@ -6,6 +6,7 @@
     "features":
     [
         {
+            "id": "inv",
             "order": 1,
             "title": "Inventory",
             "titleIcon": "inventory",
@@ -20,13 +21,14 @@
                     "titleIcon": "",
                     "image": "inventory_3_bw.jpeg",
                     "imageAlt": "picture of containers of bicycle parts",
-                    "route": "inventory",
+                    "route": "/inventory",
                     "rolesAllowed": "*"
                 } 
             ],
             "rolesAllowed": "*"
         },
         {
+            "id": "workshops",
             "order": 2,
             "title": "Workshops",
             "titleIcon": "construction",
@@ -41,7 +43,7 @@
                     "titleIcon": "",
                     "image": "wheel_workshop_bw.jpeg",
                     "imageAlt": "picture of a bicycle wheel on a truing stand, with tools",
-                    "route": "workshops/wheels",
+                    "route": "/workshops/wheels",
                     "rolesAllowed": "*"
                 },
                 {
@@ -53,7 +55,7 @@
                     "titleIcon": "",
                     "image": "gearing_workshop_bw.jpeg",
                     "imageAlt": "picture of bicycle freewheel, cassettes, crank, single speed cog with lock ring, and chain",
-                    "route": "workshops/gearing",
+                    "route": "/workshops/gearing",
                     "rolesAllowed": "*"
                 },
                 {
@@ -65,13 +67,14 @@
                     "titleIcon": "",
                     "image": "bike_build_workshop_bw.jpeg",
                     "imageAlt": "picture of bicycle being held in a repair stand",
-                    "route": "workshops/build",
+                    "route": "/workshops/build",
                     "rolesAllowed": "*"
                 }
             ],
             "rolesAllowed": "*"
         },
         {
+            "id": "lib",
             "order": 3,
             "title": "Library",
             "titleIcon": "menu_book",
@@ -86,13 +89,14 @@
                     "titleIcon": "",
                     "image": "learn_bw.jpeg",
                     "imageAlt": "picture of books and ephemera related to bicycles",
-                    "route": "library",
+                    "route": "/library",
                     "rolesAllowed": "*"
                 }
             ],
             "rolesAllowed": "*"
         },
         {
+            "id": "admin",
             "order": 4,
             "title": "Admin",
             "titleIcon": "",

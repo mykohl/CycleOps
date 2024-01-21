@@ -3,6 +3,7 @@ export type branding = {
     tagline: string
 }
 export type feature = {
+    id: string,
     order: number,
     title: string,
     titleIcon: string,
