@@ -5961,6 +5961,14 @@ export namespace Prisma {
     nameShort: string | null
     nameAbbreviation: string | null
     notes: string | null
+    webAddress: string | null
+    makesParts: boolean | null
+    makesFrames: boolean | null
+    makesTools: boolean | null
+    makesAccessories: boolean | null
+    makesGear: boolean | null
+    makesBikes: boolean | null
+    makesWheels: boolean | null
   }
 
   export type MakerMaxAggregateOutputType = {
@@ -5969,6 +5977,14 @@ export namespace Prisma {
     nameShort: string | null
     nameAbbreviation: string | null
     notes: string | null
+    webAddress: string | null
+    makesParts: boolean | null
+    makesFrames: boolean | null
+    makesTools: boolean | null
+    makesAccessories: boolean | null
+    makesGear: boolean | null
+    makesBikes: boolean | null
+    makesWheels: boolean | null
   }
 
   export type MakerCountAggregateOutputType = {
@@ -5977,6 +5993,14 @@ export namespace Prisma {
     nameShort: number
     nameAbbreviation: number
     notes: number
+    webAddress: number
+    makesParts: number
+    makesFrames: number
+    makesTools: number
+    makesAccessories: number
+    makesGear: number
+    makesBikes: number
+    makesWheels: number
     _all: number
   }
 
@@ -5995,6 +6019,14 @@ export namespace Prisma {
     nameShort?: true
     nameAbbreviation?: true
     notes?: true
+    webAddress?: true
+    makesParts?: true
+    makesFrames?: true
+    makesTools?: true
+    makesAccessories?: true
+    makesGear?: true
+    makesBikes?: true
+    makesWheels?: true
   }
 
   export type MakerMaxAggregateInputType = {
@@ -6003,6 +6035,14 @@ export namespace Prisma {
     nameShort?: true
     nameAbbreviation?: true
     notes?: true
+    webAddress?: true
+    makesParts?: true
+    makesFrames?: true
+    makesTools?: true
+    makesAccessories?: true
+    makesGear?: true
+    makesBikes?: true
+    makesWheels?: true
   }
 
   export type MakerCountAggregateInputType = {
@@ -6011,6 +6051,14 @@ export namespace Prisma {
     nameShort?: true
     nameAbbreviation?: true
     notes?: true
+    webAddress?: true
+    makesParts?: true
+    makesFrames?: true
+    makesTools?: true
+    makesAccessories?: true
+    makesGear?: true
+    makesBikes?: true
+    makesWheels?: true
     _all?: true
   }
 
@@ -6106,6 +6154,14 @@ export namespace Prisma {
     nameShort: string | null
     nameAbbreviation: string | null
     notes: string | null
+    webAddress: string | null
+    makesParts: boolean | null
+    makesFrames: boolean | null
+    makesTools: boolean | null
+    makesAccessories: boolean | null
+    makesGear: boolean | null
+    makesBikes: boolean | null
+    makesWheels: boolean | null
     _count: MakerCountAggregateOutputType | null
     _avg: MakerAvgAggregateOutputType | null
     _sum: MakerSumAggregateOutputType | null
@@ -6133,6 +6189,14 @@ export namespace Prisma {
     nameShort?: boolean
     nameAbbreviation?: boolean
     notes?: boolean
+    webAddress?: boolean
+    makesParts?: boolean
+    makesFrames?: boolean
+    makesTools?: boolean
+    makesAccessories?: boolean
+    makesGear?: boolean
+    makesBikes?: boolean
+    makesWheels?: boolean
     parts?: boolean | Maker$partsArgs<ExtArgs>
     _count?: boolean | MakerCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["maker"]>
@@ -6143,6 +6207,14 @@ export namespace Prisma {
     nameShort?: boolean
     nameAbbreviation?: boolean
     notes?: boolean
+    webAddress?: boolean
+    makesParts?: boolean
+    makesFrames?: boolean
+    makesTools?: boolean
+    makesAccessories?: boolean
+    makesGear?: boolean
+    makesBikes?: boolean
+    makesWheels?: boolean
   }
 
   export type MakerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6162,6 +6234,14 @@ export namespace Prisma {
       nameShort: string | null
       nameAbbreviation: string | null
       notes: string | null
+      webAddress: string | null
+      makesParts: boolean | null
+      makesFrames: boolean | null
+      makesTools: boolean | null
+      makesAccessories: boolean | null
+      makesGear: boolean | null
+      makesBikes: boolean | null
+      makesWheels: boolean | null
     }, ExtArgs["result"]["maker"]>
     composites: {}
   }
@@ -6546,6 +6626,14 @@ export namespace Prisma {
     readonly nameShort: FieldRef<"Maker", 'String'>
     readonly nameAbbreviation: FieldRef<"Maker", 'String'>
     readonly notes: FieldRef<"Maker", 'String'>
+    readonly webAddress: FieldRef<"Maker", 'String'>
+    readonly makesParts: FieldRef<"Maker", 'Boolean'>
+    readonly makesFrames: FieldRef<"Maker", 'Boolean'>
+    readonly makesTools: FieldRef<"Maker", 'Boolean'>
+    readonly makesAccessories: FieldRef<"Maker", 'Boolean'>
+    readonly makesGear: FieldRef<"Maker", 'Boolean'>
+    readonly makesBikes: FieldRef<"Maker", 'Boolean'>
+    readonly makesWheels: FieldRef<"Maker", 'Boolean'>
   }
     
 
@@ -13104,7 +13192,15 @@ export namespace Prisma {
     name: 'name',
     nameShort: 'nameShort',
     nameAbbreviation: 'nameAbbreviation',
-    notes: 'notes'
+    notes: 'notes',
+    webAddress: 'webAddress',
+    makesParts: 'makesParts',
+    makesFrames: 'makesFrames',
+    makesTools: 'makesTools',
+    makesAccessories: 'makesAccessories',
+    makesGear: 'makesGear',
+    makesBikes: 'makesBikes',
+    makesWheels: 'makesWheels'
   };
 
   export type MakerScalarFieldEnum = (typeof MakerScalarFieldEnum)[keyof typeof MakerScalarFieldEnum]
@@ -13225,6 +13321,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -13518,6 +13621,14 @@ export namespace Prisma {
     nameShort?: StringNullableFilter<"Maker"> | string | null
     nameAbbreviation?: StringNullableFilter<"Maker"> | string | null
     notes?: StringNullableFilter<"Maker"> | string | null
+    webAddress?: StringNullableFilter<"Maker"> | string | null
+    makesParts?: BoolNullableFilter<"Maker"> | boolean | null
+    makesFrames?: BoolNullableFilter<"Maker"> | boolean | null
+    makesTools?: BoolNullableFilter<"Maker"> | boolean | null
+    makesAccessories?: BoolNullableFilter<"Maker"> | boolean | null
+    makesGear?: BoolNullableFilter<"Maker"> | boolean | null
+    makesBikes?: BoolNullableFilter<"Maker"> | boolean | null
+    makesWheels?: BoolNullableFilter<"Maker"> | boolean | null
     parts?: PartListRelationFilter
   }
 
@@ -13527,6 +13638,14 @@ export namespace Prisma {
     nameShort?: SortOrderInput | SortOrder
     nameAbbreviation?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
+    webAddress?: SortOrderInput | SortOrder
+    makesParts?: SortOrderInput | SortOrder
+    makesFrames?: SortOrderInput | SortOrder
+    makesTools?: SortOrderInput | SortOrder
+    makesAccessories?: SortOrderInput | SortOrder
+    makesGear?: SortOrderInput | SortOrder
+    makesBikes?: SortOrderInput | SortOrder
+    makesWheels?: SortOrderInput | SortOrder
     parts?: PartOrderByRelationAggregateInput
   }
 
@@ -13539,6 +13658,14 @@ export namespace Prisma {
     nameShort?: StringNullableFilter<"Maker"> | string | null
     nameAbbreviation?: StringNullableFilter<"Maker"> | string | null
     notes?: StringNullableFilter<"Maker"> | string | null
+    webAddress?: StringNullableFilter<"Maker"> | string | null
+    makesParts?: BoolNullableFilter<"Maker"> | boolean | null
+    makesFrames?: BoolNullableFilter<"Maker"> | boolean | null
+    makesTools?: BoolNullableFilter<"Maker"> | boolean | null
+    makesAccessories?: BoolNullableFilter<"Maker"> | boolean | null
+    makesGear?: BoolNullableFilter<"Maker"> | boolean | null
+    makesBikes?: BoolNullableFilter<"Maker"> | boolean | null
+    makesWheels?: BoolNullableFilter<"Maker"> | boolean | null
     parts?: PartListRelationFilter
   }, "id">
 
@@ -13548,6 +13675,14 @@ export namespace Prisma {
     nameShort?: SortOrderInput | SortOrder
     nameAbbreviation?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
+    webAddress?: SortOrderInput | SortOrder
+    makesParts?: SortOrderInput | SortOrder
+    makesFrames?: SortOrderInput | SortOrder
+    makesTools?: SortOrderInput | SortOrder
+    makesAccessories?: SortOrderInput | SortOrder
+    makesGear?: SortOrderInput | SortOrder
+    makesBikes?: SortOrderInput | SortOrder
+    makesWheels?: SortOrderInput | SortOrder
     _count?: MakerCountOrderByAggregateInput
     _avg?: MakerAvgOrderByAggregateInput
     _max?: MakerMaxOrderByAggregateInput
@@ -13564,6 +13699,14 @@ export namespace Prisma {
     nameShort?: StringNullableWithAggregatesFilter<"Maker"> | string | null
     nameAbbreviation?: StringNullableWithAggregatesFilter<"Maker"> | string | null
     notes?: StringNullableWithAggregatesFilter<"Maker"> | string | null
+    webAddress?: StringNullableWithAggregatesFilter<"Maker"> | string | null
+    makesParts?: BoolNullableWithAggregatesFilter<"Maker"> | boolean | null
+    makesFrames?: BoolNullableWithAggregatesFilter<"Maker"> | boolean | null
+    makesTools?: BoolNullableWithAggregatesFilter<"Maker"> | boolean | null
+    makesAccessories?: BoolNullableWithAggregatesFilter<"Maker"> | boolean | null
+    makesGear?: BoolNullableWithAggregatesFilter<"Maker"> | boolean | null
+    makesBikes?: BoolNullableWithAggregatesFilter<"Maker"> | boolean | null
+    makesWheels?: BoolNullableWithAggregatesFilter<"Maker"> | boolean | null
   }
 
   export type PartWhereInput = {
@@ -14217,6 +14360,14 @@ export namespace Prisma {
     nameShort?: string | null
     nameAbbreviation?: string | null
     notes?: string | null
+    webAddress?: string | null
+    makesParts?: boolean | null
+    makesFrames?: boolean | null
+    makesTools?: boolean | null
+    makesAccessories?: boolean | null
+    makesGear?: boolean | null
+    makesBikes?: boolean | null
+    makesWheels?: boolean | null
     parts?: PartCreateNestedManyWithoutMakerInput
   }
 
@@ -14226,6 +14377,14 @@ export namespace Prisma {
     nameShort?: string | null
     nameAbbreviation?: string | null
     notes?: string | null
+    webAddress?: string | null
+    makesParts?: boolean | null
+    makesFrames?: boolean | null
+    makesTools?: boolean | null
+    makesAccessories?: boolean | null
+    makesGear?: boolean | null
+    makesBikes?: boolean | null
+    makesWheels?: boolean | null
     parts?: PartUncheckedCreateNestedManyWithoutMakerInput
   }
 
@@ -14234,6 +14393,14 @@ export namespace Prisma {
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    webAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    makesParts?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesFrames?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesTools?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesAccessories?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesGear?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesBikes?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesWheels?: NullableBoolFieldUpdateOperationsInput | boolean | null
     parts?: PartUpdateManyWithoutMakerNestedInput
   }
 
@@ -14243,6 +14410,14 @@ export namespace Prisma {
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    webAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    makesParts?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesFrames?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesTools?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesAccessories?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesGear?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesBikes?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesWheels?: NullableBoolFieldUpdateOperationsInput | boolean | null
     parts?: PartUncheckedUpdateManyWithoutMakerNestedInput
   }
 
@@ -14251,6 +14426,14 @@ export namespace Prisma {
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    webAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    makesParts?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesFrames?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesTools?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesAccessories?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesGear?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesBikes?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesWheels?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type MakerUncheckedUpdateManyInput = {
@@ -14259,6 +14442,14 @@ export namespace Prisma {
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    webAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    makesParts?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesFrames?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesTools?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesAccessories?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesGear?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesBikes?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesWheels?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type PartCreateInput = {
@@ -14977,6 +15168,11 @@ export namespace Prisma {
     partId?: SortOrder
   }
 
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type PartListRelationFilter = {
     every?: PartWhereInput
     some?: PartWhereInput
@@ -14993,6 +15189,14 @@ export namespace Prisma {
     nameShort?: SortOrder
     nameAbbreviation?: SortOrder
     notes?: SortOrder
+    webAddress?: SortOrder
+    makesParts?: SortOrder
+    makesFrames?: SortOrder
+    makesTools?: SortOrder
+    makesAccessories?: SortOrder
+    makesGear?: SortOrder
+    makesBikes?: SortOrder
+    makesWheels?: SortOrder
   }
 
   export type MakerAvgOrderByAggregateInput = {
@@ -15005,6 +15209,14 @@ export namespace Prisma {
     nameShort?: SortOrder
     nameAbbreviation?: SortOrder
     notes?: SortOrder
+    webAddress?: SortOrder
+    makesParts?: SortOrder
+    makesFrames?: SortOrder
+    makesTools?: SortOrder
+    makesAccessories?: SortOrder
+    makesGear?: SortOrder
+    makesBikes?: SortOrder
+    makesWheels?: SortOrder
   }
 
   export type MakerMinOrderByAggregateInput = {
@@ -15013,10 +15225,26 @@ export namespace Prisma {
     nameShort?: SortOrder
     nameAbbreviation?: SortOrder
     notes?: SortOrder
+    webAddress?: SortOrder
+    makesParts?: SortOrder
+    makesFrames?: SortOrder
+    makesTools?: SortOrder
+    makesAccessories?: SortOrder
+    makesGear?: SortOrder
+    makesBikes?: SortOrder
+    makesWheels?: SortOrder
   }
 
   export type MakerSumOrderByAggregateInput = {
     id?: SortOrder
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type MakerNullableRelationFilter = {
@@ -15614,6 +15842,10 @@ export namespace Prisma {
     create?: XOR<PartCreateWithoutMakerInput, PartUncheckedCreateWithoutMakerInput> | PartCreateWithoutMakerInput[] | PartUncheckedCreateWithoutMakerInput[]
     connectOrCreate?: PartCreateOrConnectWithoutMakerInput | PartCreateOrConnectWithoutMakerInput[]
     connect?: PartWhereUniqueInput | PartWhereUniqueInput[]
+  }
+
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
   }
 
   export type PartUpdateManyWithoutMakerNestedInput = {
@@ -16341,6 +16573,19 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -16945,6 +17190,14 @@ export namespace Prisma {
     nameShort?: string | null
     nameAbbreviation?: string | null
     notes?: string | null
+    webAddress?: string | null
+    makesParts?: boolean | null
+    makesFrames?: boolean | null
+    makesTools?: boolean | null
+    makesAccessories?: boolean | null
+    makesGear?: boolean | null
+    makesBikes?: boolean | null
+    makesWheels?: boolean | null
   }
 
   export type MakerUncheckedCreateWithoutPartsInput = {
@@ -16953,6 +17206,14 @@ export namespace Prisma {
     nameShort?: string | null
     nameAbbreviation?: string | null
     notes?: string | null
+    webAddress?: string | null
+    makesParts?: boolean | null
+    makesFrames?: boolean | null
+    makesTools?: boolean | null
+    makesAccessories?: boolean | null
+    makesGear?: boolean | null
+    makesBikes?: boolean | null
+    makesWheels?: boolean | null
   }
 
   export type MakerCreateOrConnectWithoutPartsInput = {
@@ -17094,6 +17355,14 @@ export namespace Prisma {
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    webAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    makesParts?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesFrames?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesTools?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesAccessories?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesGear?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesBikes?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesWheels?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type MakerUncheckedUpdateWithoutPartsInput = {
@@ -17102,6 +17371,14 @@ export namespace Prisma {
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
+    webAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    makesParts?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesFrames?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesTools?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesAccessories?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesGear?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesBikes?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    makesWheels?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type OwnershipUpsertWithWhereUniqueWithoutPartInput = {

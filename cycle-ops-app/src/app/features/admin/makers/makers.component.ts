@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiReqMakerService } from '../../../shared/services/api-request-services/maker-request-service/api-req-maker.service';
 import { MakerDto } from '../../../../../../data/models/maker.model';
 import { MatTableDataSource } from '@angular/material/table';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 interface CustomColumnNames {
   [key: string]: string;
@@ -11,28 +12,24 @@ interface CustomColumnNames {
   selector: 'app-makers',
   templateUrl: './makers.component.html',
   styleUrl: './makers.component.css',
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ]
 })
 export class MakersComponent {
-
-  // Add a flag to determine if the first row is in edit mode
-  isFirstRowEditing = false;
-
-  startEditingFirstRow() {
-    this.isFirstRowEditing = true;
-  }
-
-  saveFirstRow() {
-    // Perform any logic to save the changes made to the first row
-    this.isFirstRowEditing = false;
-  }
-
   private _makers: MakerDto[] = [];
-  displayedColumns: string[] = ['id', 'nameAbbreviation', 'nameShort', 'name', 'notes'];
+  displayedColumns: string[] = ['id', 'nameAbbreviation', 'nameShort', 'name', 'notes', 'webAddress'];
+  displayedExpandedColumns = [...this.displayedColumns, 'expand'];
   columnHeaders: CustomColumnNames = {
     id: 'Id',
     nameAbbreviation: 'Abbr.',
     nameShort: 'Short Name',
     name: 'Name',
+    webAddress: 'Website',
     notes: 'Notes'
   };
 

@@ -61,6 +61,14 @@ model Maker {
   nameShort String?
   nameAbbreviation String?
   notes String?
+  webAddress String?
+  makesParts Boolean?
+  makesFrames Boolean?
+  makesTools Boolean?
+  makesAccessories Boolean?
+  makesGear Boolean?
+  makesBikes Boolean?
+  makesWheels Boolean?
   parts Part[]
 }
 

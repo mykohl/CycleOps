@@ -146,7 +146,15 @@ exports.Prisma.MakerScalarFieldEnum = {
   name: 'name',
   nameShort: 'nameShort',
   nameAbbreviation: 'nameAbbreviation',
-  notes: 'notes'
+  notes: 'notes',
+  webAddress: 'webAddress',
+  makesParts: 'makesParts',
+  makesFrames: 'makesFrames',
+  makesTools: 'makesTools',
+  makesAccessories: 'makesAccessories',
+  makesGear: 'makesGear',
+  makesBikes: 'makesBikes',
+  makesWheels: 'makesWheels'
 };
 
 exports.Prisma.PartScalarFieldEnum = {

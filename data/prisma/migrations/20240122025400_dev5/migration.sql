@@ -1,0 +1,9 @@
+-- AlterTable
+ALTER TABLE "Maker" ADD COLUMN "makesAccessories" BOOLEAN;
+ALTER TABLE "Maker" ADD COLUMN "makesBikes" BOOLEAN;
+ALTER TABLE "Maker" ADD COLUMN "makesFrames" BOOLEAN;
+ALTER TABLE "Maker" ADD COLUMN "makesGear" BOOLEAN;
+ALTER TABLE "Maker" ADD COLUMN "makesParts" BOOLEAN;
+ALTER TABLE "Maker" ADD COLUMN "makesTools" BOOLEAN;
+ALTER TABLE "Maker" ADD COLUMN "makesWheels" BOOLEAN;
+ALTER TABLE "Maker" ADD COLUMN "webaddress" TEXT;
