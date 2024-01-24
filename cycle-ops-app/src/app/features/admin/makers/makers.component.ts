@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiReqMakerService } from '../../../shared/services/api-request-services/maker-request-service/api-req-maker.service';
-import { MakerDto } from '../../../../../../data/models/maker.model';
+import { ProducerDto } from '../../../../../../data/models/producer.model';
 import { MatTableDataSource } from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
@@ -21,7 +21,7 @@ interface CustomColumnNames {
   ]
 })
 export class MakersComponent {
-  private _makers: MakerDto[] = [];
+  private _makers: ProducerDto[] = [];
   displayedColumns: string[] = ['id', 'nameAbbreviation', 'nameShort', 'name', 'notes', 'webAddress'];
   displayedExpandedColumns = [...this.displayedColumns, 'expand'];
   columnHeaders: CustomColumnNames = {
@@ -41,8 +41,8 @@ export class MakersComponent {
     this.getAllMakers();
   }
 
-  get allMakers(): MatTableDataSource<MakerDto> {
-    return new MatTableDataSource<MakerDto>(this._makers);
+  get allMakers(): MatTableDataSource<ProducerDto> {
+    return new MatTableDataSource<ProducerDto>(this._makers);
   }
 
   private getAllMakers(): void {

@@ -1,12 +1,12 @@
 import { prisma } from "../server";
 import { Maker } from "@prisma/client";
-import { MakerDto } from "../data/models/maker.model"
+import { ProducerDto } from "../data/models/producer.model"
 import { List } from "lodash";
 
-export class MakerService {
+export class ProducerService {
 
-    public static async updateMaker(makerDto: MakerDto): Promise<Maker | null> {
-        const maker = await prisma.maker.upsert({
+    public static async updateMaker(makerDto: ProducerDto): Promise<Maker | null> {
+        const maker = await prisma.producer.upsert({
             where: { id: makerDto.id },
             update: makerDto,
             create: makerDto
@@ -16,25 +16,25 @@ export class MakerService {
     }
 
     public static async getAllMakers(): Promise<Maker[] | null> {
-        const makersResult = await prisma.maker.findMany();
+        const makersResult = await prisma.producer.findMany();
         return makersResult;
     }
 
-    public static async findMaker(makerKey: number | string | MakerDto): Promise<Maker | null> {
+    public static async findMaker(makerKey: number | string | ProducerDto): Promise<Maker | null> {
         if(typeof makerKey === "number") return this.findMakerById(makerKey);
         if (typeof makerKey === "string") return this.findMakerByString(makerKey);
         return this.findMakerByDto(makerKey);
     }
 
     private static async findMakerById(makerKey: number): Promise<Maker | null> {
-        const makerLookup = await prisma.maker.findFirst({ where: { id: makerKey } });
+        const makerLookup = await prisma.producer.findFirst({ where: { id: makerKey } });
         return makerLookup;
     }
 
     private static async findMakerByString(makerKey: string): Promise<Maker | null> {
         const makerId = parseInt(makerKey);
         if(!isNaN(makerId)) return this.findMakerById(makerId);
-        const makerLookup = await prisma.maker.findFirst({
+        const makerLookup = await prisma.producer.findFirst({
             where: { OR: [
                 { name: makerKey as string }, 
                 { nameShort: makerKey as string }, 
@@ -44,14 +44,14 @@ export class MakerService {
         return makerLookup;
     }
 
-    private static async findMakerByDto(makerKey: MakerDto): Promise<Maker | null> {
-        const makerLookup = await prisma.maker.findFirst({
+    private static async findMakerByDto(producerKey: ProducerDto): Promise<Maker | null> {
+        const makerLookup = await prisma.producer.findFirst({
             where: { 
                 OR: [
-                    { id: makerKey.id },
-                    { name: makerKey.name },
-                    { nameShort: makerKey.nameShort },
-                    { nameAbbreviation: makerKey.nameAbbreviation }
+                    { id: producerKey.id },
+                    { name: producerKey.name },
+                    { nameShort: producerKey.nameShort },
+                    { nameAbbreviation: producerKey.nameAbbreviation }
                 ]
             }
         });

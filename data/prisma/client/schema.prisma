@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url = env("DATABASE_URL")
 }
 
@@ -18,133 +18,93 @@ model Cyclist {
   roles String?
   registered DateTime?
   lastLogIn DateTime?
-  owns Ownership[]
+  claims Claim[]
 }
 
-model Ownership {
+model Claim {
   id Int @id @default(autoincrement())
+  claimType String?
   acquired DateTime?
   condition String?
   notes String?
   owner Cyclist? @relation(fields: [ownerId], references: [id])
   ownerId Int?
-  bicycle Bicycle? @relation(fields: [bicycleId], references: [id])
-  bicycleId Int?
-  wheel Wheel? @relation(fields: [wheelId], references: [id])
-  wheelId Int?
-  wheelSet Wheelset? @relation(fields: [wheelSetId], references: [id])
-  wheelSetId Int?
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int?
+  item Item? @relation(fields: [itemId], references: [id])
+  itemId Int?
 }
 
-model Bicycle {
-  id Int @id @default(autoincrement())
-  notes String?
-  parts BicyclePart[]
-  owners Ownership[]
-}
-
-model BicyclePart {
-  id Int @id @default(autoincrement())
-  quantity Int?
-  notes String?
-  bicycle Bicycle? @relation(fields: [bicycleId], references: [id])
-  bicycleId Int?
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int?
-}
-
-model Maker {
+model Producer {
   id Int @id @default(autoincrement())
   name String?
   nameShort String?
   nameAbbreviation String?
   notes String?
   webAddress String?
-  makesParts Boolean?
-  makesFrames Boolean?
-  makesTools Boolean?
-  makesAccessories Boolean?
-  makesGear Boolean?
-  makesBikes Boolean?
-  makesWheels Boolean?
-  parts Part[]
+  labelMemberships BrandMember[]
 }
 
-model Part {
+model BrandMember {
   id Int @id @default(autoincrement())
-  categories String?
-  type String?
-  designationCode String?
-  name String?
-  notes String?
-  maker Maker? @relation(fields: [makerId], references: [id])
-  makerId Int?
-  owners Ownership[]
-  bicycles BicyclePart[]
-  hub Hub?
-  rim Rim?
-  cogset Cogset?
+  brandLabel BrandLabel? @relation(fields: [brandLabelId], references: [id])
+  brandLabelId Int?
+  producer Producer? @relation(fields: [producerId], references: [id])
+  producerId Int?
 }
 
-model Hub {
-  id Int @id @default(autoincrement())
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int? @unique
-  position String?
-  spokeCount Int?
-  overLocknutDistance Float?
-  flangeDiameterLeft Float?
-  flangeDiameterRight Float?
-  flangeLeftToCenter Float?
-  flangeRightToCenter Float?
-  sflangeLeftToOLN Float?
-  flangeRightToOLN Float?
-  spokeHoleDiameter Float?
-  wheels Wheel[]
-}
-
-model Rim {
-  id Int @id @default(autoincrement())
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int? @unique
-  specEffectiveDiameter Float?
-  specWidthInternal Float?
-  specWidthExternal Float?
-  specSectionHeight Float?
-  wheels Wheel[]
-}
-
-model Cogset {
+model BrandLabel {
   id Int @id @default(autoincrement())
   type String?
-  cogs String?
-  notes String?
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int? @unique
+  name String?
+  labelMemberships BrandMember[]
+  items Item[]
 }
 
-model Wheel {
+model Item {
   id Int @id @default(autoincrement())
+  type String?
   name String?
   notes String?
-  hub Hub? @relation(fields: [hubId], references: [id])
-  hubId Int?
-  rim Rim? @relation(fields: [rimId], references: [id])
-  rimId Int?
-  wheelsFoward Wheelset[] @relation("wheelFoward")
-  wheelsBack Wheelset[] @relation("wheelBack")
-  owners Ownership[]
+  weight Decimal?
+  weightUnit String?
+  brandLabel BrandLabel? @relation(fields: [brandLabelId], references: [id])
+  brandLabelId Int?
+  properties Property[]
+  inClaims Claim[]
+  hasAssemblyItems Assembly[] @relation(name: "isAssembly")
+  inAssemblies Assembly[] @relation(name: "inAssembly")
 }
 
-model Wheelset {
+model ItemType {
   id Int @id @default(autoincrement())
+  name String @unique
+  group String?
+  properties PropertyDefinition[]
+}
+
+model Assembly {
+  id Int @id @default(autoincrement())
+  assemblyItem Item? @relation(name: "isAssembly", fields: [assemblyItemId], references: [id])
+  assemblyItemId Int?
+  item Item? @relation(name: "inAssembly", fields: [itemId], references: [id])
+  itemId Int?
+}
+
+model PropertyDefinition {
+  id Int @id @default(autoincrement())
+  order Int?
+  group String?
   name String?
-  notes String?
-  wheelFoward Wheel? @relation("wheelFoward", fields: [wheelFowardId], references: [id])
-  wheelFowardId Int?
-  wheelBack Wheel? @relation("wheelBack", fields: [wheelBackId], references: [id])
-  wheelBackId Int?
-  owners Ownership[]
+  variation String?
+  itemProperties Property[]
+  itemType ItemType? @relation(fields: [itemTypeId], references: [id])
+  itemTypeId Int?
+}
+
+model Property {
+  id Int @id @default(autoincrement())
+  item Item? @relation(fields: [itemId], references: [id])
+  itemId Int? @unique
+  type PropertyDefinition? @relation(fields: [typeId], references: [id])
+  typeId Int?
+  value String?
 }

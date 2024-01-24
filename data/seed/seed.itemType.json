@@ -1,0 +1,127 @@
+{"ItemTypes": [
+    {
+        "name": "frame",
+        "properties":
+        [
+            {
+                "group": "utility characteristics",
+                "name": "intended use"
+            },
+            {
+                "group": "utility characteristics",
+                "name": "load capability"
+            },
+            {
+                "group": "utility characteristics",
+                "name": "terrain capability"
+            },
+            {
+                "group": "construction",
+                "name": "construction type"
+            },
+            {
+                "group": "construction",
+                "name": "construction material"
+            },
+            {
+                "group": "dimensions",
+                "name": "reach"
+            },
+            {
+                "group": "dimensions",
+                "name": "stack"
+            },
+            {
+                "group": "dimensions",
+                "name": "top tube length, actual"
+            },
+            {
+                "group": "dimensions",
+                "name": "top tube length, effective"
+            },
+            {
+                "group": "dimensions",
+                "name": "seat tube length"
+            },
+            {
+                "group": "dimensions",
+                "name": "seat tube extension"
+            },
+            {
+                "group": "dimensions",
+                "name": "seat tube angle"
+            },
+            {
+                "group": "dimensions",
+                "name": "head tube height"
+            },
+            {
+                "group": "integration",
+                "name": "head tube inner diameter"
+            },
+            {
+                "group": "integration",
+                "name": "headset mounting"
+            },            
+            {
+                "group": "dimensions",
+                "name": "head tube extension"
+            },
+            {
+                "group": "dimensions",
+                "name": "head tube angle"
+            },
+            {
+                "group": "dimensions",
+                "name": "chain stay length"
+            },
+            {
+                "group": "dimensions",
+                "name": "bottom bracket width"
+            },
+            {
+                "group": "integration",
+                "name": "seat tube inner diameter"
+            },
+            {
+                "group": "integration",
+                "name": "max tire size"
+            },              
+            {
+                "group": "integration",
+                "name": "seatpost binding"
+            },            
+            {
+                "group": "integration",
+                "name": "bottom bracket mounting"
+            },
+            {
+                "group": "dimensions",
+                "name": "bottom bracket drop"
+            },
+            {
+                "group": "integration",
+                "name": "dropout spacing"
+            },
+            {
+                "group": "integration",
+                "name": "axle type"
+            },
+            {
+                "group": "integration",
+                "name": "brake mounting"
+            },
+            {
+                "group": "integration",
+                "name": "brake actuation routing"
+            },
+            {
+                "group": "integration",
+                "name": "shift actuation routing"
+            }
+        ]
+    },
+    {
+        "name": "fork"
+    }
+]}

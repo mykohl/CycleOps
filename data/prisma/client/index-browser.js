@@ -101,6 +101,9 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -116,108 +119,83 @@ exports.Prisma.CyclistScalarFieldEnum = {
   lastLogIn: 'lastLogIn'
 };
 
-exports.Prisma.OwnershipScalarFieldEnum = {
+exports.Prisma.ClaimScalarFieldEnum = {
   id: 'id',
+  claimType: 'claimType',
   acquired: 'acquired',
   condition: 'condition',
   notes: 'notes',
   ownerId: 'ownerId',
-  bicycleId: 'bicycleId',
-  wheelId: 'wheelId',
-  wheelSetId: 'wheelSetId',
-  partId: 'partId'
+  itemId: 'itemId'
 };
 
-exports.Prisma.BicycleScalarFieldEnum = {
-  id: 'id',
-  notes: 'notes'
-};
-
-exports.Prisma.BicyclePartScalarFieldEnum = {
-  id: 'id',
-  quantity: 'quantity',
-  notes: 'notes',
-  bicycleId: 'bicycleId',
-  partId: 'partId'
-};
-
-exports.Prisma.MakerScalarFieldEnum = {
+exports.Prisma.ProducerScalarFieldEnum = {
   id: 'id',
   name: 'name',
   nameShort: 'nameShort',
   nameAbbreviation: 'nameAbbreviation',
   notes: 'notes',
-  webAddress: 'webAddress',
-  makesParts: 'makesParts',
-  makesFrames: 'makesFrames',
-  makesTools: 'makesTools',
-  makesAccessories: 'makesAccessories',
-  makesGear: 'makesGear',
-  makesBikes: 'makesBikes',
-  makesWheels: 'makesWheels'
+  webAddress: 'webAddress'
 };
 
-exports.Prisma.PartScalarFieldEnum = {
+exports.Prisma.BrandMemberScalarFieldEnum = {
   id: 'id',
-  categories: 'categories',
-  type: 'type',
-  designationCode: 'designationCode',
-  name: 'name',
-  notes: 'notes',
-  makerId: 'makerId'
+  brandLabelId: 'brandLabelId',
+  producerId: 'producerId'
 };
 
-exports.Prisma.HubScalarFieldEnum = {
-  id: 'id',
-  partId: 'partId',
-  position: 'position',
-  spokeCount: 'spokeCount',
-  overLocknutDistance: 'overLocknutDistance',
-  flangeDiameterLeft: 'flangeDiameterLeft',
-  flangeDiameterRight: 'flangeDiameterRight',
-  flangeLeftToCenter: 'flangeLeftToCenter',
-  flangeRightToCenter: 'flangeRightToCenter',
-  sflangeLeftToOLN: 'sflangeLeftToOLN',
-  flangeRightToOLN: 'flangeRightToOLN',
-  spokeHoleDiameter: 'spokeHoleDiameter'
-};
-
-exports.Prisma.RimScalarFieldEnum = {
-  id: 'id',
-  partId: 'partId',
-  specEffectiveDiameter: 'specEffectiveDiameter',
-  specWidthInternal: 'specWidthInternal',
-  specWidthExternal: 'specWidthExternal',
-  specSectionHeight: 'specSectionHeight'
-};
-
-exports.Prisma.CogsetScalarFieldEnum = {
+exports.Prisma.BrandLabelScalarFieldEnum = {
   id: 'id',
   type: 'type',
-  cogs: 'cogs',
-  notes: 'notes',
-  partId: 'partId'
+  name: 'name'
 };
 
-exports.Prisma.WheelScalarFieldEnum = {
+exports.Prisma.ItemScalarFieldEnum = {
   id: 'id',
+  type: 'type',
   name: 'name',
   notes: 'notes',
-  hubId: 'hubId',
-  rimId: 'rimId'
+  weight: 'weight',
+  weightUnit: 'weightUnit',
+  brandLabelId: 'brandLabelId'
 };
 
-exports.Prisma.WheelsetScalarFieldEnum = {
+exports.Prisma.ItemTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  notes: 'notes',
-  wheelFowardId: 'wheelFowardId',
-  wheelBackId: 'wheelBackId'
+  group: 'group'
+};
+
+exports.Prisma.AssemblyScalarFieldEnum = {
+  id: 'id',
+  assemblyItemId: 'assemblyItemId',
+  itemId: 'itemId'
+};
+
+exports.Prisma.PropertyDefinitionScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  group: 'group',
+  name: 'name',
+  variation: 'variation',
+  itemTypeId: 'itemTypeId'
+};
+
+exports.Prisma.PropertyScalarFieldEnum = {
+  id: 'id',
+  itemId: 'itemId',
+  typeId: 'typeId',
+  value: 'value'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
@@ -228,16 +206,15 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   Cyclist: 'Cyclist',
-  Ownership: 'Ownership',
-  Bicycle: 'Bicycle',
-  BicyclePart: 'BicyclePart',
-  Maker: 'Maker',
-  Part: 'Part',
-  Hub: 'Hub',
-  Rim: 'Rim',
-  Cogset: 'Cogset',
-  Wheel: 'Wheel',
-  Wheelset: 'Wheelset'
+  Claim: 'Claim',
+  Producer: 'Producer',
+  BrandMember: 'BrandMember',
+  BrandLabel: 'BrandLabel',
+  Item: 'Item',
+  ItemType: 'ItemType',
+  Assembly: 'Assembly',
+  PropertyDefinition: 'PropertyDefinition',
+  Property: 'Property'
 };
 
 /**
