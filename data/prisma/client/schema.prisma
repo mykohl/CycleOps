@@ -59,6 +59,31 @@ model BrandLabel {
   items Item[]
 }
 
+model ItemType {
+  id Int @id @default(autoincrement())
+  name String @unique
+  propertyGroups PropertyGroup[]
+}
+
+model PropertyGroup {
+  id Int @id @default(autoincrement())
+  order Int?
+  name String @unique
+  itemType ItemType? @relation(fields: [itemTypeId], references: [id])
+  itemTypeId Int?
+  properties Property[]
+}
+
+model Property {
+  id Int @id @default(autoincrement())
+  order Int?
+  name String?
+  variation String?
+  group PropertyGroup? @relation(fields: [groupId], references: [id])
+  groupId Int?
+  itemProperties ItemProperty[]
+}
+
 model Item {
   id Int @id @default(autoincrement())
   type String?
@@ -68,17 +93,19 @@ model Item {
   weightUnit String?
   brandLabel BrandLabel? @relation(fields: [brandLabelId], references: [id])
   brandLabelId Int?
-  properties Property[]
+  properties ItemProperty[]
   inClaims Claim[]
   hasAssemblyItems Assembly[] @relation(name: "isAssembly")
   inAssemblies Assembly[] @relation(name: "inAssembly")
 }
 
-model ItemType {
+model ItemProperty {
   id Int @id @default(autoincrement())
-  name String @unique
-  group String?
-  properties PropertyDefinition[]
+  item Item? @relation(fields: [itemId], references: [id])
+  itemId Int? @unique
+  property Property? @relation(fields: [propertyId], references: [id])
+  propertyId Int?
+  value String?
 }
 
 model Assembly {
@@ -87,24 +114,4 @@ model Assembly {
   assemblyItemId Int?
   item Item? @relation(name: "inAssembly", fields: [itemId], references: [id])
   itemId Int?
-}
-
-model PropertyDefinition {
-  id Int @id @default(autoincrement())
-  order Int?
-  group String?
-  name String?
-  variation String?
-  itemProperties Property[]
-  itemType ItemType? @relation(fields: [itemTypeId], references: [id])
-  itemTypeId Int?
-}
-
-model Property {
-  id Int @id @default(autoincrement())
-  item Item? @relation(fields: [itemId], references: [id])
-  itemId Int? @unique
-  type PropertyDefinition? @relation(fields: [typeId], references: [id])
-  typeId Int?
-  value String?
 }

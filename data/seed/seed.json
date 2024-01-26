@@ -1,0 +1,480 @@
+{
+    "propertyGroups":
+    [
+        {
+            "order": 1,
+            "name": "general classification"
+        },
+        {
+            "order": 2,
+            "name": "construction"
+        },
+        {
+            "order": 3,
+            "name": "dimensions"
+        },
+        {
+            "order": 4,
+            "name": "utility"
+        },
+        {
+            "order": 5,
+            "name": "fork integration"
+        },
+        {
+            "order": 6,
+            "name": "wheel integration"
+        },
+        {
+            "order": 7,
+            "name": "brake integration"
+        },
+        {
+            "order": 8,
+            "name": "drivetrain integration"
+        },
+        {
+            "order": 9,
+            "name": "fitting integration"
+        },
+        {
+            "order": 10,
+            "name": "control integration"
+        },
+        {
+            "order": 11,
+            "name": "suspension"
+        }
+    ],
+    "partClasses":
+    [
+        {
+            "order": 1,
+            "name": "frameset"
+        },
+        {
+            "order": 2,
+            "name": "wheel"
+        },
+        {
+            "order": 3,
+            "name": "fitting"
+        },
+        {
+            "order": 4,
+            "name": "control"
+        },
+        {
+            "order": 5,
+            "name": "drivetrain"
+        },
+        {
+            "order": 6,
+            "name": "utility"
+        }
+    ],
+    "propertyTypes":
+    [
+        {
+            "order": 100,
+            "name": "intended use",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["general classification"]
+        },
+        {
+            "order": 200,
+            "name" : "load capability",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["general classification"]
+        },
+        {
+            "order": 300,
+            "name": "terrain capability",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["general classification"]
+        },
+        {
+            "order": 400,
+            "name": "material",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["construction"]
+        },
+        {
+            "order": 500,
+            "name": "method",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["construction"]
+        },
+        {
+            "order": 600,
+            "name": "seat tube length",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 700,
+            "name": "seat tube extension",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 800,
+            "name": "top tube length, actual",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 900,
+            "name": "top tube length, effective",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1000,
+            "name": "head tube angle",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "angle",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1100,
+            "name": "seat tube angle",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "angle",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1200,
+            "name": "reach",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1300,
+            "name": "stack",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1400,
+            "name": "head tube height",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1500,
+            "name": "head tube extension",
+            "valueDataType": "decimla",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1600,
+            "name": "chain stay length",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1700,
+            "name": "bottom bracket drop",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1710,
+            "name": "axle to crown distance",
+            "valueDataType": "deciaml",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1720,
+            "name": "rake",
+            "valueDataType": "deciaml",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1730,
+            "name": "crown width",
+            "valueDataType": "deciaml",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions"]
+        },
+        {
+            "order": 1740,
+            "name": "steer tube outer diameter",
+            "valueDataType": "deciaml",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions", "fork integration"]
+        },
+        {
+            "order": 1750,
+            "name": "headset fork interface",
+            "valueDataType": "deciaml",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["fork integration"]
+        },        
+        {
+            "order": 1800,
+            "name": "head tube inner diameter, upper",
+            "valueDataType": "deciaml",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["fork integration", "dimensions"]
+        },
+        {
+            "order": 1900,
+            "name": "head tube inner diameter, lower",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["fork integration", "dimensions"]
+        },
+        {
+            "order": 1910,
+            "name": "headset frame interface",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["fork integration"]
+        },        
+        {
+            "order": 2000,
+            "name": "intended wheel size",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["wheel integration"]
+        },
+        {
+            "order": 2100,
+            "name": "maximum tire clearance",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["wheel integration", "fitting integration"]
+        },
+        {
+            "order": 2200,
+            "name": "axle interface",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["wheel integration"]
+        },
+        {
+            "order": 2300,
+            "name": "axle width",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["wheel integration"]
+        },
+        {
+            "order": 2400,
+            "name": "brake interface",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["brake integration"]         
+        },
+        {
+            "order": 2500,
+            "name": "brake actuation routing",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["brake integration"]
+        },
+        {
+            "order": 2600,
+            "name": "bottom bracket width",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["drivetrain integration", "fitting integration"]
+        },
+        {
+            "order": 2700,
+            "name": "bottom bracket interface",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["drivetrain integration", "fitting integration"]
+        },
+        {
+            "order": 2800,
+            "name": "front derailleur interface",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["drivetrain integration"]
+        },
+        {
+            "order": 3000,
+            "name": "rear derailleur interface",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["drivetrain integration"]
+        },
+        {
+            "order": 3100,
+            "name": "seat tube outer diameter",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions", "drivetrain integration"]
+        },
+        {
+            "order": 3200,
+            "name": "shift actuation routing",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["control integration", "drivetrain integration"]
+        },
+        {
+            "order": 3300,
+            "name": "shift control interface",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["control integration", "drivetrain integration"]
+        },        
+        {
+            "order": 3400,
+            "name": "seat tube inner diameter",
+            "valueDataType": "decimal",
+            "valueDataHint": null,
+            "valueDataTypeModifier": "distance",
+            "propertyGroups": ["dimensions", "fitting integration"]
+        },
+        {
+            "order": 3500,
+            "name": "saddle/seatpost interface",
+            "valueDataType": "text",
+            "valueDataHint": null,
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["fitting integration"]
+        },
+        {
+            "order": 3600,
+            "name": "rack and baggage accomodation",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["utility"]
+        },
+        {
+            "order": 3700,
+            "name": "fender accomodation",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["utility"]
+        },
+        {
+            "order": 3800,
+            "name": "lighting accomodation",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null
+        },
+        {
+            "order": 3900,
+            "name": "additional accessory accomodation",
+            "valueDataType": "text",
+            "valueDataHint": "",
+            "valueDataTypeModifier": null,
+            "propertyGroups": ["utility"]
+        }
+    ],
+    "partTypes":
+    [
+        {
+            "order": 100,
+            "name": "frame",
+            "propertyTypes": 
+            [
+                "intended use", "load capability", "terrain capability", 
+                "material", "method",
+                "seat tube length", "seat tube extension", "top tube length, actual", "top tube length, effective",
+                    "head tube angle", "seat tube angle", "reach", "stack", "head tube height", "head tube extension",
+                    "chain stay length", "bottom bracket drop",
+                "head tube inner diameter, upper", "head tube inner diameter, lower", "headset frame interface",
+                "intended wheel size", "maximum tire clearance", "axle interface", "axle width",
+                "brake interface", "brake actuation routing",
+                "bottom bracket width", "bottom bracket interface", "front derailleur interface",
+                    "rear derailleur interface", "seat tube outer diameter", "shift actuation routing",
+                    "shift control interface",
+                "seat tube inner diameter", "saddle/seatpost interface",
+                "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
+                    "additional accessory accomodation"
+            ],
+            "partClasses": ["frameset"]
+        },
+        {
+            "order": 200,
+            "name": "fork",
+            "propertyTypes":
+            [
+                "intended use", "load capability", "terrain capability", 
+                "material", "method",
+                "axle to crown distance", "rake", "crown width", "steer tube outer diameter", "headset fork interface",
+                "intended wheel size", "maximum tire clearance", "axle interface", "axle width",
+                "brake interface", "brake actuation routing",
+                "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
+                    "additional accessory accomodation"                
+            ],
+            "partClasses": ["frameset"]
+        },
+        {
+            "order": 300,
+            "name": "rim",
+            "propertyTypes": 
+            [
+                "intended use", "load capability", "terrain capability", 
+                "material", "method"                
+            ],
+            "partClasses": ["wheel"]
+        }
+    ]
+}

@@ -150,6 +150,26 @@ exports.Prisma.BrandLabelScalarFieldEnum = {
   name: 'name'
 };
 
+exports.Prisma.ItemTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PropertyGroupScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name',
+  itemTypeId: 'itemTypeId'
+};
+
+exports.Prisma.PropertyScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name',
+  variation: 'variation',
+  groupId: 'groupId'
+};
+
 exports.Prisma.ItemScalarFieldEnum = {
   id: 'id',
   type: 'type',
@@ -160,32 +180,17 @@ exports.Prisma.ItemScalarFieldEnum = {
   brandLabelId: 'brandLabelId'
 };
 
-exports.Prisma.ItemTypeScalarFieldEnum = {
+exports.Prisma.ItemPropertyScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  group: 'group'
+  itemId: 'itemId',
+  propertyId: 'propertyId',
+  value: 'value'
 };
 
 exports.Prisma.AssemblyScalarFieldEnum = {
   id: 'id',
   assemblyItemId: 'assemblyItemId',
   itemId: 'itemId'
-};
-
-exports.Prisma.PropertyDefinitionScalarFieldEnum = {
-  id: 'id',
-  order: 'order',
-  group: 'group',
-  name: 'name',
-  variation: 'variation',
-  itemTypeId: 'itemTypeId'
-};
-
-exports.Prisma.PropertyScalarFieldEnum = {
-  id: 'id',
-  itemId: 'itemId',
-  typeId: 'typeId',
-  value: 'value'
 };
 
 exports.Prisma.SortOrder = {
@@ -210,11 +215,12 @@ exports.Prisma.ModelName = {
   Producer: 'Producer',
   BrandMember: 'BrandMember',
   BrandLabel: 'BrandLabel',
-  Item: 'Item',
   ItemType: 'ItemType',
-  Assembly: 'Assembly',
-  PropertyDefinition: 'PropertyDefinition',
-  Property: 'Property'
+  PropertyGroup: 'PropertyGroup',
+  Property: 'Property',
+  Item: 'Item',
+  ItemProperty: 'ItemProperty',
+  Assembly: 'Assembly'
 };
 
 /**

@@ -1,45 +1,47 @@
 import { PrismaClient } from "../prisma/client";
-import { ItemTypeDto, PropertyDefinitionDto } from "../models/item.model";
-import * as itemTypeData from './seed.itemType.json';
+import { ItemTypeDto, PropertyDto } from "../models/item.model";
+import * as itemTypeData from './seed.json';
+
 const prisma = new PrismaClient();
 
 async function main() {
+  await seedItemTypes();
+}
 
-    console.log(itemTypeData);
-
-    const itemTypeDataArray = itemTypeData.ItemTypes as ItemTypeDto[];
-
-    console.log(itemTypeDataArray);
-
-
-    for (const item of itemTypeDataArray) {
-      const itemTypeRecord = await prisma.itemType.create({
-        data: {
-          name: item.name,
-        },
-      });
-  
-      const itemTypeId = itemTypeRecord.id;
-  
-      const propertiesData: PropertyDefinitionDto[] = (item.properties || []).map(property => ({
-        itemTypeId: itemTypeId,
-        order: null,
-        variation: null,
-        name: property.name,
-        group: property.group,
-      }));
-  
-      await prisma.property.createMany({
-        data: propertiesData,
-      });
-    }
+async function truncate(tables: string[]) {
+  for(const table of tables) {
+    await prisma.$queryRawUnsafe(`TRUNCATE public."${table}" RESTART IDENTITY CASCADE;`);
   }
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+}
+
+async function seedItemTypes() {
+  await truncate(["PropertyDefinition", "ItemType"]);
+
+  for (const item of itemTypeData.ItemTypes as ItemTypeDto[]) {
+    const itemTypeRecord = await prisma.itemType.create({
+      data: {
+        name: item.name,
+      },
+    });
+
+    const propertyDefinitionData: PropertyDto[] = (item.properties || []).map(property => ({
+      itemTypeId: itemTypeRecord.id,
+      order: null,
+      variation: null,
+      name: property.name,
+      group: property.group,
+    }));
+
+    await prisma.propertyDefinition.createMany({
+      data: propertyDefinitionData,
+    });
+  }
+}
+
+main().then(async () => {
+  await prisma.$disconnect()
+}).catch(async (e) => {
+  console.error(e)
+  await prisma.$disconnect()
+  process.exit(1)
+})
