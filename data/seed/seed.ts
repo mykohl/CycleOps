@@ -1,13 +1,5 @@
 import { PrismaClient } from "../prisma/client";
-import { 
-  lookupPartClass,
-  lookupPropertyGroup 
-} from './seed.lookup';
-import { 
-  addPartClassMember, 
-  addPropertyGroupMember,
-  addPropertyTypeMember
-} from './seed.add'
+import { ClassificationService } from '../../services/classification.service';
 import { 
   PartClassDto,
   PropertyGroupDto
@@ -23,10 +15,11 @@ import * as partTypeData from './seed.partTypes.json';
 
 async function main(prisma: PrismaClient) {
   try {
-    await seedPartClass(prisma, partClassData.partClasses as PartClassDto[]);
-    await seedPropertyGroup(prisma, propertyGroupData.propertyGroups as PropertyGroupDto[]);
-    await seedPropertyType(prisma, propertyTypeData.propertyTypes as propertyTypeSeedModel[]);
-    await seedPartType(prisma, partTypeData.partTypes as partTypeSeedModel[]);
+    const classificationService = new ClassificationService(prisma);
+    await seedPartClass(classificationService, partClassData.partClasses as PartClassDto[]);
+    await seedPropertyGroup(classificationService, propertyGroupData.propertyGroups as PropertyGroupDto[]);
+    await seedPropertyType(classificationService, propertyTypeData.propertyTypes as propertyTypeSeedModel[]);
+    await seedPartType(classificationService, partTypeData.partTypes as partTypeSeedModel[]);
   } catch(e) {
     console.error(e);
     process.exit(1);
@@ -35,96 +28,80 @@ async function main(prisma: PrismaClient) {
   }
 }
 
-async function seedPartClass(prisma: PrismaClient, data: PartClassDto[]) {
-  await truncate(prisma, "PartClass");
+async function seedPartClass(service: ClassificationService, data: PartClassDto[]) {
+  await truncate(service.prisma, "PartClass");
 
   for (const partClass of data) {
-    const record = await prisma.partClass.create({
-      data: {
-        order: partClass.order,
-        name: partClass.name
-      }
-    });
+    if(partClass.order && partClass.name) {
+      await service.addPartClass(partClass.order, partClass.name);
+    }
   }
 }
 
-async function seedPropertyGroup(prisma: PrismaClient, data: PropertyGroupDto[]) {
-  await truncate(prisma, "PropertyGroup");
+async function seedPropertyGroup(service: ClassificationService, data: PropertyGroupDto[]) {
+  await truncate(service.prisma, "PropertyGroup");
 
   for (const propertyGroup of data) {
-    const record = await prisma.propertyGroup.create({
-      data: {
-        order: propertyGroup.order,
-        name: propertyGroup.name,
-        description: propertyGroup.description
-      }
-    });
+    if(propertyGroup.order && propertyGroup.name) {
+      service.addPropertyGroup(propertyGroup.order, propertyGroup.name, propertyGroup.description);
+    }
   }  
 }
 
-async function seedPropertyType(prisma: PrismaClient, data: propertyTypeSeedModel[]) {
-  await truncate(prisma, "PropertyGroupMembership");
-  await truncate(prisma, "PropertyType");
+async function seedPropertyType(service: ClassificationService, data: propertyTypeSeedModel[]) {
+  await truncate(service.prisma, "PropertyGroupMembership");
+  await truncate(service.prisma, "PropertyType");
 
   for (const propertyType of data) {
-    const record = await prisma.propertyType.create({
-      data: {
-        order: propertyType.order,
-        name: propertyType.name,
-        valueDataType: propertyType.valueDataType
-      }
-    });
-
-    if(propertyType.propertyGroupPrimary) {
-      const groupIdPrimary = await lookupPropertyGroup(prisma, propertyType.propertyGroupPrimary);
-      if(groupIdPrimary) {
-        await addPropertyGroupMember(prisma, record.id, groupIdPrimary, true);
-      }
-    }
-
-    if(propertyType.propertyGroupsOther) {
-      for (const group of propertyType.propertyGroupsOther) {
-        const groupIdOther = await lookupPropertyGroup(prisma, group);
-        if(groupIdOther) {
-          await addPropertyGroupMember(prisma, record.id, groupIdOther, false);
+    if(propertyType.order && propertyType.name) {
+      const record = await service.addPropertyType(propertyType.order, propertyType.name, propertyType.valueDataType)
+    
+      if(record && propertyType.propertyGroupPrimary) {
+        const groupIdPrimary = await service.lookupPropertyGroup(propertyType.propertyGroupPrimary);
+        if(groupIdPrimary) {
+          await service.addPropertyGroupMember(record.id, groupIdPrimary.id, true);
         }
       }
+  
+      if(record && propertyType.propertyGroupsOther) {
+        for (const group of propertyType.propertyGroupsOther) {
+          const groupIdOther = await service.lookupPropertyGroup(group);
+          if(groupIdOther) {
+            await service.addPropertyGroupMember(record.id, groupIdOther.id, false);
+          }
+        }
+      }   
     }
   }
 }
 
-async function seedPartType(prisma: PrismaClient, data: partTypeSeedModel[]) {
-  await truncate(prisma, "PartType");
+async function seedPartType(service: ClassificationService, data: partTypeSeedModel[]) {
+  await truncate(service.prisma, "PartType");
 
   for (const partType of data) {
-    const record = await prisma.partType.create({
-      data: {
-        order: partType.order,
-        name: partType.name
-      }
-    });
+    const record = await service.addPartType(partType.order, partType.name);
 
-    if(partType.partClassPrimary) {
-      const partClassPrimaryId = await lookupPartClass(prisma, partType.partClassPrimary);
-      if(partClassPrimaryId) {
-        await addPartClassMember(prisma, record.id, partClassPrimaryId, true);
+    if(record && partType.partClassPrimary) {
+      const partClassPrimary = await service.lookupPartClass(partType.partClassPrimary);
+      if(partClassPrimary) {
+        await service.addPartClassMember(record.id, partClassPrimary.id, true);
       }
     }
 
-    if(partType.partClassesOther) {
+    if(record && partType.partClassesOther) {
       for(const partClass of partType.partClassesOther) {
-        const partClassOtherId = await lookupPartClass(prisma, partClass);
-        if(partClassOtherId) {
-          await addPartClassMember(prisma, record.id, partClassOtherId, false);
+        const partClassOther = await service.lookupPartClass(partClass);
+        if(partClassOther) {
+          await service.addPartClassMember(record.id, partClassOther.id, false);
         }
       }
     }
 
-    if(partType.propertyTypes) {
+    if(record && partType.propertyTypes) {
       for(const propertyType of partType.propertyTypes) {
-        const propertyTypeLookup = await prisma.propertyType.findFirst({ where: { name: propertyType } });
+        const propertyTypeLookup = await service.lookupPropertyType(propertyType);
         if(propertyTypeLookup) {
-          await addPropertyTypeMember(prisma, record.id, propertyTypeLookup.id);
+          await service.addPropertyTypeMember(record.id, propertyTypeLookup.id);
         }
       }
     }

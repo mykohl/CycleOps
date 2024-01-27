@@ -1,16 +1,16 @@
-import { UserDto } from "../data/models/user.model";
+import { UserDto } from "../data/models/model.dto";
 import { prisma } from "../server";
-import { Cyclist } from "@prisma/client";
+import { User } from "../data/prisma/client";
 
 export class UserService {
-    public static async UpdateUser(user: UserDto): Promise<Cyclist | null> {
+    public static async UpdateUser(user: UserDto): Promise<User | null> {
         const commonProperties = {
           provider: user.provider,
           providerId: user.providerId,
           lastLogIn: new Date(),
         };
 
-        const cyclist = prisma.cyclist.upsert({
+        const cyclist = prisma.user.upsert({
           where: { providerId: user.providerId },
           update: { 
             ...commonProperties, 
