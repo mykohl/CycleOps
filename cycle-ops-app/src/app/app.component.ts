@@ -7,7 +7,7 @@ import { UserService } from './shared/services/user-service/user.service';
 import { ApiReqUserService } from './shared/services/api-request-services/user-request-service/api-req-user.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AppService } from './shared/services/app-service/app.service';
-import { UserStatus, UserDto } from '../../../data/models/user.model';
+import { UserStatus, UserDto } from '../../../data/models/model.dto';
 import * as appModel from '../../../data/models/model.app';
 
 @Component({

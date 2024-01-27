@@ -3,7 +3,6 @@ import { RouterModule, Routes, Route, LoadChildrenCallback } from '@angular/rout
 import { HomeComponent } from './features/home/home.component';
 import { WheelsComponent } from './features/workshops/wheels/wheels.component';
 import { AuthService } from './shared/services/auth-service/auth.service';
-import { MakersComponent } from './features/admin/makers/makers.component';
 import * as appModel from '../../../data/models/model.app';
 import * as appData from '../../../data/app.data.json';
 
@@ -38,8 +37,6 @@ export class AppRoutingHelper {
   
   private static _mapComponent(id: string): any {
     switch(id) {
-      case 'makers':
-        return MakersComponent;
       case 'wheels':
         return WheelsComponent;
       default:

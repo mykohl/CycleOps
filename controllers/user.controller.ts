@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserService } from "../services/user.service";
-import { UserDto } from "../data/models/user.model";
+import { UserDto } from "../data/models/model.dto";
 
 export async function UpdateUser(req: Request, res: Response) {
     try {

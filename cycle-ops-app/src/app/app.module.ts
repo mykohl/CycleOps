@@ -16,7 +16,6 @@ import { HomeComponent } from './features/home/home.component';
 import { ServicesModule } from './shared/modules/services.module';
 import { AdminModule } from './features/admin/admin.module';
 import { WorkshopsModule } from './features/workshops/workshops.module';
-import { MakersComponent } from './features/admin/makers/makers.component';
 
 @NgModule({
   declarations: [

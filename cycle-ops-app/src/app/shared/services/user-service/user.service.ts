@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SocialUser } from '@abacritt/angularx-social-login';
-import { UserDto, UserStatus } from "../../../../../../data/models/user.model";
+import { UserDto, UserStatus } from "../../../../../../data/models/model.dto";
 
 @Injectable({
   providedIn: 'root'
