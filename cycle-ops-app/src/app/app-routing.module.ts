@@ -4,7 +4,7 @@ import { HomeComponent } from './features/home/home.component';
 import { WheelsComponent } from './features/workshops/wheels/wheels.component';
 import { AuthService } from './shared/services/auth-service/auth.service';
 import { MakersComponent } from './features/admin/makers/makers.component';
-import * as appModel from '../../../data/models/app.model';
+import * as appModel from '../../../data/models/model.app';
 import * as appData from '../../../data/app.data.json';
 
 @Injectable({

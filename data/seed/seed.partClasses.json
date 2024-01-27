@@ -1,0 +1,29 @@
+{    
+    "partClasses":
+    [
+        {
+            "order": 10,
+            "name": "frameset"
+        },
+        {
+            "order": 20,
+            "name": "wheel"
+        },
+        {
+            "order": 30,
+            "name": "fitting"
+        },
+        {
+            "order": 40,
+            "name": "control"
+        },
+        {
+            "order": 50,
+            "name": "drivetrain"
+        },
+        {
+            "order": 60,
+            "name": "utility"
+        }
+    ]
+}

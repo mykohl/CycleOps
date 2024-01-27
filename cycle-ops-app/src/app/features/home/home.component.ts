@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import * as appModel from '../../../../../data/models/app.model';
+import * as appModel from '../../../../../data/models/model.app';
 import { AppService } from '../../shared/services/app-service/app.service';
 import {
   trigger,

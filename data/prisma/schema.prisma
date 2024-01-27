@@ -8,7 +8,7 @@ datasource db {
   url = env("DATABASE_URL")
 }
 
-model Cyclist {
+model User {
   id Int @id @default(autoincrement())
   name String?
   nameLast String?
@@ -19,6 +19,7 @@ model Cyclist {
   registered DateTime?
   lastLogIn DateTime?
   claims Claim[]
+	@@map("Cyclist")
 }
 
 model Claim {
@@ -27,13 +28,13 @@ model Claim {
   acquired DateTime?
   condition String?
   notes String?
-  owner Cyclist? @relation(fields: [ownerId], references: [id])
+  owner User? @relation(fields: [ownerId], references: [id])
   ownerId Int?
   part Part? @relation(fields: [partId], references: [id])
   partId Int?
 }
 
-model Producer {
+model Brand {
   id Int @id @default(autoincrement())
   name String?
   nameShort String?
@@ -45,20 +46,20 @@ model Producer {
 
 model BrandMember {
   id Int @id @default(autoincrement())
-  brandLabel BrandLabel? @relation(fields: [brandLabelId], references: [id])
-  brandLabelId Int?
-  producer Producer? @relation(fields: [producerId], references: [id])
-  producerId Int?
+  productLine ProductLine? @relation(fields: [productLineId], references: [id])
+  productLineId Int?
+  brand Brand? @relation(fields: [brandId], references: [id])
+  brandId Int?
 }
 
-model BrandLabel {
+model ProductLine {
   id Int @id @default(autoincrement())
   type String?
   name String?
   nameShort String?
   nameAbbreviation String?
   notes String?
-  webAddress String?  
+  webAddress String?
   labelMemberships BrandMember[]
   items Part[]
 }
@@ -68,10 +69,10 @@ model PropertyGroup {
   order Int?
   name String @unique
   description String?
-  propertyTypes HasPropertyType[]
+  propertyTypes PropertyGroupMembership[]
 }
 
-model HasPropertyType {
+model PropertyGroupMembership {
   id Int @id @default(autoincrement())
   partType PartType? @relation(fields: [partTypeId], references: [id])
   partTypeId Int?
@@ -88,25 +89,33 @@ model PropertyType {
   description String?
   valueDataType String?
   valueDataTypeModifier String?
-  valueDataHint String?
   variation String?
-  groups HasPropertyType[]
+  groups PropertyGroupMembership[]
   properties Property[]
+  lookupValues PropertyLookup[]
+}
+
+model PropertyLookup {
+  id Int @id @default(autoincrement())
+  value String?
+  
+  propertyType PropertyType? @relation(fields: [propertyTypeId], references: [id])
+  propertyTypeId Int?
 }
 
 model PartClass {
   id Int @id @default(autoincrement())
   order Int?
   name String @unique
-  partTypes HasPartClass[]
+  partTypes PartClassMembership[]
 }
 
-model HasPartClass {
+model PartClassMembership {
   id Int @id @default(autoincrement())
   partClass PartClass? @relation(fields: [partClassId], references: [id])
   partClassId Int?
   partType PartType? @relation(fields: [partTypeId], references: [id])
-  partTypeId Int?  
+  partTypeId Int?
 }
 
 model PartType {
@@ -114,17 +123,17 @@ model PartType {
   order Int?
   name String @unique
   description String?
-  propertyTypes HasPropertyType[]
-  classes HasPartClass[]
+  propertyTypes PropertyGroupMembership[]
+  classes PartClassMembership[]
 }
 
 model PartGroup {
   id Int @id @default(autoincrement())
   name String?
-  parts HasPart[]
+  parts PartGroupMembership[]
 }
 
-model HasPart {
+model PartGroupMembership {
   id Int @id @default(autoincrement())
   part Part? @relation(fields: [partId], references: [id])
   partId Int?
@@ -139,14 +148,14 @@ model Part {
   notes String?
   weight Decimal?
   weightUnit String?
-  brandLabel BrandLabel? @relation(fields: [brandLabelId], references: [id])
-  brandLabelId Int?
+  productLine ProductLine? @relation(fields: [productLineId], references: [id])
+  productLineId Int?
   wheelHubs Wheel[] @relation("hub")
   wheelRims Wheel[] @relation("rim")
   wheelSpokes WheelSpoke[] @relation("spoke")
   properties Property[]
   claims Claim[]
-  groups HasPart[]
+  groups PartGroupMembership[]
   builds BuildPart[]
 }
 

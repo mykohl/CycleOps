@@ -1,78 +1,4 @@
-{
-    "propertyGroups":
-    [
-        {
-            "order": 1,
-            "name": "general classification"
-        },
-        {
-            "order": 2,
-            "name": "construction"
-        },
-        {
-            "order": 3,
-            "name": "dimensions"
-        },
-        {
-            "order": 4,
-            "name": "utility"
-        },
-        {
-            "order": 5,
-            "name": "fork integration"
-        },
-        {
-            "order": 6,
-            "name": "wheel integration"
-        },
-        {
-            "order": 7,
-            "name": "brake integration"
-        },
-        {
-            "order": 8,
-            "name": "drivetrain integration"
-        },
-        {
-            "order": 9,
-            "name": "fitting integration"
-        },
-        {
-            "order": 10,
-            "name": "control integration"
-        },
-        {
-            "order": 11,
-            "name": "suspension"
-        }
-    ],
-    "partClasses":
-    [
-        {
-            "order": 1,
-            "name": "frameset"
-        },
-        {
-            "order": 2,
-            "name": "wheel"
-        },
-        {
-            "order": 3,
-            "name": "fitting"
-        },
-        {
-            "order": 4,
-            "name": "control"
-        },
-        {
-            "order": 5,
-            "name": "drivetrain"
-        },
-        {
-            "order": 6,
-            "name": "utility"
-        }
-    ],
+{    
     "propertyTypes":
     [
         {
@@ -274,14 +200,14 @@
             "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroups": ["fork integration"]
-        },        
+        },
         {
             "order": 2000,
-            "name": "intended wheel size",
+            "name": "wheel size",
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["wheel integration"]
+            "propertyGroups": ["wheel specification"]
         },
         {
             "order": 2100,
@@ -425,56 +351,6 @@
             "valueDataHint": "",
             "valueDataTypeModifier": null,
             "propertyGroups": ["utility"]
-        }
-    ],
-    "partTypes":
-    [
-        {
-            "order": 100,
-            "name": "frame",
-            "propertyTypes": 
-            [
-                "intended use", "load capability", "terrain capability", 
-                "material", "method",
-                "seat tube length", "seat tube extension", "top tube length, actual", "top tube length, effective",
-                    "head tube angle", "seat tube angle", "reach", "stack", "head tube height", "head tube extension",
-                    "chain stay length", "bottom bracket drop",
-                "head tube inner diameter, upper", "head tube inner diameter, lower", "headset frame interface",
-                "intended wheel size", "maximum tire clearance", "axle interface", "axle width",
-                "brake interface", "brake actuation routing",
-                "bottom bracket width", "bottom bracket interface", "front derailleur interface",
-                    "rear derailleur interface", "seat tube outer diameter", "shift actuation routing",
-                    "shift control interface",
-                "seat tube inner diameter", "saddle/seatpost interface",
-                "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
-                    "additional accessory accomodation"
-            ],
-            "partClasses": ["frameset"]
-        },
-        {
-            "order": 200,
-            "name": "fork",
-            "propertyTypes":
-            [
-                "intended use", "load capability", "terrain capability", 
-                "material", "method",
-                "axle to crown distance", "rake", "crown width", "steer tube outer diameter", "headset fork interface",
-                "intended wheel size", "maximum tire clearance", "axle interface", "axle width",
-                "brake interface", "brake actuation routing",
-                "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
-                    "additional accessory accomodation"                
-            ],
-            "partClasses": ["frameset"]
-        },
-        {
-            "order": 300,
-            "name": "rim",
-            "propertyTypes": 
-            [
-                "intended use", "load capability", "terrain capability", 
-                "material", "method"                
-            ],
-            "partClasses": ["wheel"]
         }
     ]
 }

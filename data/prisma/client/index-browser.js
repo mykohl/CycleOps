@@ -107,7 +107,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.CyclistScalarFieldEnum = {
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   nameLast: 'nameLast',
@@ -126,10 +126,10 @@ exports.Prisma.ClaimScalarFieldEnum = {
   condition: 'condition',
   notes: 'notes',
   ownerId: 'ownerId',
-  itemId: 'itemId'
+  partId: 'partId'
 };
 
-exports.Prisma.ProducerScalarFieldEnum = {
+exports.Prisma.BrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
   nameShort: 'nameShort',
@@ -140,57 +140,129 @@ exports.Prisma.ProducerScalarFieldEnum = {
 
 exports.Prisma.BrandMemberScalarFieldEnum = {
   id: 'id',
-  brandLabelId: 'brandLabelId',
-  producerId: 'producerId'
+  productLineId: 'productLineId',
+  brandId: 'brandId'
 };
 
-exports.Prisma.BrandLabelScalarFieldEnum = {
+exports.Prisma.ProductLineScalarFieldEnum = {
   id: 'id',
   type: 'type',
-  name: 'name'
-};
-
-exports.Prisma.ItemTypeScalarFieldEnum = {
-  id: 'id',
-  name: 'name'
+  name: 'name',
+  nameShort: 'nameShort',
+  nameAbbreviation: 'nameAbbreviation',
+  notes: 'notes',
+  webAddress: 'webAddress'
 };
 
 exports.Prisma.PropertyGroupScalarFieldEnum = {
   id: 'id',
   order: 'order',
   name: 'name',
-  itemTypeId: 'itemTypeId'
+  description: 'description'
 };
 
-exports.Prisma.PropertyScalarFieldEnum = {
+exports.Prisma.PropertyGroupMembershipScalarFieldEnum = {
   id: 'id',
-  order: 'order',
-  name: 'name',
-  variation: 'variation',
+  partTypeId: 'partTypeId',
+  propertyTypeId: 'propertyTypeId',
   groupId: 'groupId'
 };
 
-exports.Prisma.ItemScalarFieldEnum = {
+exports.Prisma.PropertyTypeScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name',
+  description: 'description',
+  valueDataType: 'valueDataType',
+  valueDataTypeModifier: 'valueDataTypeModifier',
+  variation: 'variation'
+};
+
+exports.Prisma.PropertyLookupScalarFieldEnum = {
+  id: 'id',
+  value: 'value',
+  propertyTypeId: 'propertyTypeId'
+};
+
+exports.Prisma.PartClassScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name'
+};
+
+exports.Prisma.PartClassMembershipScalarFieldEnum = {
+  id: 'id',
+  partClassId: 'partClassId',
+  partTypeId: 'partTypeId'
+};
+
+exports.Prisma.PartTypeScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.PartGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PartGroupMembershipScalarFieldEnum = {
+  id: 'id',
+  partId: 'partId',
+  groupId: 'groupId'
+};
+
+exports.Prisma.PartScalarFieldEnum = {
   id: 'id',
   type: 'type',
   name: 'name',
   notes: 'notes',
   weight: 'weight',
   weightUnit: 'weightUnit',
-  brandLabelId: 'brandLabelId'
+  productLineId: 'productLineId'
 };
 
-exports.Prisma.ItemPropertyScalarFieldEnum = {
+exports.Prisma.PropertyScalarFieldEnum = {
   id: 'id',
   itemId: 'itemId',
-  propertyId: 'propertyId',
-  value: 'value'
+  value: 'value',
+  valueDataMethod: 'valueDataMethod',
+  propertyTypeId: 'propertyTypeId'
 };
 
-exports.Prisma.AssemblyScalarFieldEnum = {
+exports.Prisma.WheelSpokeScalarFieldEnum = {
   id: 'id',
-  assemblyItemId: 'assemblyItemId',
-  itemId: 'itemId'
+  quantity: 'quantity',
+  length: 'length',
+  tensionApplied: 'tensionApplied',
+  tensionUnit: 'tensionUnit',
+  preparation: 'preparation',
+  notes: 'notes',
+  spokeId: 'spokeId',
+  wheelId: 'wheelId'
+};
+
+exports.Prisma.WheelScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  notes: 'notes',
+  hubId: 'hubId',
+  rimId: 'rimId'
+};
+
+exports.Prisma.BuildPartScalarFieldEnum = {
+  id: 'id',
+  buildId: 'buildId',
+  partId: 'partId'
+};
+
+exports.Prisma.BuildScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  status: 'status',
+  notes: 'notes'
 };
 
 exports.Prisma.SortOrder = {
@@ -210,17 +282,26 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Cyclist: 'Cyclist',
+  User: 'User',
   Claim: 'Claim',
-  Producer: 'Producer',
+  Brand: 'Brand',
   BrandMember: 'BrandMember',
-  BrandLabel: 'BrandLabel',
-  ItemType: 'ItemType',
+  ProductLine: 'ProductLine',
   PropertyGroup: 'PropertyGroup',
+  PropertyGroupMembership: 'PropertyGroupMembership',
+  PropertyType: 'PropertyType',
+  PropertyLookup: 'PropertyLookup',
+  PartClass: 'PartClass',
+  PartClassMembership: 'PartClassMembership',
+  PartType: 'PartType',
+  PartGroup: 'PartGroup',
+  PartGroupMembership: 'PartGroupMembership',
+  Part: 'Part',
   Property: 'Property',
-  Item: 'Item',
-  ItemProperty: 'ItemProperty',
-  Assembly: 'Assembly'
+  WheelSpoke: 'WheelSpoke',
+  Wheel: 'Wheel',
+  BuildPart: 'BuildPart',
+  Build: 'Build'
 };
 
 /**

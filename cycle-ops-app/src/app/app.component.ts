@@ -8,7 +8,7 @@ import { ApiReqUserService } from './shared/services/api-request-services/user-r
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AppService } from './shared/services/app-service/app.service';
 import { UserStatus, UserDto } from '../../../data/models/user.model';
-import * as appModel from '../../../data/models/app.model';
+import * as appModel from '../../../data/models/model.app';
 
 @Component({
   selector: 'app-root',

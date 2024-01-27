@@ -1,0 +1,53 @@
+{
+    "propertyGroups":
+    [
+        {
+            "order": 10,
+            "name": "general classification"
+        },
+        {
+            "order": 20,
+            "name": "construction"
+        },
+        {
+            "order": 30,
+            "name": "dimensions"
+        },
+        {
+            "order": 40,
+            "name": "utility"
+        },
+        {
+            "order": 50,
+            "name": "fork integration"
+        },
+        {
+            "order": 60,
+            "name": "wheel integration"
+        },
+        {
+            "order": 65,
+            "name": "wheel specification"
+        },
+        {
+            "order": 70,
+            "name": "brake integration"
+        },
+        {
+            "order": 80,
+            "name": "drivetrain integration"
+        },
+        {
+            "order": 90,
+            "name": "fitting integration"
+        },
+        {
+            "order": 100,
+            "name": "control integration"
+        },
+        {
+            "order": 110,
+            "name": "suspension"
+        }
+    ]
+}
