@@ -37,8 +37,8 @@ export class ClassificationService {
     async addPartClass(order: number, name: string): Promise<PartClass | null> {
         return await this._prisma.partClass.create({
             data: {
-              order: order,
-              name: name
+                order: order,
+                name: name
             }
         });
     }
@@ -46,8 +46,8 @@ export class ClassificationService {
     async addPartType(order: number, name: string): Promise<PartType | null> {
         return await this._prisma.partType.create({
             data: {
-              order: order,
-              name: name
+                order: order,
+                name: name
             }
         });
     }
@@ -65,9 +65,9 @@ export class ClassificationService {
     async addPropertyGroup(order: number, name: string, description: string | null): Promise<PropertyGroup | null> {
         return await this._prisma.propertyGroup.create({
             data: {
-              order: order,
-              name: name,
-              description: description
+                order: order,
+                name: name,
+                description: description
             }
         });
     }
@@ -85,9 +85,9 @@ export class ClassificationService {
     async addPropertyType(order: number, name: string, valueDataType: string | null): Promise<PropertyType | null> {
         return await this._prisma.propertyType.create({
             data: {
-              order: order,
-              name: name,
-              valueDataType: valueDataType
+                order: order,
+                name: name,
+                valueDataType: valueDataType
             }
         });
     }
@@ -95,8 +95,8 @@ export class ClassificationService {
     async addPropertyTypeMember(partTypeId: number, propertyTypeId: number): Promise<PropertyTypeMembership | null> {
         return await this._prisma.propertyTypeMembership.create({
             data: {
-            partTypeId: partTypeId,
-            propertyTypeId: propertyTypeId
+                partTypeId: partTypeId,
+                propertyTypeId: propertyTypeId
             }
         });
     }
