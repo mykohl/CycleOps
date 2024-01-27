@@ -4,16 +4,16 @@ import path from "path";
 import fs from 'fs';
 import https from 'https';
 import { PrismaClient } from './data/prisma/client';
-import PartRouter from './routes/part.route';
-import MakerRouter from './routes/maker.route';
 import UserRouter from './routes/user.route';
+import { prisma } from './prisma.instance';
 
 const envPath = path.join(__dirname, '.env');
 const env = process.env.NODE_ENV || 'development';
 const configFile = path.join(__dirname, 'config.json');
 export const config = JSON.parse(fs.readFileSync(configFile, 'utf8'))[env];
-dotenv.config({path: envPath});
+dotenv.config({ path: envPath });
 
+/*
 export const prisma = new PrismaClient({
   datasources: {
     db: {
@@ -21,6 +21,7 @@ export const prisma = new PrismaClient({
     }
   }
 });
+*/
 
 const app = express();
 const httpsPort = 443;
@@ -46,8 +47,6 @@ async function main() {
     }
   });
 
-  app.use('/api/makers', MakerRouter);
-  app.use('/api/parts', PartRouter);
   app.use('/api/users', UserRouter);
 
   app.use((req, res, next) => {
