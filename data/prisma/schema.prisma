@@ -19,7 +19,6 @@ model User {
   registered DateTime?
   lastLogIn DateTime?
   claims Claim[]
-	@@map("Cyclist")
 }
 
 model Claim {
@@ -41,7 +40,7 @@ model Brand {
   nameAbbreviation String?
   notes String?
   webAddress String?
-  labelMemberships BrandMember[]
+  brandMemberships BrandMember[]
 }
 
 model BrandMember {
@@ -60,7 +59,7 @@ model ProductLine {
   nameAbbreviation String?
   notes String?
   webAddress String?
-  labelMemberships BrandMember[]
+  brandMemberships BrandMember[]
   items Part[]
 }
 
@@ -74,12 +73,11 @@ model PropertyGroup {
 
 model PropertyGroupMembership {
   id Int @id @default(autoincrement())
-  partType PartType? @relation(fields: [partTypeId], references: [id])
-  partTypeId Int?
+  isPrimary Boolean @default(false)
   propertyType PropertyType? @relation(fields: [propertyTypeId], references: [id])
   propertyTypeId Int?
-  group PropertyGroup? @relation(fields: [groupId], references: [id])
-  groupId Int?
+  propertyGroup PropertyGroup? @relation(fields: [propertyGroupId], references: [id])
+  propertyGroupId Int?
 }
 
 model PropertyType {
@@ -90,15 +88,23 @@ model PropertyType {
   valueDataType String?
   valueDataTypeModifier String?
   variation String?
-  groups PropertyGroupMembership[]
+  partTypes PropertyTypeMembership[]
+  propertyGroups PropertyGroupMembership[]
   properties Property[]
   lookupValues PropertyLookup[]
+}
+
+model PropertyTypeMembership {
+  id Int @id @default(autoincrement())
+  propertyType PropertyType? @relation(fields: [propertyTypeId], references: [id])
+  propertyTypeId Int?
+  partType PartType? @relation(fields: [partTypeId], references: [id])
+  partTypeId Int?
 }
 
 model PropertyLookup {
   id Int @id @default(autoincrement())
   value String?
-  
   propertyType PropertyType? @relation(fields: [propertyTypeId], references: [id])
   propertyTypeId Int?
 }
@@ -112,6 +118,7 @@ model PartClass {
 
 model PartClassMembership {
   id Int @id @default(autoincrement())
+  isPrimary Boolean @default(false)
   partClass PartClass? @relation(fields: [partClassId], references: [id])
   partClassId Int?
   partType PartType? @relation(fields: [partTypeId], references: [id])
@@ -123,8 +130,8 @@ model PartType {
   order Int?
   name String @unique
   description String?
-  propertyTypes PropertyGroupMembership[]
-  classes PartClassMembership[]
+  propertyTypes PropertyTypeMembership[]
+  partClasses PartClassMembership[]
 }
 
 model PartGroup {
@@ -137,8 +144,8 @@ model PartGroupMembership {
   id Int @id @default(autoincrement())
   part Part? @relation(fields: [partId], references: [id])
   partId Int?
-  group PartGroup? @relation(fields: [groupId], references: [id])
-  groupId Int?
+  partGroup PartGroup? @relation(fields: [partGroupId], references: [id])
+  partGroupId Int?
 }
 
 model Part {
@@ -155,7 +162,7 @@ model Part {
   wheelSpokes WheelSpoke[] @relation("spoke")
   properties Property[]
   claims Claim[]
-  groups PartGroupMembership[]
+  partGroups PartGroupMembership[]
   builds BuildPart[]
 }
 

@@ -21,7 +21,8 @@
                 "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
                     "additional accessory accomodation"
             ],
-            "partClasses": ["frameset"]
+            "partClassPrimary": "frameset",
+            "partClassesOther": null
         },
         {
             "order": 200,
@@ -40,6 +41,12 @@
         },
         {
             "order": 300,
+            "name": "headset",
+            "partClassPrimary": "frameset",
+            "partClassesOther": null
+        },
+        {
+            "order": 400,
             "name": "rim",
             "propertyTypes": 
             [
@@ -47,7 +54,8 @@
                 "intended use", "load capability", "terrain capability", 
                 "material", "method"
             ],
-            "partClasses": ["wheel"]
+            "partClassPrimary": "wheel",
+            "partClassesOther": null
         }
     ]
 }

@@ -29,6 +29,7 @@ export type PropertyGroupDto = MakeNullable<PropertyGroup, "id"> & { properties?
 export type PartDto = MakeNullable<Part, "id" > & { productLine: ProductLineDto };
 
 export type UserDto = MakeOptional<User, 'id' | 'lastLogIn' | 'registered' | 'roles'>;
+
 export type UserStatus = {
     actionTitle: string,
     actionColor: string,

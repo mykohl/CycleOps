@@ -54,6 +54,11 @@ export type PropertyGroupMembership = $Result.DefaultSelection<Prisma.$PropertyG
  */
 export type PropertyType = $Result.DefaultSelection<Prisma.$PropertyTypePayload>
 /**
+ * Model PropertyTypeMembership
+ * 
+ */
+export type PropertyTypeMembership = $Result.DefaultSelection<Prisma.$PropertyTypeMembershipPayload>
+/**
  * Model PropertyLookup
  * 
  */
@@ -315,6 +320,16 @@ export class PrismaClient<
     * ```
     */
   get propertyType(): Prisma.PropertyTypeDelegate<ExtArgs>;
+
+  /**
+   * `prisma.propertyTypeMembership`: Exposes CRUD operations for the **PropertyTypeMembership** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PropertyTypeMemberships
+    * const propertyTypeMemberships = await prisma.propertyTypeMembership.findMany()
+    * ```
+    */
+  get propertyTypeMembership(): Prisma.PropertyTypeMembershipDelegate<ExtArgs>;
 
   /**
    * `prisma.propertyLookup`: Exposes CRUD operations for the **PropertyLookup** model.
@@ -913,6 +928,7 @@ export namespace Prisma {
     PropertyGroup: 'PropertyGroup',
     PropertyGroupMembership: 'PropertyGroupMembership',
     PropertyType: 'PropertyType',
+    PropertyTypeMembership: 'PropertyTypeMembership',
     PropertyLookup: 'PropertyLookup',
     PartClass: 'PartClass',
     PartClassMembership: 'PartClassMembership',
@@ -941,7 +957,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'claim' | 'brand' | 'brandMember' | 'productLine' | 'propertyGroup' | 'propertyGroupMembership' | 'propertyType' | 'propertyLookup' | 'partClass' | 'partClassMembership' | 'partType' | 'partGroup' | 'partGroupMembership' | 'part' | 'property' | 'wheelSpoke' | 'wheel' | 'buildPart' | 'build'
+      modelProps: 'user' | 'claim' | 'brand' | 'brandMember' | 'productLine' | 'propertyGroup' | 'propertyGroupMembership' | 'propertyType' | 'propertyTypeMembership' | 'propertyLookup' | 'partClass' | 'partClassMembership' | 'partType' | 'partGroup' | 'partGroupMembership' | 'part' | 'property' | 'wheelSpoke' | 'wheel' | 'buildPart' | 'build'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1470,6 +1486,72 @@ export namespace Prisma {
           count: {
             args: Prisma.PropertyTypeCountArgs<ExtArgs>,
             result: $Utils.Optional<PropertyTypeCountAggregateOutputType> | number
+          }
+        }
+      }
+      PropertyTypeMembership: {
+        payload: Prisma.$PropertyTypeMembershipPayload<ExtArgs>
+        fields: Prisma.PropertyTypeMembershipFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PropertyTypeMembershipFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PropertyTypeMembershipFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload>
+          }
+          findFirst: {
+            args: Prisma.PropertyTypeMembershipFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PropertyTypeMembershipFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload>
+          }
+          findMany: {
+            args: Prisma.PropertyTypeMembershipFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload>[]
+          }
+          create: {
+            args: Prisma.PropertyTypeMembershipCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload>
+          }
+          createMany: {
+            args: Prisma.PropertyTypeMembershipCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.PropertyTypeMembershipDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload>
+          }
+          update: {
+            args: Prisma.PropertyTypeMembershipUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload>
+          }
+          deleteMany: {
+            args: Prisma.PropertyTypeMembershipDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PropertyTypeMembershipUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.PropertyTypeMembershipUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PropertyTypeMembershipPayload>
+          }
+          aggregate: {
+            args: Prisma.PropertyTypeMembershipAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePropertyTypeMembership>
+          }
+          groupBy: {
+            args: Prisma.PropertyTypeMembershipGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PropertyTypeMembershipGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PropertyTypeMembershipCountArgs<ExtArgs>,
+            result: $Utils.Optional<PropertyTypeMembershipCountAggregateOutputType> | number
           }
         }
       }
@@ -2448,11 +2530,11 @@ export namespace Prisma {
    */
 
   export type BrandCountOutputType = {
-    labelMemberships: number
+    brandMemberships: number
   }
 
   export type BrandCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    labelMemberships?: boolean | BrandCountOutputTypeCountLabelMembershipsArgs
+    brandMemberships?: boolean | BrandCountOutputTypeCountBrandMembershipsArgs
   }
 
   // Custom InputTypes
@@ -2471,7 +2553,7 @@ export namespace Prisma {
   /**
    * BrandCountOutputType without action
    */
-  export type BrandCountOutputTypeCountLabelMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrandCountOutputTypeCountBrandMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BrandMemberWhereInput
   }
 
@@ -2482,12 +2564,12 @@ export namespace Prisma {
    */
 
   export type ProductLineCountOutputType = {
-    labelMemberships: number
+    brandMemberships: number
     items: number
   }
 
   export type ProductLineCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    labelMemberships?: boolean | ProductLineCountOutputTypeCountLabelMembershipsArgs
+    brandMemberships?: boolean | ProductLineCountOutputTypeCountBrandMembershipsArgs
     items?: boolean | ProductLineCountOutputTypeCountItemsArgs
   }
 
@@ -2507,7 +2589,7 @@ export namespace Prisma {
   /**
    * ProductLineCountOutputType without action
    */
-  export type ProductLineCountOutputTypeCountLabelMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProductLineCountOutputTypeCountBrandMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BrandMemberWhereInput
   }
 
@@ -2560,13 +2642,15 @@ export namespace Prisma {
    */
 
   export type PropertyTypeCountOutputType = {
-    groups: number
+    partTypes: number
+    propertyGroups: number
     properties: number
     lookupValues: number
   }
 
   export type PropertyTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    groups?: boolean | PropertyTypeCountOutputTypeCountGroupsArgs
+    partTypes?: boolean | PropertyTypeCountOutputTypeCountPartTypesArgs
+    propertyGroups?: boolean | PropertyTypeCountOutputTypeCountPropertyGroupsArgs
     properties?: boolean | PropertyTypeCountOutputTypeCountPropertiesArgs
     lookupValues?: boolean | PropertyTypeCountOutputTypeCountLookupValuesArgs
   }
@@ -2587,7 +2671,15 @@ export namespace Prisma {
   /**
    * PropertyTypeCountOutputType without action
    */
-  export type PropertyTypeCountOutputTypeCountGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyTypeCountOutputTypeCountPartTypesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PropertyTypeMembershipWhereInput
+  }
+
+
+  /**
+   * PropertyTypeCountOutputType without action
+   */
+  export type PropertyTypeCountOutputTypeCountPropertyGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PropertyGroupMembershipWhereInput
   }
 
@@ -2649,12 +2741,12 @@ export namespace Prisma {
 
   export type PartTypeCountOutputType = {
     propertyTypes: number
-    classes: number
+    partClasses: number
   }
 
   export type PartTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     propertyTypes?: boolean | PartTypeCountOutputTypeCountPropertyTypesArgs
-    classes?: boolean | PartTypeCountOutputTypeCountClassesArgs
+    partClasses?: boolean | PartTypeCountOutputTypeCountPartClassesArgs
   }
 
   // Custom InputTypes
@@ -2674,14 +2766,14 @@ export namespace Prisma {
    * PartTypeCountOutputType without action
    */
   export type PartTypeCountOutputTypeCountPropertyTypesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PropertyGroupMembershipWhereInput
+    where?: PropertyTypeMembershipWhereInput
   }
 
 
   /**
    * PartTypeCountOutputType without action
    */
-  export type PartTypeCountOutputTypeCountClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PartTypeCountOutputTypeCountPartClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PartClassMembershipWhereInput
   }
 
@@ -2731,7 +2823,7 @@ export namespace Prisma {
     wheelSpokes: number
     properties: number
     claims: number
-    groups: number
+    partGroups: number
     builds: number
   }
 
@@ -2741,7 +2833,7 @@ export namespace Prisma {
     wheelSpokes?: boolean | PartCountOutputTypeCountWheelSpokesArgs
     properties?: boolean | PartCountOutputTypeCountPropertiesArgs
     claims?: boolean | PartCountOutputTypeCountClaimsArgs
-    groups?: boolean | PartCountOutputTypeCountGroupsArgs
+    partGroups?: boolean | PartCountOutputTypeCountPartGroupsArgs
     builds?: boolean | PartCountOutputTypeCountBuildsArgs
   }
 
@@ -2801,7 +2893,7 @@ export namespace Prisma {
   /**
    * PartCountOutputType without action
    */
-  export type PartCountOutputTypeCountGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PartCountOutputTypeCountPartGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PartGroupMembershipWhereInput
   }
 
@@ -5131,7 +5223,7 @@ export namespace Prisma {
     nameAbbreviation?: boolean
     notes?: boolean
     webAddress?: boolean
-    labelMemberships?: boolean | Brand$labelMembershipsArgs<ExtArgs>
+    brandMemberships?: boolean | Brand$brandMembershipsArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brand"]>
 
@@ -5145,7 +5237,7 @@ export namespace Prisma {
   }
 
   export type BrandInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    labelMemberships?: boolean | Brand$labelMembershipsArgs<ExtArgs>
+    brandMemberships?: boolean | Brand$brandMembershipsArgs<ExtArgs>
     _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5153,7 +5245,7 @@ export namespace Prisma {
   export type $BrandPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Brand"
     objects: {
-      labelMemberships: Prisma.$BrandMemberPayload<ExtArgs>[]
+      brandMemberships: Prisma.$BrandMemberPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5527,7 +5619,7 @@ export namespace Prisma {
   export interface Prisma__BrandClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    labelMemberships<T extends Brand$labelMembershipsArgs<ExtArgs> = {}>(args?: Subset<T, Brand$labelMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandMemberPayload<ExtArgs>, T, 'findMany'> | Null>;
+    brandMemberships<T extends Brand$brandMembershipsArgs<ExtArgs> = {}>(args?: Subset<T, Brand$brandMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandMemberPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5875,9 +5967,9 @@ export namespace Prisma {
 
 
   /**
-   * Brand.labelMemberships
+   * Brand.brandMemberships
    */
-  export type Brand$labelMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Brand$brandMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the BrandMember
      */
@@ -7100,7 +7192,7 @@ export namespace Prisma {
     nameAbbreviation?: boolean
     notes?: boolean
     webAddress?: boolean
-    labelMemberships?: boolean | ProductLine$labelMembershipsArgs<ExtArgs>
+    brandMemberships?: boolean | ProductLine$brandMembershipsArgs<ExtArgs>
     items?: boolean | ProductLine$itemsArgs<ExtArgs>
     _count?: boolean | ProductLineCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["productLine"]>
@@ -7116,7 +7208,7 @@ export namespace Prisma {
   }
 
   export type ProductLineInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    labelMemberships?: boolean | ProductLine$labelMembershipsArgs<ExtArgs>
+    brandMemberships?: boolean | ProductLine$brandMembershipsArgs<ExtArgs>
     items?: boolean | ProductLine$itemsArgs<ExtArgs>
     _count?: boolean | ProductLineCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -7125,7 +7217,7 @@ export namespace Prisma {
   export type $ProductLinePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ProductLine"
     objects: {
-      labelMemberships: Prisma.$BrandMemberPayload<ExtArgs>[]
+      brandMemberships: Prisma.$BrandMemberPayload<ExtArgs>[]
       items: Prisma.$PartPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7501,7 +7593,7 @@ export namespace Prisma {
   export interface Prisma__ProductLineClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    labelMemberships<T extends ProductLine$labelMembershipsArgs<ExtArgs> = {}>(args?: Subset<T, ProductLine$labelMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandMemberPayload<ExtArgs>, T, 'findMany'> | Null>;
+    brandMemberships<T extends ProductLine$brandMembershipsArgs<ExtArgs> = {}>(args?: Subset<T, ProductLine$brandMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandMemberPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     items<T extends ProductLine$itemsArgs<ExtArgs> = {}>(args?: Subset<T, ProductLine$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, 'findMany'> | Null>;
 
@@ -7852,9 +7944,9 @@ export namespace Prisma {
 
 
   /**
-   * ProductLine.labelMemberships
+   * ProductLine.brandMemberships
    */
-  export type ProductLine$labelMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProductLine$brandMembershipsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the BrandMember
      */
@@ -8891,74 +8983,70 @@ export namespace Prisma {
 
   export type PropertyGroupMembershipAvgAggregateOutputType = {
     id: number | null
-    partTypeId: number | null
     propertyTypeId: number | null
-    groupId: number | null
+    propertyGroupId: number | null
   }
 
   export type PropertyGroupMembershipSumAggregateOutputType = {
     id: number | null
-    partTypeId: number | null
     propertyTypeId: number | null
-    groupId: number | null
+    propertyGroupId: number | null
   }
 
   export type PropertyGroupMembershipMinAggregateOutputType = {
     id: number | null
-    partTypeId: number | null
+    isPrimary: boolean | null
     propertyTypeId: number | null
-    groupId: number | null
+    propertyGroupId: number | null
   }
 
   export type PropertyGroupMembershipMaxAggregateOutputType = {
     id: number | null
-    partTypeId: number | null
+    isPrimary: boolean | null
     propertyTypeId: number | null
-    groupId: number | null
+    propertyGroupId: number | null
   }
 
   export type PropertyGroupMembershipCountAggregateOutputType = {
     id: number
-    partTypeId: number
+    isPrimary: number
     propertyTypeId: number
-    groupId: number
+    propertyGroupId: number
     _all: number
   }
 
 
   export type PropertyGroupMembershipAvgAggregateInputType = {
     id?: true
-    partTypeId?: true
     propertyTypeId?: true
-    groupId?: true
+    propertyGroupId?: true
   }
 
   export type PropertyGroupMembershipSumAggregateInputType = {
     id?: true
-    partTypeId?: true
     propertyTypeId?: true
-    groupId?: true
+    propertyGroupId?: true
   }
 
   export type PropertyGroupMembershipMinAggregateInputType = {
     id?: true
-    partTypeId?: true
+    isPrimary?: true
     propertyTypeId?: true
-    groupId?: true
+    propertyGroupId?: true
   }
 
   export type PropertyGroupMembershipMaxAggregateInputType = {
     id?: true
-    partTypeId?: true
+    isPrimary?: true
     propertyTypeId?: true
-    groupId?: true
+    propertyGroupId?: true
   }
 
   export type PropertyGroupMembershipCountAggregateInputType = {
     id?: true
-    partTypeId?: true
+    isPrimary?: true
     propertyTypeId?: true
-    groupId?: true
+    propertyGroupId?: true
     _all?: true
   }
 
@@ -9050,9 +9138,9 @@ export namespace Prisma {
 
   export type PropertyGroupMembershipGroupByOutputType = {
     id: number
-    partTypeId: number | null
+    isPrimary: boolean
     propertyTypeId: number | null
-    groupId: number | null
+    propertyGroupId: number | null
     _count: PropertyGroupMembershipCountAggregateOutputType | null
     _avg: PropertyGroupMembershipAvgAggregateOutputType | null
     _sum: PropertyGroupMembershipSumAggregateOutputType | null
@@ -9076,40 +9164,37 @@ export namespace Prisma {
 
   export type PropertyGroupMembershipSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    partTypeId?: boolean
+    isPrimary?: boolean
     propertyTypeId?: boolean
-    groupId?: boolean
-    partType?: boolean | PropertyGroupMembership$partTypeArgs<ExtArgs>
+    propertyGroupId?: boolean
     propertyType?: boolean | PropertyGroupMembership$propertyTypeArgs<ExtArgs>
-    group?: boolean | PropertyGroupMembership$groupArgs<ExtArgs>
+    propertyGroup?: boolean | PropertyGroupMembership$propertyGroupArgs<ExtArgs>
   }, ExtArgs["result"]["propertyGroupMembership"]>
 
   export type PropertyGroupMembershipSelectScalar = {
     id?: boolean
-    partTypeId?: boolean
+    isPrimary?: boolean
     propertyTypeId?: boolean
-    groupId?: boolean
+    propertyGroupId?: boolean
   }
 
   export type PropertyGroupMembershipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    partType?: boolean | PropertyGroupMembership$partTypeArgs<ExtArgs>
     propertyType?: boolean | PropertyGroupMembership$propertyTypeArgs<ExtArgs>
-    group?: boolean | PropertyGroupMembership$groupArgs<ExtArgs>
+    propertyGroup?: boolean | PropertyGroupMembership$propertyGroupArgs<ExtArgs>
   }
 
 
   export type $PropertyGroupMembershipPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PropertyGroupMembership"
     objects: {
-      partType: Prisma.$PartTypePayload<ExtArgs> | null
       propertyType: Prisma.$PropertyTypePayload<ExtArgs> | null
-      group: Prisma.$PropertyGroupPayload<ExtArgs> | null
+      propertyGroup: Prisma.$PropertyGroupPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      partTypeId: number | null
+      isPrimary: boolean
       propertyTypeId: number | null
-      groupId: number | null
+      propertyGroupId: number | null
     }, ExtArgs["result"]["propertyGroupMembership"]>
     composites: {}
   }
@@ -9475,11 +9560,9 @@ export namespace Prisma {
   export interface Prisma__PropertyGroupMembershipClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    partType<T extends PropertyGroupMembership$partTypeArgs<ExtArgs> = {}>(args?: Subset<T, PropertyGroupMembership$partTypeArgs<ExtArgs>>): Prisma__PartTypeClient<$Result.GetResult<Prisma.$PartTypePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
-
     propertyType<T extends PropertyGroupMembership$propertyTypeArgs<ExtArgs> = {}>(args?: Subset<T, PropertyGroupMembership$propertyTypeArgs<ExtArgs>>): Prisma__PropertyTypeClient<$Result.GetResult<Prisma.$PropertyTypePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
-    group<T extends PropertyGroupMembership$groupArgs<ExtArgs> = {}>(args?: Subset<T, PropertyGroupMembership$groupArgs<ExtArgs>>): Prisma__PropertyGroupClient<$Result.GetResult<Prisma.$PropertyGroupPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+    propertyGroup<T extends PropertyGroupMembership$propertyGroupArgs<ExtArgs> = {}>(args?: Subset<T, PropertyGroupMembership$propertyGroupArgs<ExtArgs>>): Prisma__PropertyGroupClient<$Result.GetResult<Prisma.$PropertyGroupPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -9510,9 +9593,9 @@ export namespace Prisma {
    */ 
   interface PropertyGroupMembershipFieldRefs {
     readonly id: FieldRef<"PropertyGroupMembership", 'Int'>
-    readonly partTypeId: FieldRef<"PropertyGroupMembership", 'Int'>
+    readonly isPrimary: FieldRef<"PropertyGroupMembership", 'Boolean'>
     readonly propertyTypeId: FieldRef<"PropertyGroupMembership", 'Int'>
-    readonly groupId: FieldRef<"PropertyGroupMembership", 'Int'>
+    readonly propertyGroupId: FieldRef<"PropertyGroupMembership", 'Int'>
   }
     
 
@@ -9825,22 +9908,6 @@ export namespace Prisma {
 
 
   /**
-   * PropertyGroupMembership.partType
-   */
-  export type PropertyGroupMembership$partTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PartType
-     */
-    select?: PartTypeSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: PartTypeInclude<ExtArgs> | null
-    where?: PartTypeWhereInput
-  }
-
-
-  /**
    * PropertyGroupMembership.propertyType
    */
   export type PropertyGroupMembership$propertyTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9857,9 +9924,9 @@ export namespace Prisma {
 
 
   /**
-   * PropertyGroupMembership.group
+   * PropertyGroupMembership.propertyGroup
    */
-  export type PropertyGroupMembership$groupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyGroupMembership$propertyGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PropertyGroup
      */
@@ -10106,7 +10173,8 @@ export namespace Prisma {
     valueDataType?: boolean
     valueDataTypeModifier?: boolean
     variation?: boolean
-    groups?: boolean | PropertyType$groupsArgs<ExtArgs>
+    partTypes?: boolean | PropertyType$partTypesArgs<ExtArgs>
+    propertyGroups?: boolean | PropertyType$propertyGroupsArgs<ExtArgs>
     properties?: boolean | PropertyType$propertiesArgs<ExtArgs>
     lookupValues?: boolean | PropertyType$lookupValuesArgs<ExtArgs>
     _count?: boolean | PropertyTypeCountOutputTypeDefaultArgs<ExtArgs>
@@ -10123,7 +10191,8 @@ export namespace Prisma {
   }
 
   export type PropertyTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    groups?: boolean | PropertyType$groupsArgs<ExtArgs>
+    partTypes?: boolean | PropertyType$partTypesArgs<ExtArgs>
+    propertyGroups?: boolean | PropertyType$propertyGroupsArgs<ExtArgs>
     properties?: boolean | PropertyType$propertiesArgs<ExtArgs>
     lookupValues?: boolean | PropertyType$lookupValuesArgs<ExtArgs>
     _count?: boolean | PropertyTypeCountOutputTypeDefaultArgs<ExtArgs>
@@ -10133,7 +10202,8 @@ export namespace Prisma {
   export type $PropertyTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PropertyType"
     objects: {
-      groups: Prisma.$PropertyGroupMembershipPayload<ExtArgs>[]
+      partTypes: Prisma.$PropertyTypeMembershipPayload<ExtArgs>[]
+      propertyGroups: Prisma.$PropertyGroupMembershipPayload<ExtArgs>[]
       properties: Prisma.$PropertyPayload<ExtArgs>[]
       lookupValues: Prisma.$PropertyLookupPayload<ExtArgs>[]
     }
@@ -10510,7 +10580,9 @@ export namespace Prisma {
   export interface Prisma__PropertyTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    groups<T extends PropertyType$groupsArgs<ExtArgs> = {}>(args?: Subset<T, PropertyType$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyGroupMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
+    partTypes<T extends PropertyType$partTypesArgs<ExtArgs> = {}>(args?: Subset<T, PropertyType$partTypesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    propertyGroups<T extends PropertyType$propertyGroupsArgs<ExtArgs> = {}>(args?: Subset<T, PropertyType$propertyGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyGroupMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     properties<T extends PropertyType$propertiesArgs<ExtArgs> = {}>(args?: Subset<T, PropertyType$propertiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyPayload<ExtArgs>, T, 'findMany'> | Null>;
 
@@ -10863,9 +10935,30 @@ export namespace Prisma {
 
 
   /**
-   * PropertyType.groups
+   * PropertyType.partTypes
    */
-  export type PropertyType$groupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PropertyType$partTypesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    where?: PropertyTypeMembershipWhereInput
+    orderBy?: PropertyTypeMembershipOrderByWithRelationInput | PropertyTypeMembershipOrderByWithRelationInput[]
+    cursor?: PropertyTypeMembershipWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PropertyTypeMembershipScalarFieldEnum | PropertyTypeMembershipScalarFieldEnum[]
+  }
+
+
+  /**
+   * PropertyType.propertyGroups
+   */
+  export type PropertyType$propertyGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PropertyGroupMembership
      */
@@ -10937,6 +11030,981 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: PropertyTypeInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model PropertyTypeMembership
+   */
+
+  export type AggregatePropertyTypeMembership = {
+    _count: PropertyTypeMembershipCountAggregateOutputType | null
+    _avg: PropertyTypeMembershipAvgAggregateOutputType | null
+    _sum: PropertyTypeMembershipSumAggregateOutputType | null
+    _min: PropertyTypeMembershipMinAggregateOutputType | null
+    _max: PropertyTypeMembershipMaxAggregateOutputType | null
+  }
+
+  export type PropertyTypeMembershipAvgAggregateOutputType = {
+    id: number | null
+    propertyTypeId: number | null
+    partTypeId: number | null
+  }
+
+  export type PropertyTypeMembershipSumAggregateOutputType = {
+    id: number | null
+    propertyTypeId: number | null
+    partTypeId: number | null
+  }
+
+  export type PropertyTypeMembershipMinAggregateOutputType = {
+    id: number | null
+    propertyTypeId: number | null
+    partTypeId: number | null
+  }
+
+  export type PropertyTypeMembershipMaxAggregateOutputType = {
+    id: number | null
+    propertyTypeId: number | null
+    partTypeId: number | null
+  }
+
+  export type PropertyTypeMembershipCountAggregateOutputType = {
+    id: number
+    propertyTypeId: number
+    partTypeId: number
+    _all: number
+  }
+
+
+  export type PropertyTypeMembershipAvgAggregateInputType = {
+    id?: true
+    propertyTypeId?: true
+    partTypeId?: true
+  }
+
+  export type PropertyTypeMembershipSumAggregateInputType = {
+    id?: true
+    propertyTypeId?: true
+    partTypeId?: true
+  }
+
+  export type PropertyTypeMembershipMinAggregateInputType = {
+    id?: true
+    propertyTypeId?: true
+    partTypeId?: true
+  }
+
+  export type PropertyTypeMembershipMaxAggregateInputType = {
+    id?: true
+    propertyTypeId?: true
+    partTypeId?: true
+  }
+
+  export type PropertyTypeMembershipCountAggregateInputType = {
+    id?: true
+    propertyTypeId?: true
+    partTypeId?: true
+    _all?: true
+  }
+
+  export type PropertyTypeMembershipAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PropertyTypeMembership to aggregate.
+     */
+    where?: PropertyTypeMembershipWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PropertyTypeMemberships to fetch.
+     */
+    orderBy?: PropertyTypeMembershipOrderByWithRelationInput | PropertyTypeMembershipOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PropertyTypeMembershipWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PropertyTypeMemberships from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PropertyTypeMemberships.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PropertyTypeMemberships
+    **/
+    _count?: true | PropertyTypeMembershipCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PropertyTypeMembershipAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PropertyTypeMembershipSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PropertyTypeMembershipMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PropertyTypeMembershipMaxAggregateInputType
+  }
+
+  export type GetPropertyTypeMembershipAggregateType<T extends PropertyTypeMembershipAggregateArgs> = {
+        [P in keyof T & keyof AggregatePropertyTypeMembership]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePropertyTypeMembership[P]>
+      : GetScalarType<T[P], AggregatePropertyTypeMembership[P]>
+  }
+
+
+
+
+  export type PropertyTypeMembershipGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PropertyTypeMembershipWhereInput
+    orderBy?: PropertyTypeMembershipOrderByWithAggregationInput | PropertyTypeMembershipOrderByWithAggregationInput[]
+    by: PropertyTypeMembershipScalarFieldEnum[] | PropertyTypeMembershipScalarFieldEnum
+    having?: PropertyTypeMembershipScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PropertyTypeMembershipCountAggregateInputType | true
+    _avg?: PropertyTypeMembershipAvgAggregateInputType
+    _sum?: PropertyTypeMembershipSumAggregateInputType
+    _min?: PropertyTypeMembershipMinAggregateInputType
+    _max?: PropertyTypeMembershipMaxAggregateInputType
+  }
+
+  export type PropertyTypeMembershipGroupByOutputType = {
+    id: number
+    propertyTypeId: number | null
+    partTypeId: number | null
+    _count: PropertyTypeMembershipCountAggregateOutputType | null
+    _avg: PropertyTypeMembershipAvgAggregateOutputType | null
+    _sum: PropertyTypeMembershipSumAggregateOutputType | null
+    _min: PropertyTypeMembershipMinAggregateOutputType | null
+    _max: PropertyTypeMembershipMaxAggregateOutputType | null
+  }
+
+  type GetPropertyTypeMembershipGroupByPayload<T extends PropertyTypeMembershipGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PropertyTypeMembershipGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PropertyTypeMembershipGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PropertyTypeMembershipGroupByOutputType[P]>
+            : GetScalarType<T[P], PropertyTypeMembershipGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PropertyTypeMembershipSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    propertyTypeId?: boolean
+    partTypeId?: boolean
+    propertyType?: boolean | PropertyTypeMembership$propertyTypeArgs<ExtArgs>
+    partType?: boolean | PropertyTypeMembership$partTypeArgs<ExtArgs>
+  }, ExtArgs["result"]["propertyTypeMembership"]>
+
+  export type PropertyTypeMembershipSelectScalar = {
+    id?: boolean
+    propertyTypeId?: boolean
+    partTypeId?: boolean
+  }
+
+  export type PropertyTypeMembershipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    propertyType?: boolean | PropertyTypeMembership$propertyTypeArgs<ExtArgs>
+    partType?: boolean | PropertyTypeMembership$partTypeArgs<ExtArgs>
+  }
+
+
+  export type $PropertyTypeMembershipPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PropertyTypeMembership"
+    objects: {
+      propertyType: Prisma.$PropertyTypePayload<ExtArgs> | null
+      partType: Prisma.$PartTypePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      propertyTypeId: number | null
+      partTypeId: number | null
+    }, ExtArgs["result"]["propertyTypeMembership"]>
+    composites: {}
+  }
+
+
+  type PropertyTypeMembershipGetPayload<S extends boolean | null | undefined | PropertyTypeMembershipDefaultArgs> = $Result.GetResult<Prisma.$PropertyTypeMembershipPayload, S>
+
+  type PropertyTypeMembershipCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<PropertyTypeMembershipFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: PropertyTypeMembershipCountAggregateInputType | true
+    }
+
+  export interface PropertyTypeMembershipDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PropertyTypeMembership'], meta: { name: 'PropertyTypeMembership' } }
+    /**
+     * Find zero or one PropertyTypeMembership that matches the filter.
+     * @param {PropertyTypeMembershipFindUniqueArgs} args - Arguments to find a PropertyTypeMembership
+     * @example
+     * // Get one PropertyTypeMembership
+     * const propertyTypeMembership = await prisma.propertyTypeMembership.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PropertyTypeMembershipFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PropertyTypeMembershipFindUniqueArgs<ExtArgs>>
+    ): Prisma__PropertyTypeMembershipClient<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PropertyTypeMembership that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PropertyTypeMembershipFindUniqueOrThrowArgs} args - Arguments to find a PropertyTypeMembership
+     * @example
+     * // Get one PropertyTypeMembership
+     * const propertyTypeMembership = await prisma.propertyTypeMembership.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PropertyTypeMembershipFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PropertyTypeMembershipFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PropertyTypeMembershipClient<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PropertyTypeMembership that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PropertyTypeMembershipFindFirstArgs} args - Arguments to find a PropertyTypeMembership
+     * @example
+     * // Get one PropertyTypeMembership
+     * const propertyTypeMembership = await prisma.propertyTypeMembership.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PropertyTypeMembershipFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PropertyTypeMembershipFindFirstArgs<ExtArgs>>
+    ): Prisma__PropertyTypeMembershipClient<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PropertyTypeMembership that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PropertyTypeMembershipFindFirstOrThrowArgs} args - Arguments to find a PropertyTypeMembership
+     * @example
+     * // Get one PropertyTypeMembership
+     * const propertyTypeMembership = await prisma.propertyTypeMembership.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PropertyTypeMembershipFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PropertyTypeMembershipFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PropertyTypeMembershipClient<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PropertyTypeMemberships that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PropertyTypeMembershipFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PropertyTypeMemberships
+     * const propertyTypeMemberships = await prisma.propertyTypeMembership.findMany()
+     * 
+     * // Get first 10 PropertyTypeMemberships
+     * const propertyTypeMemberships = await prisma.propertyTypeMembership.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const propertyTypeMembershipWithIdOnly = await prisma.propertyTypeMembership.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PropertyTypeMembershipFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PropertyTypeMembershipFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PropertyTypeMembership.
+     * @param {PropertyTypeMembershipCreateArgs} args - Arguments to create a PropertyTypeMembership.
+     * @example
+     * // Create one PropertyTypeMembership
+     * const PropertyTypeMembership = await prisma.propertyTypeMembership.create({
+     *   data: {
+     *     // ... data to create a PropertyTypeMembership
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PropertyTypeMembershipCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PropertyTypeMembershipCreateArgs<ExtArgs>>
+    ): Prisma__PropertyTypeMembershipClient<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PropertyTypeMemberships.
+     *     @param {PropertyTypeMembershipCreateManyArgs} args - Arguments to create many PropertyTypeMemberships.
+     *     @example
+     *     // Create many PropertyTypeMemberships
+     *     const propertyTypeMembership = await prisma.propertyTypeMembership.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PropertyTypeMembershipCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PropertyTypeMembershipCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PropertyTypeMembership.
+     * @param {PropertyTypeMembershipDeleteArgs} args - Arguments to delete one PropertyTypeMembership.
+     * @example
+     * // Delete one PropertyTypeMembership
+     * const PropertyTypeMembership = await prisma.propertyTypeMembership.delete({
+     *   where: {
+     *     // ... filter to delete one PropertyTypeMembership
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PropertyTypeMembershipDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PropertyTypeMembershipDeleteArgs<ExtArgs>>
+    ): Prisma__PropertyTypeMembershipClient<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PropertyTypeMembership.
+     * @param {PropertyTypeMembershipUpdateArgs} args - Arguments to update one PropertyTypeMembership.
+     * @example
+     * // Update one PropertyTypeMembership
+     * const propertyTypeMembership = await prisma.propertyTypeMembership.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PropertyTypeMembershipUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PropertyTypeMembershipUpdateArgs<ExtArgs>>
+    ): Prisma__PropertyTypeMembershipClient<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PropertyTypeMemberships.
+     * @param {PropertyTypeMembershipDeleteManyArgs} args - Arguments to filter PropertyTypeMemberships to delete.
+     * @example
+     * // Delete a few PropertyTypeMemberships
+     * const { count } = await prisma.propertyTypeMembership.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PropertyTypeMembershipDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PropertyTypeMembershipDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PropertyTypeMemberships.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PropertyTypeMembershipUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PropertyTypeMemberships
+     * const propertyTypeMembership = await prisma.propertyTypeMembership.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PropertyTypeMembershipUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PropertyTypeMembershipUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PropertyTypeMembership.
+     * @param {PropertyTypeMembershipUpsertArgs} args - Arguments to update or create a PropertyTypeMembership.
+     * @example
+     * // Update or create a PropertyTypeMembership
+     * const propertyTypeMembership = await prisma.propertyTypeMembership.upsert({
+     *   create: {
+     *     // ... data to create a PropertyTypeMembership
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PropertyTypeMembership we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PropertyTypeMembershipUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PropertyTypeMembershipUpsertArgs<ExtArgs>>
+    ): Prisma__PropertyTypeMembershipClient<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PropertyTypeMemberships.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PropertyTypeMembershipCountArgs} args - Arguments to filter PropertyTypeMemberships to count.
+     * @example
+     * // Count the number of PropertyTypeMemberships
+     * const count = await prisma.propertyTypeMembership.count({
+     *   where: {
+     *     // ... the filter for the PropertyTypeMemberships we want to count
+     *   }
+     * })
+    **/
+    count<T extends PropertyTypeMembershipCountArgs>(
+      args?: Subset<T, PropertyTypeMembershipCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PropertyTypeMembershipCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PropertyTypeMembership.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PropertyTypeMembershipAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PropertyTypeMembershipAggregateArgs>(args: Subset<T, PropertyTypeMembershipAggregateArgs>): Prisma.PrismaPromise<GetPropertyTypeMembershipAggregateType<T>>
+
+    /**
+     * Group by PropertyTypeMembership.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PropertyTypeMembershipGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PropertyTypeMembershipGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PropertyTypeMembershipGroupByArgs['orderBy'] }
+        : { orderBy?: PropertyTypeMembershipGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PropertyTypeMembershipGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPropertyTypeMembershipGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PropertyTypeMembership model
+   */
+  readonly fields: PropertyTypeMembershipFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PropertyTypeMembership.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PropertyTypeMembershipClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    propertyType<T extends PropertyTypeMembership$propertyTypeArgs<ExtArgs> = {}>(args?: Subset<T, PropertyTypeMembership$propertyTypeArgs<ExtArgs>>): Prisma__PropertyTypeClient<$Result.GetResult<Prisma.$PropertyTypePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    partType<T extends PropertyTypeMembership$partTypeArgs<ExtArgs> = {}>(args?: Subset<T, PropertyTypeMembership$partTypeArgs<ExtArgs>>): Prisma__PartTypeClient<$Result.GetResult<Prisma.$PartTypePayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PropertyTypeMembership model
+   */ 
+  interface PropertyTypeMembershipFieldRefs {
+    readonly id: FieldRef<"PropertyTypeMembership", 'Int'>
+    readonly propertyTypeId: FieldRef<"PropertyTypeMembership", 'Int'>
+    readonly partTypeId: FieldRef<"PropertyTypeMembership", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PropertyTypeMembership findUnique
+   */
+  export type PropertyTypeMembershipFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which PropertyTypeMembership to fetch.
+     */
+    where: PropertyTypeMembershipWhereUniqueInput
+  }
+
+
+  /**
+   * PropertyTypeMembership findUniqueOrThrow
+   */
+  export type PropertyTypeMembershipFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which PropertyTypeMembership to fetch.
+     */
+    where: PropertyTypeMembershipWhereUniqueInput
+  }
+
+
+  /**
+   * PropertyTypeMembership findFirst
+   */
+  export type PropertyTypeMembershipFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which PropertyTypeMembership to fetch.
+     */
+    where?: PropertyTypeMembershipWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PropertyTypeMemberships to fetch.
+     */
+    orderBy?: PropertyTypeMembershipOrderByWithRelationInput | PropertyTypeMembershipOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PropertyTypeMemberships.
+     */
+    cursor?: PropertyTypeMembershipWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PropertyTypeMemberships from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PropertyTypeMemberships.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PropertyTypeMemberships.
+     */
+    distinct?: PropertyTypeMembershipScalarFieldEnum | PropertyTypeMembershipScalarFieldEnum[]
+  }
+
+
+  /**
+   * PropertyTypeMembership findFirstOrThrow
+   */
+  export type PropertyTypeMembershipFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which PropertyTypeMembership to fetch.
+     */
+    where?: PropertyTypeMembershipWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PropertyTypeMemberships to fetch.
+     */
+    orderBy?: PropertyTypeMembershipOrderByWithRelationInput | PropertyTypeMembershipOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PropertyTypeMemberships.
+     */
+    cursor?: PropertyTypeMembershipWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PropertyTypeMemberships from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PropertyTypeMemberships.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PropertyTypeMemberships.
+     */
+    distinct?: PropertyTypeMembershipScalarFieldEnum | PropertyTypeMembershipScalarFieldEnum[]
+  }
+
+
+  /**
+   * PropertyTypeMembership findMany
+   */
+  export type PropertyTypeMembershipFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * Filter, which PropertyTypeMemberships to fetch.
+     */
+    where?: PropertyTypeMembershipWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PropertyTypeMemberships to fetch.
+     */
+    orderBy?: PropertyTypeMembershipOrderByWithRelationInput | PropertyTypeMembershipOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PropertyTypeMemberships.
+     */
+    cursor?: PropertyTypeMembershipWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PropertyTypeMemberships from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PropertyTypeMemberships.
+     */
+    skip?: number
+    distinct?: PropertyTypeMembershipScalarFieldEnum | PropertyTypeMembershipScalarFieldEnum[]
+  }
+
+
+  /**
+   * PropertyTypeMembership create
+   */
+  export type PropertyTypeMembershipCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PropertyTypeMembership.
+     */
+    data?: XOR<PropertyTypeMembershipCreateInput, PropertyTypeMembershipUncheckedCreateInput>
+  }
+
+
+  /**
+   * PropertyTypeMembership createMany
+   */
+  export type PropertyTypeMembershipCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PropertyTypeMemberships.
+     */
+    data: PropertyTypeMembershipCreateManyInput | PropertyTypeMembershipCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PropertyTypeMembership update
+   */
+  export type PropertyTypeMembershipUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PropertyTypeMembership.
+     */
+    data: XOR<PropertyTypeMembershipUpdateInput, PropertyTypeMembershipUncheckedUpdateInput>
+    /**
+     * Choose, which PropertyTypeMembership to update.
+     */
+    where: PropertyTypeMembershipWhereUniqueInput
+  }
+
+
+  /**
+   * PropertyTypeMembership updateMany
+   */
+  export type PropertyTypeMembershipUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PropertyTypeMemberships.
+     */
+    data: XOR<PropertyTypeMembershipUpdateManyMutationInput, PropertyTypeMembershipUncheckedUpdateManyInput>
+    /**
+     * Filter which PropertyTypeMemberships to update
+     */
+    where?: PropertyTypeMembershipWhereInput
+  }
+
+
+  /**
+   * PropertyTypeMembership upsert
+   */
+  export type PropertyTypeMembershipUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PropertyTypeMembership to update in case it exists.
+     */
+    where: PropertyTypeMembershipWhereUniqueInput
+    /**
+     * In case the PropertyTypeMembership found by the `where` argument doesn't exist, create a new PropertyTypeMembership with this data.
+     */
+    create: XOR<PropertyTypeMembershipCreateInput, PropertyTypeMembershipUncheckedCreateInput>
+    /**
+     * In case the PropertyTypeMembership was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PropertyTypeMembershipUpdateInput, PropertyTypeMembershipUncheckedUpdateInput>
+  }
+
+
+  /**
+   * PropertyTypeMembership delete
+   */
+  export type PropertyTypeMembershipDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    /**
+     * Filter which PropertyTypeMembership to delete.
+     */
+    where: PropertyTypeMembershipWhereUniqueInput
+  }
+
+
+  /**
+   * PropertyTypeMembership deleteMany
+   */
+  export type PropertyTypeMembershipDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PropertyTypeMemberships to delete
+     */
+    where?: PropertyTypeMembershipWhereInput
+  }
+
+
+  /**
+   * PropertyTypeMembership.propertyType
+   */
+  export type PropertyTypeMembership$propertyTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyType
+     */
+    select?: PropertyTypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeInclude<ExtArgs> | null
+    where?: PropertyTypeWhereInput
+  }
+
+
+  /**
+   * PropertyTypeMembership.partType
+   */
+  export type PropertyTypeMembership$partTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartType
+     */
+    select?: PartTypeSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PartTypeInclude<ExtArgs> | null
+    where?: PartTypeWhereInput
+  }
+
+
+  /**
+   * PropertyTypeMembership without action
+   */
+  export type PropertyTypeMembershipDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PropertyTypeMembership
+     */
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
   }
 
 
@@ -12874,18 +13942,21 @@ export namespace Prisma {
 
   export type PartClassMembershipMinAggregateOutputType = {
     id: number | null
+    isPrimary: boolean | null
     partClassId: number | null
     partTypeId: number | null
   }
 
   export type PartClassMembershipMaxAggregateOutputType = {
     id: number | null
+    isPrimary: boolean | null
     partClassId: number | null
     partTypeId: number | null
   }
 
   export type PartClassMembershipCountAggregateOutputType = {
     id: number
+    isPrimary: number
     partClassId: number
     partTypeId: number
     _all: number
@@ -12906,18 +13977,21 @@ export namespace Prisma {
 
   export type PartClassMembershipMinAggregateInputType = {
     id?: true
+    isPrimary?: true
     partClassId?: true
     partTypeId?: true
   }
 
   export type PartClassMembershipMaxAggregateInputType = {
     id?: true
+    isPrimary?: true
     partClassId?: true
     partTypeId?: true
   }
 
   export type PartClassMembershipCountAggregateInputType = {
     id?: true
+    isPrimary?: true
     partClassId?: true
     partTypeId?: true
     _all?: true
@@ -13011,6 +14085,7 @@ export namespace Prisma {
 
   export type PartClassMembershipGroupByOutputType = {
     id: number
+    isPrimary: boolean
     partClassId: number | null
     partTypeId: number | null
     _count: PartClassMembershipCountAggregateOutputType | null
@@ -13036,6 +14111,7 @@ export namespace Prisma {
 
   export type PartClassMembershipSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    isPrimary?: boolean
     partClassId?: boolean
     partTypeId?: boolean
     partClass?: boolean | PartClassMembership$partClassArgs<ExtArgs>
@@ -13044,6 +14120,7 @@ export namespace Prisma {
 
   export type PartClassMembershipSelectScalar = {
     id?: boolean
+    isPrimary?: boolean
     partClassId?: boolean
     partTypeId?: boolean
   }
@@ -13062,6 +14139,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      isPrimary: boolean
       partClassId: number | null
       partTypeId: number | null
     }, ExtArgs["result"]["partClassMembership"]>
@@ -13462,6 +14540,7 @@ export namespace Prisma {
    */ 
   interface PartClassMembershipFieldRefs {
     readonly id: FieldRef<"PartClassMembership", 'Int'>
+    readonly isPrimary: FieldRef<"PartClassMembership", 'Boolean'>
     readonly partClassId: FieldRef<"PartClassMembership", 'Int'>
     readonly partTypeId: FieldRef<"PartClassMembership", 'Int'>
   }
@@ -14018,7 +15097,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     propertyTypes?: boolean | PartType$propertyTypesArgs<ExtArgs>
-    classes?: boolean | PartType$classesArgs<ExtArgs>
+    partClasses?: boolean | PartType$partClassesArgs<ExtArgs>
     _count?: boolean | PartTypeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["partType"]>
 
@@ -14031,7 +15110,7 @@ export namespace Prisma {
 
   export type PartTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     propertyTypes?: boolean | PartType$propertyTypesArgs<ExtArgs>
-    classes?: boolean | PartType$classesArgs<ExtArgs>
+    partClasses?: boolean | PartType$partClassesArgs<ExtArgs>
     _count?: boolean | PartTypeCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -14039,8 +15118,8 @@ export namespace Prisma {
   export type $PartTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PartType"
     objects: {
-      propertyTypes: Prisma.$PropertyGroupMembershipPayload<ExtArgs>[]
-      classes: Prisma.$PartClassMembershipPayload<ExtArgs>[]
+      propertyTypes: Prisma.$PropertyTypeMembershipPayload<ExtArgs>[]
+      partClasses: Prisma.$PartClassMembershipPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -14412,9 +15491,9 @@ export namespace Prisma {
   export interface Prisma__PartTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    propertyTypes<T extends PartType$propertyTypesArgs<ExtArgs> = {}>(args?: Subset<T, PartType$propertyTypesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyGroupMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
+    propertyTypes<T extends PartType$propertyTypesArgs<ExtArgs> = {}>(args?: Subset<T, PartType$propertyTypesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PropertyTypeMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    classes<T extends PartType$classesArgs<ExtArgs> = {}>(args?: Subset<T, PartType$classesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartClassMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
+    partClasses<T extends PartType$partClassesArgs<ExtArgs> = {}>(args?: Subset<T, PartType$partClassesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartClassMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -14764,26 +15843,26 @@ export namespace Prisma {
    */
   export type PartType$propertyTypesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the PropertyGroupMembership
+     * Select specific fields to fetch from the PropertyTypeMembership
      */
-    select?: PropertyGroupMembershipSelect<ExtArgs> | null
+    select?: PropertyTypeMembershipSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well.
      */
-    include?: PropertyGroupMembershipInclude<ExtArgs> | null
-    where?: PropertyGroupMembershipWhereInput
-    orderBy?: PropertyGroupMembershipOrderByWithRelationInput | PropertyGroupMembershipOrderByWithRelationInput[]
-    cursor?: PropertyGroupMembershipWhereUniqueInput
+    include?: PropertyTypeMembershipInclude<ExtArgs> | null
+    where?: PropertyTypeMembershipWhereInput
+    orderBy?: PropertyTypeMembershipOrderByWithRelationInput | PropertyTypeMembershipOrderByWithRelationInput[]
+    cursor?: PropertyTypeMembershipWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: PropertyGroupMembershipScalarFieldEnum | PropertyGroupMembershipScalarFieldEnum[]
+    distinct?: PropertyTypeMembershipScalarFieldEnum | PropertyTypeMembershipScalarFieldEnum[]
   }
 
 
   /**
-   * PartType.classes
+   * PartType.partClasses
    */
-  export type PartType$classesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PartType$partClassesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PartClassMembership
      */
@@ -15774,31 +16853,31 @@ export namespace Prisma {
   export type PartGroupMembershipAvgAggregateOutputType = {
     id: number | null
     partId: number | null
-    groupId: number | null
+    partGroupId: number | null
   }
 
   export type PartGroupMembershipSumAggregateOutputType = {
     id: number | null
     partId: number | null
-    groupId: number | null
+    partGroupId: number | null
   }
 
   export type PartGroupMembershipMinAggregateOutputType = {
     id: number | null
     partId: number | null
-    groupId: number | null
+    partGroupId: number | null
   }
 
   export type PartGroupMembershipMaxAggregateOutputType = {
     id: number | null
     partId: number | null
-    groupId: number | null
+    partGroupId: number | null
   }
 
   export type PartGroupMembershipCountAggregateOutputType = {
     id: number
     partId: number
-    groupId: number
+    partGroupId: number
     _all: number
   }
 
@@ -15806,31 +16885,31 @@ export namespace Prisma {
   export type PartGroupMembershipAvgAggregateInputType = {
     id?: true
     partId?: true
-    groupId?: true
+    partGroupId?: true
   }
 
   export type PartGroupMembershipSumAggregateInputType = {
     id?: true
     partId?: true
-    groupId?: true
+    partGroupId?: true
   }
 
   export type PartGroupMembershipMinAggregateInputType = {
     id?: true
     partId?: true
-    groupId?: true
+    partGroupId?: true
   }
 
   export type PartGroupMembershipMaxAggregateInputType = {
     id?: true
     partId?: true
-    groupId?: true
+    partGroupId?: true
   }
 
   export type PartGroupMembershipCountAggregateInputType = {
     id?: true
     partId?: true
-    groupId?: true
+    partGroupId?: true
     _all?: true
   }
 
@@ -15923,7 +17002,7 @@ export namespace Prisma {
   export type PartGroupMembershipGroupByOutputType = {
     id: number
     partId: number | null
-    groupId: number | null
+    partGroupId: number | null
     _count: PartGroupMembershipCountAggregateOutputType | null
     _avg: PartGroupMembershipAvgAggregateOutputType | null
     _sum: PartGroupMembershipSumAggregateOutputType | null
@@ -15948,20 +17027,20 @@ export namespace Prisma {
   export type PartGroupMembershipSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     partId?: boolean
-    groupId?: boolean
+    partGroupId?: boolean
     part?: boolean | PartGroupMembership$partArgs<ExtArgs>
-    group?: boolean | PartGroupMembership$groupArgs<ExtArgs>
+    partGroup?: boolean | PartGroupMembership$partGroupArgs<ExtArgs>
   }, ExtArgs["result"]["partGroupMembership"]>
 
   export type PartGroupMembershipSelectScalar = {
     id?: boolean
     partId?: boolean
-    groupId?: boolean
+    partGroupId?: boolean
   }
 
   export type PartGroupMembershipInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     part?: boolean | PartGroupMembership$partArgs<ExtArgs>
-    group?: boolean | PartGroupMembership$groupArgs<ExtArgs>
+    partGroup?: boolean | PartGroupMembership$partGroupArgs<ExtArgs>
   }
 
 
@@ -15969,12 +17048,12 @@ export namespace Prisma {
     name: "PartGroupMembership"
     objects: {
       part: Prisma.$PartPayload<ExtArgs> | null
-      group: Prisma.$PartGroupPayload<ExtArgs> | null
+      partGroup: Prisma.$PartGroupPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       partId: number | null
-      groupId: number | null
+      partGroupId: number | null
     }, ExtArgs["result"]["partGroupMembership"]>
     composites: {}
   }
@@ -16342,7 +17421,7 @@ export namespace Prisma {
 
     part<T extends PartGroupMembership$partArgs<ExtArgs> = {}>(args?: Subset<T, PartGroupMembership$partArgs<ExtArgs>>): Prisma__PartClient<$Result.GetResult<Prisma.$PartPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
-    group<T extends PartGroupMembership$groupArgs<ExtArgs> = {}>(args?: Subset<T, PartGroupMembership$groupArgs<ExtArgs>>): Prisma__PartGroupClient<$Result.GetResult<Prisma.$PartGroupPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+    partGroup<T extends PartGroupMembership$partGroupArgs<ExtArgs> = {}>(args?: Subset<T, PartGroupMembership$partGroupArgs<ExtArgs>>): Prisma__PartGroupClient<$Result.GetResult<Prisma.$PartGroupPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -16374,7 +17453,7 @@ export namespace Prisma {
   interface PartGroupMembershipFieldRefs {
     readonly id: FieldRef<"PartGroupMembership", 'Int'>
     readonly partId: FieldRef<"PartGroupMembership", 'Int'>
-    readonly groupId: FieldRef<"PartGroupMembership", 'Int'>
+    readonly partGroupId: FieldRef<"PartGroupMembership", 'Int'>
   }
     
 
@@ -16703,9 +17782,9 @@ export namespace Prisma {
 
 
   /**
-   * PartGroupMembership.group
+   * PartGroupMembership.partGroup
    */
-  export type PartGroupMembership$groupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PartGroupMembership$partGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PartGroup
      */
@@ -16962,7 +18041,7 @@ export namespace Prisma {
     wheelSpokes?: boolean | Part$wheelSpokesArgs<ExtArgs>
     properties?: boolean | Part$propertiesArgs<ExtArgs>
     claims?: boolean | Part$claimsArgs<ExtArgs>
-    groups?: boolean | Part$groupsArgs<ExtArgs>
+    partGroups?: boolean | Part$partGroupsArgs<ExtArgs>
     builds?: boolean | Part$buildsArgs<ExtArgs>
     _count?: boolean | PartCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["part"]>
@@ -16984,7 +18063,7 @@ export namespace Prisma {
     wheelSpokes?: boolean | Part$wheelSpokesArgs<ExtArgs>
     properties?: boolean | Part$propertiesArgs<ExtArgs>
     claims?: boolean | Part$claimsArgs<ExtArgs>
-    groups?: boolean | Part$groupsArgs<ExtArgs>
+    partGroups?: boolean | Part$partGroupsArgs<ExtArgs>
     builds?: boolean | Part$buildsArgs<ExtArgs>
     _count?: boolean | PartCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -16999,7 +18078,7 @@ export namespace Prisma {
       wheelSpokes: Prisma.$WheelSpokePayload<ExtArgs>[]
       properties: Prisma.$PropertyPayload<ExtArgs>[]
       claims: Prisma.$ClaimPayload<ExtArgs>[]
-      groups: Prisma.$PartGroupMembershipPayload<ExtArgs>[]
+      partGroups: Prisma.$PartGroupMembershipPayload<ExtArgs>[]
       builds: Prisma.$BuildPartPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -17387,7 +18466,7 @@ export namespace Prisma {
 
     claims<T extends Part$claimsArgs<ExtArgs> = {}>(args?: Subset<T, Part$claimsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClaimPayload<ExtArgs>, T, 'findMany'> | Null>;
 
-    groups<T extends Part$groupsArgs<ExtArgs> = {}>(args?: Subset<T, Part$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartGroupMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
+    partGroups<T extends Part$partGroupsArgs<ExtArgs> = {}>(args?: Subset<T, Part$partGroupsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartGroupMembershipPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     builds<T extends Part$buildsArgs<ExtArgs> = {}>(args?: Subset<T, Part$buildsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BuildPartPayload<ExtArgs>, T, 'findMany'> | Null>;
 
@@ -17859,9 +18938,9 @@ export namespace Prisma {
 
 
   /**
-   * Part.groups
+   * Part.partGroups
    */
-  export type Part$groupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Part$partGroupsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the PartGroupMembership
      */
@@ -23018,9 +24097,9 @@ export namespace Prisma {
 
   export const PropertyGroupMembershipScalarFieldEnum: {
     id: 'id',
-    partTypeId: 'partTypeId',
+    isPrimary: 'isPrimary',
     propertyTypeId: 'propertyTypeId',
-    groupId: 'groupId'
+    propertyGroupId: 'propertyGroupId'
   };
 
   export type PropertyGroupMembershipScalarFieldEnum = (typeof PropertyGroupMembershipScalarFieldEnum)[keyof typeof PropertyGroupMembershipScalarFieldEnum]
@@ -23037,6 +24116,15 @@ export namespace Prisma {
   };
 
   export type PropertyTypeScalarFieldEnum = (typeof PropertyTypeScalarFieldEnum)[keyof typeof PropertyTypeScalarFieldEnum]
+
+
+  export const PropertyTypeMembershipScalarFieldEnum: {
+    id: 'id',
+    propertyTypeId: 'propertyTypeId',
+    partTypeId: 'partTypeId'
+  };
+
+  export type PropertyTypeMembershipScalarFieldEnum = (typeof PropertyTypeMembershipScalarFieldEnum)[keyof typeof PropertyTypeMembershipScalarFieldEnum]
 
 
   export const PropertyLookupScalarFieldEnum: {
@@ -23059,6 +24147,7 @@ export namespace Prisma {
 
   export const PartClassMembershipScalarFieldEnum: {
     id: 'id',
+    isPrimary: 'isPrimary',
     partClassId: 'partClassId',
     partTypeId: 'partTypeId'
   };
@@ -23087,7 +24176,7 @@ export namespace Prisma {
   export const PartGroupMembershipScalarFieldEnum: {
     id: 'id',
     partId: 'partId',
-    groupId: 'groupId'
+    partGroupId: 'partGroupId'
   };
 
   export type PartGroupMembershipScalarFieldEnum = (typeof PartGroupMembershipScalarFieldEnum)[keyof typeof PartGroupMembershipScalarFieldEnum]
@@ -23230,6 +24319,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -23421,7 +24517,7 @@ export namespace Prisma {
     nameAbbreviation?: StringNullableFilter<"Brand"> | string | null
     notes?: StringNullableFilter<"Brand"> | string | null
     webAddress?: StringNullableFilter<"Brand"> | string | null
-    labelMemberships?: BrandMemberListRelationFilter
+    brandMemberships?: BrandMemberListRelationFilter
   }
 
   export type BrandOrderByWithRelationInput = {
@@ -23431,7 +24527,7 @@ export namespace Prisma {
     nameAbbreviation?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     webAddress?: SortOrderInput | SortOrder
-    labelMemberships?: BrandMemberOrderByRelationAggregateInput
+    brandMemberships?: BrandMemberOrderByRelationAggregateInput
   }
 
   export type BrandWhereUniqueInput = Prisma.AtLeast<{
@@ -23444,7 +24540,7 @@ export namespace Prisma {
     nameAbbreviation?: StringNullableFilter<"Brand"> | string | null
     notes?: StringNullableFilter<"Brand"> | string | null
     webAddress?: StringNullableFilter<"Brand"> | string | null
-    labelMemberships?: BrandMemberListRelationFilter
+    brandMemberships?: BrandMemberListRelationFilter
   }, "id">
 
   export type BrandOrderByWithAggregationInput = {
@@ -23534,7 +24630,7 @@ export namespace Prisma {
     nameAbbreviation?: StringNullableFilter<"ProductLine"> | string | null
     notes?: StringNullableFilter<"ProductLine"> | string | null
     webAddress?: StringNullableFilter<"ProductLine"> | string | null
-    labelMemberships?: BrandMemberListRelationFilter
+    brandMemberships?: BrandMemberListRelationFilter
     items?: PartListRelationFilter
   }
 
@@ -23546,7 +24642,7 @@ export namespace Prisma {
     nameAbbreviation?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     webAddress?: SortOrderInput | SortOrder
-    labelMemberships?: BrandMemberOrderByRelationAggregateInput
+    brandMemberships?: BrandMemberOrderByRelationAggregateInput
     items?: PartOrderByRelationAggregateInput
   }
 
@@ -23561,7 +24657,7 @@ export namespace Prisma {
     nameAbbreviation?: StringNullableFilter<"ProductLine"> | string | null
     notes?: StringNullableFilter<"ProductLine"> | string | null
     webAddress?: StringNullableFilter<"ProductLine"> | string | null
-    labelMemberships?: BrandMemberListRelationFilter
+    brandMemberships?: BrandMemberListRelationFilter
     items?: PartListRelationFilter
   }, "id">
 
@@ -23650,22 +24746,20 @@ export namespace Prisma {
     OR?: PropertyGroupMembershipWhereInput[]
     NOT?: PropertyGroupMembershipWhereInput | PropertyGroupMembershipWhereInput[]
     id?: IntFilter<"PropertyGroupMembership"> | number
-    partTypeId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
+    isPrimary?: BoolFilter<"PropertyGroupMembership"> | boolean
     propertyTypeId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
-    groupId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
-    partType?: XOR<PartTypeNullableRelationFilter, PartTypeWhereInput> | null
+    propertyGroupId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
     propertyType?: XOR<PropertyTypeNullableRelationFilter, PropertyTypeWhereInput> | null
-    group?: XOR<PropertyGroupNullableRelationFilter, PropertyGroupWhereInput> | null
+    propertyGroup?: XOR<PropertyGroupNullableRelationFilter, PropertyGroupWhereInput> | null
   }
 
   export type PropertyGroupMembershipOrderByWithRelationInput = {
     id?: SortOrder
-    partTypeId?: SortOrderInput | SortOrder
+    isPrimary?: SortOrder
     propertyTypeId?: SortOrderInput | SortOrder
-    groupId?: SortOrderInput | SortOrder
-    partType?: PartTypeOrderByWithRelationInput
+    propertyGroupId?: SortOrderInput | SortOrder
     propertyType?: PropertyTypeOrderByWithRelationInput
-    group?: PropertyGroupOrderByWithRelationInput
+    propertyGroup?: PropertyGroupOrderByWithRelationInput
   }
 
   export type PropertyGroupMembershipWhereUniqueInput = Prisma.AtLeast<{
@@ -23673,19 +24767,18 @@ export namespace Prisma {
     AND?: PropertyGroupMembershipWhereInput | PropertyGroupMembershipWhereInput[]
     OR?: PropertyGroupMembershipWhereInput[]
     NOT?: PropertyGroupMembershipWhereInput | PropertyGroupMembershipWhereInput[]
-    partTypeId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
+    isPrimary?: BoolFilter<"PropertyGroupMembership"> | boolean
     propertyTypeId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
-    groupId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
-    partType?: XOR<PartTypeNullableRelationFilter, PartTypeWhereInput> | null
+    propertyGroupId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
     propertyType?: XOR<PropertyTypeNullableRelationFilter, PropertyTypeWhereInput> | null
-    group?: XOR<PropertyGroupNullableRelationFilter, PropertyGroupWhereInput> | null
+    propertyGroup?: XOR<PropertyGroupNullableRelationFilter, PropertyGroupWhereInput> | null
   }, "id">
 
   export type PropertyGroupMembershipOrderByWithAggregationInput = {
     id?: SortOrder
-    partTypeId?: SortOrderInput | SortOrder
+    isPrimary?: SortOrder
     propertyTypeId?: SortOrderInput | SortOrder
-    groupId?: SortOrderInput | SortOrder
+    propertyGroupId?: SortOrderInput | SortOrder
     _count?: PropertyGroupMembershipCountOrderByAggregateInput
     _avg?: PropertyGroupMembershipAvgOrderByAggregateInput
     _max?: PropertyGroupMembershipMaxOrderByAggregateInput
@@ -23698,9 +24791,9 @@ export namespace Prisma {
     OR?: PropertyGroupMembershipScalarWhereWithAggregatesInput[]
     NOT?: PropertyGroupMembershipScalarWhereWithAggregatesInput | PropertyGroupMembershipScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PropertyGroupMembership"> | number
-    partTypeId?: IntNullableWithAggregatesFilter<"PropertyGroupMembership"> | number | null
+    isPrimary?: BoolWithAggregatesFilter<"PropertyGroupMembership"> | boolean
     propertyTypeId?: IntNullableWithAggregatesFilter<"PropertyGroupMembership"> | number | null
-    groupId?: IntNullableWithAggregatesFilter<"PropertyGroupMembership"> | number | null
+    propertyGroupId?: IntNullableWithAggregatesFilter<"PropertyGroupMembership"> | number | null
   }
 
   export type PropertyTypeWhereInput = {
@@ -23714,7 +24807,8 @@ export namespace Prisma {
     valueDataType?: StringNullableFilter<"PropertyType"> | string | null
     valueDataTypeModifier?: StringNullableFilter<"PropertyType"> | string | null
     variation?: StringNullableFilter<"PropertyType"> | string | null
-    groups?: PropertyGroupMembershipListRelationFilter
+    partTypes?: PropertyTypeMembershipListRelationFilter
+    propertyGroups?: PropertyGroupMembershipListRelationFilter
     properties?: PropertyListRelationFilter
     lookupValues?: PropertyLookupListRelationFilter
   }
@@ -23727,7 +24821,8 @@ export namespace Prisma {
     valueDataType?: SortOrderInput | SortOrder
     valueDataTypeModifier?: SortOrderInput | SortOrder
     variation?: SortOrderInput | SortOrder
-    groups?: PropertyGroupMembershipOrderByRelationAggregateInput
+    partTypes?: PropertyTypeMembershipOrderByRelationAggregateInput
+    propertyGroups?: PropertyGroupMembershipOrderByRelationAggregateInput
     properties?: PropertyOrderByRelationAggregateInput
     lookupValues?: PropertyLookupOrderByRelationAggregateInput
   }
@@ -23743,7 +24838,8 @@ export namespace Prisma {
     valueDataType?: StringNullableFilter<"PropertyType"> | string | null
     valueDataTypeModifier?: StringNullableFilter<"PropertyType"> | string | null
     variation?: StringNullableFilter<"PropertyType"> | string | null
-    groups?: PropertyGroupMembershipListRelationFilter
+    partTypes?: PropertyTypeMembershipListRelationFilter
+    propertyGroups?: PropertyGroupMembershipListRelationFilter
     properties?: PropertyListRelationFilter
     lookupValues?: PropertyLookupListRelationFilter
   }, "id">
@@ -23774,6 +24870,56 @@ export namespace Prisma {
     valueDataType?: StringNullableWithAggregatesFilter<"PropertyType"> | string | null
     valueDataTypeModifier?: StringNullableWithAggregatesFilter<"PropertyType"> | string | null
     variation?: StringNullableWithAggregatesFilter<"PropertyType"> | string | null
+  }
+
+  export type PropertyTypeMembershipWhereInput = {
+    AND?: PropertyTypeMembershipWhereInput | PropertyTypeMembershipWhereInput[]
+    OR?: PropertyTypeMembershipWhereInput[]
+    NOT?: PropertyTypeMembershipWhereInput | PropertyTypeMembershipWhereInput[]
+    id?: IntFilter<"PropertyTypeMembership"> | number
+    propertyTypeId?: IntNullableFilter<"PropertyTypeMembership"> | number | null
+    partTypeId?: IntNullableFilter<"PropertyTypeMembership"> | number | null
+    propertyType?: XOR<PropertyTypeNullableRelationFilter, PropertyTypeWhereInput> | null
+    partType?: XOR<PartTypeNullableRelationFilter, PartTypeWhereInput> | null
+  }
+
+  export type PropertyTypeMembershipOrderByWithRelationInput = {
+    id?: SortOrder
+    propertyTypeId?: SortOrderInput | SortOrder
+    partTypeId?: SortOrderInput | SortOrder
+    propertyType?: PropertyTypeOrderByWithRelationInput
+    partType?: PartTypeOrderByWithRelationInput
+  }
+
+  export type PropertyTypeMembershipWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PropertyTypeMembershipWhereInput | PropertyTypeMembershipWhereInput[]
+    OR?: PropertyTypeMembershipWhereInput[]
+    NOT?: PropertyTypeMembershipWhereInput | PropertyTypeMembershipWhereInput[]
+    propertyTypeId?: IntNullableFilter<"PropertyTypeMembership"> | number | null
+    partTypeId?: IntNullableFilter<"PropertyTypeMembership"> | number | null
+    propertyType?: XOR<PropertyTypeNullableRelationFilter, PropertyTypeWhereInput> | null
+    partType?: XOR<PartTypeNullableRelationFilter, PartTypeWhereInput> | null
+  }, "id">
+
+  export type PropertyTypeMembershipOrderByWithAggregationInput = {
+    id?: SortOrder
+    propertyTypeId?: SortOrderInput | SortOrder
+    partTypeId?: SortOrderInput | SortOrder
+    _count?: PropertyTypeMembershipCountOrderByAggregateInput
+    _avg?: PropertyTypeMembershipAvgOrderByAggregateInput
+    _max?: PropertyTypeMembershipMaxOrderByAggregateInput
+    _min?: PropertyTypeMembershipMinOrderByAggregateInput
+    _sum?: PropertyTypeMembershipSumOrderByAggregateInput
+  }
+
+  export type PropertyTypeMembershipScalarWhereWithAggregatesInput = {
+    AND?: PropertyTypeMembershipScalarWhereWithAggregatesInput | PropertyTypeMembershipScalarWhereWithAggregatesInput[]
+    OR?: PropertyTypeMembershipScalarWhereWithAggregatesInput[]
+    NOT?: PropertyTypeMembershipScalarWhereWithAggregatesInput | PropertyTypeMembershipScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PropertyTypeMembership"> | number
+    propertyTypeId?: IntNullableWithAggregatesFilter<"PropertyTypeMembership"> | number | null
+    partTypeId?: IntNullableWithAggregatesFilter<"PropertyTypeMembership"> | number | null
   }
 
   export type PropertyLookupWhereInput = {
@@ -23875,6 +25021,7 @@ export namespace Prisma {
     OR?: PartClassMembershipWhereInput[]
     NOT?: PartClassMembershipWhereInput | PartClassMembershipWhereInput[]
     id?: IntFilter<"PartClassMembership"> | number
+    isPrimary?: BoolFilter<"PartClassMembership"> | boolean
     partClassId?: IntNullableFilter<"PartClassMembership"> | number | null
     partTypeId?: IntNullableFilter<"PartClassMembership"> | number | null
     partClass?: XOR<PartClassNullableRelationFilter, PartClassWhereInput> | null
@@ -23883,6 +25030,7 @@ export namespace Prisma {
 
   export type PartClassMembershipOrderByWithRelationInput = {
     id?: SortOrder
+    isPrimary?: SortOrder
     partClassId?: SortOrderInput | SortOrder
     partTypeId?: SortOrderInput | SortOrder
     partClass?: PartClassOrderByWithRelationInput
@@ -23894,6 +25042,7 @@ export namespace Prisma {
     AND?: PartClassMembershipWhereInput | PartClassMembershipWhereInput[]
     OR?: PartClassMembershipWhereInput[]
     NOT?: PartClassMembershipWhereInput | PartClassMembershipWhereInput[]
+    isPrimary?: BoolFilter<"PartClassMembership"> | boolean
     partClassId?: IntNullableFilter<"PartClassMembership"> | number | null
     partTypeId?: IntNullableFilter<"PartClassMembership"> | number | null
     partClass?: XOR<PartClassNullableRelationFilter, PartClassWhereInput> | null
@@ -23902,6 +25051,7 @@ export namespace Prisma {
 
   export type PartClassMembershipOrderByWithAggregationInput = {
     id?: SortOrder
+    isPrimary?: SortOrder
     partClassId?: SortOrderInput | SortOrder
     partTypeId?: SortOrderInput | SortOrder
     _count?: PartClassMembershipCountOrderByAggregateInput
@@ -23916,6 +25066,7 @@ export namespace Prisma {
     OR?: PartClassMembershipScalarWhereWithAggregatesInput[]
     NOT?: PartClassMembershipScalarWhereWithAggregatesInput | PartClassMembershipScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PartClassMembership"> | number
+    isPrimary?: BoolWithAggregatesFilter<"PartClassMembership"> | boolean
     partClassId?: IntNullableWithAggregatesFilter<"PartClassMembership"> | number | null
     partTypeId?: IntNullableWithAggregatesFilter<"PartClassMembership"> | number | null
   }
@@ -23928,8 +25079,8 @@ export namespace Prisma {
     order?: IntNullableFilter<"PartType"> | number | null
     name?: StringFilter<"PartType"> | string
     description?: StringNullableFilter<"PartType"> | string | null
-    propertyTypes?: PropertyGroupMembershipListRelationFilter
-    classes?: PartClassMembershipListRelationFilter
+    propertyTypes?: PropertyTypeMembershipListRelationFilter
+    partClasses?: PartClassMembershipListRelationFilter
   }
 
   export type PartTypeOrderByWithRelationInput = {
@@ -23937,8 +25088,8 @@ export namespace Prisma {
     order?: SortOrderInput | SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    propertyTypes?: PropertyGroupMembershipOrderByRelationAggregateInput
-    classes?: PartClassMembershipOrderByRelationAggregateInput
+    propertyTypes?: PropertyTypeMembershipOrderByRelationAggregateInput
+    partClasses?: PartClassMembershipOrderByRelationAggregateInput
   }
 
   export type PartTypeWhereUniqueInput = Prisma.AtLeast<{
@@ -23949,8 +25100,8 @@ export namespace Prisma {
     NOT?: PartTypeWhereInput | PartTypeWhereInput[]
     order?: IntNullableFilter<"PartType"> | number | null
     description?: StringNullableFilter<"PartType"> | string | null
-    propertyTypes?: PropertyGroupMembershipListRelationFilter
-    classes?: PartClassMembershipListRelationFilter
+    propertyTypes?: PropertyTypeMembershipListRelationFilter
+    partClasses?: PartClassMembershipListRelationFilter
   }, "id" | "name">
 
   export type PartTypeOrderByWithAggregationInput = {
@@ -24023,17 +25174,17 @@ export namespace Prisma {
     NOT?: PartGroupMembershipWhereInput | PartGroupMembershipWhereInput[]
     id?: IntFilter<"PartGroupMembership"> | number
     partId?: IntNullableFilter<"PartGroupMembership"> | number | null
-    groupId?: IntNullableFilter<"PartGroupMembership"> | number | null
+    partGroupId?: IntNullableFilter<"PartGroupMembership"> | number | null
     part?: XOR<PartNullableRelationFilter, PartWhereInput> | null
-    group?: XOR<PartGroupNullableRelationFilter, PartGroupWhereInput> | null
+    partGroup?: XOR<PartGroupNullableRelationFilter, PartGroupWhereInput> | null
   }
 
   export type PartGroupMembershipOrderByWithRelationInput = {
     id?: SortOrder
     partId?: SortOrderInput | SortOrder
-    groupId?: SortOrderInput | SortOrder
+    partGroupId?: SortOrderInput | SortOrder
     part?: PartOrderByWithRelationInput
-    group?: PartGroupOrderByWithRelationInput
+    partGroup?: PartGroupOrderByWithRelationInput
   }
 
   export type PartGroupMembershipWhereUniqueInput = Prisma.AtLeast<{
@@ -24042,15 +25193,15 @@ export namespace Prisma {
     OR?: PartGroupMembershipWhereInput[]
     NOT?: PartGroupMembershipWhereInput | PartGroupMembershipWhereInput[]
     partId?: IntNullableFilter<"PartGroupMembership"> | number | null
-    groupId?: IntNullableFilter<"PartGroupMembership"> | number | null
+    partGroupId?: IntNullableFilter<"PartGroupMembership"> | number | null
     part?: XOR<PartNullableRelationFilter, PartWhereInput> | null
-    group?: XOR<PartGroupNullableRelationFilter, PartGroupWhereInput> | null
+    partGroup?: XOR<PartGroupNullableRelationFilter, PartGroupWhereInput> | null
   }, "id">
 
   export type PartGroupMembershipOrderByWithAggregationInput = {
     id?: SortOrder
     partId?: SortOrderInput | SortOrder
-    groupId?: SortOrderInput | SortOrder
+    partGroupId?: SortOrderInput | SortOrder
     _count?: PartGroupMembershipCountOrderByAggregateInput
     _avg?: PartGroupMembershipAvgOrderByAggregateInput
     _max?: PartGroupMembershipMaxOrderByAggregateInput
@@ -24064,7 +25215,7 @@ export namespace Prisma {
     NOT?: PartGroupMembershipScalarWhereWithAggregatesInput | PartGroupMembershipScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"PartGroupMembership"> | number
     partId?: IntNullableWithAggregatesFilter<"PartGroupMembership"> | number | null
-    groupId?: IntNullableWithAggregatesFilter<"PartGroupMembership"> | number | null
+    partGroupId?: IntNullableWithAggregatesFilter<"PartGroupMembership"> | number | null
   }
 
   export type PartWhereInput = {
@@ -24084,7 +25235,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeListRelationFilter
     properties?: PropertyListRelationFilter
     claims?: ClaimListRelationFilter
-    groups?: PartGroupMembershipListRelationFilter
+    partGroups?: PartGroupMembershipListRelationFilter
     builds?: BuildPartListRelationFilter
   }
 
@@ -24102,7 +25253,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeOrderByRelationAggregateInput
     properties?: PropertyOrderByRelationAggregateInput
     claims?: ClaimOrderByRelationAggregateInput
-    groups?: PartGroupMembershipOrderByRelationAggregateInput
+    partGroups?: PartGroupMembershipOrderByRelationAggregateInput
     builds?: BuildPartOrderByRelationAggregateInput
   }
 
@@ -24123,7 +25274,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeListRelationFilter
     properties?: PropertyListRelationFilter
     claims?: ClaimListRelationFilter
-    groups?: PartGroupMembershipListRelationFilter
+    partGroups?: PartGroupMembershipListRelationFilter
     builds?: BuildPartListRelationFilter
   }, "id">
 
@@ -24616,7 +25767,7 @@ export namespace Prisma {
     nameAbbreviation?: string | null
     notes?: string | null
     webAddress?: string | null
-    labelMemberships?: BrandMemberCreateNestedManyWithoutBrandInput
+    brandMemberships?: BrandMemberCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUncheckedCreateInput = {
@@ -24626,7 +25777,7 @@ export namespace Prisma {
     nameAbbreviation?: string | null
     notes?: string | null
     webAddress?: string | null
-    labelMemberships?: BrandMemberUncheckedCreateNestedManyWithoutBrandInput
+    brandMemberships?: BrandMemberUncheckedCreateNestedManyWithoutBrandInput
   }
 
   export type BrandUpdateInput = {
@@ -24635,7 +25786,7 @@ export namespace Prisma {
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     webAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    labelMemberships?: BrandMemberUpdateManyWithoutBrandNestedInput
+    brandMemberships?: BrandMemberUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandUncheckedUpdateInput = {
@@ -24645,7 +25796,7 @@ export namespace Prisma {
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     webAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    labelMemberships?: BrandMemberUncheckedUpdateManyWithoutBrandNestedInput
+    brandMemberships?: BrandMemberUncheckedUpdateManyWithoutBrandNestedInput
   }
 
   export type BrandCreateManyInput = {
@@ -24675,8 +25826,8 @@ export namespace Prisma {
   }
 
   export type BrandMemberCreateInput = {
-    productLine?: ProductLineCreateNestedOneWithoutLabelMembershipsInput
-    brand?: BrandCreateNestedOneWithoutLabelMembershipsInput
+    productLine?: ProductLineCreateNestedOneWithoutBrandMembershipsInput
+    brand?: BrandCreateNestedOneWithoutBrandMembershipsInput
   }
 
   export type BrandMemberUncheckedCreateInput = {
@@ -24686,8 +25837,8 @@ export namespace Prisma {
   }
 
   export type BrandMemberUpdateInput = {
-    productLine?: ProductLineUpdateOneWithoutLabelMembershipsNestedInput
-    brand?: BrandUpdateOneWithoutLabelMembershipsNestedInput
+    productLine?: ProductLineUpdateOneWithoutBrandMembershipsNestedInput
+    brand?: BrandUpdateOneWithoutBrandMembershipsNestedInput
   }
 
   export type BrandMemberUncheckedUpdateInput = {
@@ -24719,7 +25870,7 @@ export namespace Prisma {
     nameAbbreviation?: string | null
     notes?: string | null
     webAddress?: string | null
-    labelMemberships?: BrandMemberCreateNestedManyWithoutProductLineInput
+    brandMemberships?: BrandMemberCreateNestedManyWithoutProductLineInput
     items?: PartCreateNestedManyWithoutProductLineInput
   }
 
@@ -24731,7 +25882,7 @@ export namespace Prisma {
     nameAbbreviation?: string | null
     notes?: string | null
     webAddress?: string | null
-    labelMemberships?: BrandMemberUncheckedCreateNestedManyWithoutProductLineInput
+    brandMemberships?: BrandMemberUncheckedCreateNestedManyWithoutProductLineInput
     items?: PartUncheckedCreateNestedManyWithoutProductLineInput
   }
 
@@ -24742,7 +25893,7 @@ export namespace Prisma {
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     webAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    labelMemberships?: BrandMemberUpdateManyWithoutProductLineNestedInput
+    brandMemberships?: BrandMemberUpdateManyWithoutProductLineNestedInput
     items?: PartUpdateManyWithoutProductLineNestedInput
   }
 
@@ -24754,7 +25905,7 @@ export namespace Prisma {
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     webAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    labelMemberships?: BrandMemberUncheckedUpdateManyWithoutProductLineNestedInput
+    brandMemberships?: BrandMemberUncheckedUpdateManyWithoutProductLineNestedInput
     items?: PartUncheckedUpdateManyWithoutProductLineNestedInput
   }
 
@@ -24791,7 +25942,7 @@ export namespace Prisma {
     order?: number | null
     name: string
     description?: string | null
-    propertyTypes?: PropertyGroupMembershipCreateNestedManyWithoutGroupInput
+    propertyTypes?: PropertyGroupMembershipCreateNestedManyWithoutPropertyGroupInput
   }
 
   export type PropertyGroupUncheckedCreateInput = {
@@ -24799,14 +25950,14 @@ export namespace Prisma {
     order?: number | null
     name: string
     description?: string | null
-    propertyTypes?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutGroupInput
+    propertyTypes?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyGroupInput
   }
 
   export type PropertyGroupUpdateInput = {
     order?: NullableIntFieldUpdateOperationsInput | number | null
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    propertyTypes?: PropertyGroupMembershipUpdateManyWithoutGroupNestedInput
+    propertyTypes?: PropertyGroupMembershipUpdateManyWithoutPropertyGroupNestedInput
   }
 
   export type PropertyGroupUncheckedUpdateInput = {
@@ -24814,7 +25965,7 @@ export namespace Prisma {
     order?: NullableIntFieldUpdateOperationsInput | number | null
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    propertyTypes?: PropertyGroupMembershipUncheckedUpdateManyWithoutGroupNestedInput
+    propertyTypes?: PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyGroupNestedInput
   }
 
   export type PropertyGroupCreateManyInput = {
@@ -24838,47 +25989,47 @@ export namespace Prisma {
   }
 
   export type PropertyGroupMembershipCreateInput = {
-    partType?: PartTypeCreateNestedOneWithoutPropertyTypesInput
-    propertyType?: PropertyTypeCreateNestedOneWithoutGroupsInput
-    group?: PropertyGroupCreateNestedOneWithoutPropertyTypesInput
+    isPrimary?: boolean
+    propertyType?: PropertyTypeCreateNestedOneWithoutPropertyGroupsInput
+    propertyGroup?: PropertyGroupCreateNestedOneWithoutPropertyTypesInput
   }
 
   export type PropertyGroupMembershipUncheckedCreateInput = {
     id?: number
-    partTypeId?: number | null
+    isPrimary?: boolean
     propertyTypeId?: number | null
-    groupId?: number | null
+    propertyGroupId?: number | null
   }
 
   export type PropertyGroupMembershipUpdateInput = {
-    partType?: PartTypeUpdateOneWithoutPropertyTypesNestedInput
-    propertyType?: PropertyTypeUpdateOneWithoutGroupsNestedInput
-    group?: PropertyGroupUpdateOneWithoutPropertyTypesNestedInput
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    propertyType?: PropertyTypeUpdateOneWithoutPropertyGroupsNestedInput
+    propertyGroup?: PropertyGroupUpdateOneWithoutPropertyTypesNestedInput
   }
 
   export type PropertyGroupMembershipUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     propertyTypeId?: NullableIntFieldUpdateOperationsInput | number | null
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    propertyGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PropertyGroupMembershipCreateManyInput = {
     id?: number
-    partTypeId?: number | null
+    isPrimary?: boolean
     propertyTypeId?: number | null
-    groupId?: number | null
+    propertyGroupId?: number | null
   }
 
   export type PropertyGroupMembershipUpdateManyMutationInput = {
-
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PropertyGroupMembershipUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     propertyTypeId?: NullableIntFieldUpdateOperationsInput | number | null
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    propertyGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PropertyTypeCreateInput = {
@@ -24888,7 +26039,8 @@ export namespace Prisma {
     valueDataType?: string | null
     valueDataTypeModifier?: string | null
     variation?: string | null
-    groups?: PropertyGroupMembershipCreateNestedManyWithoutPropertyTypeInput
+    partTypes?: PropertyTypeMembershipCreateNestedManyWithoutPropertyTypeInput
+    propertyGroups?: PropertyGroupMembershipCreateNestedManyWithoutPropertyTypeInput
     properties?: PropertyCreateNestedManyWithoutPropertyTypeInput
     lookupValues?: PropertyLookupCreateNestedManyWithoutPropertyTypeInput
   }
@@ -24901,7 +26053,8 @@ export namespace Prisma {
     valueDataType?: string | null
     valueDataTypeModifier?: string | null
     variation?: string | null
-    groups?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
+    partTypes?: PropertyTypeMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
+    propertyGroups?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPropertyTypeInput
     lookupValues?: PropertyLookupUncheckedCreateNestedManyWithoutPropertyTypeInput
   }
@@ -24913,7 +26066,8 @@ export namespace Prisma {
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
-    groups?: PropertyGroupMembershipUpdateManyWithoutPropertyTypeNestedInput
+    partTypes?: PropertyTypeMembershipUpdateManyWithoutPropertyTypeNestedInput
+    propertyGroups?: PropertyGroupMembershipUpdateManyWithoutPropertyTypeNestedInput
     properties?: PropertyUpdateManyWithoutPropertyTypeNestedInput
     lookupValues?: PropertyLookupUpdateManyWithoutPropertyTypeNestedInput
   }
@@ -24926,7 +26080,8 @@ export namespace Prisma {
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
-    groups?: PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
+    partTypes?: PropertyTypeMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
+    propertyGroups?: PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPropertyTypeNestedInput
     lookupValues?: PropertyLookupUncheckedUpdateManyWithoutPropertyTypeNestedInput
   }
@@ -24958,6 +26113,44 @@ export namespace Prisma {
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PropertyTypeMembershipCreateInput = {
+    propertyType?: PropertyTypeCreateNestedOneWithoutPartTypesInput
+    partType?: PartTypeCreateNestedOneWithoutPropertyTypesInput
+  }
+
+  export type PropertyTypeMembershipUncheckedCreateInput = {
+    id?: number
+    propertyTypeId?: number | null
+    partTypeId?: number | null
+  }
+
+  export type PropertyTypeMembershipUpdateInput = {
+    propertyType?: PropertyTypeUpdateOneWithoutPartTypesNestedInput
+    partType?: PartTypeUpdateOneWithoutPropertyTypesNestedInput
+  }
+
+  export type PropertyTypeMembershipUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    propertyTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type PropertyTypeMembershipCreateManyInput = {
+    id?: number
+    propertyTypeId?: number | null
+    partTypeId?: number | null
+  }
+
+  export type PropertyTypeMembershipUpdateManyMutationInput = {
+
+  }
+
+  export type PropertyTypeMembershipUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    propertyTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PropertyLookupCreateInput = {
@@ -25042,39 +26235,45 @@ export namespace Prisma {
   }
 
   export type PartClassMembershipCreateInput = {
+    isPrimary?: boolean
     partClass?: PartClassCreateNestedOneWithoutPartTypesInput
-    partType?: PartTypeCreateNestedOneWithoutClassesInput
+    partType?: PartTypeCreateNestedOneWithoutPartClassesInput
   }
 
   export type PartClassMembershipUncheckedCreateInput = {
     id?: number
+    isPrimary?: boolean
     partClassId?: number | null
     partTypeId?: number | null
   }
 
   export type PartClassMembershipUpdateInput = {
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     partClass?: PartClassUpdateOneWithoutPartTypesNestedInput
-    partType?: PartTypeUpdateOneWithoutClassesNestedInput
+    partType?: PartTypeUpdateOneWithoutPartClassesNestedInput
   }
 
   export type PartClassMembershipUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     partClassId?: NullableIntFieldUpdateOperationsInput | number | null
     partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PartClassMembershipCreateManyInput = {
     id?: number
+    isPrimary?: boolean
     partClassId?: number | null
     partTypeId?: number | null
   }
 
   export type PartClassMembershipUpdateManyMutationInput = {
-
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PartClassMembershipUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     partClassId?: NullableIntFieldUpdateOperationsInput | number | null
     partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -25083,8 +26282,8 @@ export namespace Prisma {
     order?: number | null
     name: string
     description?: string | null
-    propertyTypes?: PropertyGroupMembershipCreateNestedManyWithoutPartTypeInput
-    classes?: PartClassMembershipCreateNestedManyWithoutPartTypeInput
+    propertyTypes?: PropertyTypeMembershipCreateNestedManyWithoutPartTypeInput
+    partClasses?: PartClassMembershipCreateNestedManyWithoutPartTypeInput
   }
 
   export type PartTypeUncheckedCreateInput = {
@@ -25092,16 +26291,16 @@ export namespace Prisma {
     order?: number | null
     name: string
     description?: string | null
-    propertyTypes?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPartTypeInput
-    classes?: PartClassMembershipUncheckedCreateNestedManyWithoutPartTypeInput
+    propertyTypes?: PropertyTypeMembershipUncheckedCreateNestedManyWithoutPartTypeInput
+    partClasses?: PartClassMembershipUncheckedCreateNestedManyWithoutPartTypeInput
   }
 
   export type PartTypeUpdateInput = {
     order?: NullableIntFieldUpdateOperationsInput | number | null
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    propertyTypes?: PropertyGroupMembershipUpdateManyWithoutPartTypeNestedInput
-    classes?: PartClassMembershipUpdateManyWithoutPartTypeNestedInput
+    propertyTypes?: PropertyTypeMembershipUpdateManyWithoutPartTypeNestedInput
+    partClasses?: PartClassMembershipUpdateManyWithoutPartTypeNestedInput
   }
 
   export type PartTypeUncheckedUpdateInput = {
@@ -25109,8 +26308,8 @@ export namespace Prisma {
     order?: NullableIntFieldUpdateOperationsInput | number | null
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    propertyTypes?: PropertyGroupMembershipUncheckedUpdateManyWithoutPartTypeNestedInput
-    classes?: PartClassMembershipUncheckedUpdateManyWithoutPartTypeNestedInput
+    propertyTypes?: PropertyTypeMembershipUncheckedUpdateManyWithoutPartTypeNestedInput
+    partClasses?: PartClassMembershipUncheckedUpdateManyWithoutPartTypeNestedInput
   }
 
   export type PartTypeCreateManyInput = {
@@ -25135,24 +26334,24 @@ export namespace Prisma {
 
   export type PartGroupCreateInput = {
     name?: string | null
-    parts?: PartGroupMembershipCreateNestedManyWithoutGroupInput
+    parts?: PartGroupMembershipCreateNestedManyWithoutPartGroupInput
   }
 
   export type PartGroupUncheckedCreateInput = {
     id?: number
     name?: string | null
-    parts?: PartGroupMembershipUncheckedCreateNestedManyWithoutGroupInput
+    parts?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartGroupInput
   }
 
   export type PartGroupUpdateInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
-    parts?: PartGroupMembershipUpdateManyWithoutGroupNestedInput
+    parts?: PartGroupMembershipUpdateManyWithoutPartGroupNestedInput
   }
 
   export type PartGroupUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
-    parts?: PartGroupMembershipUncheckedUpdateManyWithoutGroupNestedInput
+    parts?: PartGroupMembershipUncheckedUpdateManyWithoutPartGroupNestedInput
   }
 
   export type PartGroupCreateManyInput = {
@@ -25170,31 +26369,31 @@ export namespace Prisma {
   }
 
   export type PartGroupMembershipCreateInput = {
-    part?: PartCreateNestedOneWithoutGroupsInput
-    group?: PartGroupCreateNestedOneWithoutPartsInput
+    part?: PartCreateNestedOneWithoutPartGroupsInput
+    partGroup?: PartGroupCreateNestedOneWithoutPartsInput
   }
 
   export type PartGroupMembershipUncheckedCreateInput = {
     id?: number
     partId?: number | null
-    groupId?: number | null
+    partGroupId?: number | null
   }
 
   export type PartGroupMembershipUpdateInput = {
-    part?: PartUpdateOneWithoutGroupsNestedInput
-    group?: PartGroupUpdateOneWithoutPartsNestedInput
+    part?: PartUpdateOneWithoutPartGroupsNestedInput
+    partGroup?: PartGroupUpdateOneWithoutPartsNestedInput
   }
 
   export type PartGroupMembershipUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     partId?: NullableIntFieldUpdateOperationsInput | number | null
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    partGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PartGroupMembershipCreateManyInput = {
     id?: number
     partId?: number | null
-    groupId?: number | null
+    partGroupId?: number | null
   }
 
   export type PartGroupMembershipUpdateManyMutationInput = {
@@ -25204,7 +26403,7 @@ export namespace Prisma {
   export type PartGroupMembershipUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     partId?: NullableIntFieldUpdateOperationsInput | number | null
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    partGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PartCreateInput = {
@@ -25219,7 +26418,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeCreateNestedManyWithoutSpokeInput
     properties?: PropertyCreateNestedManyWithoutPartInput
     claims?: ClaimCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipCreateNestedManyWithoutPartInput
     builds?: BuildPartCreateNestedManyWithoutPartInput
   }
 
@@ -25236,7 +26435,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedCreateNestedManyWithoutSpokeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPartInput
     claims?: ClaimUncheckedCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
     builds?: BuildPartUncheckedCreateNestedManyWithoutPartInput
   }
 
@@ -25252,7 +26451,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUpdateManyWithoutPartNestedInput
     claims?: ClaimUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
     builds?: BuildPartUpdateManyWithoutPartNestedInput
   }
 
@@ -25269,7 +26468,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPartNestedInput
     claims?: ClaimUncheckedUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
     builds?: BuildPartUncheckedUpdateManyWithoutPartNestedInput
   }
 
@@ -26004,9 +27203,9 @@ export namespace Prisma {
     order?: SortOrder
   }
 
-  export type PartTypeNullableRelationFilter = {
-    is?: PartTypeWhereInput | null
-    isNot?: PartTypeWhereInput | null
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type PropertyTypeNullableRelationFilter = {
@@ -26021,37 +27220,49 @@ export namespace Prisma {
 
   export type PropertyGroupMembershipCountOrderByAggregateInput = {
     id?: SortOrder
-    partTypeId?: SortOrder
+    isPrimary?: SortOrder
     propertyTypeId?: SortOrder
-    groupId?: SortOrder
+    propertyGroupId?: SortOrder
   }
 
   export type PropertyGroupMembershipAvgOrderByAggregateInput = {
     id?: SortOrder
-    partTypeId?: SortOrder
     propertyTypeId?: SortOrder
-    groupId?: SortOrder
+    propertyGroupId?: SortOrder
   }
 
   export type PropertyGroupMembershipMaxOrderByAggregateInput = {
     id?: SortOrder
-    partTypeId?: SortOrder
+    isPrimary?: SortOrder
     propertyTypeId?: SortOrder
-    groupId?: SortOrder
+    propertyGroupId?: SortOrder
   }
 
   export type PropertyGroupMembershipMinOrderByAggregateInput = {
     id?: SortOrder
-    partTypeId?: SortOrder
+    isPrimary?: SortOrder
     propertyTypeId?: SortOrder
-    groupId?: SortOrder
+    propertyGroupId?: SortOrder
   }
 
   export type PropertyGroupMembershipSumOrderByAggregateInput = {
     id?: SortOrder
-    partTypeId?: SortOrder
     propertyTypeId?: SortOrder
-    groupId?: SortOrder
+    propertyGroupId?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type PropertyTypeMembershipListRelationFilter = {
+    every?: PropertyTypeMembershipWhereInput
+    some?: PropertyTypeMembershipWhereInput
+    none?: PropertyTypeMembershipWhereInput
   }
 
   export type PropertyListRelationFilter = {
@@ -26064,6 +27275,10 @@ export namespace Prisma {
     every?: PropertyLookupWhereInput
     some?: PropertyLookupWhereInput
     none?: PropertyLookupWhereInput
+  }
+
+  export type PropertyTypeMembershipOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type PropertyOrderByRelationAggregateInput = {
@@ -26112,6 +27327,41 @@ export namespace Prisma {
   export type PropertyTypeSumOrderByAggregateInput = {
     id?: SortOrder
     order?: SortOrder
+  }
+
+  export type PartTypeNullableRelationFilter = {
+    is?: PartTypeWhereInput | null
+    isNot?: PartTypeWhereInput | null
+  }
+
+  export type PropertyTypeMembershipCountOrderByAggregateInput = {
+    id?: SortOrder
+    propertyTypeId?: SortOrder
+    partTypeId?: SortOrder
+  }
+
+  export type PropertyTypeMembershipAvgOrderByAggregateInput = {
+    id?: SortOrder
+    propertyTypeId?: SortOrder
+    partTypeId?: SortOrder
+  }
+
+  export type PropertyTypeMembershipMaxOrderByAggregateInput = {
+    id?: SortOrder
+    propertyTypeId?: SortOrder
+    partTypeId?: SortOrder
+  }
+
+  export type PropertyTypeMembershipMinOrderByAggregateInput = {
+    id?: SortOrder
+    propertyTypeId?: SortOrder
+    partTypeId?: SortOrder
+  }
+
+  export type PropertyTypeMembershipSumOrderByAggregateInput = {
+    id?: SortOrder
+    propertyTypeId?: SortOrder
+    partTypeId?: SortOrder
   }
 
   export type PropertyLookupCountOrderByAggregateInput = {
@@ -26187,6 +27437,7 @@ export namespace Prisma {
 
   export type PartClassMembershipCountOrderByAggregateInput = {
     id?: SortOrder
+    isPrimary?: SortOrder
     partClassId?: SortOrder
     partTypeId?: SortOrder
   }
@@ -26199,12 +27450,14 @@ export namespace Prisma {
 
   export type PartClassMembershipMaxOrderByAggregateInput = {
     id?: SortOrder
+    isPrimary?: SortOrder
     partClassId?: SortOrder
     partTypeId?: SortOrder
   }
 
   export type PartClassMembershipMinOrderByAggregateInput = {
     id?: SortOrder
+    isPrimary?: SortOrder
     partClassId?: SortOrder
     partTypeId?: SortOrder
   }
@@ -26287,31 +27540,31 @@ export namespace Prisma {
   export type PartGroupMembershipCountOrderByAggregateInput = {
     id?: SortOrder
     partId?: SortOrder
-    groupId?: SortOrder
+    partGroupId?: SortOrder
   }
 
   export type PartGroupMembershipAvgOrderByAggregateInput = {
     id?: SortOrder
     partId?: SortOrder
-    groupId?: SortOrder
+    partGroupId?: SortOrder
   }
 
   export type PartGroupMembershipMaxOrderByAggregateInput = {
     id?: SortOrder
     partId?: SortOrder
-    groupId?: SortOrder
+    partGroupId?: SortOrder
   }
 
   export type PartGroupMembershipMinOrderByAggregateInput = {
     id?: SortOrder
     partId?: SortOrder
-    groupId?: SortOrder
+    partGroupId?: SortOrder
   }
 
   export type PartGroupMembershipSumOrderByAggregateInput = {
     id?: SortOrder
     partId?: SortOrder
-    groupId?: SortOrder
+    partGroupId?: SortOrder
   }
 
   export type DecimalNullableFilter<$PrismaModel = never> = {
@@ -26752,36 +28005,36 @@ export namespace Prisma {
     deleteMany?: BrandMemberScalarWhereInput | BrandMemberScalarWhereInput[]
   }
 
-  export type ProductLineCreateNestedOneWithoutLabelMembershipsInput = {
-    create?: XOR<ProductLineCreateWithoutLabelMembershipsInput, ProductLineUncheckedCreateWithoutLabelMembershipsInput>
-    connectOrCreate?: ProductLineCreateOrConnectWithoutLabelMembershipsInput
+  export type ProductLineCreateNestedOneWithoutBrandMembershipsInput = {
+    create?: XOR<ProductLineCreateWithoutBrandMembershipsInput, ProductLineUncheckedCreateWithoutBrandMembershipsInput>
+    connectOrCreate?: ProductLineCreateOrConnectWithoutBrandMembershipsInput
     connect?: ProductLineWhereUniqueInput
   }
 
-  export type BrandCreateNestedOneWithoutLabelMembershipsInput = {
-    create?: XOR<BrandCreateWithoutLabelMembershipsInput, BrandUncheckedCreateWithoutLabelMembershipsInput>
-    connectOrCreate?: BrandCreateOrConnectWithoutLabelMembershipsInput
+  export type BrandCreateNestedOneWithoutBrandMembershipsInput = {
+    create?: XOR<BrandCreateWithoutBrandMembershipsInput, BrandUncheckedCreateWithoutBrandMembershipsInput>
+    connectOrCreate?: BrandCreateOrConnectWithoutBrandMembershipsInput
     connect?: BrandWhereUniqueInput
   }
 
-  export type ProductLineUpdateOneWithoutLabelMembershipsNestedInput = {
-    create?: XOR<ProductLineCreateWithoutLabelMembershipsInput, ProductLineUncheckedCreateWithoutLabelMembershipsInput>
-    connectOrCreate?: ProductLineCreateOrConnectWithoutLabelMembershipsInput
-    upsert?: ProductLineUpsertWithoutLabelMembershipsInput
+  export type ProductLineUpdateOneWithoutBrandMembershipsNestedInput = {
+    create?: XOR<ProductLineCreateWithoutBrandMembershipsInput, ProductLineUncheckedCreateWithoutBrandMembershipsInput>
+    connectOrCreate?: ProductLineCreateOrConnectWithoutBrandMembershipsInput
+    upsert?: ProductLineUpsertWithoutBrandMembershipsInput
     disconnect?: ProductLineWhereInput | boolean
     delete?: ProductLineWhereInput | boolean
     connect?: ProductLineWhereUniqueInput
-    update?: XOR<XOR<ProductLineUpdateToOneWithWhereWithoutLabelMembershipsInput, ProductLineUpdateWithoutLabelMembershipsInput>, ProductLineUncheckedUpdateWithoutLabelMembershipsInput>
+    update?: XOR<XOR<ProductLineUpdateToOneWithWhereWithoutBrandMembershipsInput, ProductLineUpdateWithoutBrandMembershipsInput>, ProductLineUncheckedUpdateWithoutBrandMembershipsInput>
   }
 
-  export type BrandUpdateOneWithoutLabelMembershipsNestedInput = {
-    create?: XOR<BrandCreateWithoutLabelMembershipsInput, BrandUncheckedCreateWithoutLabelMembershipsInput>
-    connectOrCreate?: BrandCreateOrConnectWithoutLabelMembershipsInput
-    upsert?: BrandUpsertWithoutLabelMembershipsInput
+  export type BrandUpdateOneWithoutBrandMembershipsNestedInput = {
+    create?: XOR<BrandCreateWithoutBrandMembershipsInput, BrandUncheckedCreateWithoutBrandMembershipsInput>
+    connectOrCreate?: BrandCreateOrConnectWithoutBrandMembershipsInput
+    upsert?: BrandUpsertWithoutBrandMembershipsInput
     disconnect?: BrandWhereInput | boolean
     delete?: BrandWhereInput | boolean
     connect?: BrandWhereUniqueInput
-    update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutLabelMembershipsInput, BrandUpdateWithoutLabelMembershipsInput>, BrandUncheckedUpdateWithoutLabelMembershipsInput>
+    update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutBrandMembershipsInput, BrandUpdateWithoutBrandMembershipsInput>, BrandUncheckedUpdateWithoutBrandMembershipsInput>
   }
 
   export type BrandMemberCreateNestedManyWithoutProductLineInput = {
@@ -26868,57 +28121,51 @@ export namespace Prisma {
     deleteMany?: PartScalarWhereInput | PartScalarWhereInput[]
   }
 
-  export type PropertyGroupMembershipCreateNestedManyWithoutGroupInput = {
-    create?: XOR<PropertyGroupMembershipCreateWithoutGroupInput, PropertyGroupMembershipUncheckedCreateWithoutGroupInput> | PropertyGroupMembershipCreateWithoutGroupInput[] | PropertyGroupMembershipUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutGroupInput | PropertyGroupMembershipCreateOrConnectWithoutGroupInput[]
-    createMany?: PropertyGroupMembershipCreateManyGroupInputEnvelope
+  export type PropertyGroupMembershipCreateNestedManyWithoutPropertyGroupInput = {
+    create?: XOR<PropertyGroupMembershipCreateWithoutPropertyGroupInput, PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput> | PropertyGroupMembershipCreateWithoutPropertyGroupInput[] | PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput[]
+    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput | PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput[]
+    createMany?: PropertyGroupMembershipCreateManyPropertyGroupInputEnvelope
     connect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
   }
 
-  export type PropertyGroupMembershipUncheckedCreateNestedManyWithoutGroupInput = {
-    create?: XOR<PropertyGroupMembershipCreateWithoutGroupInput, PropertyGroupMembershipUncheckedCreateWithoutGroupInput> | PropertyGroupMembershipCreateWithoutGroupInput[] | PropertyGroupMembershipUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutGroupInput | PropertyGroupMembershipCreateOrConnectWithoutGroupInput[]
-    createMany?: PropertyGroupMembershipCreateManyGroupInputEnvelope
+  export type PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyGroupInput = {
+    create?: XOR<PropertyGroupMembershipCreateWithoutPropertyGroupInput, PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput> | PropertyGroupMembershipCreateWithoutPropertyGroupInput[] | PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput[]
+    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput | PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput[]
+    createMany?: PropertyGroupMembershipCreateManyPropertyGroupInputEnvelope
     connect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
   }
 
-  export type PropertyGroupMembershipUpdateManyWithoutGroupNestedInput = {
-    create?: XOR<PropertyGroupMembershipCreateWithoutGroupInput, PropertyGroupMembershipUncheckedCreateWithoutGroupInput> | PropertyGroupMembershipCreateWithoutGroupInput[] | PropertyGroupMembershipUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutGroupInput | PropertyGroupMembershipCreateOrConnectWithoutGroupInput[]
-    upsert?: PropertyGroupMembershipUpsertWithWhereUniqueWithoutGroupInput | PropertyGroupMembershipUpsertWithWhereUniqueWithoutGroupInput[]
-    createMany?: PropertyGroupMembershipCreateManyGroupInputEnvelope
+  export type PropertyGroupMembershipUpdateManyWithoutPropertyGroupNestedInput = {
+    create?: XOR<PropertyGroupMembershipCreateWithoutPropertyGroupInput, PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput> | PropertyGroupMembershipCreateWithoutPropertyGroupInput[] | PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput[]
+    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput | PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput[]
+    upsert?: PropertyGroupMembershipUpsertWithWhereUniqueWithoutPropertyGroupInput | PropertyGroupMembershipUpsertWithWhereUniqueWithoutPropertyGroupInput[]
+    createMany?: PropertyGroupMembershipCreateManyPropertyGroupInputEnvelope
     set?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
     disconnect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
     delete?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
     connect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    update?: PropertyGroupMembershipUpdateWithWhereUniqueWithoutGroupInput | PropertyGroupMembershipUpdateWithWhereUniqueWithoutGroupInput[]
-    updateMany?: PropertyGroupMembershipUpdateManyWithWhereWithoutGroupInput | PropertyGroupMembershipUpdateManyWithWhereWithoutGroupInput[]
+    update?: PropertyGroupMembershipUpdateWithWhereUniqueWithoutPropertyGroupInput | PropertyGroupMembershipUpdateWithWhereUniqueWithoutPropertyGroupInput[]
+    updateMany?: PropertyGroupMembershipUpdateManyWithWhereWithoutPropertyGroupInput | PropertyGroupMembershipUpdateManyWithWhereWithoutPropertyGroupInput[]
     deleteMany?: PropertyGroupMembershipScalarWhereInput | PropertyGroupMembershipScalarWhereInput[]
   }
 
-  export type PropertyGroupMembershipUncheckedUpdateManyWithoutGroupNestedInput = {
-    create?: XOR<PropertyGroupMembershipCreateWithoutGroupInput, PropertyGroupMembershipUncheckedCreateWithoutGroupInput> | PropertyGroupMembershipCreateWithoutGroupInput[] | PropertyGroupMembershipUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutGroupInput | PropertyGroupMembershipCreateOrConnectWithoutGroupInput[]
-    upsert?: PropertyGroupMembershipUpsertWithWhereUniqueWithoutGroupInput | PropertyGroupMembershipUpsertWithWhereUniqueWithoutGroupInput[]
-    createMany?: PropertyGroupMembershipCreateManyGroupInputEnvelope
+  export type PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyGroupNestedInput = {
+    create?: XOR<PropertyGroupMembershipCreateWithoutPropertyGroupInput, PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput> | PropertyGroupMembershipCreateWithoutPropertyGroupInput[] | PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput[]
+    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput | PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput[]
+    upsert?: PropertyGroupMembershipUpsertWithWhereUniqueWithoutPropertyGroupInput | PropertyGroupMembershipUpsertWithWhereUniqueWithoutPropertyGroupInput[]
+    createMany?: PropertyGroupMembershipCreateManyPropertyGroupInputEnvelope
     set?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
     disconnect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
     delete?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
     connect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    update?: PropertyGroupMembershipUpdateWithWhereUniqueWithoutGroupInput | PropertyGroupMembershipUpdateWithWhereUniqueWithoutGroupInput[]
-    updateMany?: PropertyGroupMembershipUpdateManyWithWhereWithoutGroupInput | PropertyGroupMembershipUpdateManyWithWhereWithoutGroupInput[]
+    update?: PropertyGroupMembershipUpdateWithWhereUniqueWithoutPropertyGroupInput | PropertyGroupMembershipUpdateWithWhereUniqueWithoutPropertyGroupInput[]
+    updateMany?: PropertyGroupMembershipUpdateManyWithWhereWithoutPropertyGroupInput | PropertyGroupMembershipUpdateManyWithWhereWithoutPropertyGroupInput[]
     deleteMany?: PropertyGroupMembershipScalarWhereInput | PropertyGroupMembershipScalarWhereInput[]
   }
 
-  export type PartTypeCreateNestedOneWithoutPropertyTypesInput = {
-    create?: XOR<PartTypeCreateWithoutPropertyTypesInput, PartTypeUncheckedCreateWithoutPropertyTypesInput>
-    connectOrCreate?: PartTypeCreateOrConnectWithoutPropertyTypesInput
-    connect?: PartTypeWhereUniqueInput
-  }
-
-  export type PropertyTypeCreateNestedOneWithoutGroupsInput = {
-    create?: XOR<PropertyTypeCreateWithoutGroupsInput, PropertyTypeUncheckedCreateWithoutGroupsInput>
-    connectOrCreate?: PropertyTypeCreateOrConnectWithoutGroupsInput
+  export type PropertyTypeCreateNestedOneWithoutPropertyGroupsInput = {
+    create?: XOR<PropertyTypeCreateWithoutPropertyGroupsInput, PropertyTypeUncheckedCreateWithoutPropertyGroupsInput>
+    connectOrCreate?: PropertyTypeCreateOrConnectWithoutPropertyGroupsInput
     connect?: PropertyTypeWhereUniqueInput
   }
 
@@ -26928,24 +28175,18 @@ export namespace Prisma {
     connect?: PropertyGroupWhereUniqueInput
   }
 
-  export type PartTypeUpdateOneWithoutPropertyTypesNestedInput = {
-    create?: XOR<PartTypeCreateWithoutPropertyTypesInput, PartTypeUncheckedCreateWithoutPropertyTypesInput>
-    connectOrCreate?: PartTypeCreateOrConnectWithoutPropertyTypesInput
-    upsert?: PartTypeUpsertWithoutPropertyTypesInput
-    disconnect?: PartTypeWhereInput | boolean
-    delete?: PartTypeWhereInput | boolean
-    connect?: PartTypeWhereUniqueInput
-    update?: XOR<XOR<PartTypeUpdateToOneWithWhereWithoutPropertyTypesInput, PartTypeUpdateWithoutPropertyTypesInput>, PartTypeUncheckedUpdateWithoutPropertyTypesInput>
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
-  export type PropertyTypeUpdateOneWithoutGroupsNestedInput = {
-    create?: XOR<PropertyTypeCreateWithoutGroupsInput, PropertyTypeUncheckedCreateWithoutGroupsInput>
-    connectOrCreate?: PropertyTypeCreateOrConnectWithoutGroupsInput
-    upsert?: PropertyTypeUpsertWithoutGroupsInput
+  export type PropertyTypeUpdateOneWithoutPropertyGroupsNestedInput = {
+    create?: XOR<PropertyTypeCreateWithoutPropertyGroupsInput, PropertyTypeUncheckedCreateWithoutPropertyGroupsInput>
+    connectOrCreate?: PropertyTypeCreateOrConnectWithoutPropertyGroupsInput
+    upsert?: PropertyTypeUpsertWithoutPropertyGroupsInput
     disconnect?: PropertyTypeWhereInput | boolean
     delete?: PropertyTypeWhereInput | boolean
     connect?: PropertyTypeWhereUniqueInput
-    update?: XOR<XOR<PropertyTypeUpdateToOneWithWhereWithoutGroupsInput, PropertyTypeUpdateWithoutGroupsInput>, PropertyTypeUncheckedUpdateWithoutGroupsInput>
+    update?: XOR<XOR<PropertyTypeUpdateToOneWithWhereWithoutPropertyGroupsInput, PropertyTypeUpdateWithoutPropertyGroupsInput>, PropertyTypeUncheckedUpdateWithoutPropertyGroupsInput>
   }
 
   export type PropertyGroupUpdateOneWithoutPropertyTypesNestedInput = {
@@ -26956,6 +28197,13 @@ export namespace Prisma {
     delete?: PropertyGroupWhereInput | boolean
     connect?: PropertyGroupWhereUniqueInput
     update?: XOR<XOR<PropertyGroupUpdateToOneWithWhereWithoutPropertyTypesInput, PropertyGroupUpdateWithoutPropertyTypesInput>, PropertyGroupUncheckedUpdateWithoutPropertyTypesInput>
+  }
+
+  export type PropertyTypeMembershipCreateNestedManyWithoutPropertyTypeInput = {
+    create?: XOR<PropertyTypeMembershipCreateWithoutPropertyTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput> | PropertyTypeMembershipCreateWithoutPropertyTypeInput[] | PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput[]
+    connectOrCreate?: PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput | PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput[]
+    createMany?: PropertyTypeMembershipCreateManyPropertyTypeInputEnvelope
+    connect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
   }
 
   export type PropertyGroupMembershipCreateNestedManyWithoutPropertyTypeInput = {
@@ -26979,6 +28227,13 @@ export namespace Prisma {
     connect?: PropertyLookupWhereUniqueInput | PropertyLookupWhereUniqueInput[]
   }
 
+  export type PropertyTypeMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput = {
+    create?: XOR<PropertyTypeMembershipCreateWithoutPropertyTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput> | PropertyTypeMembershipCreateWithoutPropertyTypeInput[] | PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput[]
+    connectOrCreate?: PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput | PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput[]
+    createMany?: PropertyTypeMembershipCreateManyPropertyTypeInputEnvelope
+    connect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+  }
+
   export type PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput = {
     create?: XOR<PropertyGroupMembershipCreateWithoutPropertyTypeInput, PropertyGroupMembershipUncheckedCreateWithoutPropertyTypeInput> | PropertyGroupMembershipCreateWithoutPropertyTypeInput[] | PropertyGroupMembershipUncheckedCreateWithoutPropertyTypeInput[]
     connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPropertyTypeInput | PropertyGroupMembershipCreateOrConnectWithoutPropertyTypeInput[]
@@ -26998,6 +28253,20 @@ export namespace Prisma {
     connectOrCreate?: PropertyLookupCreateOrConnectWithoutPropertyTypeInput | PropertyLookupCreateOrConnectWithoutPropertyTypeInput[]
     createMany?: PropertyLookupCreateManyPropertyTypeInputEnvelope
     connect?: PropertyLookupWhereUniqueInput | PropertyLookupWhereUniqueInput[]
+  }
+
+  export type PropertyTypeMembershipUpdateManyWithoutPropertyTypeNestedInput = {
+    create?: XOR<PropertyTypeMembershipCreateWithoutPropertyTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput> | PropertyTypeMembershipCreateWithoutPropertyTypeInput[] | PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput[]
+    connectOrCreate?: PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput | PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput[]
+    upsert?: PropertyTypeMembershipUpsertWithWhereUniqueWithoutPropertyTypeInput | PropertyTypeMembershipUpsertWithWhereUniqueWithoutPropertyTypeInput[]
+    createMany?: PropertyTypeMembershipCreateManyPropertyTypeInputEnvelope
+    set?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    disconnect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    delete?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    connect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    update?: PropertyTypeMembershipUpdateWithWhereUniqueWithoutPropertyTypeInput | PropertyTypeMembershipUpdateWithWhereUniqueWithoutPropertyTypeInput[]
+    updateMany?: PropertyTypeMembershipUpdateManyWithWhereWithoutPropertyTypeInput | PropertyTypeMembershipUpdateManyWithWhereWithoutPropertyTypeInput[]
+    deleteMany?: PropertyTypeMembershipScalarWhereInput | PropertyTypeMembershipScalarWhereInput[]
   }
 
   export type PropertyGroupMembershipUpdateManyWithoutPropertyTypeNestedInput = {
@@ -27042,6 +28311,20 @@ export namespace Prisma {
     deleteMany?: PropertyLookupScalarWhereInput | PropertyLookupScalarWhereInput[]
   }
 
+  export type PropertyTypeMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput = {
+    create?: XOR<PropertyTypeMembershipCreateWithoutPropertyTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput> | PropertyTypeMembershipCreateWithoutPropertyTypeInput[] | PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput[]
+    connectOrCreate?: PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput | PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput[]
+    upsert?: PropertyTypeMembershipUpsertWithWhereUniqueWithoutPropertyTypeInput | PropertyTypeMembershipUpsertWithWhereUniqueWithoutPropertyTypeInput[]
+    createMany?: PropertyTypeMembershipCreateManyPropertyTypeInputEnvelope
+    set?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    disconnect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    delete?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    connect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    update?: PropertyTypeMembershipUpdateWithWhereUniqueWithoutPropertyTypeInput | PropertyTypeMembershipUpdateWithWhereUniqueWithoutPropertyTypeInput[]
+    updateMany?: PropertyTypeMembershipUpdateManyWithWhereWithoutPropertyTypeInput | PropertyTypeMembershipUpdateManyWithWhereWithoutPropertyTypeInput[]
+    deleteMany?: PropertyTypeMembershipScalarWhereInput | PropertyTypeMembershipScalarWhereInput[]
+  }
+
   export type PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput = {
     create?: XOR<PropertyGroupMembershipCreateWithoutPropertyTypeInput, PropertyGroupMembershipUncheckedCreateWithoutPropertyTypeInput> | PropertyGroupMembershipCreateWithoutPropertyTypeInput[] | PropertyGroupMembershipUncheckedCreateWithoutPropertyTypeInput[]
     connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPropertyTypeInput | PropertyGroupMembershipCreateOrConnectWithoutPropertyTypeInput[]
@@ -27082,6 +28365,38 @@ export namespace Prisma {
     update?: PropertyLookupUpdateWithWhereUniqueWithoutPropertyTypeInput | PropertyLookupUpdateWithWhereUniqueWithoutPropertyTypeInput[]
     updateMany?: PropertyLookupUpdateManyWithWhereWithoutPropertyTypeInput | PropertyLookupUpdateManyWithWhereWithoutPropertyTypeInput[]
     deleteMany?: PropertyLookupScalarWhereInput | PropertyLookupScalarWhereInput[]
+  }
+
+  export type PropertyTypeCreateNestedOneWithoutPartTypesInput = {
+    create?: XOR<PropertyTypeCreateWithoutPartTypesInput, PropertyTypeUncheckedCreateWithoutPartTypesInput>
+    connectOrCreate?: PropertyTypeCreateOrConnectWithoutPartTypesInput
+    connect?: PropertyTypeWhereUniqueInput
+  }
+
+  export type PartTypeCreateNestedOneWithoutPropertyTypesInput = {
+    create?: XOR<PartTypeCreateWithoutPropertyTypesInput, PartTypeUncheckedCreateWithoutPropertyTypesInput>
+    connectOrCreate?: PartTypeCreateOrConnectWithoutPropertyTypesInput
+    connect?: PartTypeWhereUniqueInput
+  }
+
+  export type PropertyTypeUpdateOneWithoutPartTypesNestedInput = {
+    create?: XOR<PropertyTypeCreateWithoutPartTypesInput, PropertyTypeUncheckedCreateWithoutPartTypesInput>
+    connectOrCreate?: PropertyTypeCreateOrConnectWithoutPartTypesInput
+    upsert?: PropertyTypeUpsertWithoutPartTypesInput
+    disconnect?: PropertyTypeWhereInput | boolean
+    delete?: PropertyTypeWhereInput | boolean
+    connect?: PropertyTypeWhereUniqueInput
+    update?: XOR<XOR<PropertyTypeUpdateToOneWithWhereWithoutPartTypesInput, PropertyTypeUpdateWithoutPartTypesInput>, PropertyTypeUncheckedUpdateWithoutPartTypesInput>
+  }
+
+  export type PartTypeUpdateOneWithoutPropertyTypesNestedInput = {
+    create?: XOR<PartTypeCreateWithoutPropertyTypesInput, PartTypeUncheckedCreateWithoutPropertyTypesInput>
+    connectOrCreate?: PartTypeCreateOrConnectWithoutPropertyTypesInput
+    upsert?: PartTypeUpsertWithoutPropertyTypesInput
+    disconnect?: PartTypeWhereInput | boolean
+    delete?: PartTypeWhereInput | boolean
+    connect?: PartTypeWhereUniqueInput
+    update?: XOR<XOR<PartTypeUpdateToOneWithWhereWithoutPropertyTypesInput, PartTypeUpdateWithoutPropertyTypesInput>, PartTypeUncheckedUpdateWithoutPropertyTypesInput>
   }
 
   export type PropertyTypeCreateNestedOneWithoutLookupValuesInput = {
@@ -27148,9 +28463,9 @@ export namespace Prisma {
     connect?: PartClassWhereUniqueInput
   }
 
-  export type PartTypeCreateNestedOneWithoutClassesInput = {
-    create?: XOR<PartTypeCreateWithoutClassesInput, PartTypeUncheckedCreateWithoutClassesInput>
-    connectOrCreate?: PartTypeCreateOrConnectWithoutClassesInput
+  export type PartTypeCreateNestedOneWithoutPartClassesInput = {
+    create?: XOR<PartTypeCreateWithoutPartClassesInput, PartTypeUncheckedCreateWithoutPartClassesInput>
+    connectOrCreate?: PartTypeCreateOrConnectWithoutPartClassesInput
     connect?: PartTypeWhereUniqueInput
   }
 
@@ -27164,21 +28479,21 @@ export namespace Prisma {
     update?: XOR<XOR<PartClassUpdateToOneWithWhereWithoutPartTypesInput, PartClassUpdateWithoutPartTypesInput>, PartClassUncheckedUpdateWithoutPartTypesInput>
   }
 
-  export type PartTypeUpdateOneWithoutClassesNestedInput = {
-    create?: XOR<PartTypeCreateWithoutClassesInput, PartTypeUncheckedCreateWithoutClassesInput>
-    connectOrCreate?: PartTypeCreateOrConnectWithoutClassesInput
-    upsert?: PartTypeUpsertWithoutClassesInput
+  export type PartTypeUpdateOneWithoutPartClassesNestedInput = {
+    create?: XOR<PartTypeCreateWithoutPartClassesInput, PartTypeUncheckedCreateWithoutPartClassesInput>
+    connectOrCreate?: PartTypeCreateOrConnectWithoutPartClassesInput
+    upsert?: PartTypeUpsertWithoutPartClassesInput
     disconnect?: PartTypeWhereInput | boolean
     delete?: PartTypeWhereInput | boolean
     connect?: PartTypeWhereUniqueInput
-    update?: XOR<XOR<PartTypeUpdateToOneWithWhereWithoutClassesInput, PartTypeUpdateWithoutClassesInput>, PartTypeUncheckedUpdateWithoutClassesInput>
+    update?: XOR<XOR<PartTypeUpdateToOneWithWhereWithoutPartClassesInput, PartTypeUpdateWithoutPartClassesInput>, PartTypeUncheckedUpdateWithoutPartClassesInput>
   }
 
-  export type PropertyGroupMembershipCreateNestedManyWithoutPartTypeInput = {
-    create?: XOR<PropertyGroupMembershipCreateWithoutPartTypeInput, PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput> | PropertyGroupMembershipCreateWithoutPartTypeInput[] | PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput[]
-    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput | PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput[]
-    createMany?: PropertyGroupMembershipCreateManyPartTypeInputEnvelope
-    connect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
+  export type PropertyTypeMembershipCreateNestedManyWithoutPartTypeInput = {
+    create?: XOR<PropertyTypeMembershipCreateWithoutPartTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput> | PropertyTypeMembershipCreateWithoutPartTypeInput[] | PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput[]
+    connectOrCreate?: PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput | PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput[]
+    createMany?: PropertyTypeMembershipCreateManyPartTypeInputEnvelope
+    connect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
   }
 
   export type PartClassMembershipCreateNestedManyWithoutPartTypeInput = {
@@ -27188,11 +28503,11 @@ export namespace Prisma {
     connect?: PartClassMembershipWhereUniqueInput | PartClassMembershipWhereUniqueInput[]
   }
 
-  export type PropertyGroupMembershipUncheckedCreateNestedManyWithoutPartTypeInput = {
-    create?: XOR<PropertyGroupMembershipCreateWithoutPartTypeInput, PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput> | PropertyGroupMembershipCreateWithoutPartTypeInput[] | PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput[]
-    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput | PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput[]
-    createMany?: PropertyGroupMembershipCreateManyPartTypeInputEnvelope
-    connect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
+  export type PropertyTypeMembershipUncheckedCreateNestedManyWithoutPartTypeInput = {
+    create?: XOR<PropertyTypeMembershipCreateWithoutPartTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput> | PropertyTypeMembershipCreateWithoutPartTypeInput[] | PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput[]
+    connectOrCreate?: PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput | PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput[]
+    createMany?: PropertyTypeMembershipCreateManyPartTypeInputEnvelope
+    connect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
   }
 
   export type PartClassMembershipUncheckedCreateNestedManyWithoutPartTypeInput = {
@@ -27202,18 +28517,18 @@ export namespace Prisma {
     connect?: PartClassMembershipWhereUniqueInput | PartClassMembershipWhereUniqueInput[]
   }
 
-  export type PropertyGroupMembershipUpdateManyWithoutPartTypeNestedInput = {
-    create?: XOR<PropertyGroupMembershipCreateWithoutPartTypeInput, PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput> | PropertyGroupMembershipCreateWithoutPartTypeInput[] | PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput[]
-    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput | PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput[]
-    upsert?: PropertyGroupMembershipUpsertWithWhereUniqueWithoutPartTypeInput | PropertyGroupMembershipUpsertWithWhereUniqueWithoutPartTypeInput[]
-    createMany?: PropertyGroupMembershipCreateManyPartTypeInputEnvelope
-    set?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    disconnect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    delete?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    connect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    update?: PropertyGroupMembershipUpdateWithWhereUniqueWithoutPartTypeInput | PropertyGroupMembershipUpdateWithWhereUniqueWithoutPartTypeInput[]
-    updateMany?: PropertyGroupMembershipUpdateManyWithWhereWithoutPartTypeInput | PropertyGroupMembershipUpdateManyWithWhereWithoutPartTypeInput[]
-    deleteMany?: PropertyGroupMembershipScalarWhereInput | PropertyGroupMembershipScalarWhereInput[]
+  export type PropertyTypeMembershipUpdateManyWithoutPartTypeNestedInput = {
+    create?: XOR<PropertyTypeMembershipCreateWithoutPartTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput> | PropertyTypeMembershipCreateWithoutPartTypeInput[] | PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput[]
+    connectOrCreate?: PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput | PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput[]
+    upsert?: PropertyTypeMembershipUpsertWithWhereUniqueWithoutPartTypeInput | PropertyTypeMembershipUpsertWithWhereUniqueWithoutPartTypeInput[]
+    createMany?: PropertyTypeMembershipCreateManyPartTypeInputEnvelope
+    set?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    disconnect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    delete?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    connect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    update?: PropertyTypeMembershipUpdateWithWhereUniqueWithoutPartTypeInput | PropertyTypeMembershipUpdateWithWhereUniqueWithoutPartTypeInput[]
+    updateMany?: PropertyTypeMembershipUpdateManyWithWhereWithoutPartTypeInput | PropertyTypeMembershipUpdateManyWithWhereWithoutPartTypeInput[]
+    deleteMany?: PropertyTypeMembershipScalarWhereInput | PropertyTypeMembershipScalarWhereInput[]
   }
 
   export type PartClassMembershipUpdateManyWithoutPartTypeNestedInput = {
@@ -27230,18 +28545,18 @@ export namespace Prisma {
     deleteMany?: PartClassMembershipScalarWhereInput | PartClassMembershipScalarWhereInput[]
   }
 
-  export type PropertyGroupMembershipUncheckedUpdateManyWithoutPartTypeNestedInput = {
-    create?: XOR<PropertyGroupMembershipCreateWithoutPartTypeInput, PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput> | PropertyGroupMembershipCreateWithoutPartTypeInput[] | PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput[]
-    connectOrCreate?: PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput | PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput[]
-    upsert?: PropertyGroupMembershipUpsertWithWhereUniqueWithoutPartTypeInput | PropertyGroupMembershipUpsertWithWhereUniqueWithoutPartTypeInput[]
-    createMany?: PropertyGroupMembershipCreateManyPartTypeInputEnvelope
-    set?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    disconnect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    delete?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    connect?: PropertyGroupMembershipWhereUniqueInput | PropertyGroupMembershipWhereUniqueInput[]
-    update?: PropertyGroupMembershipUpdateWithWhereUniqueWithoutPartTypeInput | PropertyGroupMembershipUpdateWithWhereUniqueWithoutPartTypeInput[]
-    updateMany?: PropertyGroupMembershipUpdateManyWithWhereWithoutPartTypeInput | PropertyGroupMembershipUpdateManyWithWhereWithoutPartTypeInput[]
-    deleteMany?: PropertyGroupMembershipScalarWhereInput | PropertyGroupMembershipScalarWhereInput[]
+  export type PropertyTypeMembershipUncheckedUpdateManyWithoutPartTypeNestedInput = {
+    create?: XOR<PropertyTypeMembershipCreateWithoutPartTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput> | PropertyTypeMembershipCreateWithoutPartTypeInput[] | PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput[]
+    connectOrCreate?: PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput | PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput[]
+    upsert?: PropertyTypeMembershipUpsertWithWhereUniqueWithoutPartTypeInput | PropertyTypeMembershipUpsertWithWhereUniqueWithoutPartTypeInput[]
+    createMany?: PropertyTypeMembershipCreateManyPartTypeInputEnvelope
+    set?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    disconnect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    delete?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    connect?: PropertyTypeMembershipWhereUniqueInput | PropertyTypeMembershipWhereUniqueInput[]
+    update?: PropertyTypeMembershipUpdateWithWhereUniqueWithoutPartTypeInput | PropertyTypeMembershipUpdateWithWhereUniqueWithoutPartTypeInput[]
+    updateMany?: PropertyTypeMembershipUpdateManyWithWhereWithoutPartTypeInput | PropertyTypeMembershipUpdateManyWithWhereWithoutPartTypeInput[]
+    deleteMany?: PropertyTypeMembershipScalarWhereInput | PropertyTypeMembershipScalarWhereInput[]
   }
 
   export type PartClassMembershipUncheckedUpdateManyWithoutPartTypeNestedInput = {
@@ -27258,51 +28573,51 @@ export namespace Prisma {
     deleteMany?: PartClassMembershipScalarWhereInput | PartClassMembershipScalarWhereInput[]
   }
 
-  export type PartGroupMembershipCreateNestedManyWithoutGroupInput = {
-    create?: XOR<PartGroupMembershipCreateWithoutGroupInput, PartGroupMembershipUncheckedCreateWithoutGroupInput> | PartGroupMembershipCreateWithoutGroupInput[] | PartGroupMembershipUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: PartGroupMembershipCreateOrConnectWithoutGroupInput | PartGroupMembershipCreateOrConnectWithoutGroupInput[]
-    createMany?: PartGroupMembershipCreateManyGroupInputEnvelope
+  export type PartGroupMembershipCreateNestedManyWithoutPartGroupInput = {
+    create?: XOR<PartGroupMembershipCreateWithoutPartGroupInput, PartGroupMembershipUncheckedCreateWithoutPartGroupInput> | PartGroupMembershipCreateWithoutPartGroupInput[] | PartGroupMembershipUncheckedCreateWithoutPartGroupInput[]
+    connectOrCreate?: PartGroupMembershipCreateOrConnectWithoutPartGroupInput | PartGroupMembershipCreateOrConnectWithoutPartGroupInput[]
+    createMany?: PartGroupMembershipCreateManyPartGroupInputEnvelope
     connect?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
   }
 
-  export type PartGroupMembershipUncheckedCreateNestedManyWithoutGroupInput = {
-    create?: XOR<PartGroupMembershipCreateWithoutGroupInput, PartGroupMembershipUncheckedCreateWithoutGroupInput> | PartGroupMembershipCreateWithoutGroupInput[] | PartGroupMembershipUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: PartGroupMembershipCreateOrConnectWithoutGroupInput | PartGroupMembershipCreateOrConnectWithoutGroupInput[]
-    createMany?: PartGroupMembershipCreateManyGroupInputEnvelope
+  export type PartGroupMembershipUncheckedCreateNestedManyWithoutPartGroupInput = {
+    create?: XOR<PartGroupMembershipCreateWithoutPartGroupInput, PartGroupMembershipUncheckedCreateWithoutPartGroupInput> | PartGroupMembershipCreateWithoutPartGroupInput[] | PartGroupMembershipUncheckedCreateWithoutPartGroupInput[]
+    connectOrCreate?: PartGroupMembershipCreateOrConnectWithoutPartGroupInput | PartGroupMembershipCreateOrConnectWithoutPartGroupInput[]
+    createMany?: PartGroupMembershipCreateManyPartGroupInputEnvelope
     connect?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
   }
 
-  export type PartGroupMembershipUpdateManyWithoutGroupNestedInput = {
-    create?: XOR<PartGroupMembershipCreateWithoutGroupInput, PartGroupMembershipUncheckedCreateWithoutGroupInput> | PartGroupMembershipCreateWithoutGroupInput[] | PartGroupMembershipUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: PartGroupMembershipCreateOrConnectWithoutGroupInput | PartGroupMembershipCreateOrConnectWithoutGroupInput[]
-    upsert?: PartGroupMembershipUpsertWithWhereUniqueWithoutGroupInput | PartGroupMembershipUpsertWithWhereUniqueWithoutGroupInput[]
-    createMany?: PartGroupMembershipCreateManyGroupInputEnvelope
+  export type PartGroupMembershipUpdateManyWithoutPartGroupNestedInput = {
+    create?: XOR<PartGroupMembershipCreateWithoutPartGroupInput, PartGroupMembershipUncheckedCreateWithoutPartGroupInput> | PartGroupMembershipCreateWithoutPartGroupInput[] | PartGroupMembershipUncheckedCreateWithoutPartGroupInput[]
+    connectOrCreate?: PartGroupMembershipCreateOrConnectWithoutPartGroupInput | PartGroupMembershipCreateOrConnectWithoutPartGroupInput[]
+    upsert?: PartGroupMembershipUpsertWithWhereUniqueWithoutPartGroupInput | PartGroupMembershipUpsertWithWhereUniqueWithoutPartGroupInput[]
+    createMany?: PartGroupMembershipCreateManyPartGroupInputEnvelope
     set?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
     disconnect?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
     delete?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
     connect?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
-    update?: PartGroupMembershipUpdateWithWhereUniqueWithoutGroupInput | PartGroupMembershipUpdateWithWhereUniqueWithoutGroupInput[]
-    updateMany?: PartGroupMembershipUpdateManyWithWhereWithoutGroupInput | PartGroupMembershipUpdateManyWithWhereWithoutGroupInput[]
+    update?: PartGroupMembershipUpdateWithWhereUniqueWithoutPartGroupInput | PartGroupMembershipUpdateWithWhereUniqueWithoutPartGroupInput[]
+    updateMany?: PartGroupMembershipUpdateManyWithWhereWithoutPartGroupInput | PartGroupMembershipUpdateManyWithWhereWithoutPartGroupInput[]
     deleteMany?: PartGroupMembershipScalarWhereInput | PartGroupMembershipScalarWhereInput[]
   }
 
-  export type PartGroupMembershipUncheckedUpdateManyWithoutGroupNestedInput = {
-    create?: XOR<PartGroupMembershipCreateWithoutGroupInput, PartGroupMembershipUncheckedCreateWithoutGroupInput> | PartGroupMembershipCreateWithoutGroupInput[] | PartGroupMembershipUncheckedCreateWithoutGroupInput[]
-    connectOrCreate?: PartGroupMembershipCreateOrConnectWithoutGroupInput | PartGroupMembershipCreateOrConnectWithoutGroupInput[]
-    upsert?: PartGroupMembershipUpsertWithWhereUniqueWithoutGroupInput | PartGroupMembershipUpsertWithWhereUniqueWithoutGroupInput[]
-    createMany?: PartGroupMembershipCreateManyGroupInputEnvelope
+  export type PartGroupMembershipUncheckedUpdateManyWithoutPartGroupNestedInput = {
+    create?: XOR<PartGroupMembershipCreateWithoutPartGroupInput, PartGroupMembershipUncheckedCreateWithoutPartGroupInput> | PartGroupMembershipCreateWithoutPartGroupInput[] | PartGroupMembershipUncheckedCreateWithoutPartGroupInput[]
+    connectOrCreate?: PartGroupMembershipCreateOrConnectWithoutPartGroupInput | PartGroupMembershipCreateOrConnectWithoutPartGroupInput[]
+    upsert?: PartGroupMembershipUpsertWithWhereUniqueWithoutPartGroupInput | PartGroupMembershipUpsertWithWhereUniqueWithoutPartGroupInput[]
+    createMany?: PartGroupMembershipCreateManyPartGroupInputEnvelope
     set?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
     disconnect?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
     delete?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
     connect?: PartGroupMembershipWhereUniqueInput | PartGroupMembershipWhereUniqueInput[]
-    update?: PartGroupMembershipUpdateWithWhereUniqueWithoutGroupInput | PartGroupMembershipUpdateWithWhereUniqueWithoutGroupInput[]
-    updateMany?: PartGroupMembershipUpdateManyWithWhereWithoutGroupInput | PartGroupMembershipUpdateManyWithWhereWithoutGroupInput[]
+    update?: PartGroupMembershipUpdateWithWhereUniqueWithoutPartGroupInput | PartGroupMembershipUpdateWithWhereUniqueWithoutPartGroupInput[]
+    updateMany?: PartGroupMembershipUpdateManyWithWhereWithoutPartGroupInput | PartGroupMembershipUpdateManyWithWhereWithoutPartGroupInput[]
     deleteMany?: PartGroupMembershipScalarWhereInput | PartGroupMembershipScalarWhereInput[]
   }
 
-  export type PartCreateNestedOneWithoutGroupsInput = {
-    create?: XOR<PartCreateWithoutGroupsInput, PartUncheckedCreateWithoutGroupsInput>
-    connectOrCreate?: PartCreateOrConnectWithoutGroupsInput
+  export type PartCreateNestedOneWithoutPartGroupsInput = {
+    create?: XOR<PartCreateWithoutPartGroupsInput, PartUncheckedCreateWithoutPartGroupsInput>
+    connectOrCreate?: PartCreateOrConnectWithoutPartGroupsInput
     connect?: PartWhereUniqueInput
   }
 
@@ -27312,14 +28627,14 @@ export namespace Prisma {
     connect?: PartGroupWhereUniqueInput
   }
 
-  export type PartUpdateOneWithoutGroupsNestedInput = {
-    create?: XOR<PartCreateWithoutGroupsInput, PartUncheckedCreateWithoutGroupsInput>
-    connectOrCreate?: PartCreateOrConnectWithoutGroupsInput
-    upsert?: PartUpsertWithoutGroupsInput
+  export type PartUpdateOneWithoutPartGroupsNestedInput = {
+    create?: XOR<PartCreateWithoutPartGroupsInput, PartUncheckedCreateWithoutPartGroupsInput>
+    connectOrCreate?: PartCreateOrConnectWithoutPartGroupsInput
+    upsert?: PartUpsertWithoutPartGroupsInput
     disconnect?: PartWhereInput | boolean
     delete?: PartWhereInput | boolean
     connect?: PartWhereUniqueInput
-    update?: XOR<XOR<PartUpdateToOneWithWhereWithoutGroupsInput, PartUpdateWithoutGroupsInput>, PartUncheckedUpdateWithoutGroupsInput>
+    update?: XOR<XOR<PartUpdateToOneWithWhereWithoutPartGroupsInput, PartUpdateWithoutPartGroupsInput>, PartUncheckedUpdateWithoutPartGroupsInput>
   }
 
   export type PartGroupUpdateOneWithoutPartsNestedInput = {
@@ -28025,6 +29340,19 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedDecimalNullableFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -28147,7 +29475,7 @@ export namespace Prisma {
     wheelRims?: WheelCreateNestedManyWithoutRimInput
     wheelSpokes?: WheelSpokeCreateNestedManyWithoutSpokeInput
     properties?: PropertyCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipCreateNestedManyWithoutPartInput
     builds?: BuildPartCreateNestedManyWithoutPartInput
   }
 
@@ -28163,7 +29491,7 @@ export namespace Prisma {
     wheelRims?: WheelUncheckedCreateNestedManyWithoutRimInput
     wheelSpokes?: WheelSpokeUncheckedCreateNestedManyWithoutSpokeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
     builds?: BuildPartUncheckedCreateNestedManyWithoutPartInput
   }
 
@@ -28228,7 +29556,7 @@ export namespace Prisma {
     wheelRims?: WheelUpdateManyWithoutRimNestedInput
     wheelSpokes?: WheelSpokeUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
     builds?: BuildPartUpdateManyWithoutPartNestedInput
   }
 
@@ -28244,12 +29572,12 @@ export namespace Prisma {
     wheelRims?: WheelUncheckedUpdateManyWithoutRimNestedInput
     wheelSpokes?: WheelSpokeUncheckedUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
     builds?: BuildPartUncheckedUpdateManyWithoutPartNestedInput
   }
 
   export type BrandMemberCreateWithoutBrandInput = {
-    productLine?: ProductLineCreateNestedOneWithoutLabelMembershipsInput
+    productLine?: ProductLineCreateNestedOneWithoutBrandMembershipsInput
   }
 
   export type BrandMemberUncheckedCreateWithoutBrandInput = {
@@ -28292,7 +29620,7 @@ export namespace Prisma {
     brandId?: IntNullableFilter<"BrandMember"> | number | null
   }
 
-  export type ProductLineCreateWithoutLabelMembershipsInput = {
+  export type ProductLineCreateWithoutBrandMembershipsInput = {
     type?: string | null
     name?: string | null
     nameShort?: string | null
@@ -28302,7 +29630,7 @@ export namespace Prisma {
     items?: PartCreateNestedManyWithoutProductLineInput
   }
 
-  export type ProductLineUncheckedCreateWithoutLabelMembershipsInput = {
+  export type ProductLineUncheckedCreateWithoutBrandMembershipsInput = {
     id?: number
     type?: string | null
     name?: string | null
@@ -28313,12 +29641,12 @@ export namespace Prisma {
     items?: PartUncheckedCreateNestedManyWithoutProductLineInput
   }
 
-  export type ProductLineCreateOrConnectWithoutLabelMembershipsInput = {
+  export type ProductLineCreateOrConnectWithoutBrandMembershipsInput = {
     where: ProductLineWhereUniqueInput
-    create: XOR<ProductLineCreateWithoutLabelMembershipsInput, ProductLineUncheckedCreateWithoutLabelMembershipsInput>
+    create: XOR<ProductLineCreateWithoutBrandMembershipsInput, ProductLineUncheckedCreateWithoutBrandMembershipsInput>
   }
 
-  export type BrandCreateWithoutLabelMembershipsInput = {
+  export type BrandCreateWithoutBrandMembershipsInput = {
     name?: string | null
     nameShort?: string | null
     nameAbbreviation?: string | null
@@ -28326,7 +29654,7 @@ export namespace Prisma {
     webAddress?: string | null
   }
 
-  export type BrandUncheckedCreateWithoutLabelMembershipsInput = {
+  export type BrandUncheckedCreateWithoutBrandMembershipsInput = {
     id?: number
     name?: string | null
     nameShort?: string | null
@@ -28335,23 +29663,23 @@ export namespace Prisma {
     webAddress?: string | null
   }
 
-  export type BrandCreateOrConnectWithoutLabelMembershipsInput = {
+  export type BrandCreateOrConnectWithoutBrandMembershipsInput = {
     where: BrandWhereUniqueInput
-    create: XOR<BrandCreateWithoutLabelMembershipsInput, BrandUncheckedCreateWithoutLabelMembershipsInput>
+    create: XOR<BrandCreateWithoutBrandMembershipsInput, BrandUncheckedCreateWithoutBrandMembershipsInput>
   }
 
-  export type ProductLineUpsertWithoutLabelMembershipsInput = {
-    update: XOR<ProductLineUpdateWithoutLabelMembershipsInput, ProductLineUncheckedUpdateWithoutLabelMembershipsInput>
-    create: XOR<ProductLineCreateWithoutLabelMembershipsInput, ProductLineUncheckedCreateWithoutLabelMembershipsInput>
+  export type ProductLineUpsertWithoutBrandMembershipsInput = {
+    update: XOR<ProductLineUpdateWithoutBrandMembershipsInput, ProductLineUncheckedUpdateWithoutBrandMembershipsInput>
+    create: XOR<ProductLineCreateWithoutBrandMembershipsInput, ProductLineUncheckedCreateWithoutBrandMembershipsInput>
     where?: ProductLineWhereInput
   }
 
-  export type ProductLineUpdateToOneWithWhereWithoutLabelMembershipsInput = {
+  export type ProductLineUpdateToOneWithWhereWithoutBrandMembershipsInput = {
     where?: ProductLineWhereInput
-    data: XOR<ProductLineUpdateWithoutLabelMembershipsInput, ProductLineUncheckedUpdateWithoutLabelMembershipsInput>
+    data: XOR<ProductLineUpdateWithoutBrandMembershipsInput, ProductLineUncheckedUpdateWithoutBrandMembershipsInput>
   }
 
-  export type ProductLineUpdateWithoutLabelMembershipsInput = {
+  export type ProductLineUpdateWithoutBrandMembershipsInput = {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28361,7 +29689,7 @@ export namespace Prisma {
     items?: PartUpdateManyWithoutProductLineNestedInput
   }
 
-  export type ProductLineUncheckedUpdateWithoutLabelMembershipsInput = {
+  export type ProductLineUncheckedUpdateWithoutBrandMembershipsInput = {
     id?: IntFieldUpdateOperationsInput | number
     type?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28372,18 +29700,18 @@ export namespace Prisma {
     items?: PartUncheckedUpdateManyWithoutProductLineNestedInput
   }
 
-  export type BrandUpsertWithoutLabelMembershipsInput = {
-    update: XOR<BrandUpdateWithoutLabelMembershipsInput, BrandUncheckedUpdateWithoutLabelMembershipsInput>
-    create: XOR<BrandCreateWithoutLabelMembershipsInput, BrandUncheckedCreateWithoutLabelMembershipsInput>
+  export type BrandUpsertWithoutBrandMembershipsInput = {
+    update: XOR<BrandUpdateWithoutBrandMembershipsInput, BrandUncheckedUpdateWithoutBrandMembershipsInput>
+    create: XOR<BrandCreateWithoutBrandMembershipsInput, BrandUncheckedCreateWithoutBrandMembershipsInput>
     where?: BrandWhereInput
   }
 
-  export type BrandUpdateToOneWithWhereWithoutLabelMembershipsInput = {
+  export type BrandUpdateToOneWithWhereWithoutBrandMembershipsInput = {
     where?: BrandWhereInput
-    data: XOR<BrandUpdateWithoutLabelMembershipsInput, BrandUncheckedUpdateWithoutLabelMembershipsInput>
+    data: XOR<BrandUpdateWithoutBrandMembershipsInput, BrandUncheckedUpdateWithoutBrandMembershipsInput>
   }
 
-  export type BrandUpdateWithoutLabelMembershipsInput = {
+  export type BrandUpdateWithoutBrandMembershipsInput = {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28391,7 +29719,7 @@ export namespace Prisma {
     webAddress?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type BrandUncheckedUpdateWithoutLabelMembershipsInput = {
+  export type BrandUncheckedUpdateWithoutBrandMembershipsInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameShort?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28401,7 +29729,7 @@ export namespace Prisma {
   }
 
   export type BrandMemberCreateWithoutProductLineInput = {
-    brand?: BrandCreateNestedOneWithoutLabelMembershipsInput
+    brand?: BrandCreateNestedOneWithoutBrandMembershipsInput
   }
 
   export type BrandMemberUncheckedCreateWithoutProductLineInput = {
@@ -28430,7 +29758,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeCreateNestedManyWithoutSpokeInput
     properties?: PropertyCreateNestedManyWithoutPartInput
     claims?: ClaimCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipCreateNestedManyWithoutPartInput
     builds?: BuildPartCreateNestedManyWithoutPartInput
   }
 
@@ -28446,7 +29774,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedCreateNestedManyWithoutSpokeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPartInput
     claims?: ClaimUncheckedCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
     builds?: BuildPartUncheckedCreateNestedManyWithoutPartInput
   }
 
@@ -28505,41 +29833,41 @@ export namespace Prisma {
     productLineId?: IntNullableFilter<"Part"> | number | null
   }
 
-  export type PropertyGroupMembershipCreateWithoutGroupInput = {
-    partType?: PartTypeCreateNestedOneWithoutPropertyTypesInput
-    propertyType?: PropertyTypeCreateNestedOneWithoutGroupsInput
+  export type PropertyGroupMembershipCreateWithoutPropertyGroupInput = {
+    isPrimary?: boolean
+    propertyType?: PropertyTypeCreateNestedOneWithoutPropertyGroupsInput
   }
 
-  export type PropertyGroupMembershipUncheckedCreateWithoutGroupInput = {
+  export type PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput = {
     id?: number
-    partTypeId?: number | null
+    isPrimary?: boolean
     propertyTypeId?: number | null
   }
 
-  export type PropertyGroupMembershipCreateOrConnectWithoutGroupInput = {
+  export type PropertyGroupMembershipCreateOrConnectWithoutPropertyGroupInput = {
     where: PropertyGroupMembershipWhereUniqueInput
-    create: XOR<PropertyGroupMembershipCreateWithoutGroupInput, PropertyGroupMembershipUncheckedCreateWithoutGroupInput>
+    create: XOR<PropertyGroupMembershipCreateWithoutPropertyGroupInput, PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput>
   }
 
-  export type PropertyGroupMembershipCreateManyGroupInputEnvelope = {
-    data: PropertyGroupMembershipCreateManyGroupInput | PropertyGroupMembershipCreateManyGroupInput[]
+  export type PropertyGroupMembershipCreateManyPropertyGroupInputEnvelope = {
+    data: PropertyGroupMembershipCreateManyPropertyGroupInput | PropertyGroupMembershipCreateManyPropertyGroupInput[]
     skipDuplicates?: boolean
   }
 
-  export type PropertyGroupMembershipUpsertWithWhereUniqueWithoutGroupInput = {
+  export type PropertyGroupMembershipUpsertWithWhereUniqueWithoutPropertyGroupInput = {
     where: PropertyGroupMembershipWhereUniqueInput
-    update: XOR<PropertyGroupMembershipUpdateWithoutGroupInput, PropertyGroupMembershipUncheckedUpdateWithoutGroupInput>
-    create: XOR<PropertyGroupMembershipCreateWithoutGroupInput, PropertyGroupMembershipUncheckedCreateWithoutGroupInput>
+    update: XOR<PropertyGroupMembershipUpdateWithoutPropertyGroupInput, PropertyGroupMembershipUncheckedUpdateWithoutPropertyGroupInput>
+    create: XOR<PropertyGroupMembershipCreateWithoutPropertyGroupInput, PropertyGroupMembershipUncheckedCreateWithoutPropertyGroupInput>
   }
 
-  export type PropertyGroupMembershipUpdateWithWhereUniqueWithoutGroupInput = {
+  export type PropertyGroupMembershipUpdateWithWhereUniqueWithoutPropertyGroupInput = {
     where: PropertyGroupMembershipWhereUniqueInput
-    data: XOR<PropertyGroupMembershipUpdateWithoutGroupInput, PropertyGroupMembershipUncheckedUpdateWithoutGroupInput>
+    data: XOR<PropertyGroupMembershipUpdateWithoutPropertyGroupInput, PropertyGroupMembershipUncheckedUpdateWithoutPropertyGroupInput>
   }
 
-  export type PropertyGroupMembershipUpdateManyWithWhereWithoutGroupInput = {
+  export type PropertyGroupMembershipUpdateManyWithWhereWithoutPropertyGroupInput = {
     where: PropertyGroupMembershipScalarWhereInput
-    data: XOR<PropertyGroupMembershipUpdateManyMutationInput, PropertyGroupMembershipUncheckedUpdateManyWithoutGroupInput>
+    data: XOR<PropertyGroupMembershipUpdateManyMutationInput, PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyGroupInput>
   }
 
   export type PropertyGroupMembershipScalarWhereInput = {
@@ -28547,43 +29875,24 @@ export namespace Prisma {
     OR?: PropertyGroupMembershipScalarWhereInput[]
     NOT?: PropertyGroupMembershipScalarWhereInput | PropertyGroupMembershipScalarWhereInput[]
     id?: IntFilter<"PropertyGroupMembership"> | number
-    partTypeId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
+    isPrimary?: BoolFilter<"PropertyGroupMembership"> | boolean
     propertyTypeId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
-    groupId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
+    propertyGroupId?: IntNullableFilter<"PropertyGroupMembership"> | number | null
   }
 
-  export type PartTypeCreateWithoutPropertyTypesInput = {
-    order?: number | null
-    name: string
-    description?: string | null
-    classes?: PartClassMembershipCreateNestedManyWithoutPartTypeInput
-  }
-
-  export type PartTypeUncheckedCreateWithoutPropertyTypesInput = {
-    id?: number
-    order?: number | null
-    name: string
-    description?: string | null
-    classes?: PartClassMembershipUncheckedCreateNestedManyWithoutPartTypeInput
-  }
-
-  export type PartTypeCreateOrConnectWithoutPropertyTypesInput = {
-    where: PartTypeWhereUniqueInput
-    create: XOR<PartTypeCreateWithoutPropertyTypesInput, PartTypeUncheckedCreateWithoutPropertyTypesInput>
-  }
-
-  export type PropertyTypeCreateWithoutGroupsInput = {
+  export type PropertyTypeCreateWithoutPropertyGroupsInput = {
     order?: number | null
     name?: string | null
     description?: string | null
     valueDataType?: string | null
     valueDataTypeModifier?: string | null
     variation?: string | null
+    partTypes?: PropertyTypeMembershipCreateNestedManyWithoutPropertyTypeInput
     properties?: PropertyCreateNestedManyWithoutPropertyTypeInput
     lookupValues?: PropertyLookupCreateNestedManyWithoutPropertyTypeInput
   }
 
-  export type PropertyTypeUncheckedCreateWithoutGroupsInput = {
+  export type PropertyTypeUncheckedCreateWithoutPropertyGroupsInput = {
     id?: number
     order?: number | null
     name?: string | null
@@ -28591,13 +29900,14 @@ export namespace Prisma {
     valueDataType?: string | null
     valueDataTypeModifier?: string | null
     variation?: string | null
+    partTypes?: PropertyTypeMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPropertyTypeInput
     lookupValues?: PropertyLookupUncheckedCreateNestedManyWithoutPropertyTypeInput
   }
 
-  export type PropertyTypeCreateOrConnectWithoutGroupsInput = {
+  export type PropertyTypeCreateOrConnectWithoutPropertyGroupsInput = {
     where: PropertyTypeWhereUniqueInput
-    create: XOR<PropertyTypeCreateWithoutGroupsInput, PropertyTypeUncheckedCreateWithoutGroupsInput>
+    create: XOR<PropertyTypeCreateWithoutPropertyGroupsInput, PropertyTypeUncheckedCreateWithoutPropertyGroupsInput>
   }
 
   export type PropertyGroupCreateWithoutPropertyTypesInput = {
@@ -28618,55 +29928,30 @@ export namespace Prisma {
     create: XOR<PropertyGroupCreateWithoutPropertyTypesInput, PropertyGroupUncheckedCreateWithoutPropertyTypesInput>
   }
 
-  export type PartTypeUpsertWithoutPropertyTypesInput = {
-    update: XOR<PartTypeUpdateWithoutPropertyTypesInput, PartTypeUncheckedUpdateWithoutPropertyTypesInput>
-    create: XOR<PartTypeCreateWithoutPropertyTypesInput, PartTypeUncheckedCreateWithoutPropertyTypesInput>
-    where?: PartTypeWhereInput
-  }
-
-  export type PartTypeUpdateToOneWithWhereWithoutPropertyTypesInput = {
-    where?: PartTypeWhereInput
-    data: XOR<PartTypeUpdateWithoutPropertyTypesInput, PartTypeUncheckedUpdateWithoutPropertyTypesInput>
-  }
-
-  export type PartTypeUpdateWithoutPropertyTypesInput = {
-    order?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    classes?: PartClassMembershipUpdateManyWithoutPartTypeNestedInput
-  }
-
-  export type PartTypeUncheckedUpdateWithoutPropertyTypesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    order?: NullableIntFieldUpdateOperationsInput | number | null
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    classes?: PartClassMembershipUncheckedUpdateManyWithoutPartTypeNestedInput
-  }
-
-  export type PropertyTypeUpsertWithoutGroupsInput = {
-    update: XOR<PropertyTypeUpdateWithoutGroupsInput, PropertyTypeUncheckedUpdateWithoutGroupsInput>
-    create: XOR<PropertyTypeCreateWithoutGroupsInput, PropertyTypeUncheckedCreateWithoutGroupsInput>
+  export type PropertyTypeUpsertWithoutPropertyGroupsInput = {
+    update: XOR<PropertyTypeUpdateWithoutPropertyGroupsInput, PropertyTypeUncheckedUpdateWithoutPropertyGroupsInput>
+    create: XOR<PropertyTypeCreateWithoutPropertyGroupsInput, PropertyTypeUncheckedCreateWithoutPropertyGroupsInput>
     where?: PropertyTypeWhereInput
   }
 
-  export type PropertyTypeUpdateToOneWithWhereWithoutGroupsInput = {
+  export type PropertyTypeUpdateToOneWithWhereWithoutPropertyGroupsInput = {
     where?: PropertyTypeWhereInput
-    data: XOR<PropertyTypeUpdateWithoutGroupsInput, PropertyTypeUncheckedUpdateWithoutGroupsInput>
+    data: XOR<PropertyTypeUpdateWithoutPropertyGroupsInput, PropertyTypeUncheckedUpdateWithoutPropertyGroupsInput>
   }
 
-  export type PropertyTypeUpdateWithoutGroupsInput = {
+  export type PropertyTypeUpdateWithoutPropertyGroupsInput = {
     order?: NullableIntFieldUpdateOperationsInput | number | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
+    partTypes?: PropertyTypeMembershipUpdateManyWithoutPropertyTypeNestedInput
     properties?: PropertyUpdateManyWithoutPropertyTypeNestedInput
     lookupValues?: PropertyLookupUpdateManyWithoutPropertyTypeNestedInput
   }
 
-  export type PropertyTypeUncheckedUpdateWithoutGroupsInput = {
+  export type PropertyTypeUncheckedUpdateWithoutPropertyGroupsInput = {
     id?: IntFieldUpdateOperationsInput | number
     order?: NullableIntFieldUpdateOperationsInput | number | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28674,6 +29959,7 @@ export namespace Prisma {
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
+    partTypes?: PropertyTypeMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPropertyTypeNestedInput
     lookupValues?: PropertyLookupUncheckedUpdateManyWithoutPropertyTypeNestedInput
   }
@@ -28702,15 +29988,34 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type PropertyGroupMembershipCreateWithoutPropertyTypeInput = {
+  export type PropertyTypeMembershipCreateWithoutPropertyTypeInput = {
     partType?: PartTypeCreateNestedOneWithoutPropertyTypesInput
-    group?: PropertyGroupCreateNestedOneWithoutPropertyTypesInput
+  }
+
+  export type PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput = {
+    id?: number
+    partTypeId?: number | null
+  }
+
+  export type PropertyTypeMembershipCreateOrConnectWithoutPropertyTypeInput = {
+    where: PropertyTypeMembershipWhereUniqueInput
+    create: XOR<PropertyTypeMembershipCreateWithoutPropertyTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput>
+  }
+
+  export type PropertyTypeMembershipCreateManyPropertyTypeInputEnvelope = {
+    data: PropertyTypeMembershipCreateManyPropertyTypeInput | PropertyTypeMembershipCreateManyPropertyTypeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PropertyGroupMembershipCreateWithoutPropertyTypeInput = {
+    isPrimary?: boolean
+    propertyGroup?: PropertyGroupCreateNestedOneWithoutPropertyTypesInput
   }
 
   export type PropertyGroupMembershipUncheckedCreateWithoutPropertyTypeInput = {
     id?: number
-    partTypeId?: number | null
-    groupId?: number | null
+    isPrimary?: boolean
+    propertyGroupId?: number | null
   }
 
   export type PropertyGroupMembershipCreateOrConnectWithoutPropertyTypeInput = {
@@ -28763,6 +30068,31 @@ export namespace Prisma {
   export type PropertyLookupCreateManyPropertyTypeInputEnvelope = {
     data: PropertyLookupCreateManyPropertyTypeInput | PropertyLookupCreateManyPropertyTypeInput[]
     skipDuplicates?: boolean
+  }
+
+  export type PropertyTypeMembershipUpsertWithWhereUniqueWithoutPropertyTypeInput = {
+    where: PropertyTypeMembershipWhereUniqueInput
+    update: XOR<PropertyTypeMembershipUpdateWithoutPropertyTypeInput, PropertyTypeMembershipUncheckedUpdateWithoutPropertyTypeInput>
+    create: XOR<PropertyTypeMembershipCreateWithoutPropertyTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPropertyTypeInput>
+  }
+
+  export type PropertyTypeMembershipUpdateWithWhereUniqueWithoutPropertyTypeInput = {
+    where: PropertyTypeMembershipWhereUniqueInput
+    data: XOR<PropertyTypeMembershipUpdateWithoutPropertyTypeInput, PropertyTypeMembershipUncheckedUpdateWithoutPropertyTypeInput>
+  }
+
+  export type PropertyTypeMembershipUpdateManyWithWhereWithoutPropertyTypeInput = {
+    where: PropertyTypeMembershipScalarWhereInput
+    data: XOR<PropertyTypeMembershipUpdateManyMutationInput, PropertyTypeMembershipUncheckedUpdateManyWithoutPropertyTypeInput>
+  }
+
+  export type PropertyTypeMembershipScalarWhereInput = {
+    AND?: PropertyTypeMembershipScalarWhereInput | PropertyTypeMembershipScalarWhereInput[]
+    OR?: PropertyTypeMembershipScalarWhereInput[]
+    NOT?: PropertyTypeMembershipScalarWhereInput | PropertyTypeMembershipScalarWhereInput[]
+    id?: IntFilter<"PropertyTypeMembership"> | number
+    propertyTypeId?: IntNullableFilter<"PropertyTypeMembership"> | number | null
+    partTypeId?: IntNullableFilter<"PropertyTypeMembership"> | number | null
   }
 
   export type PropertyGroupMembershipUpsertWithWhereUniqueWithoutPropertyTypeInput = {
@@ -28833,6 +30163,118 @@ export namespace Prisma {
     propertyTypeId?: IntNullableFilter<"PropertyLookup"> | number | null
   }
 
+  export type PropertyTypeCreateWithoutPartTypesInput = {
+    order?: number | null
+    name?: string | null
+    description?: string | null
+    valueDataType?: string | null
+    valueDataTypeModifier?: string | null
+    variation?: string | null
+    propertyGroups?: PropertyGroupMembershipCreateNestedManyWithoutPropertyTypeInput
+    properties?: PropertyCreateNestedManyWithoutPropertyTypeInput
+    lookupValues?: PropertyLookupCreateNestedManyWithoutPropertyTypeInput
+  }
+
+  export type PropertyTypeUncheckedCreateWithoutPartTypesInput = {
+    id?: number
+    order?: number | null
+    name?: string | null
+    description?: string | null
+    valueDataType?: string | null
+    valueDataTypeModifier?: string | null
+    variation?: string | null
+    propertyGroups?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
+    properties?: PropertyUncheckedCreateNestedManyWithoutPropertyTypeInput
+    lookupValues?: PropertyLookupUncheckedCreateNestedManyWithoutPropertyTypeInput
+  }
+
+  export type PropertyTypeCreateOrConnectWithoutPartTypesInput = {
+    where: PropertyTypeWhereUniqueInput
+    create: XOR<PropertyTypeCreateWithoutPartTypesInput, PropertyTypeUncheckedCreateWithoutPartTypesInput>
+  }
+
+  export type PartTypeCreateWithoutPropertyTypesInput = {
+    order?: number | null
+    name: string
+    description?: string | null
+    partClasses?: PartClassMembershipCreateNestedManyWithoutPartTypeInput
+  }
+
+  export type PartTypeUncheckedCreateWithoutPropertyTypesInput = {
+    id?: number
+    order?: number | null
+    name: string
+    description?: string | null
+    partClasses?: PartClassMembershipUncheckedCreateNestedManyWithoutPartTypeInput
+  }
+
+  export type PartTypeCreateOrConnectWithoutPropertyTypesInput = {
+    where: PartTypeWhereUniqueInput
+    create: XOR<PartTypeCreateWithoutPropertyTypesInput, PartTypeUncheckedCreateWithoutPropertyTypesInput>
+  }
+
+  export type PropertyTypeUpsertWithoutPartTypesInput = {
+    update: XOR<PropertyTypeUpdateWithoutPartTypesInput, PropertyTypeUncheckedUpdateWithoutPartTypesInput>
+    create: XOR<PropertyTypeCreateWithoutPartTypesInput, PropertyTypeUncheckedCreateWithoutPartTypesInput>
+    where?: PropertyTypeWhereInput
+  }
+
+  export type PropertyTypeUpdateToOneWithWhereWithoutPartTypesInput = {
+    where?: PropertyTypeWhereInput
+    data: XOR<PropertyTypeUpdateWithoutPartTypesInput, PropertyTypeUncheckedUpdateWithoutPartTypesInput>
+  }
+
+  export type PropertyTypeUpdateWithoutPartTypesInput = {
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
+    valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
+    variation?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyGroups?: PropertyGroupMembershipUpdateManyWithoutPropertyTypeNestedInput
+    properties?: PropertyUpdateManyWithoutPropertyTypeNestedInput
+    lookupValues?: PropertyLookupUpdateManyWithoutPropertyTypeNestedInput
+  }
+
+  export type PropertyTypeUncheckedUpdateWithoutPartTypesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
+    valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
+    variation?: NullableStringFieldUpdateOperationsInput | string | null
+    propertyGroups?: PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
+    properties?: PropertyUncheckedUpdateManyWithoutPropertyTypeNestedInput
+    lookupValues?: PropertyLookupUncheckedUpdateManyWithoutPropertyTypeNestedInput
+  }
+
+  export type PartTypeUpsertWithoutPropertyTypesInput = {
+    update: XOR<PartTypeUpdateWithoutPropertyTypesInput, PartTypeUncheckedUpdateWithoutPropertyTypesInput>
+    create: XOR<PartTypeCreateWithoutPropertyTypesInput, PartTypeUncheckedCreateWithoutPropertyTypesInput>
+    where?: PartTypeWhereInput
+  }
+
+  export type PartTypeUpdateToOneWithWhereWithoutPropertyTypesInput = {
+    where?: PartTypeWhereInput
+    data: XOR<PartTypeUpdateWithoutPropertyTypesInput, PartTypeUncheckedUpdateWithoutPropertyTypesInput>
+  }
+
+  export type PartTypeUpdateWithoutPropertyTypesInput = {
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    partClasses?: PartClassMembershipUpdateManyWithoutPartTypeNestedInput
+  }
+
+  export type PartTypeUncheckedUpdateWithoutPropertyTypesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    order?: NullableIntFieldUpdateOperationsInput | number | null
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    partClasses?: PartClassMembershipUncheckedUpdateManyWithoutPartTypeNestedInput
+  }
+
   export type PropertyTypeCreateWithoutLookupValuesInput = {
     order?: number | null
     name?: string | null
@@ -28840,7 +30282,8 @@ export namespace Prisma {
     valueDataType?: string | null
     valueDataTypeModifier?: string | null
     variation?: string | null
-    groups?: PropertyGroupMembershipCreateNestedManyWithoutPropertyTypeInput
+    partTypes?: PropertyTypeMembershipCreateNestedManyWithoutPropertyTypeInput
+    propertyGroups?: PropertyGroupMembershipCreateNestedManyWithoutPropertyTypeInput
     properties?: PropertyCreateNestedManyWithoutPropertyTypeInput
   }
 
@@ -28852,7 +30295,8 @@ export namespace Prisma {
     valueDataType?: string | null
     valueDataTypeModifier?: string | null
     variation?: string | null
-    groups?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
+    partTypes?: PropertyTypeMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
+    propertyGroups?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPropertyTypeInput
   }
 
@@ -28879,7 +30323,8 @@ export namespace Prisma {
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
-    groups?: PropertyGroupMembershipUpdateManyWithoutPropertyTypeNestedInput
+    partTypes?: PropertyTypeMembershipUpdateManyWithoutPropertyTypeNestedInput
+    propertyGroups?: PropertyGroupMembershipUpdateManyWithoutPropertyTypeNestedInput
     properties?: PropertyUpdateManyWithoutPropertyTypeNestedInput
   }
 
@@ -28891,16 +30336,19 @@ export namespace Prisma {
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
-    groups?: PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
+    partTypes?: PropertyTypeMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
+    propertyGroups?: PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPropertyTypeNestedInput
   }
 
   export type PartClassMembershipCreateWithoutPartClassInput = {
-    partType?: PartTypeCreateNestedOneWithoutClassesInput
+    isPrimary?: boolean
+    partType?: PartTypeCreateNestedOneWithoutPartClassesInput
   }
 
   export type PartClassMembershipUncheckedCreateWithoutPartClassInput = {
     id?: number
+    isPrimary?: boolean
     partTypeId?: number | null
   }
 
@@ -28935,6 +30383,7 @@ export namespace Prisma {
     OR?: PartClassMembershipScalarWhereInput[]
     NOT?: PartClassMembershipScalarWhereInput | PartClassMembershipScalarWhereInput[]
     id?: IntFilter<"PartClassMembership"> | number
+    isPrimary?: BoolFilter<"PartClassMembership"> | boolean
     partClassId?: IntNullableFilter<"PartClassMembership"> | number | null
     partTypeId?: IntNullableFilter<"PartClassMembership"> | number | null
   }
@@ -28955,24 +30404,24 @@ export namespace Prisma {
     create: XOR<PartClassCreateWithoutPartTypesInput, PartClassUncheckedCreateWithoutPartTypesInput>
   }
 
-  export type PartTypeCreateWithoutClassesInput = {
+  export type PartTypeCreateWithoutPartClassesInput = {
     order?: number | null
     name: string
     description?: string | null
-    propertyTypes?: PropertyGroupMembershipCreateNestedManyWithoutPartTypeInput
+    propertyTypes?: PropertyTypeMembershipCreateNestedManyWithoutPartTypeInput
   }
 
-  export type PartTypeUncheckedCreateWithoutClassesInput = {
+  export type PartTypeUncheckedCreateWithoutPartClassesInput = {
     id?: number
     order?: number | null
     name: string
     description?: string | null
-    propertyTypes?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPartTypeInput
+    propertyTypes?: PropertyTypeMembershipUncheckedCreateNestedManyWithoutPartTypeInput
   }
 
-  export type PartTypeCreateOrConnectWithoutClassesInput = {
+  export type PartTypeCreateOrConnectWithoutPartClassesInput = {
     where: PartTypeWhereUniqueInput
-    create: XOR<PartTypeCreateWithoutClassesInput, PartTypeUncheckedCreateWithoutClassesInput>
+    create: XOR<PartTypeCreateWithoutPartClassesInput, PartTypeUncheckedCreateWithoutPartClassesInput>
   }
 
   export type PartClassUpsertWithoutPartTypesInput = {
@@ -28997,59 +30446,59 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
-  export type PartTypeUpsertWithoutClassesInput = {
-    update: XOR<PartTypeUpdateWithoutClassesInput, PartTypeUncheckedUpdateWithoutClassesInput>
-    create: XOR<PartTypeCreateWithoutClassesInput, PartTypeUncheckedCreateWithoutClassesInput>
+  export type PartTypeUpsertWithoutPartClassesInput = {
+    update: XOR<PartTypeUpdateWithoutPartClassesInput, PartTypeUncheckedUpdateWithoutPartClassesInput>
+    create: XOR<PartTypeCreateWithoutPartClassesInput, PartTypeUncheckedCreateWithoutPartClassesInput>
     where?: PartTypeWhereInput
   }
 
-  export type PartTypeUpdateToOneWithWhereWithoutClassesInput = {
+  export type PartTypeUpdateToOneWithWhereWithoutPartClassesInput = {
     where?: PartTypeWhereInput
-    data: XOR<PartTypeUpdateWithoutClassesInput, PartTypeUncheckedUpdateWithoutClassesInput>
+    data: XOR<PartTypeUpdateWithoutPartClassesInput, PartTypeUncheckedUpdateWithoutPartClassesInput>
   }
 
-  export type PartTypeUpdateWithoutClassesInput = {
+  export type PartTypeUpdateWithoutPartClassesInput = {
     order?: NullableIntFieldUpdateOperationsInput | number | null
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    propertyTypes?: PropertyGroupMembershipUpdateManyWithoutPartTypeNestedInput
+    propertyTypes?: PropertyTypeMembershipUpdateManyWithoutPartTypeNestedInput
   }
 
-  export type PartTypeUncheckedUpdateWithoutClassesInput = {
+  export type PartTypeUncheckedUpdateWithoutPartClassesInput = {
     id?: IntFieldUpdateOperationsInput | number
     order?: NullableIntFieldUpdateOperationsInput | number | null
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    propertyTypes?: PropertyGroupMembershipUncheckedUpdateManyWithoutPartTypeNestedInput
+    propertyTypes?: PropertyTypeMembershipUncheckedUpdateManyWithoutPartTypeNestedInput
   }
 
-  export type PropertyGroupMembershipCreateWithoutPartTypeInput = {
-    propertyType?: PropertyTypeCreateNestedOneWithoutGroupsInput
-    group?: PropertyGroupCreateNestedOneWithoutPropertyTypesInput
+  export type PropertyTypeMembershipCreateWithoutPartTypeInput = {
+    propertyType?: PropertyTypeCreateNestedOneWithoutPartTypesInput
   }
 
-  export type PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput = {
+  export type PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput = {
     id?: number
     propertyTypeId?: number | null
-    groupId?: number | null
   }
 
-  export type PropertyGroupMembershipCreateOrConnectWithoutPartTypeInput = {
-    where: PropertyGroupMembershipWhereUniqueInput
-    create: XOR<PropertyGroupMembershipCreateWithoutPartTypeInput, PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput>
+  export type PropertyTypeMembershipCreateOrConnectWithoutPartTypeInput = {
+    where: PropertyTypeMembershipWhereUniqueInput
+    create: XOR<PropertyTypeMembershipCreateWithoutPartTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput>
   }
 
-  export type PropertyGroupMembershipCreateManyPartTypeInputEnvelope = {
-    data: PropertyGroupMembershipCreateManyPartTypeInput | PropertyGroupMembershipCreateManyPartTypeInput[]
+  export type PropertyTypeMembershipCreateManyPartTypeInputEnvelope = {
+    data: PropertyTypeMembershipCreateManyPartTypeInput | PropertyTypeMembershipCreateManyPartTypeInput[]
     skipDuplicates?: boolean
   }
 
   export type PartClassMembershipCreateWithoutPartTypeInput = {
+    isPrimary?: boolean
     partClass?: PartClassCreateNestedOneWithoutPartTypesInput
   }
 
   export type PartClassMembershipUncheckedCreateWithoutPartTypeInput = {
     id?: number
+    isPrimary?: boolean
     partClassId?: number | null
   }
 
@@ -29063,20 +30512,20 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type PropertyGroupMembershipUpsertWithWhereUniqueWithoutPartTypeInput = {
-    where: PropertyGroupMembershipWhereUniqueInput
-    update: XOR<PropertyGroupMembershipUpdateWithoutPartTypeInput, PropertyGroupMembershipUncheckedUpdateWithoutPartTypeInput>
-    create: XOR<PropertyGroupMembershipCreateWithoutPartTypeInput, PropertyGroupMembershipUncheckedCreateWithoutPartTypeInput>
+  export type PropertyTypeMembershipUpsertWithWhereUniqueWithoutPartTypeInput = {
+    where: PropertyTypeMembershipWhereUniqueInput
+    update: XOR<PropertyTypeMembershipUpdateWithoutPartTypeInput, PropertyTypeMembershipUncheckedUpdateWithoutPartTypeInput>
+    create: XOR<PropertyTypeMembershipCreateWithoutPartTypeInput, PropertyTypeMembershipUncheckedCreateWithoutPartTypeInput>
   }
 
-  export type PropertyGroupMembershipUpdateWithWhereUniqueWithoutPartTypeInput = {
-    where: PropertyGroupMembershipWhereUniqueInput
-    data: XOR<PropertyGroupMembershipUpdateWithoutPartTypeInput, PropertyGroupMembershipUncheckedUpdateWithoutPartTypeInput>
+  export type PropertyTypeMembershipUpdateWithWhereUniqueWithoutPartTypeInput = {
+    where: PropertyTypeMembershipWhereUniqueInput
+    data: XOR<PropertyTypeMembershipUpdateWithoutPartTypeInput, PropertyTypeMembershipUncheckedUpdateWithoutPartTypeInput>
   }
 
-  export type PropertyGroupMembershipUpdateManyWithWhereWithoutPartTypeInput = {
-    where: PropertyGroupMembershipScalarWhereInput
-    data: XOR<PropertyGroupMembershipUpdateManyMutationInput, PropertyGroupMembershipUncheckedUpdateManyWithoutPartTypeInput>
+  export type PropertyTypeMembershipUpdateManyWithWhereWithoutPartTypeInput = {
+    where: PropertyTypeMembershipScalarWhereInput
+    data: XOR<PropertyTypeMembershipUpdateManyMutationInput, PropertyTypeMembershipUncheckedUpdateManyWithoutPartTypeInput>
   }
 
   export type PartClassMembershipUpsertWithWhereUniqueWithoutPartTypeInput = {
@@ -29095,39 +30544,39 @@ export namespace Prisma {
     data: XOR<PartClassMembershipUpdateManyMutationInput, PartClassMembershipUncheckedUpdateManyWithoutPartTypeInput>
   }
 
-  export type PartGroupMembershipCreateWithoutGroupInput = {
-    part?: PartCreateNestedOneWithoutGroupsInput
+  export type PartGroupMembershipCreateWithoutPartGroupInput = {
+    part?: PartCreateNestedOneWithoutPartGroupsInput
   }
 
-  export type PartGroupMembershipUncheckedCreateWithoutGroupInput = {
+  export type PartGroupMembershipUncheckedCreateWithoutPartGroupInput = {
     id?: number
     partId?: number | null
   }
 
-  export type PartGroupMembershipCreateOrConnectWithoutGroupInput = {
+  export type PartGroupMembershipCreateOrConnectWithoutPartGroupInput = {
     where: PartGroupMembershipWhereUniqueInput
-    create: XOR<PartGroupMembershipCreateWithoutGroupInput, PartGroupMembershipUncheckedCreateWithoutGroupInput>
+    create: XOR<PartGroupMembershipCreateWithoutPartGroupInput, PartGroupMembershipUncheckedCreateWithoutPartGroupInput>
   }
 
-  export type PartGroupMembershipCreateManyGroupInputEnvelope = {
-    data: PartGroupMembershipCreateManyGroupInput | PartGroupMembershipCreateManyGroupInput[]
+  export type PartGroupMembershipCreateManyPartGroupInputEnvelope = {
+    data: PartGroupMembershipCreateManyPartGroupInput | PartGroupMembershipCreateManyPartGroupInput[]
     skipDuplicates?: boolean
   }
 
-  export type PartGroupMembershipUpsertWithWhereUniqueWithoutGroupInput = {
+  export type PartGroupMembershipUpsertWithWhereUniqueWithoutPartGroupInput = {
     where: PartGroupMembershipWhereUniqueInput
-    update: XOR<PartGroupMembershipUpdateWithoutGroupInput, PartGroupMembershipUncheckedUpdateWithoutGroupInput>
-    create: XOR<PartGroupMembershipCreateWithoutGroupInput, PartGroupMembershipUncheckedCreateWithoutGroupInput>
+    update: XOR<PartGroupMembershipUpdateWithoutPartGroupInput, PartGroupMembershipUncheckedUpdateWithoutPartGroupInput>
+    create: XOR<PartGroupMembershipCreateWithoutPartGroupInput, PartGroupMembershipUncheckedCreateWithoutPartGroupInput>
   }
 
-  export type PartGroupMembershipUpdateWithWhereUniqueWithoutGroupInput = {
+  export type PartGroupMembershipUpdateWithWhereUniqueWithoutPartGroupInput = {
     where: PartGroupMembershipWhereUniqueInput
-    data: XOR<PartGroupMembershipUpdateWithoutGroupInput, PartGroupMembershipUncheckedUpdateWithoutGroupInput>
+    data: XOR<PartGroupMembershipUpdateWithoutPartGroupInput, PartGroupMembershipUncheckedUpdateWithoutPartGroupInput>
   }
 
-  export type PartGroupMembershipUpdateManyWithWhereWithoutGroupInput = {
+  export type PartGroupMembershipUpdateManyWithWhereWithoutPartGroupInput = {
     where: PartGroupMembershipScalarWhereInput
-    data: XOR<PartGroupMembershipUpdateManyMutationInput, PartGroupMembershipUncheckedUpdateManyWithoutGroupInput>
+    data: XOR<PartGroupMembershipUpdateManyMutationInput, PartGroupMembershipUncheckedUpdateManyWithoutPartGroupInput>
   }
 
   export type PartGroupMembershipScalarWhereInput = {
@@ -29136,10 +30585,10 @@ export namespace Prisma {
     NOT?: PartGroupMembershipScalarWhereInput | PartGroupMembershipScalarWhereInput[]
     id?: IntFilter<"PartGroupMembership"> | number
     partId?: IntNullableFilter<"PartGroupMembership"> | number | null
-    groupId?: IntNullableFilter<"PartGroupMembership"> | number | null
+    partGroupId?: IntNullableFilter<"PartGroupMembership"> | number | null
   }
 
-  export type PartCreateWithoutGroupsInput = {
+  export type PartCreateWithoutPartGroupsInput = {
     type?: string | null
     name?: string | null
     notes?: string | null
@@ -29154,7 +30603,7 @@ export namespace Prisma {
     builds?: BuildPartCreateNestedManyWithoutPartInput
   }
 
-  export type PartUncheckedCreateWithoutGroupsInput = {
+  export type PartUncheckedCreateWithoutPartGroupsInput = {
     id?: number
     type?: string | null
     name?: string | null
@@ -29170,9 +30619,9 @@ export namespace Prisma {
     builds?: BuildPartUncheckedCreateNestedManyWithoutPartInput
   }
 
-  export type PartCreateOrConnectWithoutGroupsInput = {
+  export type PartCreateOrConnectWithoutPartGroupsInput = {
     where: PartWhereUniqueInput
-    create: XOR<PartCreateWithoutGroupsInput, PartUncheckedCreateWithoutGroupsInput>
+    create: XOR<PartCreateWithoutPartGroupsInput, PartUncheckedCreateWithoutPartGroupsInput>
   }
 
   export type PartGroupCreateWithoutPartsInput = {
@@ -29189,18 +30638,18 @@ export namespace Prisma {
     create: XOR<PartGroupCreateWithoutPartsInput, PartGroupUncheckedCreateWithoutPartsInput>
   }
 
-  export type PartUpsertWithoutGroupsInput = {
-    update: XOR<PartUpdateWithoutGroupsInput, PartUncheckedUpdateWithoutGroupsInput>
-    create: XOR<PartCreateWithoutGroupsInput, PartUncheckedCreateWithoutGroupsInput>
+  export type PartUpsertWithoutPartGroupsInput = {
+    update: XOR<PartUpdateWithoutPartGroupsInput, PartUncheckedUpdateWithoutPartGroupsInput>
+    create: XOR<PartCreateWithoutPartGroupsInput, PartUncheckedCreateWithoutPartGroupsInput>
     where?: PartWhereInput
   }
 
-  export type PartUpdateToOneWithWhereWithoutGroupsInput = {
+  export type PartUpdateToOneWithWhereWithoutPartGroupsInput = {
     where?: PartWhereInput
-    data: XOR<PartUpdateWithoutGroupsInput, PartUncheckedUpdateWithoutGroupsInput>
+    data: XOR<PartUpdateWithoutPartGroupsInput, PartUncheckedUpdateWithoutPartGroupsInput>
   }
 
-  export type PartUpdateWithoutGroupsInput = {
+  export type PartUpdateWithoutPartGroupsInput = {
     type?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29215,7 +30664,7 @@ export namespace Prisma {
     builds?: BuildPartUpdateManyWithoutPartNestedInput
   }
 
-  export type PartUncheckedUpdateWithoutGroupsInput = {
+  export type PartUncheckedUpdateWithoutPartGroupsInput = {
     id?: IntFieldUpdateOperationsInput | number
     type?: NullableStringFieldUpdateOperationsInput | string | null
     name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29258,7 +30707,7 @@ export namespace Prisma {
     nameAbbreviation?: string | null
     notes?: string | null
     webAddress?: string | null
-    labelMemberships?: BrandMemberCreateNestedManyWithoutProductLineInput
+    brandMemberships?: BrandMemberCreateNestedManyWithoutProductLineInput
   }
 
   export type ProductLineUncheckedCreateWithoutItemsInput = {
@@ -29269,7 +30718,7 @@ export namespace Prisma {
     nameAbbreviation?: string | null
     notes?: string | null
     webAddress?: string | null
-    labelMemberships?: BrandMemberUncheckedCreateNestedManyWithoutProductLineInput
+    brandMemberships?: BrandMemberUncheckedCreateNestedManyWithoutProductLineInput
   }
 
   export type ProductLineCreateOrConnectWithoutItemsInput = {
@@ -29409,12 +30858,12 @@ export namespace Prisma {
   }
 
   export type PartGroupMembershipCreateWithoutPartInput = {
-    group?: PartGroupCreateNestedOneWithoutPartsInput
+    partGroup?: PartGroupCreateNestedOneWithoutPartsInput
   }
 
   export type PartGroupMembershipUncheckedCreateWithoutPartInput = {
     id?: number
-    groupId?: number | null
+    partGroupId?: number | null
   }
 
   export type PartGroupMembershipCreateOrConnectWithoutPartInput = {
@@ -29464,7 +30913,7 @@ export namespace Prisma {
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     webAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    labelMemberships?: BrandMemberUpdateManyWithoutProductLineNestedInput
+    brandMemberships?: BrandMemberUpdateManyWithoutProductLineNestedInput
   }
 
   export type ProductLineUncheckedUpdateWithoutItemsInput = {
@@ -29475,7 +30924,7 @@ export namespace Prisma {
     nameAbbreviation?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     webAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    labelMemberships?: BrandMemberUncheckedUpdateManyWithoutProductLineNestedInput
+    brandMemberships?: BrandMemberUncheckedUpdateManyWithoutProductLineNestedInput
   }
 
   export type WheelUpsertWithWhereUniqueWithoutHubInput = {
@@ -29636,7 +31085,7 @@ export namespace Prisma {
     wheelRims?: WheelCreateNestedManyWithoutRimInput
     wheelSpokes?: WheelSpokeCreateNestedManyWithoutSpokeInput
     claims?: ClaimCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipCreateNestedManyWithoutPartInput
     builds?: BuildPartCreateNestedManyWithoutPartInput
   }
 
@@ -29652,7 +31101,7 @@ export namespace Prisma {
     wheelRims?: WheelUncheckedCreateNestedManyWithoutRimInput
     wheelSpokes?: WheelSpokeUncheckedCreateNestedManyWithoutSpokeInput
     claims?: ClaimUncheckedCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
     builds?: BuildPartUncheckedCreateNestedManyWithoutPartInput
   }
 
@@ -29668,7 +31117,8 @@ export namespace Prisma {
     valueDataType?: string | null
     valueDataTypeModifier?: string | null
     variation?: string | null
-    groups?: PropertyGroupMembershipCreateNestedManyWithoutPropertyTypeInput
+    partTypes?: PropertyTypeMembershipCreateNestedManyWithoutPropertyTypeInput
+    propertyGroups?: PropertyGroupMembershipCreateNestedManyWithoutPropertyTypeInput
     lookupValues?: PropertyLookupCreateNestedManyWithoutPropertyTypeInput
   }
 
@@ -29680,7 +31130,8 @@ export namespace Prisma {
     valueDataType?: string | null
     valueDataTypeModifier?: string | null
     variation?: string | null
-    groups?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
+    partTypes?: PropertyTypeMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
+    propertyGroups?: PropertyGroupMembershipUncheckedCreateNestedManyWithoutPropertyTypeInput
     lookupValues?: PropertyLookupUncheckedCreateNestedManyWithoutPropertyTypeInput
   }
 
@@ -29711,7 +31162,7 @@ export namespace Prisma {
     wheelRims?: WheelUpdateManyWithoutRimNestedInput
     wheelSpokes?: WheelSpokeUpdateManyWithoutSpokeNestedInput
     claims?: ClaimUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
     builds?: BuildPartUpdateManyWithoutPartNestedInput
   }
 
@@ -29727,7 +31178,7 @@ export namespace Prisma {
     wheelRims?: WheelUncheckedUpdateManyWithoutRimNestedInput
     wheelSpokes?: WheelSpokeUncheckedUpdateManyWithoutSpokeNestedInput
     claims?: ClaimUncheckedUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
     builds?: BuildPartUncheckedUpdateManyWithoutPartNestedInput
   }
 
@@ -29749,7 +31200,8 @@ export namespace Prisma {
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
-    groups?: PropertyGroupMembershipUpdateManyWithoutPropertyTypeNestedInput
+    partTypes?: PropertyTypeMembershipUpdateManyWithoutPropertyTypeNestedInput
+    propertyGroups?: PropertyGroupMembershipUpdateManyWithoutPropertyTypeNestedInput
     lookupValues?: PropertyLookupUpdateManyWithoutPropertyTypeNestedInput
   }
 
@@ -29761,7 +31213,8 @@ export namespace Prisma {
     valueDataType?: NullableStringFieldUpdateOperationsInput | string | null
     valueDataTypeModifier?: NullableStringFieldUpdateOperationsInput | string | null
     variation?: NullableStringFieldUpdateOperationsInput | string | null
-    groups?: PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
+    partTypes?: PropertyTypeMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
+    propertyGroups?: PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeNestedInput
     lookupValues?: PropertyLookupUncheckedUpdateManyWithoutPropertyTypeNestedInput
   }
 
@@ -29776,7 +31229,7 @@ export namespace Prisma {
     wheelRims?: WheelCreateNestedManyWithoutRimInput
     properties?: PropertyCreateNestedManyWithoutPartInput
     claims?: ClaimCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipCreateNestedManyWithoutPartInput
     builds?: BuildPartCreateNestedManyWithoutPartInput
   }
 
@@ -29792,7 +31245,7 @@ export namespace Prisma {
     wheelRims?: WheelUncheckedCreateNestedManyWithoutRimInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPartInput
     claims?: ClaimUncheckedCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
     builds?: BuildPartUncheckedCreateNestedManyWithoutPartInput
   }
 
@@ -29843,7 +31296,7 @@ export namespace Prisma {
     wheelRims?: WheelUpdateManyWithoutRimNestedInput
     properties?: PropertyUpdateManyWithoutPartNestedInput
     claims?: ClaimUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
     builds?: BuildPartUpdateManyWithoutPartNestedInput
   }
 
@@ -29859,7 +31312,7 @@ export namespace Prisma {
     wheelRims?: WheelUncheckedUpdateManyWithoutRimNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPartNestedInput
     claims?: ClaimUncheckedUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
     builds?: BuildPartUncheckedUpdateManyWithoutPartNestedInput
   }
 
@@ -29900,7 +31353,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeCreateNestedManyWithoutSpokeInput
     properties?: PropertyCreateNestedManyWithoutPartInput
     claims?: ClaimCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipCreateNestedManyWithoutPartInput
     builds?: BuildPartCreateNestedManyWithoutPartInput
   }
 
@@ -29916,7 +31369,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedCreateNestedManyWithoutSpokeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPartInput
     claims?: ClaimUncheckedCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
     builds?: BuildPartUncheckedCreateNestedManyWithoutPartInput
   }
 
@@ -29936,7 +31389,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeCreateNestedManyWithoutSpokeInput
     properties?: PropertyCreateNestedManyWithoutPartInput
     claims?: ClaimCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipCreateNestedManyWithoutPartInput
     builds?: BuildPartCreateNestedManyWithoutPartInput
   }
 
@@ -29952,7 +31405,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedCreateNestedManyWithoutSpokeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPartInput
     claims?: ClaimUncheckedCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
     builds?: BuildPartUncheckedCreateNestedManyWithoutPartInput
   }
 
@@ -30014,7 +31467,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUpdateManyWithoutPartNestedInput
     claims?: ClaimUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
     builds?: BuildPartUpdateManyWithoutPartNestedInput
   }
 
@@ -30030,7 +31483,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPartNestedInput
     claims?: ClaimUncheckedUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
     builds?: BuildPartUncheckedUpdateManyWithoutPartNestedInput
   }
 
@@ -30056,7 +31509,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUpdateManyWithoutPartNestedInput
     claims?: ClaimUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
     builds?: BuildPartUpdateManyWithoutPartNestedInput
   }
 
@@ -30072,7 +31525,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPartNestedInput
     claims?: ClaimUncheckedUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
     builds?: BuildPartUncheckedUpdateManyWithoutPartNestedInput
   }
 
@@ -30122,7 +31575,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeCreateNestedManyWithoutSpokeInput
     properties?: PropertyCreateNestedManyWithoutPartInput
     claims?: ClaimCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipCreateNestedManyWithoutPartInput
   }
 
   export type PartUncheckedCreateWithoutBuildsInput = {
@@ -30138,7 +31591,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedCreateNestedManyWithoutSpokeInput
     properties?: PropertyUncheckedCreateNestedManyWithoutPartInput
     claims?: ClaimUncheckedCreateNestedManyWithoutPartInput
-    groups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
+    partGroups?: PartGroupMembershipUncheckedCreateNestedManyWithoutPartInput
   }
 
   export type PartCreateOrConnectWithoutBuildsInput = {
@@ -30193,7 +31646,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUpdateManyWithoutPartNestedInput
     claims?: ClaimUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
   }
 
   export type PartUncheckedUpdateWithoutBuildsInput = {
@@ -30209,7 +31662,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPartNestedInput
     claims?: ClaimUncheckedUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
   }
 
   export type BuildPartCreateWithoutBuildInput = {
@@ -30288,7 +31741,7 @@ export namespace Prisma {
   }
 
   export type BrandMemberUpdateWithoutBrandInput = {
-    productLine?: ProductLineUpdateOneWithoutLabelMembershipsNestedInput
+    productLine?: ProductLineUpdateOneWithoutBrandMembershipsNestedInput
   }
 
   export type BrandMemberUncheckedUpdateWithoutBrandInput = {
@@ -30316,7 +31769,7 @@ export namespace Prisma {
   }
 
   export type BrandMemberUpdateWithoutProductLineInput = {
-    brand?: BrandUpdateOneWithoutLabelMembershipsNestedInput
+    brand?: BrandUpdateOneWithoutBrandMembershipsNestedInput
   }
 
   export type BrandMemberUncheckedUpdateWithoutProductLineInput = {
@@ -30340,7 +31793,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUpdateManyWithoutPartNestedInput
     claims?: ClaimUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUpdateManyWithoutPartNestedInput
     builds?: BuildPartUpdateManyWithoutPartNestedInput
   }
 
@@ -30356,7 +31809,7 @@ export namespace Prisma {
     wheelSpokes?: WheelSpokeUncheckedUpdateManyWithoutSpokeNestedInput
     properties?: PropertyUncheckedUpdateManyWithoutPartNestedInput
     claims?: ClaimUncheckedUpdateManyWithoutPartNestedInput
-    groups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
+    partGroups?: PartGroupMembershipUncheckedUpdateManyWithoutPartNestedInput
     builds?: BuildPartUncheckedUpdateManyWithoutPartNestedInput
   }
 
@@ -30369,33 +31822,38 @@ export namespace Prisma {
     weightUnit?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type PropertyGroupMembershipCreateManyGroupInput = {
+  export type PropertyGroupMembershipCreateManyPropertyGroupInput = {
     id?: number
-    partTypeId?: number | null
+    isPrimary?: boolean
     propertyTypeId?: number | null
   }
 
-  export type PropertyGroupMembershipUpdateWithoutGroupInput = {
-    partType?: PartTypeUpdateOneWithoutPropertyTypesNestedInput
-    propertyType?: PropertyTypeUpdateOneWithoutGroupsNestedInput
+  export type PropertyGroupMembershipUpdateWithoutPropertyGroupInput = {
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    propertyType?: PropertyTypeUpdateOneWithoutPropertyGroupsNestedInput
   }
 
-  export type PropertyGroupMembershipUncheckedUpdateWithoutGroupInput = {
+  export type PropertyGroupMembershipUncheckedUpdateWithoutPropertyGroupInput = {
     id?: IntFieldUpdateOperationsInput | number
-    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     propertyTypeId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PropertyGroupMembershipUncheckedUpdateManyWithoutGroupInput = {
+  export type PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyGroupInput = {
     id?: IntFieldUpdateOperationsInput | number
-    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     propertyTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type PropertyTypeMembershipCreateManyPropertyTypeInput = {
+    id?: number
+    partTypeId?: number | null
   }
 
   export type PropertyGroupMembershipCreateManyPropertyTypeInput = {
     id?: number
-    partTypeId?: number | null
-    groupId?: number | null
+    isPrimary?: boolean
+    propertyGroupId?: number | null
   }
 
   export type PropertyCreateManyPropertyTypeInput = {
@@ -30410,21 +31868,35 @@ export namespace Prisma {
     value?: string | null
   }
 
-  export type PropertyGroupMembershipUpdateWithoutPropertyTypeInput = {
+  export type PropertyTypeMembershipUpdateWithoutPropertyTypeInput = {
     partType?: PartTypeUpdateOneWithoutPropertyTypesNestedInput
-    group?: PropertyGroupUpdateOneWithoutPropertyTypesNestedInput
+  }
+
+  export type PropertyTypeMembershipUncheckedUpdateWithoutPropertyTypeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type PropertyTypeMembershipUncheckedUpdateManyWithoutPropertyTypeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type PropertyGroupMembershipUpdateWithoutPropertyTypeInput = {
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    propertyGroup?: PropertyGroupUpdateOneWithoutPropertyTypesNestedInput
   }
 
   export type PropertyGroupMembershipUncheckedUpdateWithoutPropertyTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
-    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    propertyGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PropertyGroupMembershipUncheckedUpdateManyWithoutPropertyTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
-    partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    propertyGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PropertyUpdateWithoutPropertyTypeInput = {
@@ -30463,80 +31935,84 @@ export namespace Prisma {
 
   export type PartClassMembershipCreateManyPartClassInput = {
     id?: number
+    isPrimary?: boolean
     partTypeId?: number | null
   }
 
   export type PartClassMembershipUpdateWithoutPartClassInput = {
-    partType?: PartTypeUpdateOneWithoutClassesNestedInput
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
+    partType?: PartTypeUpdateOneWithoutPartClassesNestedInput
   }
 
   export type PartClassMembershipUncheckedUpdateWithoutPartClassInput = {
     id?: IntFieldUpdateOperationsInput | number
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PartClassMembershipUncheckedUpdateManyWithoutPartClassInput = {
     id?: IntFieldUpdateOperationsInput | number
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     partTypeId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PropertyGroupMembershipCreateManyPartTypeInput = {
+  export type PropertyTypeMembershipCreateManyPartTypeInput = {
     id?: number
     propertyTypeId?: number | null
-    groupId?: number | null
   }
 
   export type PartClassMembershipCreateManyPartTypeInput = {
     id?: number
+    isPrimary?: boolean
     partClassId?: number | null
   }
 
-  export type PropertyGroupMembershipUpdateWithoutPartTypeInput = {
-    propertyType?: PropertyTypeUpdateOneWithoutGroupsNestedInput
-    group?: PropertyGroupUpdateOneWithoutPropertyTypesNestedInput
+  export type PropertyTypeMembershipUpdateWithoutPartTypeInput = {
+    propertyType?: PropertyTypeUpdateOneWithoutPartTypesNestedInput
   }
 
-  export type PropertyGroupMembershipUncheckedUpdateWithoutPartTypeInput = {
+  export type PropertyTypeMembershipUncheckedUpdateWithoutPartTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
     propertyTypeId?: NullableIntFieldUpdateOperationsInput | number | null
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PropertyGroupMembershipUncheckedUpdateManyWithoutPartTypeInput = {
+  export type PropertyTypeMembershipUncheckedUpdateManyWithoutPartTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
     propertyTypeId?: NullableIntFieldUpdateOperationsInput | number | null
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PartClassMembershipUpdateWithoutPartTypeInput = {
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     partClass?: PartClassUpdateOneWithoutPartTypesNestedInput
   }
 
   export type PartClassMembershipUncheckedUpdateWithoutPartTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     partClassId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PartClassMembershipUncheckedUpdateManyWithoutPartTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
+    isPrimary?: BoolFieldUpdateOperationsInput | boolean
     partClassId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PartGroupMembershipCreateManyGroupInput = {
+  export type PartGroupMembershipCreateManyPartGroupInput = {
     id?: number
     partId?: number | null
   }
 
-  export type PartGroupMembershipUpdateWithoutGroupInput = {
-    part?: PartUpdateOneWithoutGroupsNestedInput
+  export type PartGroupMembershipUpdateWithoutPartGroupInput = {
+    part?: PartUpdateOneWithoutPartGroupsNestedInput
   }
 
-  export type PartGroupMembershipUncheckedUpdateWithoutGroupInput = {
+  export type PartGroupMembershipUncheckedUpdateWithoutPartGroupInput = {
     id?: IntFieldUpdateOperationsInput | number
     partId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type PartGroupMembershipUncheckedUpdateManyWithoutGroupInput = {
+  export type PartGroupMembershipUncheckedUpdateManyWithoutPartGroupInput = {
     id?: IntFieldUpdateOperationsInput | number
     partId?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -30584,7 +32060,7 @@ export namespace Prisma {
 
   export type PartGroupMembershipCreateManyPartInput = {
     id?: number
-    groupId?: number | null
+    partGroupId?: number | null
   }
 
   export type BuildPartCreateManyPartInput = {
@@ -30715,17 +32191,17 @@ export namespace Prisma {
   }
 
   export type PartGroupMembershipUpdateWithoutPartInput = {
-    group?: PartGroupUpdateOneWithoutPartsNestedInput
+    partGroup?: PartGroupUpdateOneWithoutPartsNestedInput
   }
 
   export type PartGroupMembershipUncheckedUpdateWithoutPartInput = {
     id?: IntFieldUpdateOperationsInput | number
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    partGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type PartGroupMembershipUncheckedUpdateManyWithoutPartInput = {
     id?: IntFieldUpdateOperationsInput | number
-    groupId?: NullableIntFieldUpdateOperationsInput | number | null
+    partGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type BuildPartUpdateWithoutPartInput = {
@@ -30885,6 +32361,10 @@ export namespace Prisma {
      * @deprecated Use PropertyTypeDefaultArgs instead
      */
     export type PropertyTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PropertyTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use PropertyTypeMembershipDefaultArgs instead
+     */
+    export type PropertyTypeMembershipArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PropertyTypeMembershipDefaultArgs<ExtArgs>
     /**
      * @deprecated Use PropertyLookupDefaultArgs instead
      */

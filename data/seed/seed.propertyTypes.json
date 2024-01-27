@@ -7,7 +7,8 @@
             "valueDataType": "text",
             "valueDataHint": "",
             "valueDataTypeModifier": null,
-            "propertyGroups": ["general classification"]
+            "propertyGroupPrimary": "general classification",
+            "propertyGroupsOther": null
         },
         {
             "order": 200,
@@ -15,7 +16,8 @@
             "valueDataType": "text",
             "valueDataHint": "",
             "valueDataTypeModifier": null,
-            "propertyGroups": ["general classification"]
+            "propertyGroupPrimary": "general classification",
+            "propertyGroupsOther": null
         },
         {
             "order": 300,
@@ -23,7 +25,8 @@
             "valueDataType": "text",
             "valueDataHint": "",
             "valueDataTypeModifier": null,
-            "propertyGroups": ["general classification"]
+            "propertyGroupPrimary": "general classification",
+            "propertyGroupsOther": null
         },
         {
             "order": 400,
@@ -31,7 +34,8 @@
             "valueDataType": "text",
             "valueDataHint": "",
             "valueDataTypeModifier": null,
-            "propertyGroups": ["construction"]
+            "propertyGroupPrimary": "construction",
+            "propertyGroupsOther": null
         },
         {
             "order": 500,
@@ -39,7 +43,8 @@
             "valueDataType": "text",
             "valueDataHint": "",
             "valueDataTypeModifier": null,
-            "propertyGroups": ["construction"]
+            "propertyGroupPrimary": "construction",
+            "propertyGroupsOther": null
         },
         {
             "order": 600,
@@ -47,7 +52,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 700,
@@ -55,7 +61,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 800,
@@ -63,7 +70,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 900,
@@ -71,7 +79,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1000,
@@ -79,7 +88,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "angle",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1100,
@@ -87,7 +97,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "angle",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1200,
@@ -95,7 +106,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1300,
@@ -103,7 +115,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1400,
@@ -111,7 +124,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1500,
@@ -119,7 +133,8 @@
             "valueDataType": "decimla",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1600,
@@ -127,7 +142,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1700,
@@ -135,7 +151,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1710,
@@ -143,7 +160,8 @@
             "valueDataType": "deciaml",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1720,
@@ -151,7 +169,8 @@
             "valueDataType": "deciaml",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1730,
@@ -159,7 +178,8 @@
             "valueDataType": "deciaml",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": null
         },
         {
             "order": 1740,
@@ -167,7 +187,8 @@
             "valueDataType": "deciaml",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions", "fork integration"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": ["fork integration"]
         },
         {
             "order": 1750,
@@ -175,7 +196,8 @@
             "valueDataType": "deciaml",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["fork integration"]
+            "propertyGroupPrimary": "fork integration",
+            "propertyGroupsOther": null
         },        
         {
             "order": 1800,
@@ -183,7 +205,8 @@
             "valueDataType": "deciaml",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["fork integration", "dimensions"]
+            "propertyGroupPrimary": "fork integration",
+            "propertyGroupsOther": ["dimensions"]
         },
         {
             "order": 1900,
@@ -191,7 +214,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["fork integration", "dimensions"]
+            "propertyGroupPrimary": "fork integration",
+            "propertyGroupsOther": ["dimensions"]
         },
         {
             "order": 1910,
@@ -199,7 +223,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["fork integration"]
+            "propertyGroupPrimary": "fork integration",
+            "propertyGroupsOther": null
         },
         {
             "order": 2000,
@@ -207,7 +232,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["wheel specification"]
+            "propertyGroupPrimary": "wheel specification",
+            "propertyGroupsOther": null
         },
         {
             "order": 2100,
@@ -215,7 +241,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["wheel integration", "fitting integration"]
+            "propertyGroupPrimary": "wheel integration",
+            "propertyGroupsOther": ["fitting integration"]
         },
         {
             "order": 2200,
@@ -223,7 +250,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["wheel integration"]
+            "propertyGroupPrimary": "wheel integration",
+            "propertyGroupsOther": null
         },
         {
             "order": 2300,
@@ -231,7 +259,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["wheel integration"]
+            "propertyGroupPrimary": "wheel integration",
+            "propertyGroupsOther": null
         },
         {
             "order": 2400,
@@ -239,7 +268,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["brake integration"]         
+            "propertyGroupPrimary": "brake integration",
+            "propertyGroupsOther": null
         },
         {
             "order": 2500,
@@ -247,7 +277,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["brake integration"]
+            "propertyGroupPrimary": "brake integration",
+            "propertyGroupsOther": null
         },
         {
             "order": 2600,
@@ -255,7 +286,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["drivetrain integration", "fitting integration"]
+            "propertyGroupPrimary": "drivetrain integration",
+            "propertyGroupsOther": ["fitting integration"]
         },
         {
             "order": 2700,
@@ -263,7 +295,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["drivetrain integration", "fitting integration"]
+            "propertyGroupPrimary": "drivetrain integration",
+            "propertyGroupsOther": ["fitting integration"]
         },
         {
             "order": 2800,
@@ -271,7 +304,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["drivetrain integration"]
+            "propertyGroupPrimary": "drivetrain integration",
+            "propertyGroupsOther": null
         },
         {
             "order": 3000,
@@ -279,7 +313,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["drivetrain integration"]
+            "propertyGroupPrimary": "drivetrain integration",
+            "propertyGroupsOther": null
         },
         {
             "order": 3100,
@@ -287,7 +322,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions", "drivetrain integration"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": ["drivetrain integration"]
         },
         {
             "order": 3200,
@@ -295,7 +331,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["control integration", "drivetrain integration"]
+            "propertyGroupPrimary": "control integration",
+            "propertyGroupsOther": ["drivetrain integration"]
         },
         {
             "order": 3300,
@@ -303,7 +340,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["control integration", "drivetrain integration"]
+            "propertyGroupPrimary": "control integration",
+            "propertyGroupsOther": ["drivetrain integration"]
         },        
         {
             "order": 3400,
@@ -311,7 +349,8 @@
             "valueDataType": "decimal",
             "valueDataHint": null,
             "valueDataTypeModifier": "distance",
-            "propertyGroups": ["dimensions", "fitting integration"]
+            "propertyGroupPrimary": "dimensions",
+            "propertyGroupsOther": ["fitting integration"]
         },
         {
             "order": 3500,
@@ -319,7 +358,8 @@
             "valueDataType": "text",
             "valueDataHint": null,
             "valueDataTypeModifier": null,
-            "propertyGroups": ["fitting integration"]
+            "propertyGroupPrimary": "fitting integration",
+            "propertyGroupsOther": null
         },
         {
             "order": 3600,
@@ -327,7 +367,8 @@
             "valueDataType": "text",
             "valueDataHint": "",
             "valueDataTypeModifier": null,
-            "propertyGroups": ["utility"]
+            "propertyGroupPrimary": "utility",
+            "propertyGroupsOther": null
         },
         {
             "order": 3700,
@@ -335,14 +376,17 @@
             "valueDataType": "text",
             "valueDataHint": "",
             "valueDataTypeModifier": null,
-            "propertyGroups": ["utility"]
+            "propertyGroupPrimary": "utility",
+            "propertyGroupsOther": null
         },
         {
             "order": 3800,
             "name": "lighting accomodation",
             "valueDataType": "text",
             "valueDataHint": "",
-            "valueDataTypeModifier": null
+            "valueDataTypeModifier": null,
+            "propertyGroupPrimary": "utility",
+            "propertyGroupsOther": null
         },
         {
             "order": 3900,
@@ -350,7 +394,8 @@
             "valueDataType": "text",
             "valueDataHint": "",
             "valueDataTypeModifier": null,
-            "propertyGroups": ["utility"]
+            "propertyGroupPrimary": "utility",
+            "propertyGroupsOther": null
         }
     ]
 }

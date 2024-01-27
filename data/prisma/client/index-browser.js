@@ -163,9 +163,9 @@ exports.Prisma.PropertyGroupScalarFieldEnum = {
 
 exports.Prisma.PropertyGroupMembershipScalarFieldEnum = {
   id: 'id',
-  partTypeId: 'partTypeId',
+  isPrimary: 'isPrimary',
   propertyTypeId: 'propertyTypeId',
-  groupId: 'groupId'
+  propertyGroupId: 'propertyGroupId'
 };
 
 exports.Prisma.PropertyTypeScalarFieldEnum = {
@@ -176,6 +176,12 @@ exports.Prisma.PropertyTypeScalarFieldEnum = {
   valueDataType: 'valueDataType',
   valueDataTypeModifier: 'valueDataTypeModifier',
   variation: 'variation'
+};
+
+exports.Prisma.PropertyTypeMembershipScalarFieldEnum = {
+  id: 'id',
+  propertyTypeId: 'propertyTypeId',
+  partTypeId: 'partTypeId'
 };
 
 exports.Prisma.PropertyLookupScalarFieldEnum = {
@@ -192,6 +198,7 @@ exports.Prisma.PartClassScalarFieldEnum = {
 
 exports.Prisma.PartClassMembershipScalarFieldEnum = {
   id: 'id',
+  isPrimary: 'isPrimary',
   partClassId: 'partClassId',
   partTypeId: 'partTypeId'
 };
@@ -211,7 +218,7 @@ exports.Prisma.PartGroupScalarFieldEnum = {
 exports.Prisma.PartGroupMembershipScalarFieldEnum = {
   id: 'id',
   partId: 'partId',
-  groupId: 'groupId'
+  partGroupId: 'partGroupId'
 };
 
 exports.Prisma.PartScalarFieldEnum = {
@@ -290,6 +297,7 @@ exports.Prisma.ModelName = {
   PropertyGroup: 'PropertyGroup',
   PropertyGroupMembership: 'PropertyGroupMembership',
   PropertyType: 'PropertyType',
+  PropertyTypeMembership: 'PropertyTypeMembership',
   PropertyLookup: 'PropertyLookup',
   PartClass: 'PartClass',
   PartClassMembership: 'PartClassMembership',
