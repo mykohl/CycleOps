@@ -50,7 +50,6 @@
             "order": 600,
             "name": "seat tube length",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -59,7 +58,6 @@
             "order": 700,
             "name": "seat tube extension",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -68,7 +66,6 @@
             "order": 800,
             "name": "top tube length, actual",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -77,7 +74,6 @@
             "order": 900,
             "name": "top tube length, effective",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -86,7 +82,6 @@
             "order": 1000,
             "name": "head tube angle",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "angle",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -95,7 +90,6 @@
             "order": 1100,
             "name": "seat tube angle",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "angle",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -104,7 +98,6 @@
             "order": 1200,
             "name": "reach",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -113,7 +106,6 @@
             "order": 1300,
             "name": "stack",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -122,7 +114,6 @@
             "order": 1400,
             "name": "head tube height",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -131,7 +122,6 @@
             "order": 1500,
             "name": "head tube extension",
             "valueDataType": "decimla",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -140,7 +130,6 @@
             "order": 1600,
             "name": "chain stay length",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -149,7 +138,6 @@
             "order": 1700,
             "name": "bottom bracket drop",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -158,7 +146,6 @@
             "order": 1710,
             "name": "axle to crown distance",
             "valueDataType": "deciaml",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -167,7 +154,6 @@
             "order": 1720,
             "name": "rake",
             "valueDataType": "deciaml",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -176,7 +162,6 @@
             "order": 1730,
             "name": "crown width",
             "valueDataType": "deciaml",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": null
@@ -185,7 +170,6 @@
             "order": 1740,
             "name": "steer tube outer diameter",
             "valueDataType": "deciaml",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": ["fork integration"]
@@ -194,7 +178,6 @@
             "order": 1750,
             "name": "headset fork interface",
             "valueDataType": "deciaml",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "fork integration",
             "propertyGroupsOther": null
@@ -203,7 +186,6 @@
             "order": 1800,
             "name": "head tube inner diameter, upper",
             "valueDataType": "deciaml",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "fork integration",
             "propertyGroupsOther": ["dimensions"]
@@ -212,7 +194,6 @@
             "order": 1900,
             "name": "head tube inner diameter, lower",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "fork integration",
             "propertyGroupsOther": ["dimensions"]
@@ -221,7 +202,6 @@
             "order": 1910,
             "name": "headset frame interface",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "fork integration",
             "propertyGroupsOther": null
@@ -230,7 +210,6 @@
             "order": 2000,
             "name": "wheel size",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "wheel specification",
             "propertyGroupsOther": null
@@ -239,7 +218,6 @@
             "order": 2100,
             "name": "maximum tire clearance",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "wheel integration",
             "propertyGroupsOther": ["fitting integration"]
@@ -248,7 +226,6 @@
             "order": 2200,
             "name": "axle interface",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "wheel integration",
             "propertyGroupsOther": null
@@ -257,7 +234,6 @@
             "order": 2300,
             "name": "axle width",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "wheel integration",
             "propertyGroupsOther": null
@@ -266,7 +242,6 @@
             "order": 2400,
             "name": "brake interface",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "brake integration",
             "propertyGroupsOther": null
@@ -275,7 +250,6 @@
             "order": 2500,
             "name": "brake actuation routing",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "brake integration",
             "propertyGroupsOther": null
@@ -284,7 +258,6 @@
             "order": 2600,
             "name": "bottom bracket width",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "drivetrain integration",
             "propertyGroupsOther": ["fitting integration"]
@@ -293,7 +266,6 @@
             "order": 2700,
             "name": "bottom bracket interface",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "drivetrain integration",
             "propertyGroupsOther": ["fitting integration"]
@@ -302,7 +274,6 @@
             "order": 2800,
             "name": "front derailleur interface",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "drivetrain integration",
             "propertyGroupsOther": null
@@ -311,7 +282,6 @@
             "order": 3000,
             "name": "rear derailleur interface",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "drivetrain integration",
             "propertyGroupsOther": null
@@ -320,7 +290,6 @@
             "order": 3100,
             "name": "seat tube outer diameter",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": ["drivetrain integration"]
@@ -329,7 +298,6 @@
             "order": 3200,
             "name": "shift actuation routing",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "control integration",
             "propertyGroupsOther": ["drivetrain integration"]
@@ -338,7 +306,6 @@
             "order": 3300,
             "name": "shift control interface",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "control integration",
             "propertyGroupsOther": ["drivetrain integration"]
@@ -347,7 +314,6 @@
             "order": 3400,
             "name": "seat tube inner diameter",
             "valueDataType": "decimal",
-            "valueDataHint": null,
             "valueDataTypeModifier": "distance",
             "propertyGroupPrimary": "dimensions",
             "propertyGroupsOther": ["fitting integration"]
@@ -356,7 +322,6 @@
             "order": 3500,
             "name": "saddle/seatpost interface",
             "valueDataType": "text",
-            "valueDataHint": null,
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "fitting integration",
             "propertyGroupsOther": null
@@ -365,7 +330,6 @@
             "order": 3600,
             "name": "rack and baggage accomodation",
             "valueDataType": "text",
-            "valueDataHint": "",
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "utility",
             "propertyGroupsOther": null
@@ -374,7 +338,6 @@
             "order": 3700,
             "name": "fender accomodation",
             "valueDataType": "text",
-            "valueDataHint": "",
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "utility",
             "propertyGroupsOther": null
@@ -383,7 +346,6 @@
             "order": 3800,
             "name": "lighting accomodation",
             "valueDataType": "text",
-            "valueDataHint": "",
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "utility",
             "propertyGroupsOther": null
@@ -392,10 +354,65 @@
             "order": 3900,
             "name": "additional accessory accomodation",
             "valueDataType": "text",
-            "valueDataHint": "",
             "valueDataTypeModifier": null,
             "propertyGroupPrimary": "utility",
             "propertyGroupsOther": null
-        }
+        },
+        {
+            "order": 4000,
+            "name": "effective diameter",
+            "valueDataType": "decimal",
+            "valueDataTypeModifier": "distance",
+            "propertyGroupPrimary": "wheel specification",
+            "propertyGroupsOther": null
+        },
+        {
+            "order": 4100,
+            "name": "spoke hole count",
+            "valueDataType": "integer",
+            "valueDataTypeModifier": "quantity",
+            "propertyGroupPrimary": "wheel specification",
+            "propertyGroupsOther": null
+        },
+        {
+            "order": 4200,
+            "name": "internal width",
+            "valueDataType": "decimal",
+            "valueDataTypeModifier": "distance",
+            "propertyGroupPrimary": "wheel specification",
+            "propertyGroupsOther": null
+        },
+        {
+            "order": 4300,
+            "name": "external width",
+            "valueDataType": "decimal",
+            "valueDataTypeModifier": "distance",
+            "propertyGroupPrimary": "wheel specification",
+            "propertyGroupsOther": null
+        },
+        {
+            "order": 4400,
+            "name": "centerline offset",
+            "valueDataType": "decimal",
+            "valueDataTypeModifier": "distance",
+            "propertyGroupPrimary": "wheel specification",
+            "propertyGroupsOther": null
+        },
+        {
+            "order": 4500,
+            "name": "profile type",
+            "valueDataType": "text",
+            "valueDataTypeModifier": null,
+            "propertyGroupPrimary": "wheel specification",
+            "propertyGroupsOther": null
+        },
+        {
+            "order": 4600,
+            "name": "brake track",
+            "valueDataType": "text",
+            "valueDataTypeModifier": null,
+            "propertyGroupPrimary": "brake integration",
+            "propertyGroupsOther": null
+        }        
     ]
 }

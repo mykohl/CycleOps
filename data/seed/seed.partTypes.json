@@ -37,20 +37,27 @@
                 "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
                     "additional accessory accomodation"                
             ],
-            "partClasses": ["frameset"]
+            "partClassePrimary": "frameset",
+            "partClassesOther": null
         },
         {
             "order": 300,
             "name": "headset",
+            "propertyTypes": [
+                "material",
+                "headset frame interface", "headset fork interface"
+            ],
             "partClassPrimary": "frameset",
-            "partClassesOther": null
+            "partClassesOther": ["fittings"]
         },
         {
             "order": 400,
             "name": "rim",
             "propertyTypes": 
             [
-                "wheel size",
+                "wheel size", "effective diameter", "spoke hole count", "internal width", "external width",
+                    "centerline offset",
+                "profile type", "brake track",
                 "intended use", "load capability", "terrain capability", 
                 "material", "method"
             ],
