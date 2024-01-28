@@ -1,34 +1,38 @@
 import { UserDto } from "../data/models/model.dto";
 import { prisma } from "../prisma.instance";
 import { User } from "../data/prisma/client";
+import { sortCompare } from "./utility.service";
 
 export class UserService {
 
+  public static async getUsersUnfiltered(limit?: number | null): Promise<UserDto[] | null> {
+    const userResult = (await prisma.user.findMany()).sort((a, b) => sortCompare(a.nameLast, b.nameLast));
+    return userResult;
+  }
 
-
-  public static async UpdateUser(user: UserDto): Promise<User | null> {
+  public static async updateUser(user: UserDto): Promise<User | null> {
       const commonProperties = {
         provider: user.provider,
         providerId: user.providerId,
         lastLogIn: new Date(),
       };
 
-      const cyclist = prisma.user.upsert({
+      const userRecord = prisma.user.upsert({
         where: { providerId: user.providerId },
         update: { 
           ...commonProperties, 
           ...user, 
           lastLogIn: new Date(),
-          roles: user.roles 
+          role: user.role
         },
         create: {
           ...commonProperties,
           ...user,
           registered: new Date(),
-          roles: "standard"
+          role: "standard"
         },
       });
     
-      return cyclist;
+      return userRecord;
     }    
 }

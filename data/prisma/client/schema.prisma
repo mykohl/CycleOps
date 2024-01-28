@@ -15,7 +15,7 @@ model User {
   nameFirst String?
   providerId String @unique
   provider String?
-  roles String?
+  role String?
   registered DateTime?
   lastLogIn DateTime?
   claims Claim[]
