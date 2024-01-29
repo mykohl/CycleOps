@@ -4,7 +4,7 @@ import path from "path";
 import fs from 'fs';
 import https from 'https';
 import { PrismaClient } from './data/prisma/client';
-import UserRouter from './routes/user.route';
+import UsersRouter from './routes/admin.routes';
 import { prisma } from './prisma.instance';
 
 const envPath = path.join(__dirname, '.env');
@@ -47,7 +47,7 @@ async function main() {
     }
   });
 
-  app.use('/api/users', UserRouter);
+  app.use('/api/users', UsersRouter);
 
   app.use((req, res, next) => {
     if(req.secure) {

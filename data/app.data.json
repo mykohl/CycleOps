@@ -113,18 +113,6 @@
                     "imageAlt": "",
                     "route": "admin/users",
                     "rolesAllowed": ["admin"]
-                },
-                {
-                    "id": "makers",
-                    "order": 2,
-                    "isHighlight": false,
-                    "title": "Makers/Brands",
-                    "description": "Manage parts and tool makers.",
-                    "titleIcon": "",
-                    "image": "",
-                    "imageAlt": "",
-                    "route": "admin/lookups/makers",
-                    "rolesAllowed": ["admin"]                   
                 }
             ],
             "rolesAllowed": ["admin"]

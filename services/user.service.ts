@@ -1,12 +1,14 @@
 import { UserDto } from "../data/models/model.dto";
 import { prisma } from "../prisma.instance";
 import { User } from "../data/prisma/client";
-import { sortCompare } from "./utility.service";
+import { sortString, sortPeople } from "./utility.service";
 
 export class UserService {
 
-  public static async getUsersUnfiltered(limit?: number | null): Promise<UserDto[] | null> {
-    const userResult = (await prisma.user.findMany()).sort((a, b) => sortCompare(a.nameLast, b.nameLast));
+  public static async getUsers(limit?: number | null): Promise<UserDto[] | null> {
+    const userResult = (await prisma.user.findMany())
+      .sort((a, b) => sortPeople(a, b)
+    );
     return userResult;
   }
 
