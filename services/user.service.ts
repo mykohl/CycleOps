@@ -13,7 +13,7 @@ export class UserService {
   }
 
   public static async updateUser(user: UserDto): Promise<User | null> {
-      const commonProperties = {
+    const commonProperties = {
         provider: user.provider,
         providerId: user.providerId,
         lastLogIn: new Date(),

@@ -13,3 +13,19 @@ body {
     display: flex;
     flex-direction: column;
 }
+.feature-heading-bound {
+    padding: 1.25em 1em 0.75em 1em;
+}
+.feature-heading {
+    background-color: white;
+    display: flex; 
+    flex-direction: row; 
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    align-items: baseline;
+    width: 100%;
+}
+.feature-heading h2 {
+    font-size: 16pt;
+    font-weight: bold;
+}

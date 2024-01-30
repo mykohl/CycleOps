@@ -1,6 +1,6 @@
 .expanded-user-detail {
     overflow: hidden;
-    display: flex;
+    display: block;
   }
   tr.user-detail-row {
     height: 0;
@@ -14,4 +14,7 @@
   
   tr.user-row:not(.expanded-user-row):active {
     background: #efefef;
+  }
+  .role-radio-button {
+    margin: 5px;
   }

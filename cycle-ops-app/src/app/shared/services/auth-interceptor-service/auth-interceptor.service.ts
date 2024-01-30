@@ -13,7 +13,6 @@ export class AuthInterceptor implements HttpInterceptor {
     return this._socialAuthService.authState.pipe(
       switchMap(socialUser => {
         const authToken = socialUser?.idToken;
-        console.log(authToken);
         if (authToken) {
           const authReq = req.clone({
             setHeaders: { 
