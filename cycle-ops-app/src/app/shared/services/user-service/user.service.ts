@@ -37,7 +37,7 @@ export class UserService {
   };
 
   get role(): string {
-    if(this._siteUser?.roles) return this._siteUser.roles;
+    if(this._siteUser?.role) return this._siteUser.role;
     return '*';
   }
 

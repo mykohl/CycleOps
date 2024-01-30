@@ -17,8 +17,8 @@ export class AuthService {
     if(rolesAllowed === '*') return true;
     const isLoggedIn = this._userService?.siteUser ?? false;
     if(isLoggedIn && !rolesAllowed) return true;
-    if(!this._userService.siteUser?.roles) return false;
-    if(isLoggedIn && rolesAllowed?.includes(this._userService.siteUser.roles)) return true;
+    if(!this._userService.siteUser?.role) return false;
+    if(isLoggedIn && rolesAllowed?.includes(this._userService.siteUser.role)) return true;
     return false;
   }
 }

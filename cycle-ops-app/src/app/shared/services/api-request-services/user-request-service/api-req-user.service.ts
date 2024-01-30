@@ -12,6 +12,10 @@ export class ApiReqUserService {
 
   constructor(private http: HttpClient) {}
 
+  getUsers(): Observable<any> {
+    return from(this.http.get<any>(`${this.apiUrl}`));
+  }
+
   updateUser(userData: UserDto | SocialUser): Observable<any> {
     return from(this.http.post<any>(`${this.apiUrl}/update`, userData));
   }

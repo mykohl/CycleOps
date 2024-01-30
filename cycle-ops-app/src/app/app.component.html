@@ -3,7 +3,7 @@
     <div id="site-title">{{title}}</div>
     <div>
       <ng-container *ngFor="let feature of roleFeatures">
-        <button mat-button *ngIf="feature.components.length === 1; else navMenuTemplate">{{feature.components[0].title}}</button>
+        <button mat-button *ngIf="feature.components.length === 1; else navMenuTemplate" (click)="navigate(feature.components[0].id)">{{feature.components[0].title}}</button>
         <ng-template #navMenuTemplate>
           <button mat-button [matMenuTriggerFor]="menu">{{feature.title}}</button>
           <mat-menu #menu="matMenu">

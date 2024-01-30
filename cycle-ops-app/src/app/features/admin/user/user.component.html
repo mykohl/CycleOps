@@ -1,1 +1,35 @@
-<p>user works!</p>
+<table mat-table [dataSource]="userList" multiTemplateDataRows class="mat-elevation-z8">
+@for (column of displayColumns; track column) {
+    <ng-container matColumnDef="{{column}}">
+        <th mat-header-cell *matHeaderCellDef> {{findColumnTitle(column)}} </th>
+        <td mat-cell *matCellDef="let user"> {{user[column]}} </td>
+    </ng-container>
+}
+<ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let user">
+        <button mat-icon-button aria-label="expand row" (click)="(expandedUser = expandedUser === user ? null : user); $event.stopPropagation()">
+            @if (expandedUser === user) {
+                <mat-icon>keyboard_arrow_up</mat-icon>
+              } @else {
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              }
+        </button>
+    </td>
+</ng-container>
+<ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let user" [attr.colspan]="displayColumnsExpanded.length">
+        <div class="expanded-user-detail" 
+            [@detailExpand]="user === expandedUser ? 'expanded' : 'collapsed'">
+            <div><p>Other content</p></div>
+        </div>
+    </td>
+</ng-container>
+<tr mat-header-row *matHeaderRowDef="displayColumnsExpanded"></tr>
+<tr mat-row *matRowDef="let user; columns: displayColumnsExpanded;" 
+    class="user-row"
+    [class.expanded-user-row]="expandedUser === user"
+    (click)="expandedUser = expandedUser === user ? null : user">
+</tr>
+<tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="user-detail-row"></tr>
+</table>
