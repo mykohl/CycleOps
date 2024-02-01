@@ -1,20 +1,21 @@
+@import '../../../../style.variables.scss';
+
 .expanded-user-detail {
-    overflow: hidden;
-    display: block;
-  }
-  tr.user-detail-row {
-    height: 0;
-  }
-  .user-row td {
-    border-bottom-width: 0;
-  }
-  tr.user-row:not(.expanded-user-row):hover {
-    background: whitesmoke;
-  }
-  
-  tr.user-row:not(.expanded-user-row):active {
-    background: #efefef;
-  }
-  .role-radio-button {
-    margin: 5px;
-  }
+  overflow: hidden;
+  display: block;
+}
+tr.user-detail-row {
+  height: 0;
+}
+.user-row td {
+  border-bottom-width: 0;
+}
+tr.user-row:not(.expanded-user-row):hover {
+  background: $colorPale;
+}
+tr.user-row:not(.expanded-user-row):active {
+  background: $colorBright;
+}
+.role-radio-button {
+  margin: 5px;
+}

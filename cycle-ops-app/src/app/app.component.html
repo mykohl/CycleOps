@@ -1,5 +1,5 @@
-<div id="header">
-  <mat-toolbar id="toolbar">
+<div id="header" class="border-line-bottom">
+  <mat-toolbar id="toolbar" class="flex-row flex-nowrap flex-justify-spread flex-align-center">
     <div id="site-title">{{title}}</div>
     <div>
       <ng-container *ngFor="let feature of roleFeatures">
@@ -19,10 +19,10 @@
     </div>
   </mat-toolbar>
 </div>
-<div id="content">
+<div id="content" class="go-wide">
   <router-outlet></router-outlet>
 </div>
-<div id="footer">
+<div id="footer" class="margin-top-1 border-line-top go-wide">
   <p>CogNative is a free, simple workshop assistant for DIY bicycle projects.</p>
   <p>admin-cognative&#64;gmail.com | Help &amp; Support | No copyright</p>
   <p>Donate</p>

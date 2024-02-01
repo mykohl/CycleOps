@@ -1,6 +1,7 @@
 @use '@angular/material' as mat;
 @use '@angular/material/prebuilt-themes/deeppurple-amber.css' as mat-theme;
 @include mat.core();
+@import './style.variables.scss';
 
 html, body {
     height: 100vh;
@@ -8,24 +9,132 @@ html, body {
     width: 100%;
 }
 body { 
-    background-color: white;
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
-    display: flex;
-    flex-direction: column;
+    background-color: $colorBright;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-.feature-heading-bound {
-    padding: 1.25em 1em 0.75em 1em;
-}
-.feature-heading {
-    background-color: white;
-    display: flex; 
-    flex-direction: row; 
-    flex-wrap: wrap; 
-    justify-content: space-between; 
-    align-items: baseline;
+// MARGINS
+.go-wide {
     width: 100%;
 }
-.feature-heading h2 {
-    font-size: 16pt;
+.margin {
+    margin: $spacingNominal;
+}
+.margin-vertical {
+    margin-top: $spacingNominal;
+    margin-bottom: $spacingNominal;
+}
+.margin-sides {
+    margin-right: $spacingNominal;
+    margin-left: $spacingNominal;
+}
+.margin-top {
+    margin-top: $spacingNominal;
+}
+.margin-bottom {
+    margin-bottom: $spacingNominal;
+}
+.margin-right {
+    margin-right: $spacingNominal;
+}
+.margin-left {
+    margin-left: $spacingNominal;
+}
+// FLEX CONTAINERS
+.flex-column,
+.flex-row {
+    display: flex; 
+}
+.flex-column {
+    flex-direction: column; 
+}
+.flex-row {
+    flex-direction: row; 
+}
+.flex-wrap {
+    flex-wrap: wrap;  
+}
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+.flex-justify-spread {
+    justify-content: space-between;  
+}
+.flex-justify-start {
+    justify-content: flex-start;
+}
+.flex-align-start {
+    align-items: flex-start;
+}
+.flex-align-center {
+    align-items: center;
+}
+// PADDING
+.padding-nominal {
+    padding: $spacingNominal;
+}
+.padding-minimal {
+    padding: $spacingMinimal;
+}
+.padding-extra {
+    padding: $spacingExtra;
+}
+// CORNER ROUNDING
+.radius-nominal {
+    border-radius: $radiusNominal;
+}
+.radius-minimal {
+    border-radius: $radiusMinimal;
+}
+.radius-extra {
+    border-radius: $radiusExtra;
+}
+// BORDERS
+.border-line {
+    border: $borderThinWidth $borderBasicStyle $colorDark
+}
+.border-line-vertical {
+    border-top: $borderThinWidth $borderBasicStyle $colorDark;
+    border-bottom: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-sides {
+    border-right: $borderThinWidth $borderBasicStyle $colorDark;
+    border-left: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-top {
+    border-top: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-bottom {
+    border-bottom: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-right {
+    border-right: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-left {
+    border-left: $borderThinWidth $borderBasicStyle $colorDark;
+}
+// BACKGROUNDS
+.bg-bright {
+    background-color: $colorBright;
+}
+.bg-pale {
+    background-color: $colorPale;
+}
+.bg-dark {
+    background-color: $colorDark;
+}
+// TEXT
+.text-size-large {
+    font-size: $textSizeLarge;
+}
+.text-size-nominal {
+    font-size: $textSizeNominal;
+}
+.text-size-minimal {
+    font-size: $textSizeMinimal;
+}
+.text-bold {
     font-weight: bold;
+}
+.line-margin-nominal {
+    margin: 0 0 $textSpacingNominal 0;
 }
