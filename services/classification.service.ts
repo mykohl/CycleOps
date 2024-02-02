@@ -8,27 +8,43 @@ import {
     PropertyTypeMembership,
     PartType
 } from "../data/prisma/client";
+import { 
+    PartClassDto, 
+    PartTypeDto,
+    PropertyGroupDto, 
+    PropertyTypeDto 
+} from "../data/models/model.dto";
+import { sortNullSafe } from "./utility.service";
 import { prisma } from '../prisma.instance';
 
 export class ClassificationService {
     get prisma(): PrismaClient { return prisma; }
 
+    public static getDto(partClass: PartClass): PartClassDto {
+        const partClassDto: PartClassDto =  {
+            id: partClass.id,
+            order: partClass.order,
+            name: partClass.name
+        };
+        return partClassDto;
+    }
+
+    public static async getPartClassifications(): Promise<PartClassDto[] | null> {
+        return (await prisma.partClass.findMany())
+            .map(c => this.getDto(c))
+            .sort((a, b) => sortNullSafe(a.order, b.order));
+    }
+
     public static async lookupPropertyGroup(key: string): Promise<PropertyGroup | null> {
-        const propertyGroupLookup = await prisma.propertyGroup.findFirst( { where: { name: key } });
-        if(propertyGroupLookup) return propertyGroupLookup;
-        return null;
+        return await prisma.propertyGroup.findFirst( { where: { name: key } });
     }
     
     public static async lookupPartClass(key: string): Promise<PartClass | null> {
-        const partClassLookup = await prisma.partClass.findFirst( { where: { name: key } });
-        if(partClassLookup) return partClassLookup;
-        return null;
+        return await prisma.partClass.findFirst( { where: { name: key } });
     }
 
     public static async lookupPropertyType(key: string): Promise<PropertyType | null> {
-        const partTypeLookup = await prisma.propertyType.findFirst({ where: { name: key } });
-        if(partTypeLookup) return partTypeLookup;
-        return null;
+        return await prisma.propertyType.findFirst({ where: { name: key } });
     }
 
     public static async addPartClass(order: number, name: string): Promise<PartClass | null> {

@@ -1,13 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ApiReqUserService } from '../../../shared/services/api-request-services/user-request-service/api-req-user.service';
+import { UserReqService } from '../../../shared/services/api-request-services/user-request-service/user-request.service';
 import { UserDto } from '../../../../../../data/models/model.dto';
 import { UserService } from '../../../shared/services/user-service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { AppService } from '../../../shared/services/app-service/app.service';
 
 @Component({
   selector: 'app-user',
@@ -35,12 +36,9 @@ export class UserComponent {
 
   expandedColumns = [...this.tableColumns, "expandAction"]
 
-  availableRoles = [
-    "admin", "standard", "disabled"
-  ]
-
   constructor(
-    private _apiReqUserService: ApiReqUserService,
+    private _appService: AppService,
+    private _apiReqUserService: UserReqService,
     private _userService: UserService,
     private _snackBar: MatSnackBar) {
   }
@@ -51,6 +49,10 @@ export class UserComponent {
       this.userDataSource.paginator = this.paginator;
       this.userDataSource.sort = this.sort;
     });
+  }
+
+  get availableRoles(): string[] {
+    return this._appService.availableRoles;
   }
 
   get currentUser(): UserDto | null {

@@ -12,34 +12,86 @@ body {
     background-color: $colorBright;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-// MARGINS & SIZING
+// MARGINS & SIZING -----------------------------------------------------------
 .size-wide {
     width: 100%;
 }
+.size-half-width {
+    width: 50%;
+}
+// Full margins
+.margin-minimal {
+    margin: $spacingMinimal;
+}
 .margin-nominal {
     margin: $spacingNominal;
+}
+.margin-extra {
+    margin: $spacingExtra;
+}
+// Top & bottom margins
+.margin-vertical-minimal {
+    margin-top: $spacingMinimal;
+    margin-bottom: $spacingMinimal;
 }
 .margin-vertical-nominal {
     margin-top: $spacingNominal;
     margin-bottom: $spacingNominal;
 }
-.margin-sides-nominal {
-    margin-right: $spacingNominal;
-    margin-left: $spacingNominal;
+.margin-vertical-extra {
+    margin-top: $spacingExtra;
+    margin-bottom: $spacingExtra;
+}
+.margin-top-minimal {
+    margin-top: $spacingMinimal;
 }
 .margin-top-nominal {
     margin-top: $spacingNominal;
 }
+.margin-top-extra {
+    margin-top: $spacingExtra;
+}
+.margin-bottom-minimal {
+    margin-bottom: $spacingMinimal;
+}
 .margin-bottom-nominal {
     margin-bottom: $spacingNominal;
+}
+.margin-bottom-extra {
+    margin-bottom: $spacingExtra;
+}
+// Side margins
+.margin-sides-minimal {
+    margin-right: $spacingMinimal;
+    margin-left: $spacingMinimal;
+}
+.margin-sides-nominal {
+    margin-right: $spacingNominal;
+    margin-left: $spacingNominal;
+}
+.margin-sides-extra {
+    margin-right: $spacingExtra;
+    margin-left: $spacingExtra;
+}
+.margin-right-minimal {
+    margin-right: $spacingMinimal;
 }
 .margin-right-nominal {
     margin-right: $spacingNominal;
 }
+.margin-right-extra {
+    margin-right: $spacingExtra;
+}
+.margin-left-minimal {
+    margin-left: $spacingMinimal;
+}
 .margin-left-nominal {
     margin-left: $spacingNominal;
 }
-// FLEX CONTAINERS
+.margin-left-extra {
+    margin-left: $spacingExtra;
+}
+// FLEX CONTAINERS ------------------------------------------------------------
 .flex-column,
 .flex-row {
     display: flex; 
@@ -68,7 +120,7 @@ body {
 .flex-align-center {
     align-items: center;
 }
-// PADDING
+// PADDING --------------------------------------------------------------------
 .padding-nominal {
     padding: $spacingNominal;
 }
@@ -78,7 +130,7 @@ body {
 .padding-extra {
     padding: $spacingExtra;
 }
-// CORNER ROUNDING
+// CORNER ROUNDING ------------------------------------------------------------
 .radius-nominal {
     border-radius: $radiusNominal;
 }
@@ -88,7 +140,7 @@ body {
 .radius-extra {
     border-radius: $radiusExtra;
 }
-// BORDERS
+// BORDERS --------------------------------------------------------------------
 .border-line {
     border: $borderThinWidth $borderBasicStyle $colorDark
 }
@@ -112,7 +164,7 @@ body {
 .border-line-left {
     border-left: $borderThinWidth $borderBasicStyle $colorDark;
 }
-// BACKGROUNDS
+// BACKGROUNDS ----------------------------------------------------------------
 .bg-bright {
     background-color: $colorBright;
 }
@@ -122,7 +174,8 @@ body {
 .bg-dark {
     background-color: $colorDark;
 }
-// TEXT
+// TEXT -----------------------------------------------------------------------
+// Sizing and weight
 .text-size-large {
     font-size: $textSizeLarge;
 }
@@ -135,6 +188,7 @@ body {
 .text-bold {
     font-weight: bold;
 }
+// Text spacing
 .text-margin-nominal {
     margin: 0 0 $textSpacingNominal 0;
 }

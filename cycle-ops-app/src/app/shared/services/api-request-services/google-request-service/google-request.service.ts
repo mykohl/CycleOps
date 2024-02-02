@@ -6,7 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiReqGoogleService {
+export class GoogleReqService {
   private apiUrl = 'https://www.googleapis.com/drive/v3/files';
 
   constructor(private http: HttpClient) {}

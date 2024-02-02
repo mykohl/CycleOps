@@ -30,6 +30,10 @@ export class AppService {
     return this.components.filter(c => c.isHighlight);
   }
 
+  get availableRoles(): string[] {
+    return appData.roles;
+  }
+
   findComponent(id: string): appModel.component | undefined {
     return this.components.find(s => s.id === id);
   }

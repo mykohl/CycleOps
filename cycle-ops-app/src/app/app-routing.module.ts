@@ -6,6 +6,7 @@ import { WheelsComponent } from './features/workshops/wheels/wheels.component';
 import { AuthService } from './shared/services/auth-service/auth.service';
 import * as appModel from '../../../data/models/model.app';
 import * as appData from '../../../data/app.data.json';
+import { ClassificationComponent } from './features/admin/classification/classification.component';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,8 @@ export class AppRoutingHelper {
         return WheelsComponent;
       case 'users':
         return UserComponent;
+      case 'classification':
+        return ClassificationComponent;
       default:
         return HomeComponent;
     }

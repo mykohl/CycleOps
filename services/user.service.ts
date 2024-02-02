@@ -1,7 +1,7 @@
 import { UserDto } from "../data/models/model.dto";
 import { prisma } from "../prisma.instance";
 import { User } from "../data/prisma/client";
-import { sortString, sortPeople } from "./utility.service";
+import { sortNullSafe, sortPeople } from "./utility.service";
 
 export class UserService {
 
@@ -13,13 +13,11 @@ export class UserService {
   }
 
   public static async findUserById(userId: number): Promise<User | null> {
-    const userRecord = await prisma.user.findUnique({ where: { id: userId } });
-    return userRecord;
+    return await prisma.user.findUnique({ where: { id: userId } });
   }
 
   public static async findUserByProviderId(providerId: string): Promise<User | null> {
-    const userRecord = await prisma.user.findUnique({ where: { providerId: providerId } });
-    return userRecord;
+    return await prisma.user.findUnique({ where: { providerId: providerId } });
   }
 
   public static async updateUser(user: UserDto): Promise<User | null> {

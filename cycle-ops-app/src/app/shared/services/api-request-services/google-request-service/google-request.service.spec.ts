@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ApiReqUserService } from './api-req-user.service';
+import { GoogleReqService } from './google-request.service';
 
-describe('ApiReqUserService', () => {
-  let service: ApiReqUserService;
+describe('ApiReqGdriveServiceService', () => {
+  let service: GoogleReqService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiReqUserService);
+    service = TestBed.inject(GoogleReqService);
   });
 
   it('should be created', () => {

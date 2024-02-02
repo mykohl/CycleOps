@@ -4,7 +4,7 @@ import { switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { UserService } from './shared/services/user-service/user.service';
-import { ApiReqUserService } from './shared/services/api-request-services/user-request-service/api-req-user.service';
+import { UserReqService } from './shared/services/api-request-services/user-request-service/user-request.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AppService } from './shared/services/app-service/app.service';
 import { UserStatus, UserDto } from '../../../data/models/model.dto';
@@ -24,7 +24,7 @@ export class AppComponent {
   constructor(
     private _socialAuthService: SocialAuthService,
     private _userService: UserService,
-    private _apiReqUserService: ApiReqUserService,
+    private _apiReqUserService: UserReqService,
     private _dialog: MatDialog,
     private _appService: AppService,
     private _router: Router

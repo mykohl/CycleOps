@@ -8,7 +8,7 @@ import { UserService } from '../../user-service/user.service';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiReqUserService {
+export class UserReqService {
   private apiUrl = 'https://localhost/api/users';
 
   constructor(private http: HttpClient) {}

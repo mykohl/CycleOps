@@ -20,7 +20,7 @@ export type BrandDto = MakeNullable<Brand, "id">;
 export type ProductLineDto = MakeNullable<ProductLine, "id"> & { brandMembers: BrandDto[] }
 
 export type PartTypeDto = MakeNullable<PartType, "id">;
-export type PartClassDto = MakeNullable<PartClass, "id"> & { partTypes: PartTypeDto };
+export type PartClassDto = MakeNullable<PartClass, "id"> & { partTypes?: PartTypeDto };
 
 export type PropertyDto = MakeNullable<Property, "id">;
 export type PropertyTypeDto = MakeNullable<PropertyType, "id">

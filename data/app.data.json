@@ -113,9 +113,24 @@
                     "imageAlt": "",
                     "route": "admin/users",
                     "rolesAllowed": ["admin"]
+                },
+                {
+                    "id": "classification",
+                    "order": 2,
+                    "isHighlight": false,
+                    "title": "Parts Classification",
+                    "description": "Specify scheme for classification of parts and their properties.",
+                    "titleIcon": "",
+                    "image": "",
+                    "imageAlt": "",
+                    "route": "admin/classification",
+                    "rolesAllowed": ["admin"]                    
                 }
             ],
             "rolesAllowed": ["admin"]
         }        
+    ],
+    "roles": [
+        "admin", "standard", "disabled"
     ]
 }
