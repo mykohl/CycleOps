@@ -1,10 +1,13 @@
 import express from "express";
 import { authenticate } from "../middleware/authenticate";
 import { updateUser, getUsers } from "../controllers/user.controller";
+import { getPartClassifications, getPartTypes } from "../controllers/classification.controller";
 
-const usersRouter = express.Router();
+const adminRouter = express.Router();
 
-usersRouter.post("/update", authenticate, updateUser);
-usersRouter.get("/", authenticate, getUsers);
+adminRouter.post("/users/update", authenticate, updateUser);
+adminRouter.get("/users", authenticate, getUsers);
+adminRouter.get("/classification", authenticate, getPartClassifications);
+adminRouter.get("/classification/parts/types", authenticate, getPartTypes);
 
-export default usersRouter;
+export default adminRouter;

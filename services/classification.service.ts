@@ -20,7 +20,7 @@ import { prisma } from '../prisma.instance';
 export class ClassificationService {
     get prisma(): PrismaClient { return prisma; }
 
-    public static getDto(partClass: PartClass): PartClassDto {
+    public static getPartClassDto(partClass: PartClass): PartClassDto {
         const partClassDto: PartClassDto =  {
             id: partClass.id,
             order: partClass.order,
@@ -29,9 +29,25 @@ export class ClassificationService {
         return partClassDto;
     }
 
+    public static getPartTypeDto(partType: PartType): PartTypeDto {
+        const partTypeDto: PartTypeDto = {
+            id: partType.id,
+            order: partType.order,
+            name: partType.name,
+            description: partType.description
+        };
+        return partTypeDto;
+    }
+
     public static async getPartClassifications(): Promise<PartClassDto[] | null> {
         return (await prisma.partClass.findMany())
-            .map(c => this.getDto(c))
+            .map(c => this.getPartClassDto(c))
+            .sort((a, b) => sortNullSafe(a.order, b.order));
+    }
+
+    public static async getPartTypes(): Promise<PartTypeDto[] | null> {
+        return (await prisma.partType.findMany())
+            .map(t => this.getPartTypeDto(t))
             .sort((a, b) => sortNullSafe(a.order, b.order));
     }
 

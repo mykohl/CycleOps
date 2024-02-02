@@ -9,7 +9,7 @@ import { UserService } from '../../user-service/user.service';
   providedIn: 'root',
 })
 export class UserReqService {
-  private apiUrl = 'https://localhost/api/users';
+  private apiUrl = 'https://localhost/api/admin/users';
 
   constructor(private http: HttpClient) {}
 

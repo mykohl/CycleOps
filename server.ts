@@ -3,8 +3,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from "path";
 import fs from 'fs';
 import https from 'https';
-import { PrismaClient } from './data/prisma/client';
-import UsersRouter from './routes/admin.routes';
+import adminRouter from './routes/admin.routes';
 import { prisma } from './prisma.instance';
 
 const envPath = path.join(__dirname, '.env');
@@ -12,16 +11,6 @@ const env = process.env.NODE_ENV || 'development';
 const configFile = path.join(__dirname, 'config.json');
 export const config = JSON.parse(fs.readFileSync(configFile, 'utf8'))[env];
 dotenv.config({ path: envPath });
-
-/*
-export const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: config.DATABASE_URL
-    }
-  }
-});
-*/
 
 const app = express();
 const httpsPort = 443;
@@ -47,7 +36,7 @@ async function main() {
     }
   });
 
-  app.use('/api/users', UsersRouter);
+  app.use('/api/admin', adminRouter);
 
   app.use((req, res, next) => {
     if(req.secure) {
