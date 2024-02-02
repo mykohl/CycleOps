@@ -12,31 +12,31 @@ body {
     background-color: $colorBright;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-// MARGINS
-.go-wide {
+// MARGINS & SIZING
+.size-wide {
     width: 100%;
 }
-.margin {
+.margin-nominal {
     margin: $spacingNominal;
 }
-.margin-vertical {
+.margin-vertical-nominal {
     margin-top: $spacingNominal;
     margin-bottom: $spacingNominal;
 }
-.margin-sides {
+.margin-sides-nominal {
     margin-right: $spacingNominal;
     margin-left: $spacingNominal;
 }
-.margin-top {
+.margin-top-nominal {
     margin-top: $spacingNominal;
 }
-.margin-bottom {
+.margin-bottom-nominal {
     margin-bottom: $spacingNominal;
 }
-.margin-right {
+.margin-right-nominal {
     margin-right: $spacingNominal;
 }
-.margin-left {
+.margin-left-nominal {
     margin-left: $spacingNominal;
 }
 // FLEX CONTAINERS
@@ -135,6 +135,6 @@ body {
 .text-bold {
     font-weight: bold;
 }
-.line-margin-nominal {
+.text-margin-nominal {
     margin: 0 0 $textSpacingNominal 0;
 }

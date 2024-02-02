@@ -12,29 +12,48 @@ export class UserService {
     return userResult;
   }
 
-  public static async updateUser(user: UserDto): Promise<User | null> {
-    const commonProperties = {
-        provider: user.provider,
-        providerId: user.providerId,
-        lastLogIn: new Date(),
-      };
+  public static async findUserById(userId: number): Promise<User | null> {
+    const userRecord = await prisma.user.findUnique({ where: { id: userId } });
+    return userRecord;
+  }
 
-      const userRecord = prisma.user.upsert({
-        where: { providerId: user.providerId },
-        update: { 
-          ...commonProperties, 
-          ...user, 
-          lastLogIn: new Date(),
-          role: user.role
-        },
-        create: {
-          ...commonProperties,
-          ...user,
-          registered: new Date(),
+  public static async findUserByProviderId(providerId: string): Promise<User | null> {
+    const userRecord = await prisma.user.findUnique({ where: { providerId: providerId } });
+    return userRecord;
+  }
+
+  public static async updateUser(user: UserDto): Promise<User | null> {
+    if(!user.providerId) {
+      const userRecord = await prisma.user.create({
+        data: {
+          name: user.name,
+          nameFirst: user.nameFirst,
+          nameLast: user.nameLast,
+          providerId: user.providerId,
+          provider: user.provider,
+          email: user.email,
           role: "standard"
-        },
+        }
       });
-    
       return userRecord;
-    }    
+    }
+
+    const confirmUserRecord = await this.findUserByProviderId(user.providerId);
+    if(confirmUserRecord) {
+      const userRecord = await prisma.user.update({
+        where: { providerId: user.providerId },
+        data: {
+          name: user.name,
+          nameFirst: user.nameFirst,
+          nameLast: user.nameLast,
+          providerId: user.providerId,
+          provider: user.provider,
+          email: user.email,
+          role: user.role
+        }
+      });
+      return userRecord;
+    }
+    return null;
+  }    
 }

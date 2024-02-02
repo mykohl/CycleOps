@@ -13,6 +13,7 @@ model User {
   name String?
   nameLast String?
   nameFirst String?
+  email String?
   providerId String @unique
   provider String?
   role String?

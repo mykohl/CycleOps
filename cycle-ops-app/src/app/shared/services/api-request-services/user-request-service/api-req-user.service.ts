@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { SocialUser } from '@abacritt/angularx-social-login';
 import { UserDto } from '../../../../../../../data/models/model.dto';
+import { UserService } from '../../user-service/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class ApiReqUserService {
   }
 
   updateUser(userData: UserDto | SocialUser): Observable<any> {
+    if(userData instanceof SocialUser) userData = UserService.getDto(userData);
     return from(this.http.post<any>(`${this.apiUrl}/update`, userData));
   }
 }

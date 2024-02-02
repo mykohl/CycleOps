@@ -17,7 +17,8 @@ export class UserService {
       provider: socialUser.provider,
       name: socialUser.name,
       nameLast: socialUser.lastName,
-      nameFirst: socialUser.firstName
+      nameFirst: socialUser.firstName,
+      email: socialUser.email
     };
   }
 

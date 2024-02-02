@@ -64,6 +64,7 @@ export class UserComponent {
       name: null,
       nameFirst: null,
       nameLast: null,
+      email: null,
       role: null,
       registered: null,
       lastLogIn: null,

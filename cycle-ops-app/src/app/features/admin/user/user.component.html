@@ -1,8 +1,8 @@
-<div class="margin">
+<div class="margin-nominal">
     <div class="go-wide flex-row flex-wrap flex-justify-spread flex-align-start">
         <div>
-            <h2 class="text-size-large line-margin-nominal">Manage Users</h2>
-            <p class="text-size-nominal line-margin-nominal">Lookup information, modify roles, reset registrations, etc.</p>
+            <h2 class="text-size-large text-margin-nominal">Manage Users</h2>
+            <p class="text-size-nominal text-margin-nominal">Lookup information, modify roles, reset registrations, etc.</p>
         </div>
         <mat-form-field>
             <mat-label><mat-icon fontIcon="search"></mat-icon> Find user(s)</mat-label>
@@ -10,7 +10,7 @@
         </mat-form-field>
     </div>
 </div>
-<div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides margin-bottom">
+<div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
     <table mat-table [dataSource]="userDataSource" matSort multiTemplateDataRows>
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -54,8 +54,8 @@
             <td mat-cell *matCellDef="let user" [attr.colspan]="expandedColumns.length">
                 <div class="expanded-user-detail" 
                     [@detailExpand]="user === selectedUser ? 'expanded' : 'collapsed'">
-                    <div class="flex-row flex-wrap flex-justify-start flex-align-center bg-pale radius-extra padding-nominal">
-                        <p>Set role for {{selectedUser.name}}:</p>
+                    <div class="flex-row flex-wrap flex-justify-start flex-align-center bg-pale radius-extra padding-nominal margin-bottom-nominal">
+                        <p class="text-size-nominal text-bold">Set role for {{selectedUser.name}}:</p>
                         <mat-radio-group
                             [(ngModel)]="userRole">
                             @for (role of availableRoles; track role) {
@@ -74,5 +74,7 @@
         </tr>
         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="user-detail-row"></tr>
     </table>
-    <mat-paginator [pageSizeOptions]="[25, 50, 100]" aria-label="Select page size"></mat-paginator>
+    <div class="margin-top-nominal">
+        <mat-paginator [pageSizeOptions]="[25, 50, 100]" aria-label="Select page size"></mat-paginator>
+    </div>
 </div>

@@ -37,7 +37,7 @@ export class AppComponent {
         switchMap((socialUser) => {
           if (socialUser) {
             this._userService.socialUser = socialUser;
-            return this._apiReqUserService.updateUser(UserService.getDto(socialUser));
+            return this._apiReqUserService.updateUser(socialUser);
           }
           return of(null);
         })

@@ -3004,6 +3004,7 @@ export namespace Prisma {
     name: string | null
     nameLast: string | null
     nameFirst: string | null
+    email: string | null
     providerId: string | null
     provider: string | null
     role: string | null
@@ -3016,6 +3017,7 @@ export namespace Prisma {
     name: string | null
     nameLast: string | null
     nameFirst: string | null
+    email: string | null
     providerId: string | null
     provider: string | null
     role: string | null
@@ -3028,6 +3030,7 @@ export namespace Prisma {
     name: number
     nameLast: number
     nameFirst: number
+    email: number
     providerId: number
     provider: number
     role: number
@@ -3050,6 +3053,7 @@ export namespace Prisma {
     name?: true
     nameLast?: true
     nameFirst?: true
+    email?: true
     providerId?: true
     provider?: true
     role?: true
@@ -3062,6 +3066,7 @@ export namespace Prisma {
     name?: true
     nameLast?: true
     nameFirst?: true
+    email?: true
     providerId?: true
     provider?: true
     role?: true
@@ -3074,6 +3079,7 @@ export namespace Prisma {
     name?: true
     nameLast?: true
     nameFirst?: true
+    email?: true
     providerId?: true
     provider?: true
     role?: true
@@ -3173,6 +3179,7 @@ export namespace Prisma {
     name: string | null
     nameLast: string | null
     nameFirst: string | null
+    email: string | null
     providerId: string
     provider: string | null
     role: string | null
@@ -3204,6 +3211,7 @@ export namespace Prisma {
     name?: boolean
     nameLast?: boolean
     nameFirst?: boolean
+    email?: boolean
     providerId?: boolean
     provider?: boolean
     role?: boolean
@@ -3218,6 +3226,7 @@ export namespace Prisma {
     name?: boolean
     nameLast?: boolean
     nameFirst?: boolean
+    email?: boolean
     providerId?: boolean
     provider?: boolean
     role?: boolean
@@ -3241,6 +3250,7 @@ export namespace Prisma {
       name: string | null
       nameLast: string | null
       nameFirst: string | null
+      email: string | null
       providerId: string
       provider: string | null
       role: string | null
@@ -3645,6 +3655,7 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly nameLast: FieldRef<"User", 'String'>
     readonly nameFirst: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
     readonly providerId: FieldRef<"User", 'String'>
     readonly provider: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'String'>
@@ -24028,6 +24039,7 @@ export namespace Prisma {
     name: 'name',
     nameLast: 'nameLast',
     nameFirst: 'nameFirst',
+    email: 'email',
     providerId: 'providerId',
     provider: 'provider',
     role: 'role',
@@ -24368,6 +24380,7 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     nameLast?: StringNullableFilter<"User"> | string | null
     nameFirst?: StringNullableFilter<"User"> | string | null
+    email?: StringNullableFilter<"User"> | string | null
     providerId?: StringFilter<"User"> | string
     provider?: StringNullableFilter<"User"> | string | null
     role?: StringNullableFilter<"User"> | string | null
@@ -24381,6 +24394,7 @@ export namespace Prisma {
     name?: SortOrderInput | SortOrder
     nameLast?: SortOrderInput | SortOrder
     nameFirst?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     providerId?: SortOrder
     provider?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
@@ -24398,6 +24412,7 @@ export namespace Prisma {
     name?: StringNullableFilter<"User"> | string | null
     nameLast?: StringNullableFilter<"User"> | string | null
     nameFirst?: StringNullableFilter<"User"> | string | null
+    email?: StringNullableFilter<"User"> | string | null
     provider?: StringNullableFilter<"User"> | string | null
     role?: StringNullableFilter<"User"> | string | null
     registered?: DateTimeNullableFilter<"User"> | Date | string | null
@@ -24410,6 +24425,7 @@ export namespace Prisma {
     name?: SortOrderInput | SortOrder
     nameLast?: SortOrderInput | SortOrder
     nameFirst?: SortOrderInput | SortOrder
+    email?: SortOrderInput | SortOrder
     providerId?: SortOrder
     provider?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
@@ -24430,6 +24446,7 @@ export namespace Prisma {
     name?: StringNullableWithAggregatesFilter<"User"> | string | null
     nameLast?: StringNullableWithAggregatesFilter<"User"> | string | null
     nameFirst?: StringNullableWithAggregatesFilter<"User"> | string | null
+    email?: StringNullableWithAggregatesFilter<"User"> | string | null
     providerId?: StringWithAggregatesFilter<"User"> | string
     provider?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -25615,6 +25632,7 @@ export namespace Prisma {
     name?: string | null
     nameLast?: string | null
     nameFirst?: string | null
+    email?: string | null
     providerId: string
     provider?: string | null
     role?: string | null
@@ -25628,6 +25646,7 @@ export namespace Prisma {
     name?: string | null
     nameLast?: string | null
     nameFirst?: string | null
+    email?: string | null
     providerId: string
     provider?: string | null
     role?: string | null
@@ -25640,6 +25659,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameLast?: NullableStringFieldUpdateOperationsInput | string | null
     nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     providerId?: StringFieldUpdateOperationsInput | string
     provider?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25653,6 +25673,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameLast?: NullableStringFieldUpdateOperationsInput | string | null
     nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     providerId?: StringFieldUpdateOperationsInput | string
     provider?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25666,6 +25687,7 @@ export namespace Prisma {
     name?: string | null
     nameLast?: string | null
     nameFirst?: string | null
+    email?: string | null
     providerId: string
     provider?: string | null
     role?: string | null
@@ -25677,6 +25699,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameLast?: NullableStringFieldUpdateOperationsInput | string | null
     nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     providerId?: StringFieldUpdateOperationsInput | string
     provider?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -25689,6 +25712,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameLast?: NullableStringFieldUpdateOperationsInput | string | null
     nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     providerId?: StringFieldUpdateOperationsInput | string
     provider?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26845,6 +26869,7 @@ export namespace Prisma {
     name?: SortOrder
     nameLast?: SortOrder
     nameFirst?: SortOrder
+    email?: SortOrder
     providerId?: SortOrder
     provider?: SortOrder
     role?: SortOrder
@@ -26861,6 +26886,7 @@ export namespace Prisma {
     name?: SortOrder
     nameLast?: SortOrder
     nameFirst?: SortOrder
+    email?: SortOrder
     providerId?: SortOrder
     provider?: SortOrder
     role?: SortOrder
@@ -26873,6 +26899,7 @@ export namespace Prisma {
     name?: SortOrder
     nameLast?: SortOrder
     nameFirst?: SortOrder
+    email?: SortOrder
     providerId?: SortOrder
     provider?: SortOrder
     role?: SortOrder
@@ -29440,6 +29467,7 @@ export namespace Prisma {
     name?: string | null
     nameLast?: string | null
     nameFirst?: string | null
+    email?: string | null
     providerId: string
     provider?: string | null
     role?: string | null
@@ -29452,6 +29480,7 @@ export namespace Prisma {
     name?: string | null
     nameLast?: string | null
     nameFirst?: string | null
+    email?: string | null
     providerId: string
     provider?: string | null
     role?: string | null
@@ -29515,6 +29544,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameLast?: NullableStringFieldUpdateOperationsInput | string | null
     nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     providerId?: StringFieldUpdateOperationsInput | string
     provider?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
@@ -29527,6 +29557,7 @@ export namespace Prisma {
     name?: NullableStringFieldUpdateOperationsInput | string | null
     nameLast?: NullableStringFieldUpdateOperationsInput | string | null
     nameFirst?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: NullableStringFieldUpdateOperationsInput | string | null
     providerId?: StringFieldUpdateOperationsInput | string
     provider?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
