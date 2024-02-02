@@ -3,10 +3,12 @@ import { UserReqService } from '../services/api-request-services/user-request-se
 import { GoogleReqService } from '../services/api-request-services/google-request-service/google-request.service';
 import { AppService } from '../services/app-service/app.service';
 import { UserService } from '../services/user-service/user.service';
+import { PartsReqService } from '../services/api-request-services/parts-request-service/parts-request.service';
 
 @NgModule({
   providers: [
     UserReqService,
+    PartsReqService,
     GoogleReqService,
     UserService,
     AppService
