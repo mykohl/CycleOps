@@ -1,4 +1,4 @@
-import { ClassificationService } from '../../services/classification.service';
+import { PartsAdminService } from '../../services/parts-admin.service';
 import { 
     PartClassDto,
     PropertyGroupDto
@@ -11,7 +11,7 @@ import {
 export async function seedPartClass(data: PartClassDto[]) {
     for (const partClass of data) {
       if(partClass.order && partClass.name) {
-        await ClassificationService.addPartClass(partClass.order, partClass.name);
+        await PartsAdminService.addPartClass(partClass.order, partClass.name);
       }
     }
   }
@@ -19,7 +19,7 @@ export async function seedPartClass(data: PartClassDto[]) {
   export async function seedPropertyGroup(data: PropertyGroupDto[]) {
     for (const propertyGroup of data) {
       if(propertyGroup.order && propertyGroup.name) {
-        ClassificationService.addPropertyGroup(propertyGroup.order, propertyGroup.name, propertyGroup.description);
+        PartsAdminService.addPropertyGroup(propertyGroup.order, propertyGroup.name, propertyGroup.description);
       }
     }  
   }
@@ -27,20 +27,20 @@ export async function seedPartClass(data: PartClassDto[]) {
   export async function seedPropertyType(data: propertyTypeSeedModel[]) {
     for (const propertyType of data) {
       if(propertyType.order && propertyType.name) {
-        const record = await ClassificationService.addPropertyType(propertyType.order, propertyType.name, propertyType.valueDataType)
+        const record = await PartsAdminService.addPropertyType(propertyType.order, propertyType.name, propertyType.valueDataType)
       
         if(record && propertyType.propertyGroupPrimary) {
-          const groupIdPrimary = await ClassificationService.lookupPropertyGroup(propertyType.propertyGroupPrimary);
+          const groupIdPrimary = await PartsAdminService.lookupPropertyGroup(propertyType.propertyGroupPrimary);
           if(groupIdPrimary) {
-            await ClassificationService.addPropertyGroupMember(record.id, groupIdPrimary.id, true);
+            await PartsAdminService.addPropertyGroupMember(record.id, groupIdPrimary.id, true);
           }
         }
     
         if(record && propertyType.propertyGroupsOther) {
           for (const group of propertyType.propertyGroupsOther) {
-            const groupIdOther = await ClassificationService.lookupPropertyGroup(group);
+            const groupIdOther = await PartsAdminService.lookupPropertyGroup(group);
             if(groupIdOther) {
-              await ClassificationService.addPropertyGroupMember(record.id, groupIdOther.id, false);
+              await PartsAdminService.addPropertyGroupMember(record.id, groupIdOther.id, false);
             }
           }
         }   
@@ -50,29 +50,37 @@ export async function seedPartClass(data: PartClassDto[]) {
   
   export async function seedPartType(data: partTypeSeedModel[]) {
     for (const partType of data) {
-      const record = await ClassificationService.addPartType(partType.order, partType.name);
+      const record = await PartsAdminService.addPartType(partType.order, partType.name);
   
       if(record && partType.partClassPrimary) {
-        const partClassPrimary = await ClassificationService.lookupPartClass(partType.partClassPrimary);
+        const partClassPrimary = await PartsAdminService.lookupPartClass(partType.partClassPrimary);
         if(partClassPrimary) {
-          await ClassificationService.addPartClassMember(record.id, partClassPrimary.id, true);
+          await PartsAdminService.addPartClassMember({
+            partTypeId: record.id, 
+            partClassId: partClassPrimary.id, 
+            isPrimary: true
+          });
         }
       }
   
       if(record && partType.partClassesOther) {
         for(const partClass of partType.partClassesOther) {
-          const partClassOther = await ClassificationService.lookupPartClass(partClass);
+          const partClassOther = await PartsAdminService.lookupPartClass(partClass);
           if(partClassOther) {
-            await ClassificationService.addPartClassMember(record.id, partClassOther.id, false);
+            await PartsAdminService.addPartClassMember({
+              partTypeId: record.id,
+              partClassId: partClassOther.id, 
+              isPrimary: false
+            });
           }
         }
       }
   
       if(record && partType.propertyTypes) {
         for(const propertyType of partType.propertyTypes) {
-          const propertyTypeLookup = await ClassificationService.lookupPropertyType(propertyType);
+          const propertyTypeLookup = await PartsAdminService.lookupPropertyType(propertyType);
           if(propertyTypeLookup) {
-            await ClassificationService.addPropertyTypeMember(record.id, propertyTypeLookup.id);
+            await PartsAdminService.addPropertyTypeMember(record.id, propertyTypeLookup.id);
           }
         }
       }

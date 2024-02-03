@@ -3,7 +3,7 @@ import { prisma } from "../prisma.instance";
 import { User } from "../data/prisma/client";
 import { sortNullSafe, sortPeople } from "./utility.service";
 
-export class UserService {
+export class UserAdminService {
 
   public static async getUsers(limit?: number | null): Promise<UserDto[] | null> {
     const userResult = (await prisma.user.findMany())

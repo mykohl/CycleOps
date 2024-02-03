@@ -9,7 +9,8 @@ import {
     Property, 
     PropertyGroup,
     User,
-    PartClass
+    PartClass,
+    PartClassMembership
 } from "../prisma/client";
 
 export type MakeNullable<T, K extends keyof T> = Omit<T, K> & { [P in K]?: T[P] };
@@ -19,8 +20,9 @@ export type PrefixProperties<T, Prefix extends string> = { [K in keyof T as `${P
 export type BrandDto = MakeNullable<Brand, "id">;
 export type ProductLineDto = MakeNullable<ProductLine, "id"> & { brandMembers: BrandDto[] }
 
-export type PartTypeDto = MakeNullable<PartType, "id">;
-export type PartClassDto = MakeNullable<PartClass, "id"> & { partTypes?: PartTypeDto };
+export type PartTypeDto = MakeNullable<PartType, "id"> & { partClassRefs?: (number | null)[] };
+export type PartClassDto = MakeNullable<PartClass, "id"> & { partTypes?: PartTypeDto[] };
+export type PartClassMembershipDto = MakeNullable<PartClassMembership, "id" | "partTypeId" | "partClassId">;
 
 export type PropertyDto = MakeNullable<Property, "id">;
 export type PropertyTypeDto = MakeNullable<PropertyType, "id">

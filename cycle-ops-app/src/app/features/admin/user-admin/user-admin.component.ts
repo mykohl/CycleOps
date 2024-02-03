@@ -11,9 +11,9 @@ import { MatSort } from '@angular/material/sort';
 import { AppService } from '../../../shared/services/app-service/app.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.scss',
+  selector: 'admin-user',
+  templateUrl: './user-admin.component.html',
+  styleUrl: './user-admin.component.scss',
   animations: [
     trigger('detailExpand', [
       state('collapsed,void', style({height: '0px', minHeight: '0'})),
@@ -22,7 +22,7 @@ import { AppService } from '../../../shared/services/app-service/app.service';
     ])
   ]
 })
-export class UserComponent {
+export class UserAdminComponent {
   @ViewChild(MatPaginator) paginator = {} as MatPaginator;
   @ViewChild(MatSort) sort = {} as MatSort;
 

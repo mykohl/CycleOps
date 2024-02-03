@@ -1,12 +1,12 @@
 import { NgModule, Injectable } from '@angular/core';
 import { RouterModule, Routes, Route, LoadChildrenCallback } from '@angular/router';
 import { HomeComponent } from './features/home/home.component';
-import { UserComponent } from './features/admin/user/user.component';
+import { UserAdminComponent } from './features/admin/user-admin/user-admin.component';
 import { WheelsComponent } from './features/workshops/wheels/wheels.component';
 import { AuthService } from './shared/services/auth-service/auth.service';
 import * as appModel from '../../../data/models/model.app';
 import * as appData from '../../../data/app.data.json';
-import { ClassificationComponent } from './features/admin/classification/classification.component';
+import { PartsAdminComponent } from './features/admin/parts-admin/parts-admin.component';
 
 @Injectable({
   providedIn: 'root'
@@ -44,9 +44,9 @@ export class AppRoutingHelper {
       case 'wheels':
         return WheelsComponent;
       case 'users':
-        return UserComponent;
+        return UserAdminComponent;
       case 'classification':
-        return ClassificationComponent;
+        return PartsAdminComponent;
       default:
         return HomeComponent;
     }

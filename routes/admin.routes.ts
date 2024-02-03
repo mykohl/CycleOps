@@ -1,13 +1,21 @@
 import express from "express";
 import { authenticate } from "../middleware/authenticate";
-import { updateUser, getUsers } from "../controllers/user.controller";
-import { getPartClassifications, getPartTypes } from "../controllers/classification.controller";
+import { updateUser, getUsers } from "../controllers/admin-controllers/user.controller";
+import { 
+    getPartClassifications, 
+    getPartTypes, 
+    addPartClassMember,
+    removePartClassMember
+} from "../controllers/admin-controllers/parts-admin.controller";
 
 const adminRouter = express.Router();
 
 adminRouter.post("/users/update", authenticate, updateUser);
 adminRouter.get("/users", authenticate, getUsers);
-adminRouter.get("/classification", authenticate, getPartClassifications);
-adminRouter.get("/classification/parts/types", authenticate, getPartTypes);
+
+adminRouter.get("/parts/classes", authenticate, getPartClassifications);
+adminRouter.get("/parts/types", authenticate, getPartTypes);
+adminRouter.post("/parts/classes/add-member", authenticate, addPartClassMember);
+adminRouter.post("/parts/classes/remove-member", authenticate, removePartClassMember)
 
 export default adminRouter;

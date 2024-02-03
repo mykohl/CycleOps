@@ -37,7 +37,7 @@
                 "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
                     "additional accessory accomodation"                
             ],
-            "partClassePrimary": "frameset",
+            "partClassPrimary": "frameset",
             "partClassesOther": null
         },
         {

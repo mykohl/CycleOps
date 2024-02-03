@@ -10,6 +10,7 @@ import {
 } from "../data/prisma/client";
 import { 
     PartClassDto, 
+    PartClassMembershipDto, 
     PartTypeDto,
     PropertyGroupDto, 
     PropertyTypeDto 
@@ -17,7 +18,7 @@ import {
 import { sortNullSafe } from "./utility.service";
 import { prisma } from '../prisma.instance';
 
-export class ClassificationService {
+export class PartsAdminService {
     get prisma(): PrismaClient { return prisma; }
 
     public static getPartClassDto(partClass: PartClass): PartClassDto {
@@ -39,16 +40,34 @@ export class ClassificationService {
         return partTypeDto;
     }
 
-    public static async getPartClassifications(): Promise<PartClassDto[] | null> {
+    public static getPartClassMembershipDto(partClassMembership: PartClassMembership): PartClassMembershipDto | null {
+        const partClassMembershipDto: PartClassMembershipDto = {
+            id: partClassMembership.id,
+            partTypeId: partClassMembership.partTypeId,
+            partClassId: partClassMembership.partClassId,
+            isPrimary: partClassMembership.isPrimary
+        };
+        return partClassMembershipDto;
+    }
+
+    public static async getPartClasses(): Promise<PartClassDto[] | null> {
         return (await prisma.partClass.findMany())
             .map(c => this.getPartClassDto(c))
             .sort((a, b) => sortNullSafe(a.order, b.order));
     }
 
     public static async getPartTypes(): Promise<PartTypeDto[] | null> {
-        return (await prisma.partType.findMany())
-            .map(t => this.getPartTypeDto(t))
-            .sort((a, b) => sortNullSafe(a.order, b.order));
+        const partTypes = await prisma.partType.findMany({
+            include: {
+                partClasses: true
+            }
+        });
+
+        return partTypes.map(t => ({
+            ...this.getPartTypeDto(t),
+            partClassRefs: t.partClasses.map(c => c.partClassId)
+        }))
+        .sort((a, b) => sortNullSafe(a.order, b.order));
     }
 
     public static async lookupPropertyGroup(key: string): Promise<PropertyGroup | null> {
@@ -57,6 +76,15 @@ export class ClassificationService {
     
     public static async lookupPartClass(key: string): Promise<PartClass | null> {
         return await prisma.partClass.findFirst( { where: { name: key } });
+    }
+
+    public static async lookupPartClassMembership(partClassMembershipDto: PartClassMembershipDto) {
+        return await prisma.partClassMembership.findFirst({
+            where: {
+                partTypeId: partClassMembershipDto.partTypeId,
+                partClassId: partClassMembershipDto.partClassId
+            }
+        })
     }
 
     public static async lookupPropertyType(key: string): Promise<PropertyType | null> {
@@ -81,14 +109,34 @@ export class ClassificationService {
         });
     }
 
-    public static async addPartClassMember(typeId: number, classId: number, primary: boolean): Promise<PartClassMembership | null> {
-        return await prisma.partClassMembership.create({
+    public static async addPartClassMember(partClassMembershipDto: PartClassMembershipDto): Promise<PartClassMembershipDto | null> {
+        const result = await prisma.partClassMembership.create({
             data: {
-                partTypeId: typeId,
-                partClassId: classId,
-                isPrimary: primary
+                partTypeId: partClassMembershipDto.partTypeId,
+                partClassId: partClassMembershipDto.partClassId,
+                isPrimary: partClassMembershipDto.isPrimary
             }
         });
+        return this.getPartClassMembershipDto(result);
+    }
+
+    public static async removePartClassMember(partClassMembershipDto: PartClassMembershipDto): Promise<boolean> {
+        console.log(partClassMembershipDto);
+        
+        if(!partClassMembershipDto || !partClassMembershipDto.partTypeId || !partClassMembershipDto.partClassId) return false;
+        if(!partClassMembershipDto.id) {
+            const lookup = await this.lookupPartClassMembership(partClassMembershipDto);
+            if(!lookup) return false;
+            partClassMembershipDto.id = lookup.id;
+        }
+
+        const result = await prisma.partClassMembership.delete({
+            where: { 
+                id: partClassMembershipDto.id
+            }
+        });
+        if(result) return true;
+        return false;
     }
     
     public static async addPropertyGroup(order: number, name: string, description: string | null): Promise<PropertyGroup | null> {

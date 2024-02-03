@@ -1,0 +1,9 @@
+@import '../../../../style.variables.scss';
+
+tr.item-row:not(.active-class-row):hover {
+    background: $colorPale;
+}
+tr.item-row:active,
+tr.active-class-row {
+    background: $colorActive;
+}

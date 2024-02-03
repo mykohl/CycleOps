@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ClassificationReqService } from './classification-request.service';
+import { PartsAdminReqService } from './parts-admin-request.service';
 
 describe('ClassificationRequestService', () => {
-  let service: ClassificationReqService;
+  let service: PartsAdminReqService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ClassificationReqService);
+    service = TestBed.inject(PartsAdminReqService);
   });
 
   it('should be created', () => {
