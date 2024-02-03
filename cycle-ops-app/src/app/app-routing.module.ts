@@ -6,7 +6,7 @@ import { WheelsComponent } from './features/workshops/wheels/wheels.component';
 import { AuthService } from './shared/services/auth-service/auth.service';
 import * as appModel from '../../../data/models/model.app';
 import * as appData from '../../../data/app.data.json';
-import { PartsAdminComponent } from './features/admin/parts-admin/parts-admin.component';
+import { PartsClassAdminComponent } from './features/admin/parts-class-admin/parts-class-admin.component';
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +45,8 @@ export class AppRoutingHelper {
         return WheelsComponent;
       case 'users':
         return UserAdminComponent;
-      case 'classification':
-        return PartsAdminComponent;
+      case 'parts-classification':
+        return PartsClassAdminComponent;
       default:
         return HomeComponent;
     }

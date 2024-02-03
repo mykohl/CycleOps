@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ServicesModule } from '../../shared/modules/services.module';
 import { MaterialModule } from '../../shared/modules/material.module';
 import { UserAdminComponent } from './user-admin/user-admin.component';
-import { PartsAdminComponent } from './parts-admin/parts-admin.component';
+import { PartsClassAdminComponent } from './parts-class-admin/parts-class-admin.component';
 
 @NgModule({
   declarations: [
     UserAdminComponent,
-    PartsAdminComponent
+    PartsClassAdminComponent
   ],
   imports: [
     CommonModule,

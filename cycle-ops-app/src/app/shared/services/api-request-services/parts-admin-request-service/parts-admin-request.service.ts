@@ -8,23 +8,23 @@ import { PartClassDto, PartClassMembershipDto, PartTypeDto } from '../../../../.
 })
 export class PartsAdminReqService {
 
-  private apiUrl = 'https://localhost/api/admin/classification';
+  private apiUrl = 'https://localhost/api/admin/parts';
 
   constructor(private http: HttpClient) {}
 
   getPartClassifications(): Observable<PartClassDto[]> {
-    return from(this.http.get<any>(`${this.apiUrl}/parts/classes`));
+    return from(this.http.get<any>(`${this.apiUrl}/classes`));
   }
 
   getPartTypes(): Observable<PartTypeDto[]> {
-    return from(this.http.get<any>(`${this.apiUrl}/parts/types`));
+    return from(this.http.get<any>(`${this.apiUrl}/types`));
   }
 
   addPartClassMember(partClassMembershipDto: PartClassMembershipDto): Observable<PartClassMembershipDto> {
-    return from(this.http.post<PartClassMembershipDto>(`${this.apiUrl}/parts/classes/add-member`, partClassMembershipDto));
+    return from(this.http.post<PartClassMembershipDto>(`${this.apiUrl}/classes/add-member`, partClassMembershipDto));
   }
 
   removePartClassMember(partClassMembershipDto: PartClassMembershipDto): Observable<boolean> {
-    return from(this.http.post<boolean>(`${this.apiUrl}/parts/classes/remove-member`, partClassMembershipDto));
+    return from(this.http.post<boolean>(`${this.apiUrl}/classes/remove-member`, partClassMembershipDto));
   }
 }

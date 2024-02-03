@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PartsAdminComponent } from './parts-admin.component';
+import { PartsClassAdminComponent } from './parts-class-admin.component';
 
 describe('ClassificationComponent', () => {
-  let component: PartsAdminComponent;
-  let fixture: ComponentFixture<PartsAdminComponent>;
+  let component: PartsClassAdminComponent;
+  let fixture: ComponentFixture<PartsClassAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PartsAdminComponent]
+      declarations: [PartsClassAdminComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PartsAdminComponent);
+    fixture = TestBed.createComponent(PartsClassAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

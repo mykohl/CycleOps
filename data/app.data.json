@@ -115,7 +115,7 @@
                     "rolesAllowed": ["admin"]
                 },
                 {
-                    "id": "classification",
+                    "id": "parts-classification",
                     "order": 2,
                     "isHighlight": false,
                     "title": "Parts Classification",
@@ -123,7 +123,7 @@
                     "titleIcon": "",
                     "image": "",
                     "imageAlt": "",
-                    "route": "admin/classification",
+                    "route": "admin/parts/classes",
                     "rolesAllowed": ["admin"]                    
                 }
             ],

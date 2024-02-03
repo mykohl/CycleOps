@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'admin-parts',
-  templateUrl: './parts-admin.component.html',
-  styleUrl: './parts-admin.component.scss'
+  templateUrl: './parts-class-admin.component.html',
+  styleUrl: './parts-class-admin.component.scss'
 })
-export class PartsAdminComponent {
+export class PartsClassAdminComponent {
 
   partClassDataSource: MatTableDataSource<PartClassDto> = new MatTableDataSource();
   partTypeDataSource: MatTableDataSource<PartTypeDto> = new MatTableDataSource();

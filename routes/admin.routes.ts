@@ -1,6 +1,6 @@
 import express from "express";
 import { authenticate } from "../middleware/authenticate";
-import { updateUser, getUsers } from "../controllers/admin-controllers/user.controller";
+import { updateUser, getUsers } from "../controllers/admin-controllers/user-admin.controller";
 import { 
     getPartClassifications, 
     getPartTypes, 
