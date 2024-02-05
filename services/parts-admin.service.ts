@@ -121,8 +121,6 @@ export class PartsAdminService {
     }
 
     public static async removePartClassMember(partClassMembershipDto: PartClassMembershipDto): Promise<boolean> {
-        console.log(partClassMembershipDto);
-        
         if(!partClassMembershipDto || !partClassMembershipDto.partTypeId || !partClassMembershipDto.partClassId) return false;
         if(!partClassMembershipDto.id) {
             const lookup = await this.lookupPartClassMembership(partClassMembershipDto);
@@ -137,6 +135,25 @@ export class PartsAdminService {
         });
         if(result) return true;
         return false;
+    }
+    
+    public static async reorderPartClass(reorder: { partClassId: number, order: number, previousOrder: number }) {
+        const { partClassId, order, previousOrder } = reorder;
+        if (order < previousOrder) {
+            await prisma.partClass.updateMany({
+                where: { order: { gte: order, lt: previousOrder }},
+                data: { order: { increment: 1 } }
+            });
+        } else {
+            await prisma.partClass.updateMany({
+                where: { order: { lte: order, gt: previousOrder }},
+                data: { order: { increment: -1 } }
+            });
+        }
+        await prisma.partClass.update({
+            where: { id: partClassId },
+            data: { order: order }
+        });
     }
     
     public static async addPropertyGroup(order: number, name: string, description: string | null): Promise<PropertyGroup | null> {

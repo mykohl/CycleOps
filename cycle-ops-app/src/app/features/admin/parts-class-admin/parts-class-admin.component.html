@@ -1,70 +1,93 @@
-<div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
-    <table mat-table [dataSource]="partClassDataSource">
-        <ng-container matColumnDef="order">
-            <th mat-header-cell *matHeaderCellDef> Order </th>
-            <td mat-cell *matCellDef="let class"> {{class['order']}} </td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let class"> {{class['name']}} </td>
-        </ng-container>
-        <ng-container matColumnDef="edit">
-            <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
-            <td mat-cell *matCellDef="let class">
-                <mat-icon>edit</mat-icon>
-            </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="partClassTableColumns"></tr>
-        <tr mat-row 
-            class="item-row"
-            [class.active-class-row]="class === selectedClass"
-            *matRowDef="let class; columns: partClassTableColumns;"
-            (click)="selectedClass = class">
-        </tr>
-    </table>
-    <table mat-table [dataSource]="partTypeDataSource">
-        <!--
-        <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                                [checked]="selection.hasValue() && isAllSelected()"
-                                [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                [aria-label]="checkboxLabel()">
-                </mat-checkbox>
-            </th>
-            <td mat-cell *matCellDef="let type">
-                <mat-checkbox (click)="$event.stopPropagation()"
-                                (change)="$event ? selection.toggle(type) : null"
-                                [checked]="selection.isSelected(type)"
-                                [aria-label]="checkboxLabel(type)">
-                </mat-checkbox>
-            </td>
-        </ng-container>
-        -->
-        <ng-container matColumnDef="order">
-            <th mat-header-cell *matHeaderCellDef> Order </th>
-            <td mat-cell *matCellDef="let type"> {{type['order']}} </td>
-        </ng-container>
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Name </th>
-            <td mat-cell *matCellDef="let type"> {{type['name']}} </td>
-        </ng-container>
-        <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef> Description </th>
-            <td mat-cell *matCellDef="let type"> {{type['description']}} </td>
-        </ng-container>
-        <ng-container matColumnDef="edit">
-            <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
-            <td mat-cell *matCellDef="let type">
-                <mat-icon>edit</mat-icon>
-            </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="partTypeTableColumns"></tr>
-        <tr mat-row
-            class="item-row"
-            [class.active-class-row]="partTypeInClass(type)"
-            *matRowDef="let type; columns: partTypeTableColumns;"
-            (click)="toggleInClass(type)">
-        </tr>
-    </table>
+<div class="margin-nominal">
+    <div class="go-wide flex-row flex-wrap flex-justify-spread flex-align-start">
+        <div>
+            <h2 class="text-size-large text-margin-nominal">Manage Part Types and Classifications</h2>
+            <p class="text-size-nominal text-margin-nominal">Create and edit part classifications and part types; assign part types to part classes by selecting the class and then selecting or deselecting desired part types.</p>
+        </div>
+    </div>
+</div>
+<div class="flex-row flex-wrap flex-align-start flex-justify-center">
+    <div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
+        <p>Part Classes</p>
+        <mat-table #partClassTable
+            [dataSource]="partClassDataSource"
+            cdkDropList
+            (cdkDropListDropped)="dropPartClass($event)"
+            cdkDropListData="partClassDataSource">
+            <ng-container matColumnDef="order" sticky>
+                <mat-header-cell *matHeaderCellDef> Order </mat-header-cell>
+                <mat-cell *matCellDef="let class; let i = index">
+                    <mat-icon cdkDragHandle class="dragCursor">reorder</mat-icon>
+                    <span>{{i + 1}}</span>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let class"> {{class['name']}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+                <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let class">
+                    <mat-icon>edit</mat-icon>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="partClassTableColumns"></mat-header-row>
+            <mat-row 
+                class="item-row"
+                [class.active-class-row]="class === selectedClass"
+                *matRowDef="let class; columns: partClassTableColumns;"
+                (click)="selectedClass = class"
+                cdkDrag
+                [cdkDragData]="class">
+            </mat-row>
+        </mat-table>
+    </div>
+    <div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
+        <p>Part Types</p>
+        <table mat-table [dataSource]="partTypeDataSource">
+            <!--
+            <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                    [aria-label]="checkboxLabel()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let type">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(type) : null"
+                                    [checked]="selection.isSelected(type)"
+                                    [aria-label]="checkboxLabel(type)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            -->
+            <ng-container matColumnDef="order">
+                <th mat-header-cell *matHeaderCellDef> Order </th>
+                <td mat-cell *matCellDef="let type"> {{type['order']}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let type"> {{type['name']}} </td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let type"> {{type['description']}} </td>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+                <td mat-cell *matCellDef="let type">
+                    <mat-icon>edit</mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="partTypeTableColumns"></tr>
+            <tr mat-row
+                class="item-row"
+                [class.active-class-row]="partTypeInClass(type)"
+                *matRowDef="let type; columns: partTypeTableColumns;"
+                (click)="toggleInClass(type)">
+            </tr>
+        </table>
+    </div>
 </div>

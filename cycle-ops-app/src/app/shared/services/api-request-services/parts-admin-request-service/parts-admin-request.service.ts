@@ -27,4 +27,8 @@ export class PartsAdminReqService {
   removePartClassMember(partClassMembershipDto: PartClassMembershipDto): Observable<boolean> {
     return from(this.http.post<boolean>(`${this.apiUrl}/classes/remove-member`, partClassMembershipDto));
   }
+
+  reorderPartClass(reorderParams: { partClassId: number, order: number, previousOrder: number }) {
+    return from(this.http.post<any>(`${this.apiUrl}/classes/reorder`, reorderParams));
+  }
 }

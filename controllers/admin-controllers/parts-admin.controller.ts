@@ -48,3 +48,17 @@ export async function removePartClassMember(req: Request, res: Response) {
         res.status(500).json ( { error: e } );
     }
 }
+
+export async function reorderPartClass(req: Request, res: Response) {
+    try {
+        const reorderParams: { partClassId: number, order: number, previousOrder: number } = req.body;
+        if(reorderParams) {
+            const result = await PartsAdminService.reorderPartClass(reorderParams);
+            res.status(200).json(result);
+        } else {
+            res.status(200).json(null);
+        }
+    } catch(e) {
+        res.status(500).json ( { error: e } );
+    }
+}

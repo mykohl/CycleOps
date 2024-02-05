@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { 
+  CdkDragDrop, 
+  CdkDragStart, 
+  moveItemInArray, 
+  transferArrayItem, 
+  CdkDragHandle 
+} from '@angular/cdk/drag-drop';
+import { MatTable } from '@angular/material/table';
 import { PartsAdminReqService } from '../../../shared/services/api-request-services/parts-admin-request-service/parts-admin-request.service';
 import { UserService } from '../../../shared/services/user-service/user.service';
 import { AppService } from '../../../shared/services/app-service/app.service';
@@ -14,10 +22,13 @@ import { Observable } from 'rxjs';
 })
 export class PartsClassAdminComponent {
 
+  @ViewChild('partClassTable', { static: true }) partClassTable: MatTable<PartClassDto>;
+
   partClassDataSource: MatTableDataSource<PartClassDto> = new MatTableDataSource();
   partTypeDataSource: MatTableDataSource<PartTypeDto> = new MatTableDataSource();
   partClassTableColumns: string[] = ["order", "name", "edit"];
   partTypeTableColumns: string[] = ["order", "name", "description", "edit"];
+  dragDisabled = true;
 
   selectedClass: PartClassDto | null = null;
   selectedTypes: (PartTypeDto | null)[] | null = null;
@@ -51,6 +62,17 @@ export class PartsClassAdminComponent {
     return false;
   }
 
+  dropPartClass(dropEvent: any) {
+    const drop = dropEvent as CdkDragDrop<PartClassDto[]>;
+    this.dragDisabled = true;
+    const previousIndex = this.partClassDataSource.data.findIndex((d) => d === drop.item.data);
+    moveItemInArray(this.partClassDataSource.data, previousIndex, drop.currentIndex);
+
+    this.reorderPartClass(drop.item.data['id'], drop.currentIndex + 1, previousIndex + 1).subscribe(result => {
+      this.partClassTable.renderRows();
+    });
+  }
+
   toggleInClass(partType: PartTypeDto | null) {
     if(!partType || !this.selectedClass) return;
     if(partType.partClassRefs.includes(this.selectedClass.id)) {
@@ -66,6 +88,12 @@ export class PartsClassAdminComponent {
         }
       });
     }
+  }
+
+  reorderPartClass(partClassId: number, order: number, previousOrder: number): Observable<any> {
+    return this._apiReqClassificationService.reorderPartClass({
+      partClassId: partClassId, order: order, previousOrder: previousOrder
+    });
   }
 
   removePartClassMember(partTypeId: number): Observable<boolean> {

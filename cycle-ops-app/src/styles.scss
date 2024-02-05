@@ -114,6 +114,9 @@ body {
 .flex-justify-start {
     justify-content: flex-start;
 }
+.flex-justify-center {
+    justify-content: center;
+}
 .flex-align-start {
     align-items: flex-start;
 }
@@ -192,3 +195,8 @@ body {
 .text-margin-nominal {
     margin: 0 0 $textSpacingNominal 0;
 }
+
+.dragCursor {
+    margin-right: 16px;
+    cursor: move;
+  }

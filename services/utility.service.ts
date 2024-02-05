@@ -1,3 +1,4 @@
+import { prisma } from '../prisma.instance';
 import { Person } from "../data/models/model.dto";
 
 export function sortNullSafe(a: string | number | null, b: string | number | null): number {

@@ -5,7 +5,8 @@ import {
     getPartClassifications, 
     getPartTypes, 
     addPartClassMember,
-    removePartClassMember
+    removePartClassMember,
+    reorderPartClass
 } from "../controllers/admin-controllers/parts-admin.controller";
 
 const adminRouter = express.Router();
@@ -16,6 +17,7 @@ adminRouter.get("/users", authenticate, getUsers);
 adminRouter.get("/parts/classes", authenticate, getPartClassifications);
 adminRouter.get("/parts/types", authenticate, getPartTypes);
 adminRouter.post("/parts/classes/add-member", authenticate, addPartClassMember);
-adminRouter.post("/parts/classes/remove-member", authenticate, removePartClassMember)
+adminRouter.post("/parts/classes/remove-member", authenticate, removePartClassMember);
+adminRouter.post("/parts/classes/reorder", authenticate, reorderPartClass);
 
 export default adminRouter;

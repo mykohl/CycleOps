@@ -4,6 +4,7 @@ import { ServicesModule } from '../../shared/modules/services.module';
 import { MaterialModule } from '../../shared/modules/material.module';
 import { UserAdminComponent } from './user-admin/user-admin.component';
 import { PartsClassAdminComponent } from './parts-class-admin/parts-class-admin.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { PartsClassAdminComponent } from './parts-class-admin/parts-class-admin.
   imports: [
     CommonModule,
     ServicesModule,
-    MaterialModule
+    MaterialModule,
+    DragDropModule
   ],
   exports: [
   ]
