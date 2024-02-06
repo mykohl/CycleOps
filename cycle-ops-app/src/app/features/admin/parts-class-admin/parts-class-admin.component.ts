@@ -1,19 +1,24 @@
 import { Component, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
 import { 
-  CdkDragDrop, 
-  CdkDragStart, 
-  moveItemInArray, 
-  transferArrayItem, 
-  CdkDragHandle 
+  CdkDragDrop,
+  CdkDragStart,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDragHandle
 } from '@angular/cdk/drag-drop';
 import { MatTable } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatFormField, MatFormFieldAppearance, MatFormFieldDefaultOptions } from '@angular/material/form-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { PartsAdminReqService } from '../../../shared/services/api-request-services/parts-admin-request-service/parts-admin-request.service';
 import { UserService } from '../../../shared/services/user-service/user.service';
 import { AppService } from '../../../shared/services/app-service/app.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTableDataSource } from '@angular/material/table';
-import { PartClassDto, PartClassMembershipDto, PartTypeDto } from '../../../../../../data/models/model.dto';
-import { Observable } from 'rxjs';
+import { 
+  PartClassDto, 
+  PartClassMembershipDto, 
+  PartTypeDto 
+} from '../../../../../../data/models/model.dto';
 
 @Component({
   selector: 'admin-parts',
@@ -28,10 +33,10 @@ export class PartsClassAdminComponent {
   partTypeDataSource: MatTableDataSource<PartTypeDto> = new MatTableDataSource();
   partClassTableColumns: string[] = ["order", "name", "edit"];
   partTypeTableColumns: string[] = ["order", "name", "description", "edit"];
-  dragDisabled = true;
-
+  partClassDragDisabled: boolean = false;
   selectedClass: PartClassDto | null = null;
   selectedTypes: (PartTypeDto | null)[] | null = null;
+  editingClass: number | null = null;
 
   constructor(
     private _appService: AppService,
@@ -63,13 +68,13 @@ export class PartsClassAdminComponent {
   }
 
   dropPartClass(dropEvent: any) {
+    this.partClassDragDisabled = true;
     const drop = dropEvent as CdkDragDrop<PartClassDto[]>;
-    this.dragDisabled = true;
     const previousIndex = this.partClassDataSource.data.findIndex((d) => d === drop.item.data);
     moveItemInArray(this.partClassDataSource.data, previousIndex, drop.currentIndex);
-
     this.reorderPartClass(drop.item.data['id'], drop.currentIndex + 1, previousIndex + 1).subscribe(result => {
       this.partClassTable.renderRows();
+      this.partClassDragDisabled = false;
     });
   }
 

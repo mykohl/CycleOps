@@ -4,11 +4,10 @@
             <h2 class="text-size-large text-margin-nominal">Manage Users</h2>
             <p class="text-size-nominal text-margin-nominal">Lookup information, modify roles, reset registrations, etc.</p>
         </div>
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>
                 <div class="flex-row flex-nowrap flex-justify-start flex-align-center">
-                    <mat-icon fontIcon="search"></mat-icon>
-                    <span class="margin-left-minimal">Find user(s)</span>
+                    <mat-icon fontIcon="search"></mat-icon><span class="gap-left">Find user(s)</span>
                 </div>
             </mat-label>
             <input matInput (keyup)="applyFilter($event)" placeholder="Enter name part" #input>

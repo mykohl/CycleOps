@@ -13,22 +13,39 @@
             [dataSource]="partClassDataSource"
             cdkDropList
             (cdkDropListDropped)="dropPartClass($event)"
+            [cdkDropListDisabled]="partClassDragDisabled"
             cdkDropListData="partClassDataSource">
             <ng-container matColumnDef="order" sticky>
                 <mat-header-cell *matHeaderCellDef> Order </mat-header-cell>
                 <mat-cell *matCellDef="let class; let i = index">
-                    <mat-icon cdkDragHandle class="dragCursor">reorder</mat-icon>
+                    <mat-icon cdkDragHandle class="cursor-move">reorder</mat-icon>
                     <span>{{i + 1}}</span>
                 </mat-cell>
             </ng-container>
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                <mat-cell *matCellDef="let class"> {{class['name']}} </mat-cell>
+                <mat-cell *matCellDef="let class; let i = index;">
+                    @if(i === editingClass) {
+                        <mat-form-field appearance="outline">
+                            <input id="i"
+                                matInput
+                                type="text"
+                                [(ngModel)]="class.name"
+                                placeholder="Name">
+                        </mat-form-field>
+                    } @else {
+                        {{class['name']}}
+                    }
+                </mat-cell>
             </ng-container>
             <ng-container matColumnDef="edit">
                 <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
-                <mat-cell *matCellDef="let class">
-                    <mat-icon>edit</mat-icon>
+                <mat-cell *matCellDef="let class; let i = index;">
+                    @if(i === editingClass) {                    
+                        <mat-icon (click)="editingClass = null; partClassDragDisabled = false;">done</mat-icon>
+                    } @else {
+                        <mat-icon (click)="editingClass = i; partClassDragDisabled = true;">edit</mat-icon>
+                    }
                 </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="partClassTableColumns"></mat-header-row>
@@ -36,8 +53,9 @@
                 class="item-row"
                 [class.active-class-row]="class === selectedClass"
                 *matRowDef="let class; columns: partClassTableColumns;"
-                (click)="selectedClass = class"
+                (click)="selectedClass = class;"
                 cdkDrag
+                (cdkDragStarted)="editingClass = null;"
                 [cdkDragData]="class">
             </mat-row>
         </mat-table>

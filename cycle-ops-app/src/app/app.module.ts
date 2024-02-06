@@ -17,6 +17,7 @@ import { ServicesModule } from './shared/modules/services.module';
 import { AdminModule } from './features/admin/admin.module';
 import { WorkshopsModule } from './features/workshops/workshops.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DialogsModule } from './shared/modules/dialogs.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DragDropModule,
     ServicesModule,
     AdminModule,
-    WorkshopsModule
+    WorkshopsModule,
+    DialogsModule
   ],
   providers: [
     AppRoutingModule,

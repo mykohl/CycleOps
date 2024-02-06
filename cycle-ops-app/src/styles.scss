@@ -4,6 +4,7 @@
 @import './style.variables.scss';
 
 html, body {
+    font-size: $textSizeNominal;
     height: 100vh;
     margin: 0;
     width: 100%;
@@ -20,6 +21,15 @@ body {
     width: 50%;
 }
 // Full margins
+.margin-none {
+    margin: 0;
+}
+.gap {
+    margin: $gap;
+}
+.gap-small {
+    margin: $gapSmall;
+}
 .margin-minimal {
     margin: $spacingMinimal;
 }
@@ -30,6 +40,14 @@ body {
     margin: $spacingExtra;
 }
 // Top & bottom margins
+.gap-vertical {
+    margin-top: $gap;
+    margin-bottom: $gap;
+}
+.gap-small-vertical {
+    margin-top: $gapSmall;
+    margin-bottom: $gapSmall;  
+}
 .margin-vertical-minimal {
     margin-top: $spacingMinimal;
     margin-bottom: $spacingMinimal;
@@ -42,6 +60,12 @@ body {
     margin-top: $spacingExtra;
     margin-bottom: $spacingExtra;
 }
+.gap-top {
+    margin-top: $gap;
+}
+.gap-small-top {
+    margin-top: $gapSmall;
+}
 .margin-top-minimal {
     margin-top: $spacingMinimal;
 }
@@ -50,6 +74,12 @@ body {
 }
 .margin-top-extra {
     margin-top: $spacingExtra;
+}
+.gap-bottom {
+    margin-bottom: $gap;
+}
+.gap-small-bottom {
+    margin-bottom: $gapSmall;
 }
 .margin-bottom-minimal {
     margin-bottom: $spacingMinimal;
@@ -61,6 +91,14 @@ body {
     margin-bottom: $spacingExtra;
 }
 // Side margins
+.gap-sides {
+    margin-right: $gap;
+    margin-left: $gap; 
+}
+.gap-small-sides {
+    margin-right: $gapSmall;
+    margin-left: $gapSmall; 
+}
 .margin-sides-minimal {
     margin-right: $spacingMinimal;
     margin-left: $spacingMinimal;
@@ -73,6 +111,12 @@ body {
     margin-right: $spacingExtra;
     margin-left: $spacingExtra;
 }
+.gap-right {
+    margin-right: $gap;
+}
+.gap-small-right {
+    margin-right: $gapSmall;
+}
 .margin-right-minimal {
     margin-right: $spacingMinimal;
 }
@@ -81,6 +125,12 @@ body {
 }
 .margin-right-extra {
     margin-right: $spacingExtra;
+}
+.gap-left {
+    margin-left: $gap;
+}
+.gap-small-left {
+    margin-left: $gapSmall;
 }
 .margin-left-minimal {
     margin-left: $spacingMinimal;
@@ -124,6 +174,9 @@ body {
     align-items: center;
 }
 // PADDING --------------------------------------------------------------------
+.padding-none {
+    padding: 0;
+}
 .padding-nominal {
     padding: $spacingNominal;
 }
@@ -178,7 +231,6 @@ body {
     background-color: $colorDark;
 }
 // TEXT -----------------------------------------------------------------------
-// Sizing and weight
 .text-size-large {
     font-size: $textSizeLarge;
 }
@@ -191,12 +243,28 @@ body {
 .text-bold {
     font-weight: bold;
 }
-// Text spacing
-.text-margin-nominal {
-    margin: 0 0 $textSpacingNominal 0;
+// TABLE ELEMENTS -------------------------------------------------------------
+.cell-small {
+    max-width: calc(#{$inputSizeNominal} / 3);
+    padding: $gap;
+}
+.input-cell-nominal {
+    max-width: calc(#{$inputSizeNominal} + #{$spacingNominal});
+    padding: $gap;
+}
+// FORM ELEMENTS --------------------------------------------------------------
+.input-text-nominal {
+    margin: 0;
+    padding: 0;
+    width: $inputSizeNominal;
+    font-size: 10pt;
 }
 
-.dragCursor {
-    margin-right: 16px;
+// OTHER ELEMENTS -------------------------------------------------------------
+// Cursor styles 
+.cursor-move {
     cursor: move;
-  }
+}
+.cursor-point {
+    cursor: pointer
+}
