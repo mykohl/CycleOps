@@ -4,6 +4,7 @@ import {
   MAT_DIALOG_DATA 
 } from '@angular/material/dialog';
 import { PartClassDto } from '../../../../../../../data/models/model.dto';
+import { dialogResult } from '../../../../../../../data/models/model.app';
 
 @Component({
   selector: 'app-part-class-dialog',
@@ -15,5 +16,18 @@ export class PartClassDialogComponent {
     public dialogRef: MatDialogRef<PartClassDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PartClassDto
   ) {
+  }
+
+  onCancel() {
+    this.dialogRef.close({
+      action: "close",
+      data: null
+    } as dialogResult);
+  }
+
+  onSave() {
+  }
+
+  onRevert() {
   }
 }

@@ -25,27 +25,13 @@
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
                 <mat-cell *matCellDef="let class; let i = index;">
-                    @if(i === editingClass) {
-                        <mat-form-field appearance="outline">
-                            <input id="i"
-                                matInput
-                                type="text"
-                                [(ngModel)]="class.name"
-                                placeholder="Name">
-                        </mat-form-field>
-                    } @else {
-                        {{class['name']}}
-                    }
+                    {{class['name']}}
                 </mat-cell>
             </ng-container>
             <ng-container matColumnDef="edit">
                 <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
                 <mat-cell *matCellDef="let class; let i = index;">
-                    @if(i === editingClass) {                    
-                        <mat-icon (click)="editingClass = null; partClassDragDisabled = false;">done</mat-icon>
-                    } @else {
-                        <mat-icon (click)="editPartClass(i);">edit</mat-icon>
-                    }
+                    <mat-icon (click)="editPartClass(i);">edit</mat-icon>
                 </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="partClassTableColumns"></mat-header-row>
@@ -63,24 +49,6 @@
     <div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
         <p>Part Types</p>
         <table mat-table [dataSource]="partTypeDataSource">
-            <!--
-            <ng-container matColumnDef="select">
-                <th mat-header-cell *matHeaderCellDef>
-                    <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                                    [checked]="selection.hasValue() && isAllSelected()"
-                                    [indeterminate]="selection.hasValue() && !isAllSelected()"
-                                    [aria-label]="checkboxLabel()">
-                    </mat-checkbox>
-                </th>
-                <td mat-cell *matCellDef="let type">
-                    <mat-checkbox (click)="$event.stopPropagation()"
-                                    (change)="$event ? selection.toggle(type) : null"
-                                    [checked]="selection.isSelected(type)"
-                                    [aria-label]="checkboxLabel(type)">
-                    </mat-checkbox>
-                </td>
-            </ng-container>
-            -->
             <ng-container matColumnDef="order">
                 <th mat-header-cell *matHeaderCellDef> Order </th>
                 <td mat-cell *matCellDef="let type"> {{type['order']}} </td>

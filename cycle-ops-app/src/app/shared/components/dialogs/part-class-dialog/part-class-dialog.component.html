@@ -2,7 +2,8 @@
 <mat-dialog-content>
     <p>Content</p>
 </mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button>Save</button>
-    <button mat-button>Close</button>
-</mat-dialog-actions>
+<app-dialog-actions-template
+    (save)="onSave();"
+    (revert)="onRevert();"
+    (cancel)="onCancel();">
+</app-dialog-actions-template>

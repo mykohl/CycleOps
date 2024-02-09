@@ -22,3 +22,7 @@ export type component = {
     route: string,
     rolesAllowed: string[] | string
 };
+export type dialogResult = {
+    action: string;
+    data: any;
+}

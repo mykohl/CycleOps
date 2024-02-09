@@ -26,7 +26,7 @@ export class AppRoutingHelper {
         /*
         const mappedModule = this._mapModule(f.id);
         if(mappedModule) addRoute.loadChildren = mappedModule;
-    */
+        */
         if(c.rolesAllowed !== '*') {
           addRoute.canActivate = [AuthService];
           addRoute.data = { rolesAllowed: c.rolesAllowed };

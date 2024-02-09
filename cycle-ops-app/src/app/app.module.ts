@@ -14,18 +14,18 @@ import { MaterialModule } from './shared/modules/material.module';
 import { AuthInterceptor } from './shared/services/auth-interceptor-service/auth-interceptor.service';
 import { HomeComponent } from './features/home/home.component';
 import { ServicesModule } from './shared/modules/services.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DialogsModule } from './shared/modules/dialogs.module';
 import { UserAdminComponent } from './features//admin/user-admin/user-admin.component';
 import { PartsClassAdminComponent } from './features/admin/parts-class-admin/parts-class-admin.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { PartClassDialogComponent } from './shared/components/dialogs/part-class-dialog/part-class-dialog.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     UserAdminComponent,
-    PartsClassAdminComponent,
-    PartClassDialogComponent
+    PartsClassAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -36,11 +36,13 @@ import { PartClassDialogComponent } from './shared/components/dialogs/part-class
     BrowserAnimationsModule,
     MaterialModule,
     DragDropModule,
-    ServicesModule  
+    ServicesModule,
+    DialogsModule
   ],
   providers: [
     ServicesModule,
     MaterialModule,
+    DialogsModule,
     AppRoutingModule,
     AuthInterceptor,
     {

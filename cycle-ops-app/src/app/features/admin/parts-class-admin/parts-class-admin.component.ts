@@ -9,7 +9,6 @@ import {
 } from '@angular/cdk/drag-drop';
 import { MatTable } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatFormField, MatFormFieldAppearance, MatFormFieldDefaultOptions } from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PartsAdminReqService } from '../../../shared/services/api-request-services/parts-admin-request-service/parts-admin-request.service';
 import { UserService } from '../../../shared/services/user-service/user.service';
@@ -22,6 +21,7 @@ import {
 import { DialogService } from '../../../shared/services/dialog-service/dialog.service';
 import { PartClassDialogComponent } from '../../../shared/components/dialogs/part-class-dialog/part-class-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { dialogResult } from '../../../../../../data/models/model.app';
 
 @Component({
   selector: 'admin-parts',
@@ -44,7 +44,6 @@ export class PartsClassAdminComponent {
   constructor(
     private _appService: AppService,
     private _dialogService: DialogService,
-    private _matDialog: MatDialog,
     private _apiReqClassificationService: PartsAdminReqService,
     private _Service: UserService,
     private _snackBar: MatSnackBar) {
@@ -73,17 +72,16 @@ export class PartsClassAdminComponent {
   }
 
   editPartClass(i: number) {
-    console.log("inside editPartClass");
-    //this.editingClass = i; 
+    this.editingClass = i;
     this.partClassDragDisabled = true;
-
-    //this._matDialog.open(PartClassDialogComponent);
-
-    this._dialogService.openDialog(
+    this._dialogService.openDialog (
       PartClassDialogComponent,
-      null,
-      250,
-    );
+      this.partClassDataSource.data[i],
+      250
+    ).subscribe(() => {
+      this.partClassDragDisabled = false;
+      this.editingClass = null;
+    });
   }
 
   dropPartClass(dropEvent: any) {
