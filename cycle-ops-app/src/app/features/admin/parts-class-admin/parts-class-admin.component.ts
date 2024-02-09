@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { 
   CdkDragDrop,
@@ -19,6 +19,9 @@ import {
   PartClassMembershipDto, 
   PartTypeDto 
 } from '../../../../../../data/models/model.dto';
+import { DialogService } from '../../../shared/services/dialog-service/dialog.service';
+import { PartClassDialogComponent } from '../../../shared/components/dialogs/part-class-dialog/part-class-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'admin-parts',
@@ -40,6 +43,8 @@ export class PartsClassAdminComponent {
 
   constructor(
     private _appService: AppService,
+    private _dialogService: DialogService,
+    private _matDialog: MatDialog,
     private _apiReqClassificationService: PartsAdminReqService,
     private _Service: UserService,
     private _snackBar: MatSnackBar) {
@@ -65,6 +70,20 @@ export class PartsClassAdminComponent {
   partTypeInClass(partType: PartTypeDto | null): boolean {
     if(partType && this.selectedClass) return partType.partClassRefs.includes(this.selectedClass.id);
     return false;
+  }
+
+  editPartClass(i: number) {
+    console.log("inside editPartClass");
+    //this.editingClass = i; 
+    this.partClassDragDisabled = true;
+
+    //this._matDialog.open(PartClassDialogComponent);
+
+    this._dialogService.openDialog(
+      PartClassDialogComponent,
+      null,
+      250,
+    );
   }
 
   dropPartClass(dropEvent: any) {

@@ -23,9 +23,10 @@ export class AppRoutingHelper {
         addRoute.path = c.route;
         addRoute.component = this._mapComponent(c.id);
   
+        /*
         const mappedModule = this._mapModule(f.id);
         if(mappedModule) addRoute.loadChildren = mappedModule;
-
+    */
         if(c.rolesAllowed !== '*') {
           addRoute.canActivate = [AuthService];
           addRoute.data = { rolesAllowed: c.rolesAllowed };
@@ -53,6 +54,7 @@ export class AppRoutingHelper {
   }
 
   // get modules for lazy loading.
+  /*
   private static _mapModule(id: string): LoadChildrenCallback | undefined {
     switch(id) {
       case 'admin':
@@ -63,6 +65,7 @@ export class AppRoutingHelper {
         return undefined;
     }
   }
+  */
 }
 
 // Then the actual module uses routes built by the helper class.

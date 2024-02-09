@@ -44,7 +44,7 @@
                     @if(i === editingClass) {                    
                         <mat-icon (click)="editingClass = null; partClassDragDisabled = false;">done</mat-icon>
                     } @else {
-                        <mat-icon (click)="editingClass = i; partClassDragDisabled = true;">edit</mat-icon>
+                        <mat-icon (click)="editPartClass(i);">edit</mat-icon>
                     }
                 </mat-cell>
             </ng-container>
