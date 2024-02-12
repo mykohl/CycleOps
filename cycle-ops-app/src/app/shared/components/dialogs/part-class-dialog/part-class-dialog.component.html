@@ -1,9 +1,17 @@
-<h2 mat-dialog-title>Edit Part Class</h2>
+<h2 mat-dialog-title>Edit Part Class: {{data.name}}</h2>
 <mat-dialog-content>
-    <p>Content</p>
+    <div>
+        <form>
+            <mat-form-field class="margin-top-nominal" appearance="outline">
+                <mat-label>Part Class Name</mat-label>
+                <input matInput placeholder="Enter name" [(ngModel)]="editData.name">
+            </mat-form-field>
+        </form>
+    </div>
 </mat-dialog-content>
-<app-dialog-actions-template
-    (save)="onSave();"
-    (revert)="onRevert();"
-    (cancel)="onCancel();">
+<app-dialog-actions-template 
+    [type]="config.type"
+    (done)="done();"
+    (saveClose)="save(true);"
+    (revert)="revert();">
 </app-dialog-actions-template>

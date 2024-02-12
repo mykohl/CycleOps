@@ -3,26 +3,33 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PartClassDialogComponent } from '../../components/dialogs/part-class-dialog/part-class-dialog.component';
-import { dialogResult } from '../../../../../../data/models/model.app';
+import * as appModel from '../../../../../../data/models/model.app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService {
 
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog
+  ) {
   }
 
   openDialog<T extends PartClassDialogComponent> (
     dialogComponent: Type<T>,
+    type: string,
     data: any,
     width: number
-  ): Observable<dialogResult> {
+  ): Observable<appModel.dialogResult> {
     const dialogRef = this.dialog.open(
       dialogComponent,
       {
         width: `${width}px`,
-        data: data,
+        data: 
+        { 
+          type: type, 
+          data: data 
+        }
       }
     );
 

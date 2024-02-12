@@ -91,11 +91,21 @@ export class PartsAdminService {
         return await prisma.propertyType.findFirst({ where: { name: key } });
     }
 
-    public static async addPartClass(order: number, name: string): Promise<PartClass | null> {
+    public static async addPartClass(data: PartClassDto): Promise<PartClass | null> {
         return await prisma.partClass.create({
             data: {
-                order: order,
-                name: name
+                order: data.order,
+                name: data.name
+            }
+        });
+    }
+
+    public static async updatePartClass(data: PartClassDto): Promise<PartClass | null> {
+        return await prisma.partClass.update({
+            where: { id: data.id },
+            data: {
+                order: data.order,
+                name: data.name
             }
         });
     }

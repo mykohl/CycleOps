@@ -1,5 +1,5 @@
-import { Component, ViewChild, Type } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, ViewChild, OnDestroy, Type } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { 
   CdkDragDrop,
   CdkDragStart,
@@ -11,8 +11,6 @@ import { MatTable } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PartsAdminReqService } from '../../../shared/services/api-request-services/parts-admin-request-service/parts-admin-request.service';
-import { UserService } from '../../../shared/services/user-service/user.service';
-import { AppService } from '../../../shared/services/app-service/app.service';
 import { 
   PartClassDto, 
   PartClassMembershipDto, 
@@ -20,7 +18,6 @@ import {
 } from '../../../../../../data/models/model.dto';
 import { DialogService } from '../../../shared/services/dialog-service/dialog.service';
 import { PartClassDialogComponent } from '../../../shared/components/dialogs/part-class-dialog/part-class-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
 import { dialogResult } from '../../../../../../data/models/model.app';
 
 @Component({
@@ -28,9 +25,11 @@ import { dialogResult } from '../../../../../../data/models/model.app';
   templateUrl: './parts-class-admin.component.html',
   styleUrl: './parts-class-admin.component.scss'
 })
-export class PartsClassAdminComponent {
-
+export class PartsClassAdminComponent implements OnDestroy {
   @ViewChild('partClassTable', { static: true }) partClassTable: MatTable<PartClassDto>;
+  private subFetchPartClassData: Subscription;
+  private subFetchPartTypeData: Subscription;
+  private subEditPartClass: Subscription;
 
   partClassDataSource: MatTableDataSource<PartClassDto> = new MatTableDataSource();
   partTypeDataSource: MatTableDataSource<PartTypeDto> = new MatTableDataSource();
@@ -42,28 +41,32 @@ export class PartsClassAdminComponent {
   editingClass: number | null = null;
 
   constructor(
-    private _appService: AppService,
-    private _dialogService: DialogService,
-    private _apiReqClassificationService: PartsAdminReqService,
-    private _Service: UserService,
-    private _snackBar: MatSnackBar) {
+    private dialogService: DialogService,
+    private apiReqClassificationService: PartsAdminReqService,
+    private snackBar: MatSnackBar) {
   }
 
   ngAfterViewInit() {
-    this.fetchPartClassData().subscribe(partClassData => {
+    this.subFetchPartClassData = this.fetchPartClassData().subscribe(partClassData => {
       this.partClassDataSource.data = partClassData;
     });
-    this.fetchPartTypeData().subscribe(partTypeData => {
+    this.subFetchPartTypeData = this.fetchPartTypeData().subscribe(partTypeData => {
       this.partTypeDataSource.data = partTypeData;
     });
   }
 
+  ngOnDestroy(): void {
+    this.subFetchPartClassData.unsubscribe();
+    this.subFetchPartTypeData.unsubscribe();
+    this.subEditPartClass.unsubscribe();
+  }
+
   fetchPartClassData(): Observable<PartClassDto[]> {
-    return this._apiReqClassificationService.getPartClassifications();
+    return this.apiReqClassificationService.getPartClassifications();
   }
 
   fetchPartTypeData(): Observable<PartTypeDto[]> {
-    return this._apiReqClassificationService.getPartTypes();
+    return this.apiReqClassificationService.getPartTypes();
   }
 
   partTypeInClass(partType: PartTypeDto | null): boolean {
@@ -74,22 +77,29 @@ export class PartsClassAdminComponent {
   editPartClass(i: number) {
     this.editingClass = i;
     this.partClassDragDisabled = true;
-    this._dialogService.openDialog (
+    this.subEditPartClass = this.dialogService.openDialog (
       PartClassDialogComponent,
+      "edit-item",
       this.partClassDataSource.data[i],
-      250
-    ).subscribe(() => {
+      300
+    ).subscribe(result => {
+      this.partClassDataSource.data[i] = result.data;
+      this.partClassTable.renderRows();
       this.partClassDragDisabled = false;
       this.editingClass = null;
     });
   }
 
-  dropPartClass(dropEvent: any) {
+  movePartClass(dropEvent: any) {
     this.partClassDragDisabled = true;
     const drop = dropEvent as CdkDragDrop<PartClassDto[]>;
     const previousIndex = this.partClassDataSource.data.findIndex((d) => d === drop.item.data);
     moveItemInArray(this.partClassDataSource.data, previousIndex, drop.currentIndex);
-    this.reorderPartClass(drop.item.data['id'], drop.currentIndex + 1, previousIndex + 1).subscribe(result => {
+    this.subEditPartClass = this.reorderPartClass(
+      drop.item.data['id'], 
+      drop.currentIndex + 1, 
+      previousIndex + 1
+    ).subscribe(() => {
       this.partClassTable.renderRows();
       this.partClassDragDisabled = false;
     });
@@ -98,13 +108,13 @@ export class PartsClassAdminComponent {
   toggleInClass(partType: PartTypeDto | null) {
     if(!partType || !this.selectedClass) return;
     if(partType.partClassRefs.includes(this.selectedClass.id)) {
-      this.removePartClassMember(partType.id).subscribe(result => {
+      this.subEditPartClass = this.removePartClassMember(partType.id).subscribe(result => {
         if(result) {
           partType.partClassRefs = partType.partClassRefs.filter(t => t !== this.selectedClass.id);
         }
       });
     } else {
-      this.addPartClassMember(partType.id).subscribe(result => {
+      this.subEditPartClass = this.addPartClassMember(partType.id).subscribe(result => {
         if(result) {
           partType.partClassRefs.push(this.selectedClass.id);
         }
@@ -113,14 +123,14 @@ export class PartsClassAdminComponent {
   }
 
   reorderPartClass(partClassId: number, order: number, previousOrder: number): Observable<any> {
-    return this._apiReqClassificationService.reorderPartClass({
+    return this.apiReqClassificationService.reorderPartClass({
       partClassId: partClassId, order: order, previousOrder: previousOrder
     });
   }
 
   removePartClassMember(partTypeId: number): Observable<boolean> {
     if(!this.selectedClass) return null;
-    return this._apiReqClassificationService.removePartClassMember({
+    return this.apiReqClassificationService.removePartClassMember({
       partTypeId: partTypeId,
       partClassId: this.selectedClass.id,
       isPrimary: false
@@ -129,7 +139,7 @@ export class PartsClassAdminComponent {
 
   addPartClassMember(partTypeId: number): Observable<PartClassMembershipDto | null> {
     if(!this.selectedClass) return null;
-    return this._apiReqClassificationService.addPartClassMember({
+    return this.apiReqClassificationService.addPartClassMember({
       partTypeId: partTypeId,
       partClassId: this.selectedClass.id,
       isPrimary: true

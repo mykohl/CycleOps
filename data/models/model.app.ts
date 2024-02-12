@@ -26,3 +26,16 @@ export type dialogResult = {
     action: string;
     data: any;
 }
+export type dialogAction = {
+    order: number;
+    name: string;
+    action: string;
+}
+export type dialogType = {
+    type: string;
+    actions: dialogAction[];
+}
+export type dialogConfig = {
+    type: string;
+    data: any;
+}

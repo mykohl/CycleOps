@@ -132,5 +132,47 @@
     ],
     "roles": [
         "admin", "standard", "disabled"
+    ],
+    "dialogTypes": [
+        {
+            "type": "edit-item",
+            "actions": [
+                {
+                    "order": 1,
+                    "name": "Cancel",
+                    "action": "done"
+                },
+                {
+                    "order": 2,
+                    "name": "Reset",
+                    "action": "revert"
+                },
+                {
+                    "order": 3,
+                    "name": "Save",
+                    "action": "saveClose"
+                }
+            ]
+        },
+        {
+            "type": "new-item",
+            "actions": [
+                {
+                    "order": 1,
+                    "name": "Cancel",
+                    "action": "done"
+                },
+                {
+                    "order": 2,
+                    "name": "Save & New",
+                    "action": "saveNew"
+                },
+                {
+                    "order": 3,
+                    "name": "Save & Close",
+                    "action": "saveClose"
+                }
+            ]
+        }
     ]
 }

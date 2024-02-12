@@ -22,22 +22,23 @@ export class AppComponent {
   private _dialogRef: MatDialogRef<any> | undefined;
 
   constructor(
-    private _socialAuthService: SocialAuthService,
-    private _userService: UserService,
-    private _apiReqUserService: UserReqService,
-    private _dialog: MatDialog,
-    private _appService: AppService,
-    private _router: Router
-  ) {}
+    private socialAuthService: SocialAuthService,
+    private userService: UserService,
+    private apiReqUserService: UserReqService,
+    private dialog: MatDialog,
+    private appService: AppService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit() {
-    this._socialAuthService.authState
+    this.socialAuthService.authState
       .pipe(
         take(1),
         switchMap((socialUser) => {
           if (socialUser) {
-            this._userService.socialUser = socialUser;
-            return this._apiReqUserService.updateUser(socialUser);
+            this.userService.socialUser = socialUser;
+            return this.apiReqUserService.updateUser(socialUser);
           }
           return of(null);
         })
@@ -51,31 +52,27 @@ export class AppComponent {
   }
 
   get userStatus(): UserStatus {
-    return this._userService.userStatus;
+    return this.userService.userStatus;
   }
 
   get features(): appModel.feature[] {
-    return this._appService.features;
+    return AppService.features;
   }
 
   get highlightComponents(): any[] {
-    return this._appService.highlightComponents;
+    return AppService.highlightComponents;
   }
 
   get title(): string {
-    return this._appService.branding.title;
-  }
-
-  get router(): Router {
-    return this._router;
+    return AppService.branding.title;
   }
 
   get userRole(): string {
-    return this._userService.role;
+    return this.userService.role;
   }
 
   get roleFeatures(): appModel.feature[] {
-    return this._appService.getRoleFeatures(this.userRole);
+    return AppService.getRoleFeatures(this.userRole);
   }
 
   userSignAction(): void {
@@ -85,12 +82,12 @@ export class AppComponent {
   }
 
   completeLogIn(siteUser: UserDto): void {
-    this._userService.siteUser = siteUser;
+    this.userService.siteUser = siteUser;
     this.closeDialog();
   }
 
   openDialog(templateRef: TemplateRef<any>): void {
-    this._dialogRef = this._dialog.open(templateRef);
+    this._dialogRef = this.dialog.open(templateRef);
   }
 
   closeDialog() {
@@ -98,15 +95,15 @@ export class AppComponent {
   }
 
   refreshGoogleToken(): void {
-    this._socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 
   findComponent(id: string): appModel.component | undefined {
-    return this._appService.findComponent(id);
+    return AppService.findComponent(id);
   }
 
   navigate(id: string) {
-    const route = this._appService.findComponent(id)?.route;
-    this._router.navigate([route]);
+    const route = AppService.findComponent(id)?.route;
+    this.router.navigate([route]);
   }
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PartsAdminService } from "../../services/parts-admin.service";
-import { PartClassMembershipDto } from "../../data/models/model.dto";
+import { PartClassDto, PartClassMembershipDto } from "../../data/models/model.dto";
 import { error } from "console";
 
 export async function getPartClassifications(req: Request, res: Response) {
@@ -16,6 +16,21 @@ export async function getPartTypes(req: Request, res: Response) {
     try {
         const partTypesFetch = await PartsAdminService.getPartTypes();
         res.status(200).json(partTypesFetch);
+    } catch(e) {
+        res.status(500).json ( { error: e } );
+    }
+}
+
+export async function updatePartClass(req: Request, res: Response) {
+    const partClassDto: PartClassDto = req.body;
+    try {
+        let result = null;
+        if(partClassDto.id && partClassDto.id > 0) {
+            result = await PartsAdminService.updatePartClass(partClassDto);
+        } else {
+            result = await PartsAdminService.addPartClass(partClassDto);
+        }
+        res.status(200).json(result);
     } catch(e) {
         res.status(500).json ( { error: e } );
     }

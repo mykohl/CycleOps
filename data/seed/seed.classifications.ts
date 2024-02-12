@@ -11,7 +11,11 @@ import {
 export async function seedPartClass(data: PartClassDto[]) {
     for (const partClass of data) {
       if(partClass.order && partClass.name) {
-        await PartsAdminService.addPartClass(partClass.order, partClass.name);
+        const partClassDto: PartClassDto = {
+          order: partClass.order,
+          name: partClass.name
+        };
+        await PartsAdminService.addPartClass(partClassDto);
       }
     }
   }

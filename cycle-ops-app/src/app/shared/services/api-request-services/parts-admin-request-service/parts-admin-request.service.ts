@@ -16,6 +16,10 @@ export class PartsAdminReqService {
     return from(this.http.get<any>(`${this.apiUrl}/classes`));
   }
 
+  updatePartClassification(partClassDto: PartClassDto): Observable<PartClassDto> {
+    return from(this.http.post<PartClassDto>(`${this.apiUrl}/classes/update`, partClassDto));
+  }
+
   getPartTypes(): Observable<PartTypeDto[]> {
     return from(this.http.get<any>(`${this.apiUrl}/types`));
   }

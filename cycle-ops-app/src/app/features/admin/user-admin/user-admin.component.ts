@@ -37,7 +37,6 @@ export class UserAdminComponent {
   expandedColumns = [...this.tableColumns, "expandAction"]
 
   constructor(
-    private _appService: AppService,
     private _apiReqUserService: UserReqService,
     private _userService: UserService,
     private _snackBar: MatSnackBar) {
@@ -52,7 +51,7 @@ export class UserAdminComponent {
   }
 
   get availableRoles(): string[] {
-    return this._appService.availableRoles;
+    return AppService.availableRoles;
   }
 
   get currentUser(): UserDto | null {

@@ -12,7 +12,7 @@
         <mat-table #partClassTable
             [dataSource]="partClassDataSource"
             cdkDropList
-            (cdkDropListDropped)="dropPartClass($event)"
+            (cdkDropListDropped)="movePartClass($event)"
             [cdkDropListDisabled]="partClassDragDisabled"
             cdkDropListData="partClassDataSource">
             <ng-container matColumnDef="order" sticky>
@@ -31,7 +31,7 @@
             <ng-container matColumnDef="edit">
                 <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
                 <mat-cell *matCellDef="let class; let i = index;">
-                    <mat-icon (click)="editPartClass(i);">edit</mat-icon>
+                    <mat-icon class="cursor-point" (click)="editPartClass(i);">edit</mat-icon>
                 </mat-cell>
             </ng-container>
             <mat-header-row *matHeaderRowDef="partClassTableColumns"></mat-header-row>
