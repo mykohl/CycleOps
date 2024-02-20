@@ -27,16 +27,16 @@ export class HomeComponent {
   currentIndex = 0;
   animationState = 'in';
 
-  constructor(router: Router,
-    private _appService: AppService,
-    private _zone: NgZone
+  constructor(
+    router: Router,
+    private zone: NgZone
   ) {
     this.router = router;
   }
 
   ngOnInit() {
     setInterval(() => {
-      this._zone.run(() => {
+      this.zone.run(() => {
         this.animationState = 'void';
         setTimeout(() => {
           this.currentIndex = (this.currentIndex + 1) % this.highlightComponents.length;
@@ -57,7 +57,7 @@ export class HomeComponent {
   }
 
   get highlightComponents(): appModel.component[] {
-    return this._appService.highlightComponents;
+    return AppService.highlightComponents;
   }
 
   get activeSlide(): appModel.component {
@@ -65,14 +65,14 @@ export class HomeComponent {
   }
 
   get carouselItems(): appModel.component[] {
-    return this._appService.components;
+    return AppService.components;
   }
 
   get title(): string {
-    return this._appService.branding.title;
+    return AppService.branding.title;
   }
 
   get tagline(): string {
-    return this._appService.branding.tagline;
+    return AppService.branding.tagline;
   }
 }

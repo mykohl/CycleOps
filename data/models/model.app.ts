@@ -37,5 +37,5 @@ export type dialogType = {
 }
 export type dialogConfig = {
     type: string;
-    data: any;
+    data?: any | null | undefined;
 }

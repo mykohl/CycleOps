@@ -19,6 +19,7 @@ import {
 import { DialogService } from '../../../shared/services/dialog-service/dialog.service';
 import { PartClassDialogComponent } from '../../../shared/components/dialogs/part-class-dialog/part-class-dialog.component';
 import { dialogResult } from '../../../../../../data/models/model.app';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'admin-parts',
@@ -74,14 +75,17 @@ export class PartsClassAdminComponent implements OnDestroy {
     return false;
   }
 
-  editPartClass(i: number) {
+  editPartClass(i: number): void {
     this.editingClass = i;
     this.partClassDragDisabled = true;
-    this.subEditPartClass = this.dialogService.openDialog (
+    this.subEditPartClass = this.dialogService.openDialog(
       PartClassDialogComponent,
-      "edit-item",
-      this.partClassDataSource.data[i],
-      300
+      {
+        data: {
+          type: DialogService.DIALOG_TYPE_EDIT,
+          data: this.partClassDataSource.data[i]
+        }
+      }
     ).subscribe(result => {
       this.partClassDataSource.data[i] = result.data;
       this.partClassTable.renderRows();
@@ -90,7 +94,21 @@ export class PartsClassAdminComponent implements OnDestroy {
     });
   }
 
-  movePartClass(dropEvent: any) {
+  newPartClass() {
+    this.partClassDragDisabled = true;
+    this.subEditPartClass = this.dialogService.openDialog(
+      PartClassDialogComponent,
+      {
+        data: {
+          type: DialogService.DIALOG_TYPE_NEW
+        }
+      }
+    ).subscribe(result => {
+
+    });
+  }
+
+  movePartClass(dropEvent: any): void {
     this.partClassDragDisabled = true;
     const drop = dropEvent as CdkDragDrop<PartClassDto[]>;
     const previousIndex = this.partClassDataSource.data.findIndex((d) => d === drop.item.data);

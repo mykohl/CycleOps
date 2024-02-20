@@ -7,6 +7,7 @@ import { PartClassDto } from '../../../../../../../data/models/model.dto';
 import { dialogConfig, dialogResult } from '../../../../../../../data/models/model.app';
 import { PartsAdminReqService } from '../../../services/api-request-services/parts-admin-request-service/parts-admin-request.service';
 import { Observable } from 'rxjs';
+import { DialogService } from '../../../services/dialog-service/dialog.service';
 
 @Component({
   selector: 'app-part-class-dialog',
@@ -24,15 +25,35 @@ export class PartClassDialogComponent {
   }
 
   ngOnInit() {
-    this.editData = { ...this.dialogConfig.data };
+    if(this.type === DialogService.DIALOG_TYPE_EDIT) {
+      this.editData = { ...this.dialogConfig.data };
+    } else {
+      this.editData = {
+        order: null,
+        name: null
+      };
+    }
   }
 
   get config(): dialogConfig {
     return this.dialogConfig;
   }
 
+  get type(): string {
+    return this.dialogConfig.type;
+  }
+
   get data(): PartClassDto {
     return this.config.data;
+  }
+
+  get title(): string {
+    switch(this.type) {
+      case DialogService.DIALOG_TYPE_EDIT:
+        return `Edit Part Class: ${this.data.name}`;
+      default:
+        return 'New Part Class';
+    }
   }
 
   private set data(value: PartClassDto) {
