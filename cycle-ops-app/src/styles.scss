@@ -243,15 +243,19 @@ body {
 .text-bold {
     font-weight: bold;
 }
-// TABLE ELEMENTS -------------------------------------------------------------
-.cell-small {
-    max-width: calc(#{$inputSizeNominal} / 3);
-    padding: $gap;
+
+.mat-col-data-short {
+    font-size: $textSizeMinimal;
+    min-width: 8rem;
+    max-width: 8rem;
 }
-.input-cell-nominal {
-    max-width: calc(#{$inputSizeNominal} + #{$spacingNominal});
-    padding: $gap;
+
+.action-icon {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
 }
+
 // FORM ELEMENTS --------------------------------------------------------------
 .input-text-nominal {
     margin: 0;
@@ -259,7 +263,6 @@ body {
     width: $inputSizeNominal;
     font-size: 10pt;
 }
-
 // OTHER ELEMENTS -------------------------------------------------------------
 // Cursor styles 
 .cursor-move {

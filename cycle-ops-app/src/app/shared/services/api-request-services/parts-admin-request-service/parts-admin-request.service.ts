@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
-import { PartClassDto, PartClassMembershipDto, PartTypeDto } from '../../../../../../../data/models/model.dto';
+import { 
+  PartClassDto, 
+  PartClassMembershipDto, 
+  PartTypeDto 
+} from '../../../../../../../data/models/model.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +16,11 @@ export class PartsAdminReqService {
 
   constructor(private http: HttpClient) {}
 
-  getPartClassifications(): Observable<PartClassDto[]> {
+  getPartClasses(): Observable<PartClassDto[]> {
     return from(this.http.get<any>(`${this.apiUrl}/classes`));
   }
 
-  updatePartClassification(partClassDto: PartClassDto): Observable<PartClassDto> {
+  updatePartClass(partClassDto: PartClassDto): Observable<PartClassDto> {
     return from(this.http.post<PartClassDto>(`${this.apiUrl}/classes/update`, partClassDto));
   }
 

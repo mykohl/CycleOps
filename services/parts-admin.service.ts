@@ -74,8 +74,9 @@ export class PartsAdminService {
         return await prisma.propertyGroup.findFirst( { where: { name: key } });
     }
     
-    public static async lookupPartClass(key: string): Promise<PartClass | null> {
-        return await prisma.partClass.findFirst( { where: { name: key } });
+    public static async lookupPartClass(key: string | number): Promise<PartClass | null> {
+        if(typeof(key) === 'string') return await prisma.partClass.findFirst( { where: { name: key } });
+        return await prisma.partClass.findFirst({ where: { id: key } })
     }
 
     public static async lookupPartClassMembership(partClassMembershipDto: PartClassMembershipDto) {
@@ -92,9 +93,16 @@ export class PartsAdminService {
     }
 
     public static async addPartClass(data: PartClassDto): Promise<PartClass | null> {
+        const maxOrder = (await prisma.partClass.findFirst(
+            {
+                orderBy: { order: 'desc' },
+                select: { order: true }
+            }
+        ))?.order;
+
         return await prisma.partClass.create({
             data: {
-                order: data.order,
+                order: (maxOrder ?? 0) + 1,
                 name: data.name
             }
         });
@@ -108,6 +116,16 @@ export class PartsAdminService {
                 name: data.name
             }
         });
+    }
+
+    public static async deletePartClass(id: number): Promise<boolean> {
+        const lookup = this.lookupPartClass(id);
+        if(!lookup) return false;
+        const result = await prisma.partClass.delete({
+            where: { id: id }
+        });
+        if(result) return true;
+        return false;
     }
 
     public static async addPartType(order: number, name: string): Promise<PartType | null> {

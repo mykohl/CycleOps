@@ -16,6 +16,12 @@ import { DialogService } from '../../../services/dialog-service/dialog.service';
 })
 export class PartClassDialogComponent {
   editData: PartClassDto;
+  action: string = DialogService.DIALOG_ACTION_CLOSE;
+  emptyData: PartClassDto = {
+    id: null,
+    order: null,
+    name: null
+  };
 
   constructor(
     private dialogRef: MatDialogRef<PartClassDialogComponent>,
@@ -28,10 +34,7 @@ export class PartClassDialogComponent {
     if(this.type === DialogService.DIALOG_TYPE_EDIT) {
       this.editData = { ...this.dialogConfig.data };
     } else {
-      this.editData = {
-        order: null,
-        name: null
-      };
+      this.editData = this.emptyData;
     }
   }
 
@@ -62,22 +65,26 @@ export class PartClassDialogComponent {
 
   done() {
     this.dialogRef.close({
-      action: "close",
+      action: this.action,
       data: this.data
     } as dialogResult);
   }
 
   revert() {
-    if(this.config.type="edit-item") {
+    if(this.config.type = DialogService.DIALOG_TYPE_EDIT) {
       this.editData = this.data;
       return;
     }
+    this.editData = this.emptyData;
   }
 
   save(close: boolean = true) {
-    this.apiReqPartsAdminService.updatePartClassification(this.editData).subscribe(result => {
-      this.data = result;
+    this.data = this.editData;
+    if(close) {
+      this.action = DialogService.DIALOG_ACTION_SAVECLOSE;
       this.done();
-    });
+      return;
+    }
+    this.action = DialogService.DIALOG_ACTION_SAVENEW;
   }
 }

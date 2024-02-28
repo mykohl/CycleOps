@@ -8,7 +8,10 @@
 </div>
 <div class="flex-row flex-wrap flex-align-start flex-justify-center">
     <div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
-        <p>Part Classes</p>
+        <div class="flex-row flex-align-center flex-justify-spread">
+            <p>Part Classes</p>
+            <mat-icon class="cursor-point" (click)="editPartClass();">add</mat-icon>
+        </div>
         <mat-table #partClassTable
             [dataSource]="partClassDataSource"
             cdkDropList
@@ -24,16 +27,15 @@
             </ng-container>
             <ng-container matColumnDef="name">
                 <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                <mat-cell *matCellDef="let class; let i = index;">
-                    {{class['name']}}
-                </mat-cell>
+                <mat-cell class="mat-col-data-short" *matCellDef="let class; let i = index;">{{class['name']}}</mat-cell>
             </ng-container>
-            <ng-container matColumnDef="edit">
+            <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
                 <mat-cell *matCellDef="let class; let i = index;">
-                    <mat-icon class="cursor-point" (click)="editPartClass(i);">edit</mat-icon>
+                    <mat-icon class="action-icon" (click)="editPartClass(i);">edit</mat-icon>&nbsp;
+                    <mat-icon class="action-icon" (click)="deletePartClass(i);">delete</mat-icon>
                 </mat-cell>
-            </ng-container>
+            </ng-container>          
             <mat-header-row *matHeaderRowDef="partClassTableColumns"></mat-header-row>
             <mat-row 
                 class="item-row"
@@ -47,7 +49,10 @@
         </mat-table>
     </div>
     <div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
-        <p>Part Types</p>
+        <div class="flex-row flex-align-center flex-justify-spread">
+            <p>Part Types</p>
+            <mat-icon class="cursor-point" (click)="updatePartType();">add</mat-icon>
+        </div>
         <table mat-table [dataSource]="partTypeDataSource">
             <ng-container matColumnDef="order">
                 <th mat-header-cell *matHeaderCellDef> Order </th>
@@ -61,7 +66,7 @@
                 <th mat-header-cell *matHeaderCellDef> Description </th>
                 <td mat-cell *matCellDef="let type"> {{type['description']}} </td>
             </ng-container>
-            <ng-container matColumnDef="edit">
+            <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
                 <td mat-cell *matCellDef="let type">
                     <mat-icon>edit</mat-icon>

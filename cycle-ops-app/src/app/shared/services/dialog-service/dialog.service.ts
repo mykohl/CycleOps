@@ -10,9 +10,15 @@ import * as appModel from '../../../../../../data/models/model.app';
 })
 export class DialogService {
 
-  static DIALOG_TYPE_EDIT = 'edit-item';
-  static DIALOG_TYPE_NEW = 'new-item';
-  static DIALOG_TYPE_INFO = 'info';
+  static DIALOG_TYPE_EDIT: string = 'edit-item';
+  static DIALOG_TYPE_NEW: string = 'new-item';
+  static DIALOG_TYPE_INFO: string = 'info';
+  static DIALOG_TYPE_CONFIRM: string = 'confirm';
+  static DIALOG_ACTION_CLOSE: string = 'close';
+  static DIALOG_ACTION_SAVECLOSE: string = 'save-close';
+  static DIALOG_ACTION_SAVENEW: string = 'save-new';
+  static DIALOG_ACTION_YES: string = 'yes';
+  static DIALOG_ACTION_NO: string = 'no';
 
   constructor(
     private dialog: MatDialog
