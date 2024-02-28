@@ -1,0 +1,25 @@
+@import '../style.variables.scss';
+
+#header,
+#footer {
+    flex: 0 0 auto;
+}
+#content {
+    flex: 1 0 auto;
+}
+#footer {
+    text-align: center;   
+}
+#footer p {
+    font-size: $textSizeMinimal;
+}
+#toolbar {
+    background-color: $colorPale;
+}
+#site-title {
+    font-size: 18pt;
+    font-weight: bold;
+}
+.dialog {
+    max-width: 50%;
+}

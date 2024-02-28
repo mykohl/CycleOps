@@ -1,6 +1,6 @@
 {
     "development": {
-        "DATABASE_URL": "file:/Users/mykohl/Documents/GitHub/CycleOps/CycleOps.db",
+        "DATABASE_URL": "postgresql://devuser:devuser@localhost:5432/CycleOps",
         "JWT_SECRET": "e6e8953b419d2d7c8d4625e6a41b9454ec5fdf9e2f4ae13b4977263058040f8a"
     },
     "production" : {

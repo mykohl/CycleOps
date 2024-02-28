@@ -1,0 +1,5 @@
+<mat-dialog-actions>
+    @for(action of actions; track action) {
+        <button mat-button (click)="emitAction(action.action);">{{action.name}}</button>
+    }
+</mat-dialog-actions>

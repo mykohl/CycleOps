@@ -1,50 +1,78 @@
-import { Component, ViewChild, ChangeDetectorRef, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { switchMap, take } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { UserDto } from "../../../data/models/user.model";
 import { SocialAuthService, SocialUser, GoogleLoginProvider } from '@abacritt/angularx-social-login';
-import { UserService } from './services/user.service';
-import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
+import { UserService } from './shared/services/user-service/user.service';
+import { UserReqService } from './shared/services/api-request-services/user-request-service/user-request.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AppService } from './shared/services/app-service/app.service';
+import { UserStatus, UserDto } from '../../../data/models/model.dto';
+import * as appModel from '../../../data/models/model.app';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   @ViewChild('loginDialogTemplate') _loginDialogTemplateRef!: TemplateRef<any>;
 
   private _socialUser: SocialUser | null = null;
   private _dialogRef: MatDialogRef<any> | undefined;
-  private _isLoginComplete: boolean = false;
 
   constructor(
-    private _socialAuthService: SocialAuthService,
-    private _userService: UserService,
-    private _apiReqUserService: ApiReqUserService,
-    private _dialog: MatDialog,
-    private _cdr: ChangeDetectorRef
-  ) {}
+    private socialAuthService: SocialAuthService,
+    private userService: UserService,
+    private apiReqUserService: UserReqService,
+    private dialog: MatDialog,
+    private appService: AppService,
+    private router: Router
+  ) {
+  }
 
   ngOnInit() {
-    this._socialAuthService.authState
+    this.socialAuthService.authState
       .pipe(
         take(1),
         switchMap((socialUser) => {
           if (socialUser) {
-            this._userService.socialUser = socialUser;
-            return this._apiReqUserService.updateUser(UserService.getDto(socialUser));
+            this.userService.socialUser = socialUser;
+            return this.apiReqUserService.updateUser(socialUser);
           }
           return of(null);
         })
       )
       .subscribe({
         next: (response) => {
-          this.completeLogIn();
+          this.completeLogIn(response);
         },
         error: (error) => console.error('Update error:', error),
       });
+  }
+
+  get userStatus(): UserStatus {
+    return this.userService.userStatus;
+  }
+
+  get features(): appModel.feature[] {
+    return AppService.features;
+  }
+
+  get highlightComponents(): any[] {
+    return AppService.highlightComponents;
+  }
+
+  get title(): string {
+    return AppService.branding.title;
+  }
+
+  get userRole(): string {
+    return this.userService.role;
+  }
+
+  get roleFeatures(): appModel.feature[] {
+    return AppService.getRoleFeatures(this.userRole);
   }
 
   userSignAction(): void {
@@ -53,24 +81,29 @@ export class AppComponent {
     }
   }
 
-  completeLogIn(): void {
+  completeLogIn(siteUser: UserDto): void {
+    this.userService.siteUser = siteUser;
     this.closeDialog();
-    this._isLoginComplete = true;
   }
 
   openDialog(templateRef: TemplateRef<any>): void {
-    this._dialogRef = this._dialog.open(templateRef);
+    this._dialogRef = this.dialog.open(templateRef);
   }
 
   closeDialog() {
     if(this._dialogRef) this._dialogRef.close();
   }
 
-  get userService(): UserService {
-    return this._userService;
+  refreshGoogleToken(): void {
+    this.socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  refreshGoogleToken(): void {
-    this._socialAuthService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  findComponent(id: string): appModel.component | undefined {
+    return AppService.findComponent(id);
+  }
+
+  navigate(id: string) {
+    const route = AppService.findComponent(id)?.route;
+    this.router.navigate([route]);
   }
 }

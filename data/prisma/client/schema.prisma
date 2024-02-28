@@ -4,139 +4,216 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url = env("DATABASE_URL")
 }
 
-model Cyclist {
+model User {
   id Int @id @default(autoincrement())
   name String?
   nameLast String?
   nameFirst String?
+  email String?
   providerId String @unique
   provider String?
-  roles String?
+  role String?
   registered DateTime?
   lastLogIn DateTime?
-  owns Ownership[]
+  claims Claim[]
 }
 
-model Ownership {
+model Claim {
   id Int @id @default(autoincrement())
+  claimType String?
   acquired DateTime?
   condition String?
   notes String?
-  owner Cyclist? @relation(fields: [ownerId], references: [id])
+  owner User? @relation(fields: [ownerId], references: [id])
   ownerId Int?
-  bicycle Bicycle? @relation(fields: [bicycleId], references: [id])
-  bicycleId Int?
-  wheel Wheel? @relation(fields: [wheelId], references: [id])
-  wheelId Int?
-  wheelSet Wheelset? @relation(fields: [wheelSetId], references: [id])
-  wheelSetId Int?
   part Part? @relation(fields: [partId], references: [id])
   partId Int?
 }
 
-model Bicycle {
-  id Int @id @default(autoincrement())
-  notes String?
-  parts BicyclePart[]
-  owners Ownership[]
-}
-
-model BicyclePart {
-  id Int @id @default(autoincrement())
-  quantity Int?
-  notes String?
-  bicycle Bicycle? @relation(fields: [bicycleId], references: [id])
-  bicycleId Int?
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int?
-}
-
-model Maker {
+model Brand {
   id Int @id @default(autoincrement())
   name String?
   nameShort String?
   nameAbbreviation String?
   notes String?
-  parts Part[]
+  webAddress String?
+  brandMemberships BrandMember[]
+}
+
+model BrandMember {
+  id Int @id @default(autoincrement())
+  productLine ProductLine? @relation(fields: [productLineId], references: [id])
+  productLineId Int?
+  brand Brand? @relation(fields: [brandId], references: [id])
+  brandId Int?
+}
+
+model ProductLine {
+  id Int @id @default(autoincrement())
+  type String?
+  name String?
+  nameShort String?
+  nameAbbreviation String?
+  notes String?
+  webAddress String?
+  brandMemberships BrandMember[]
+  items Part[]
+}
+
+model PropertyGroup {
+  id Int @id @default(autoincrement())
+  order Int?
+  name String @unique
+  description String?
+  propertyTypes PropertyGroupMembership[]
+}
+
+model PropertyGroupMembership {
+  id Int @id @default(autoincrement())
+  isPrimary Boolean @default(false)
+  propertyType PropertyType? @relation(fields: [propertyTypeId], references: [id])
+  propertyTypeId Int?
+  propertyGroup PropertyGroup? @relation(fields: [propertyGroupId], references: [id])
+  propertyGroupId Int?
+}
+
+model PropertyType {
+  id Int @id @default(autoincrement())
+  order Int?
+  name String?
+  description String?
+  valueDataType String?
+  valueDataTypeModifier String?
+  variation String?
+  partTypes PropertyTypeMembership[]
+  propertyGroups PropertyGroupMembership[]
+  properties Property[]
+  lookupValues PropertyLookup[]
+}
+
+model PropertyTypeMembership {
+  id Int @id @default(autoincrement())
+  propertyType PropertyType? @relation(fields: [propertyTypeId], references: [id])
+  propertyTypeId Int?
+  partType PartType? @relation(fields: [partTypeId], references: [id])
+  partTypeId Int?
+}
+
+model PropertyLookup {
+  id Int @id @default(autoincrement())
+  value String?
+  propertyType PropertyType? @relation(fields: [propertyTypeId], references: [id])
+  propertyTypeId Int?
+}
+
+model PartClass {
+  id Int @id @default(autoincrement())
+  order Int?
+  name String @unique
+  partTypes PartClassMembership[]
+}
+
+model PartClassMembership {
+  id Int @id @default(autoincrement())
+  isPrimary Boolean @default(false)
+  partClass PartClass? @relation(fields: [partClassId], references: [id])
+  partClassId Int?
+  partType PartType? @relation(fields: [partTypeId], references: [id])
+  partTypeId Int?
+}
+
+model PartType {
+  id Int @id @default(autoincrement())
+  order Int?
+  name String @unique
+  description String?
+  propertyTypes PropertyTypeMembership[]
+  partClasses PartClassMembership[]
+}
+
+model PartGroup {
+  id Int @id @default(autoincrement())
+  name String?
+  parts PartGroupMembership[]
+}
+
+model PartGroupMembership {
+  id Int @id @default(autoincrement())
+  part Part? @relation(fields: [partId], references: [id])
+  partId Int?
+  partGroup PartGroup? @relation(fields: [partGroupId], references: [id])
+  partGroupId Int?
 }
 
 model Part {
   id Int @id @default(autoincrement())
-  categories String?
   type String?
-  designationCode String?
   name String?
   notes String?
-  maker Maker? @relation(fields: [makerId], references: [id])
-  makerId Int?
-  owners Ownership[]
-  bicycles BicyclePart[]
-  hub Hub?
-  rim Rim?
-  cogset Cogset?
+  weight Decimal?
+  weightUnit String?
+  productLine ProductLine? @relation(fields: [productLineId], references: [id])
+  productLineId Int?
+  wheelHubs Wheel[] @relation("hub")
+  wheelRims Wheel[] @relation("rim")
+  wheelSpokes WheelSpoke[] @relation("spoke")
+  properties Property[]
+  claims Claim[]
+  partGroups PartGroupMembership[]
+  builds BuildPart[]
 }
 
-model Hub {
+model Property {
   id Int @id @default(autoincrement())
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int? @unique
-  position String?
-  spokeCount Int?
-  overLocknutDistance Float?
-  flangeDiameterLeft Float?
-  flangeDiameterRight Float?
-  flangeLeftToCenter Float?
-  flangeRightToCenter Float?
-  sflangeLeftToOLN Float?
-  flangeRightToOLN Float?
-  spokeHoleDiameter Float?
-  wheels Wheel[]
+  part Part? @relation(fields: [itemId], references: [id])
+  itemId Int? @unique
+  value String?
+  valueDataMethod String?
+  propertyType PropertyType? @relation(fields: [propertyTypeId], references: [id])
+  propertyTypeId Int?
 }
 
-model Rim {
+model WheelSpoke {
   id Int @id @default(autoincrement())
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int? @unique
-  specEffectiveDiameter Float?
-  specWidthInternal Float?
-  specWidthExternal Float?
-  specSectionHeight Float?
-  wheels Wheel[]
-}
-
-model Cogset {
-  id Int @id @default(autoincrement())
-  type String?
-  cogs String?
+  quantity Int?
+  length Decimal?
+  tensionApplied Decimal?
+  tensionUnit String?
+  preparation String?
   notes String?
-  part Part? @relation(fields: [partId], references: [id])
-  partId Int? @unique
+  spoke Part? @relation(name: "spoke", fields: [spokeId], references: [id])
+  spokeId Int?
+  wheel Wheel? @relation(name: "wheel", fields: [wheelId], references: [id])
+  wheelId Int?
 }
 
 model Wheel {
   id Int @id @default(autoincrement())
   name String?
   notes String?
-  hub Hub? @relation(fields: [hubId], references: [id])
+  hub Part? @relation(name: "hub", fields: [hubId], references: [id])
   hubId Int?
-  rim Rim? @relation(fields: [rimId], references: [id])
+  rim Part? @relation(name: "rim", fields: [rimId], references: [id])
   rimId Int?
-  wheelsFoward Wheelset[] @relation("wheelFoward")
-  wheelsBack Wheelset[] @relation("wheelBack")
-  owners Ownership[]
+  spokes WheelSpoke[] @relation("wheel")
 }
 
-model Wheelset {
+model BuildPart {
+  id Int @id @default(autoincrement())
+  build Build? @relation(fields: [buildId], references: [id])
+  buildId Int?
+  part Part? @relation(fields: [partId], references: [id])
+  partId Int?
+}
+
+model Build {
   id Int @id @default(autoincrement())
   name String?
+  status String?
   notes String?
-  wheelFoward Wheel? @relation("wheelFoward", fields: [wheelFowardId], references: [id])
-  wheelFowardId Int?
-  wheelBack Wheel? @relation("wheelBack", fields: [wheelBackId], references: [id])
-  wheelBackId Int?
-  owners Ownership[]
+  parts BuildPart[]
 }

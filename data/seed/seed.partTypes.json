@@ -1,0 +1,68 @@
+{
+    "partTypes":
+    [
+        {
+            "order": 100,
+            "name": "frame",
+            "propertyTypes": 
+            [
+                "intended use", "load capability", "terrain capability", 
+                "material", "method",
+                "seat tube length", "seat tube extension", "top tube length, actual", "top tube length, effective",
+                    "head tube angle", "seat tube angle", "reach", "stack", "head tube height", "head tube extension",
+                    "chain stay length", "bottom bracket drop",
+                "head tube inner diameter, upper", "head tube inner diameter, lower", "headset frame interface",
+                "wheel size", "maximum tire clearance", "axle interface", "axle width",
+                "brake interface", "brake actuation routing",
+                "bottom bracket width", "bottom bracket interface", "front derailleur interface",
+                    "rear derailleur interface", "seat tube outer diameter", "shift actuation routing",
+                    "shift control interface",
+                "seat tube inner diameter", "saddle/seatpost interface",
+                "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
+                    "additional accessory accomodation"
+            ],
+            "partClassPrimary": "frameset",
+            "partClassesOther": null
+        },
+        {
+            "order": 200,
+            "name": "fork",
+            "propertyTypes":
+            [
+                "intended use", "load capability", "terrain capability", 
+                "material", "method",
+                "axle to crown distance", "rake", "crown width", "steer tube outer diameter", "headset fork interface",
+                "wheel size", "maximum tire clearance", "axle interface", "axle width",
+                "brake interface", "brake actuation routing",
+                "rack and baggage accomodation", "fender accomodation", "lighting accomodation",
+                    "additional accessory accomodation"                
+            ],
+            "partClassPrimary": "frameset",
+            "partClassesOther": null
+        },
+        {
+            "order": 300,
+            "name": "headset",
+            "propertyTypes": [
+                "material",
+                "headset frame interface", "headset fork interface"
+            ],
+            "partClassPrimary": "frameset",
+            "partClassesOther": ["fittings"]
+        },
+        {
+            "order": 400,
+            "name": "rim",
+            "propertyTypes": 
+            [
+                "wheel size", "effective diameter", "spoke hole count", "internal width", "external width",
+                    "centerline offset",
+                "profile type", "brake track",
+                "intended use", "load capability", "terrain capability", 
+                "material", "method"
+            ],
+            "partClassPrimary": "wheel",
+            "partClassesOther": null
+        }
+    ]
+}

@@ -1,0 +1,84 @@
+<div class="margin-nominal">
+    <div class="go-wide flex-row flex-wrap flex-justify-spread flex-align-start">
+        <div>
+            <h2 class="text-size-large text-margin-nominal">Manage Part Types and Classifications</h2>
+            <p class="text-size-nominal text-margin-nominal">Create and edit part classifications and part types; assign part types to part classes by selecting the class and then selecting or deselecting desired part types.</p>
+        </div>
+    </div>
+</div>
+<div class="flex-row flex-wrap flex-align-start flex-justify-center">
+    <div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
+        <div class="flex-row flex-align-center flex-justify-spread">
+            <p>Part Classes</p>
+            <mat-icon class="cursor-point" (click)="editPartClass();">add</mat-icon>
+        </div>
+        <mat-table #partClassTable
+            [dataSource]="partClassDataSource"
+            cdkDropList
+            (cdkDropListDropped)="movePartClass($event)"
+            [cdkDropListDisabled]="partClassDragDisabled"
+            cdkDropListData="partClassDataSource">
+            <ng-container matColumnDef="order" sticky>
+                <mat-header-cell *matHeaderCellDef> Order </mat-header-cell>
+                <mat-cell *matCellDef="let class; let i = index">
+                    <mat-icon cdkDragHandle class="cursor-move">reorder</mat-icon>
+                    <span>{{i + 1}}</span>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell class="mat-col-data-short" *matCellDef="let class; let i = index;">{{class['name']}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>&nbsp;</mat-header-cell>
+                <mat-cell *matCellDef="let class; let i = index;">
+                    <mat-icon class="action-icon" (click)="editPartClass(i);">edit</mat-icon>&nbsp;
+                    <mat-icon class="action-icon" (click)="deletePartClass(i);">delete</mat-icon>
+                </mat-cell>
+            </ng-container>          
+            <mat-header-row *matHeaderRowDef="partClassTableColumns"></mat-header-row>
+            <mat-row 
+                class="item-row"
+                [class.active-class-row]="class === selectedClass"
+                *matRowDef="let class; columns: partClassTableColumns;"
+                (click)="selectedClass = class;"
+                cdkDrag
+                (cdkDragStarted)="editingClass = null;"
+                [cdkDragData]="class">
+            </mat-row>
+        </mat-table>
+    </div>
+    <div class="mat-elevation-z8 radius-nominal padding-nominal margin-sides-nominal margin-bottom-nominal">
+        <div class="flex-row flex-align-center flex-justify-spread">
+            <p>Part Types</p>
+            <mat-icon class="cursor-point" (click)="updatePartType();">add</mat-icon>
+        </div>
+        <table mat-table [dataSource]="partTypeDataSource">
+            <ng-container matColumnDef="order">
+                <th mat-header-cell *matHeaderCellDef> Order </th>
+                <td mat-cell *matCellDef="let type"> {{type['order']}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let type"> {{type['name']}} </td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let type"> {{type['description']}} </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>&nbsp;</th>
+                <td mat-cell *matCellDef="let type">
+                    <mat-icon>edit</mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="partTypeTableColumns"></tr>
+            <tr mat-row
+                class="item-row"
+                [class.active-class-row]="partTypeInClass(type)"
+                *matRowDef="let type; columns: partTypeTableColumns;"
+                (click)="toggleInClass(type)">
+            </tr>
+        </table>
+    </div>
+</div>

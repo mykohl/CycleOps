@@ -8,18 +8,24 @@ import {
   GoogleLoginProvider,
   GoogleSigninButtonModule
 } from "@abacritt/angularx-social-login";
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
-import { AuthInterceptor } from './services/auth-interceptor.service';
-import { ApiReqMakerService } from './services/api-request-services/api-req-maker.service';
-import { ApiReqUserService } from './services/api-request-services/api-req-user.service';
-import { UserService } from './services/user.service';
-import { HomeComponent } from './home/home.component';
+import { MaterialModule } from './shared/modules/material.module';
+import { AuthInterceptor } from './shared/services/auth-interceptor-service/auth-interceptor.service';
+import { HomeComponent } from './features/home/home.component';
+import { ServicesModule } from './shared/modules/services.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DialogsModule } from './shared/modules/dialogs.module';
+import { UserAdminComponent } from './features//admin/user-admin/user-admin.component';
+import { PartsClassAdminComponent } from './features/admin/parts-class-admin/parts-class-admin.component';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    UserAdminComponent,
+    PartsClassAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -28,14 +34,17 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     GoogleSigninButtonModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    DragDropModule,
+    ServicesModule,
+    DialogsModule
   ],
   providers: [
-    ApiReqMakerService,
-    ApiReqUserService,
+    ServicesModule,
+    MaterialModule,
+    DialogsModule,
     AppRoutingModule,
     AuthInterceptor,
-    UserService,    
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

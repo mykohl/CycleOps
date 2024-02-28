@@ -101,94 +101,155 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
-exports.Prisma.CyclistScalarFieldEnum = {
+exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   nameLast: 'nameLast',
   nameFirst: 'nameFirst',
+  email: 'email',
   providerId: 'providerId',
   provider: 'provider',
-  roles: 'roles',
+  role: 'role',
   registered: 'registered',
   lastLogIn: 'lastLogIn'
 };
 
-exports.Prisma.OwnershipScalarFieldEnum = {
+exports.Prisma.ClaimScalarFieldEnum = {
   id: 'id',
+  claimType: 'claimType',
   acquired: 'acquired',
   condition: 'condition',
   notes: 'notes',
   ownerId: 'ownerId',
-  bicycleId: 'bicycleId',
-  wheelId: 'wheelId',
-  wheelSetId: 'wheelSetId',
   partId: 'partId'
 };
 
-exports.Prisma.BicycleScalarFieldEnum = {
-  id: 'id',
-  notes: 'notes'
-};
-
-exports.Prisma.BicyclePartScalarFieldEnum = {
-  id: 'id',
-  quantity: 'quantity',
-  notes: 'notes',
-  bicycleId: 'bicycleId',
-  partId: 'partId'
-};
-
-exports.Prisma.MakerScalarFieldEnum = {
+exports.Prisma.BrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
   nameShort: 'nameShort',
   nameAbbreviation: 'nameAbbreviation',
-  notes: 'notes'
+  notes: 'notes',
+  webAddress: 'webAddress'
+};
+
+exports.Prisma.BrandMemberScalarFieldEnum = {
+  id: 'id',
+  productLineId: 'productLineId',
+  brandId: 'brandId'
+};
+
+exports.Prisma.ProductLineScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  name: 'name',
+  nameShort: 'nameShort',
+  nameAbbreviation: 'nameAbbreviation',
+  notes: 'notes',
+  webAddress: 'webAddress'
+};
+
+exports.Prisma.PropertyGroupScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.PropertyGroupMembershipScalarFieldEnum = {
+  id: 'id',
+  isPrimary: 'isPrimary',
+  propertyTypeId: 'propertyTypeId',
+  propertyGroupId: 'propertyGroupId'
+};
+
+exports.Prisma.PropertyTypeScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name',
+  description: 'description',
+  valueDataType: 'valueDataType',
+  valueDataTypeModifier: 'valueDataTypeModifier',
+  variation: 'variation'
+};
+
+exports.Prisma.PropertyTypeMembershipScalarFieldEnum = {
+  id: 'id',
+  propertyTypeId: 'propertyTypeId',
+  partTypeId: 'partTypeId'
+};
+
+exports.Prisma.PropertyLookupScalarFieldEnum = {
+  id: 'id',
+  value: 'value',
+  propertyTypeId: 'propertyTypeId'
+};
+
+exports.Prisma.PartClassScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name'
+};
+
+exports.Prisma.PartClassMembershipScalarFieldEnum = {
+  id: 'id',
+  isPrimary: 'isPrimary',
+  partClassId: 'partClassId',
+  partTypeId: 'partTypeId'
+};
+
+exports.Prisma.PartTypeScalarFieldEnum = {
+  id: 'id',
+  order: 'order',
+  name: 'name',
+  description: 'description'
+};
+
+exports.Prisma.PartGroupScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.PartGroupMembershipScalarFieldEnum = {
+  id: 'id',
+  partId: 'partId',
+  partGroupId: 'partGroupId'
 };
 
 exports.Prisma.PartScalarFieldEnum = {
   id: 'id',
-  categories: 'categories',
   type: 'type',
-  designationCode: 'designationCode',
   name: 'name',
   notes: 'notes',
-  makerId: 'makerId'
+  weight: 'weight',
+  weightUnit: 'weightUnit',
+  productLineId: 'productLineId'
 };
 
-exports.Prisma.HubScalarFieldEnum = {
+exports.Prisma.PropertyScalarFieldEnum = {
   id: 'id',
-  partId: 'partId',
-  position: 'position',
-  spokeCount: 'spokeCount',
-  overLocknutDistance: 'overLocknutDistance',
-  flangeDiameterLeft: 'flangeDiameterLeft',
-  flangeDiameterRight: 'flangeDiameterRight',
-  flangeLeftToCenter: 'flangeLeftToCenter',
-  flangeRightToCenter: 'flangeRightToCenter',
-  sflangeLeftToOLN: 'sflangeLeftToOLN',
-  flangeRightToOLN: 'flangeRightToOLN',
-  spokeHoleDiameter: 'spokeHoleDiameter'
+  itemId: 'itemId',
+  value: 'value',
+  valueDataMethod: 'valueDataMethod',
+  propertyTypeId: 'propertyTypeId'
 };
 
-exports.Prisma.RimScalarFieldEnum = {
+exports.Prisma.WheelSpokeScalarFieldEnum = {
   id: 'id',
-  partId: 'partId',
-  specEffectiveDiameter: 'specEffectiveDiameter',
-  specWidthInternal: 'specWidthInternal',
-  specWidthExternal: 'specWidthExternal',
-  specSectionHeight: 'specSectionHeight'
-};
-
-exports.Prisma.CogsetScalarFieldEnum = {
-  id: 'id',
-  type: 'type',
-  cogs: 'cogs',
+  quantity: 'quantity',
+  length: 'length',
+  tensionApplied: 'tensionApplied',
+  tensionUnit: 'tensionUnit',
+  preparation: 'preparation',
   notes: 'notes',
-  partId: 'partId'
+  spokeId: 'spokeId',
+  wheelId: 'wheelId'
 };
 
 exports.Prisma.WheelScalarFieldEnum = {
@@ -199,17 +260,27 @@ exports.Prisma.WheelScalarFieldEnum = {
   rimId: 'rimId'
 };
 
-exports.Prisma.WheelsetScalarFieldEnum = {
+exports.Prisma.BuildPartScalarFieldEnum = {
+  id: 'id',
+  buildId: 'buildId',
+  partId: 'partId'
+};
+
+exports.Prisma.BuildScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  notes: 'notes',
-  wheelFowardId: 'wheelFowardId',
-  wheelBackId: 'wheelBackId'
+  status: 'status',
+  notes: 'notes'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
@@ -219,17 +290,27 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Cyclist: 'Cyclist',
-  Ownership: 'Ownership',
-  Bicycle: 'Bicycle',
-  BicyclePart: 'BicyclePart',
-  Maker: 'Maker',
+  User: 'User',
+  Claim: 'Claim',
+  Brand: 'Brand',
+  BrandMember: 'BrandMember',
+  ProductLine: 'ProductLine',
+  PropertyGroup: 'PropertyGroup',
+  PropertyGroupMembership: 'PropertyGroupMembership',
+  PropertyType: 'PropertyType',
+  PropertyTypeMembership: 'PropertyTypeMembership',
+  PropertyLookup: 'PropertyLookup',
+  PartClass: 'PartClass',
+  PartClassMembership: 'PartClassMembership',
+  PartType: 'PartType',
+  PartGroup: 'PartGroup',
+  PartGroupMembership: 'PartGroupMembership',
   Part: 'Part',
-  Hub: 'Hub',
-  Rim: 'Rim',
-  Cogset: 'Cogset',
+  Property: 'Property',
+  WheelSpoke: 'WheelSpoke',
   Wheel: 'Wheel',
-  Wheelset: 'Wheelset'
+  BuildPart: 'BuildPart',
+  Build: 'Build'
 };
 
 /**

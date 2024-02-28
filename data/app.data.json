@@ -1,0 +1,178 @@
+{
+    "branding": {
+        "title": "CogNative",
+        "tagline": "A free, simple workshop assistant for DIY bicycle tinkering."
+    },
+    "features":
+    [
+        {
+            "id": "inv",
+            "order": 1,
+            "title": "Inventory",
+            "titleIcon": "inventory",
+            "components": 
+            [
+                {
+                    "id": "inv",
+                    "order": 1,
+                    "isHighlight": true,
+                    "title": "Inventory",
+                    "description": "Organize and track your collection of bikes, parts, and tools.",
+                    "titleIcon": "",
+                    "image": "inventory_3_bw.jpeg",
+                    "imageAlt": "picture of containers of bicycle parts",
+                    "route": "inventory",
+                    "rolesAllowed": "*"
+                } 
+            ],
+            "rolesAllowed": "*"
+        },
+        {
+            "id": "workshops",
+            "order": 2,
+            "title": "Workshops",
+            "titleIcon": "construction",
+            "components":
+            [
+                {
+                    "id": "wheels",
+                    "order": 3,
+                    "isHighlight": true,
+                    "title": "Wheel Workshop",
+                    "description": "Calculate spoke lengths, specify your wheel builds, catalog your wheels.",
+                    "titleIcon": "",
+                    "image": "wheel_workshop_bw.jpeg",
+                    "imageAlt": "picture of a bicycle wheel on a truing stand, with tools",
+                    "route": "workshops/wheels",
+                    "rolesAllowed": "*"
+                },
+                {
+                    "id": "gears",
+                    "order": 4,
+                    "isHighlight": true,
+                    "title": "Gearing Workshop",
+                    "description": "Find your optimal gearing combinations by calculating ratios and checking compatibility.",
+                    "titleIcon": "",
+                    "image": "gearing_workshop_bw.jpeg",
+                    "imageAlt": "picture of bicycle freewheel, cassettes, crank, single speed cog with lock ring, and chain",
+                    "route": "workshops/gearing",
+                    "rolesAllowed": "*"
+                },
+                {
+                    "id": "build",
+                    "order": 5,
+                    "isHighlight": true,
+                    "title": "Bike Build Workshop",
+                    "description": "Spec-out a complete bike build by selecting parts and configuration details.",
+                    "titleIcon": "",
+                    "image": "bike_build_workshop_bw.jpeg",
+                    "imageAlt": "picture of bicycle being held in a repair stand",
+                    "route": "workshops/build",
+                    "rolesAllowed": "*"
+                }
+            ],
+            "rolesAllowed": "*"
+        },
+        {
+            "id": "lib",
+            "order": 3,
+            "title": "Library",
+            "titleIcon": "menu_book",
+            "components":
+            [
+                {
+                    "id": "lib",
+                    "order": 2,
+                    "isHighlight": true,
+                    "title": "Library",
+                    "description": "How-to guides, opinions, information, other resources, etc.",
+                    "titleIcon": "",
+                    "image": "learn_bw.jpeg",
+                    "imageAlt": "picture of books and ephemera related to bicycles",
+                    "route": "library",
+                    "rolesAllowed": "*"
+                }
+            ],
+            "rolesAllowed": "*"
+        },
+        {
+            "id": "admin",
+            "order": 4,
+            "title": "Admin",
+            "titleIcon": "",
+            "components":
+            [
+                {
+                    "id": "users",
+                    "order": 1,
+                    "isHighlight": false,
+                    "title": "Users",
+                    "description": "Manage users.",
+                    "titleIcon": "",
+                    "image": "",
+                    "imageAlt": "",
+                    "route": "admin/users",
+                    "rolesAllowed": ["admin"]
+                },
+                {
+                    "id": "parts-classification",
+                    "order": 2,
+                    "isHighlight": false,
+                    "title": "Parts Classification",
+                    "description": "Specify scheme for classification of parts and their properties.",
+                    "titleIcon": "",
+                    "image": "",
+                    "imageAlt": "",
+                    "route": "admin/parts/classes",
+                    "rolesAllowed": ["admin"]                    
+                }
+            ],
+            "rolesAllowed": ["admin"]
+        }        
+    ],
+    "roles": [
+        "admin", "standard", "disabled"
+    ],
+    "dialogTypes": [
+        {
+            "type": "edit-item",
+            "actions": [
+                {
+                    "order": 1,
+                    "name": "Cancel",
+                    "action": "done"
+                },
+                {
+                    "order": 2,
+                    "name": "Reset",
+                    "action": "revert"
+                },
+                {
+                    "order": 3,
+                    "name": "Save",
+                    "action": "saveClose"
+                }
+            ]
+        },
+        {
+            "type": "new-item",
+            "actions": [
+                {
+                    "order": 1,
+                    "name": "Cancel",
+                    "action": "done"
+                },
+                {
+                    "order": 2,
+                    "name": "Save & New",
+                    "action": "saveNew"
+                },
+                {
+                    "order": 3,
+                    "name": "Save & Close",
+                    "action": "saveClose"
+                }
+            ]
+        }
+    ]
+}

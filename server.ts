@@ -3,24 +3,14 @@ import express, { Request, Response, NextFunction } from 'express';
 import path from "path";
 import fs from 'fs';
 import https from 'https';
-import { PrismaClient } from './data/prisma/client';
-import PartRouter from './routes/part.route';
-import MakerRouter from './routes/maker.route';
-import UserRouter from './routes/user.route';
+import adminRouter from './routes/admin.routes';
+import { prisma } from './prisma.instance';
 
 const envPath = path.join(__dirname, '.env');
 const env = process.env.NODE_ENV || 'development';
 const configFile = path.join(__dirname, 'config.json');
 export const config = JSON.parse(fs.readFileSync(configFile, 'utf8'))[env];
-dotenv.config({path: envPath});
-
-export const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: config.DATABASE_URL
-    }
-  }
-});
+dotenv.config({ path: envPath });
 
 const app = express();
 const httpsPort = 443;
@@ -37,13 +27,16 @@ async function main() {
   app.use(setSecureCookies);
   app.use(express.json());
   app.use(express.static('cycle-ops-app/browser'));
-  app.get('/', function(req, res) {
-    res.sendFile(path.resolve('cycle-ops-app/browser/index.html'));
+
+  app.use((req, res, next) => {
+    if(req.url.startsWith('/api')) {
+      next();
+    } else {
+      res.sendFile(path.resolve('cycle-ops-app/browser/index.html'));
+    }
   });
 
-  app.use('/api/makers', MakerRouter);
-  app.use('/api/parts', PartRouter);
-  app.use('/api/users', UserRouter);
+  app.use('/api/admin', adminRouter);
 
   app.use((req, res, next) => {
     if(req.secure) {

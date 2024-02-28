@@ -1,0 +1,273 @@
+@use '@angular/material' as mat;
+@use '@angular/material/prebuilt-themes/deeppurple-amber.css' as mat-theme;
+@include mat.core();
+@import './style.variables.scss';
+
+html, body {
+    font-size: $textSizeNominal;
+    height: 100vh;
+    margin: 0;
+    width: 100%;
+}
+body { 
+    background-color: $colorBright;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+// MARGINS & SIZING -----------------------------------------------------------
+.size-wide {
+    width: 100%;
+}
+.size-half-width {
+    width: 50%;
+}
+// Full margins
+.margin-none {
+    margin: 0;
+}
+.gap {
+    margin: $gap;
+}
+.gap-small {
+    margin: $gapSmall;
+}
+.margin-minimal {
+    margin: $spacingMinimal;
+}
+.margin-nominal {
+    margin: $spacingNominal;
+}
+.margin-extra {
+    margin: $spacingExtra;
+}
+// Top & bottom margins
+.gap-vertical {
+    margin-top: $gap;
+    margin-bottom: $gap;
+}
+.gap-small-vertical {
+    margin-top: $gapSmall;
+    margin-bottom: $gapSmall;  
+}
+.margin-vertical-minimal {
+    margin-top: $spacingMinimal;
+    margin-bottom: $spacingMinimal;
+}
+.margin-vertical-nominal {
+    margin-top: $spacingNominal;
+    margin-bottom: $spacingNominal;
+}
+.margin-vertical-extra {
+    margin-top: $spacingExtra;
+    margin-bottom: $spacingExtra;
+}
+.gap-top {
+    margin-top: $gap;
+}
+.gap-small-top {
+    margin-top: $gapSmall;
+}
+.margin-top-minimal {
+    margin-top: $spacingMinimal;
+}
+.margin-top-nominal {
+    margin-top: $spacingNominal;
+}
+.margin-top-extra {
+    margin-top: $spacingExtra;
+}
+.gap-bottom {
+    margin-bottom: $gap;
+}
+.gap-small-bottom {
+    margin-bottom: $gapSmall;
+}
+.margin-bottom-minimal {
+    margin-bottom: $spacingMinimal;
+}
+.margin-bottom-nominal {
+    margin-bottom: $spacingNominal;
+}
+.margin-bottom-extra {
+    margin-bottom: $spacingExtra;
+}
+// Side margins
+.gap-sides {
+    margin-right: $gap;
+    margin-left: $gap; 
+}
+.gap-small-sides {
+    margin-right: $gapSmall;
+    margin-left: $gapSmall; 
+}
+.margin-sides-minimal {
+    margin-right: $spacingMinimal;
+    margin-left: $spacingMinimal;
+}
+.margin-sides-nominal {
+    margin-right: $spacingNominal;
+    margin-left: $spacingNominal;
+}
+.margin-sides-extra {
+    margin-right: $spacingExtra;
+    margin-left: $spacingExtra;
+}
+.gap-right {
+    margin-right: $gap;
+}
+.gap-small-right {
+    margin-right: $gapSmall;
+}
+.margin-right-minimal {
+    margin-right: $spacingMinimal;
+}
+.margin-right-nominal {
+    margin-right: $spacingNominal;
+}
+.margin-right-extra {
+    margin-right: $spacingExtra;
+}
+.gap-left {
+    margin-left: $gap;
+}
+.gap-small-left {
+    margin-left: $gapSmall;
+}
+.margin-left-minimal {
+    margin-left: $spacingMinimal;
+}
+.margin-left-nominal {
+    margin-left: $spacingNominal;
+}
+.margin-left-extra {
+    margin-left: $spacingExtra;
+}
+// FLEX CONTAINERS ------------------------------------------------------------
+.flex-column,
+.flex-row {
+    display: flex; 
+}
+.flex-column {
+    flex-direction: column; 
+}
+.flex-row {
+    flex-direction: row; 
+}
+.flex-wrap {
+    flex-wrap: wrap;  
+}
+.flex-nowrap {
+    flex-wrap: nowrap;
+}
+.flex-justify-spread {
+    justify-content: space-between;  
+}
+.flex-justify-start {
+    justify-content: flex-start;
+}
+.flex-justify-center {
+    justify-content: center;
+}
+.flex-align-start {
+    align-items: flex-start;
+}
+.flex-align-center {
+    align-items: center;
+}
+// PADDING --------------------------------------------------------------------
+.padding-none {
+    padding: 0;
+}
+.padding-nominal {
+    padding: $spacingNominal;
+}
+.padding-minimal {
+    padding: $spacingMinimal;
+}
+.padding-extra {
+    padding: $spacingExtra;
+}
+// CORNER ROUNDING ------------------------------------------------------------
+.radius-nominal {
+    border-radius: $radiusNominal;
+}
+.radius-minimal {
+    border-radius: $radiusMinimal;
+}
+.radius-extra {
+    border-radius: $radiusExtra;
+}
+// BORDERS --------------------------------------------------------------------
+.border-line {
+    border: $borderThinWidth $borderBasicStyle $colorDark
+}
+.border-line-vertical {
+    border-top: $borderThinWidth $borderBasicStyle $colorDark;
+    border-bottom: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-sides {
+    border-right: $borderThinWidth $borderBasicStyle $colorDark;
+    border-left: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-top {
+    border-top: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-bottom {
+    border-bottom: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-right {
+    border-right: $borderThinWidth $borderBasicStyle $colorDark;
+}
+.border-line-left {
+    border-left: $borderThinWidth $borderBasicStyle $colorDark;
+}
+// BACKGROUNDS ----------------------------------------------------------------
+.bg-bright {
+    background-color: $colorBright;
+}
+.bg-pale {
+    background-color: $colorPale;
+}
+.bg-dark {
+    background-color: $colorDark;
+}
+// TEXT -----------------------------------------------------------------------
+.text-size-large {
+    font-size: $textSizeLarge;
+}
+.text-size-nominal {
+    font-size: $textSizeNominal;
+}
+.text-size-minimal {
+    font-size: $textSizeMinimal;
+}
+.text-bold {
+    font-weight: bold;
+}
+
+.mat-col-data-short {
+    font-size: $textSizeMinimal;
+    min-width: 8rem;
+    max-width: 8rem;
+}
+
+.action-icon {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+// FORM ELEMENTS --------------------------------------------------------------
+.input-text-nominal {
+    margin: 0;
+    padding: 0;
+    width: $inputSizeNominal;
+    font-size: 10pt;
+}
+// OTHER ELEMENTS -------------------------------------------------------------
+// Cursor styles 
+.cursor-move {
+    cursor: move;
+}
+.cursor-point {
+    cursor: pointer
+}
